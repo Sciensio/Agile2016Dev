@@ -138,7 +138,7 @@ module.exports = new Script({
                 });
                 //return next();
                 
-                if (souce != 'agent')
+                if (source != 'agent')
                 {
                     if (fulfillmentSpeach)
                     {
