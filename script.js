@@ -121,8 +121,8 @@ module.exports = new Script({
                         console.log("===in Q.all");
                         console.log("===received result from API.ai",response);
                         var userSaid = response.result.resolvedQuery;
-                        console.log("===user sent",userSaid);
-                        afterNlp(response);
+                        //console.log("===user sent",userSaid);
+                        //afterNlp(response);
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
