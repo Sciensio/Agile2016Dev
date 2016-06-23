@@ -113,7 +113,7 @@ module.exports = new Script({
                     return Promise.resolve("speak");
                 }
 
-                promises.push(nlp(text, senderId));
+                promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
