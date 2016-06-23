@@ -14,6 +14,7 @@
     "jsonwebtoken": "^5.7.0",
     "lodash": "^4.6.1",
     "pg": "6.0.0",
+    "q": "1.4.1",
     "smooch-bot": "https://github.com/skhavari/smooch-bot.git",
     "smooch-core": "^1.1.1"
   },
