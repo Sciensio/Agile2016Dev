@@ -3,6 +3,8 @@
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var pg = require('pg');
+var Q = require("q");
+var request = require("request");
 
 const scriptRules = require('./script.json');
 
@@ -11,6 +13,44 @@ function wait(ms) {
         setTimeout(resolve, ms);
     });
 }
+
+//move to separeate file
+function nlp(query,sessionId){
+	var deferred = Q.defer();
+	var options = {
+		"method" : "POST",
+		"url" : "https://api.api.ai/v1/query?v=20150910",
+		"json" : {
+			"query" : query,
+			"lang" : "en",
+			"sessionId" : sessionId
+		},
+		"headers" : {
+			"Authorization" : "Bearer " + process.env.API_AI_TOKEN,
+			"Content-Type" : "application/json"
+		}
+	};
+
+	console.log("===nlp");
+	console.log("===query: ",query);
+	console.log("===sessionId",sessionId);
+	request(options,function(err,response,body){
+		if(err){
+			console.log("===nlp failed because: ",err.message);
+			deferred.reject(err);
+		}else{
+			body.sessionId = sessionId;
+			if(response.statusCode == 200){
+				console.log("===nlp succeeded ");
+				deferred.resolve(body);
+			}else{
+				deferred.reject(body);
+			}
+		}
+	});
+	return deferred.promise;
+}
+
 
 module.exports = new Script({
     processing: {
@@ -31,12 +71,12 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             pg.defaults.ssl = true;
-            pg.connect('postgres://grxniosfestwqm:GRwjT89SUooBetmQK9NbsSHl85@ec2-54-163-238-215.compute-1.amazonaws.com:5432/d89pfp7q3f1jj7', function(err,client){
+            pg.connect(process.env.DATABASE_URL, function(err,client){
                 if (err) throw err;
-                console.log('====Connected to postgres!!!!!'); 
-                
+                console.log('====Connected to postgres!!!!!');
+
                 client
-                    .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'], 
+                    .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
                     function(err,result) {
                         if (err) {
                             if (err.code == '23505'){
@@ -48,9 +88,9 @@ module.exports = new Script({
                         } else {
                             console.log(JSON.stringify(result.rows[0]));
                         }
-                    });                            
+                    });
             });
-            
+
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
@@ -70,6 +110,23 @@ module.exports = new Script({
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
+
+                promises.push(nlp(text, senderId));
+
+                Q.all(promises).then(function(responses) {
+                    // response is the JSON from API.ai
+                    responses.forEach(function(response) {
+                        console.log("===received result from API.ai",response);
+                        var userSaid = response.result.resolvedQuery;
+                        console.log("===user sent",userSaid);
+                        afterNlp(response);
+                    });
+                }, function(error) {
+                    console.log("[webhook_post.js]", error);
+                });
+                return next();
+
+                console.log("===API_AI msg ", )
 
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
