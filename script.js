@@ -118,7 +118,7 @@ module.exports = new Script({
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
-                        console.log("===received result from API.ai",response);
+                        console.log("===received result from API.ai",response.fulfillment.speech);
                         var userSaid = response.result.resolvedQuery;
                         console.log("===user sent",userSaid);
                         afterNlp(response);
@@ -126,7 +126,7 @@ module.exports = new Script({
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
                 });
-                return next();
+                //return next();
 
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
