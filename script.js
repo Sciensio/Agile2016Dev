@@ -33,7 +33,11 @@ module.exports = new Script({
             pg.defaults.ssl = true;
             pg.connect('postgres://grxniosfestwqm:GRwjT89SUooBetmQK9NbsSHl85@ec2-54-163-238-215.compute-1.amazonaws.com:5432/d89pfp7q3f1jj7', function(err,client){
                 if (err) throw err;
-                console.log('====Connected to postgres!!!!!');                
+            console.log('====Connected to postgres!!!!!'); 
+            
+            client    
+                .query('insert into Attendees values ($1,$2, null, CURRENT_TIMESTAMP);', bot.userId, 'f');
+                            
             });
             
             function updateSilent() {
