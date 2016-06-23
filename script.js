@@ -118,6 +118,7 @@ module.exports = new Script({
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
+                        console.log("===in Q.all");
                         console.log("===received result from API.ai",response.fulfillment.speech);
                         var userSaid = response.result.resolvedQuery;
                         console.log("===user sent",userSaid);
