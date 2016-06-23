@@ -39,7 +39,12 @@ module.exports = new Script({
                     .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'], 
                     function(err,result) {
                         if (err) {
-                            console.log(err);
+                            if (err.code == '23505'){
+                                console.log("===user already exists: ", bot.userId);
+                            }
+                            else{
+                                console.log("===Unknown error: ", err);
+                            }
                         } else {
                             console.log(JSON.stringify(result.rows[0]));
                         }
