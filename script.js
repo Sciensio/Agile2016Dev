@@ -26,7 +26,7 @@ module.exports = new Script({
 
     speak: {
         receive: (bot, message) => {
-            console.log("===bot ",bot);
+            console.log("===bot user ",bot.userId);
             let upperText = message.text.trim().toUpperCase();
 
             function updateSilent() {
