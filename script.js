@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
+var pg = require('pg');
 
 const scriptRules = require('./script.json');
 
