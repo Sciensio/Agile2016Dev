@@ -114,7 +114,7 @@ module.exports = new Script({
                 }
 
                 var source;
-                var fulfillmentSpeach;
+                var fulfillmentSpeech;
                 var simplified;
                 
                 promises.push(nlp(upperText, bot.userId));
@@ -127,7 +127,7 @@ module.exports = new Script({
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
-                            fulfillmentSpeach = response.result.fulfillment.speech;
+                            fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
                         //console.log("===user sent",userSaid);
@@ -140,12 +140,15 @@ module.exports = new Script({
                 
                 if (source != 'agent')
                 {
-                    if (fulfillmentSpeach)
+                    console.log("===source is ", source);
+                    if (fulfillmentSpeech)
                     {
-                        return bot.say(fulfillmentSpeach).then(() => 'speak');
+                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
                     else if (simplified)
                     {
+                        console.log("simplified is: ", simplified);
                         upperText = simplified.toUpperCase();
                     }
                 }
