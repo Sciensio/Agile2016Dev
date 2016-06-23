@@ -130,28 +130,27 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-                        //console.log("===user sent",userSaid);
-                        //afterNlp(response);
+                        if (source != 'agent')
+                        {
+                            console.log("===source is ", source);
+                            if (fulfillmentSpeech)
+                            {
+                                console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
+                                return bot.say(fulfillmentSpeech).then(() => 'speak');
+                            }
+                            else if (simplified)
+                            {
+                                console.log("simplified is: ", simplified);
+                                upperText = simplified.toUpperCase();
+                            }
+                        }
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
                 });
                 //return next();
                 
-                if (source != 'agent')
-                {
-                    console.log("===source is ", source);
-                    if (fulfillmentSpeech)
-                    {
-                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    }
-                    else if (simplified)
-                    {
-                        console.log("simplified is: ", simplified);
-                        upperText = simplified.toUpperCase();
-                    }
-                }
+                
 
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
