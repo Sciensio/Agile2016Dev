@@ -126,8 +126,6 @@ module.exports = new Script({
                 });
                 return next();
 
-                console.log("===API_AI msg ", )
-
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
                 }
