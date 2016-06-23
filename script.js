@@ -119,7 +119,7 @@ module.exports = new Script({
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
-                        console.log("===received result from API.ai",response.fulfillment.speech);
+                        console.log("===received result from API.ai",response);
                         var userSaid = response.result.resolvedQuery;
                         console.log("===user sent",userSaid);
                         afterNlp(response);
