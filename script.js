@@ -8,6 +8,7 @@ var request = require("request");
 
 const scriptRules = require('./script.json');
 
+
 function wait(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
@@ -15,6 +16,7 @@ function wait(ms) {
 }
 
 //move to separeate file
+var promises = [];
 function nlp(query,sessionId){
 	var deferred = Q.defer();
 	var options = {
