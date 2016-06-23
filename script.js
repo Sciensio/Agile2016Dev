@@ -113,6 +113,10 @@ module.exports = new Script({
                     return Promise.resolve("speak");
                 }
 
+                var source;
+                var fulfillmentSpeach;
+                var simplified;
+                
                 promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises).then(function(responses) {
@@ -120,14 +124,31 @@ module.exports = new Script({
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
                         console.log("===received result from API.ai",response);
-                        var userSaid = response.result.fulfillment.speech;
+                        source = response.result.source;
+                        if (source && source !== 'agent')
+                        {
+                            fulfillmentSpeach = response.result.fulfillment.speech;
+                            simplified = response.result.parameters.simplified;
+                        }
                         //console.log("===user sent",userSaid);
                         //afterNlp(response);
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
                 });
-                return next();
+                //return next();
+                
+                if (souce != 'agent')
+                {
+                    if (fulfillmentSpeach)
+                    {
+                        return bot.say(fulfillmentSpeach).then(() => 'speak');
+                    }
+                    else if (simplified)
+                    {
+                        upperText = simplified.toUpperCase();
+                    }
+                }
 
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
