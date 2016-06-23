@@ -30,6 +30,12 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
             let upperText = message.text.trim().toUpperCase();
 
+            pg.defaults.ssl = true;
+            pg.connect('postgres://grxniosfestwqm:GRwjT89SUooBetmQK9NbsSHl85@ec2-54-163-238-215.compute-1.amazonaws.com:5432/d89pfp7q3f1jj7', function(err,client){
+                if (err) throw err;
+                console.log('====Connected to postgres!!!!!');                
+            });
+            
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
