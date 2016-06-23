@@ -35,12 +35,15 @@ module.exports = new Script({
                 if (err) throw err;
                 console.log('====Connected to postgres!!!!!'); 
                 
-                 client
-                    .query('SELECT * FROM attendees;')
-                    .on('row', function(row) {
-                    console.log(JSON.stringify(row));
-                 });
-                            
+                client
+                    .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'], 
+                    function(err,result) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(JSON.stringify(result.rows[0]));
+                        }
+                    });                            
             });
             
             function updateSilent() {
