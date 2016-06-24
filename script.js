@@ -142,6 +142,9 @@ module.exports = new Script({
             
             function respondMessage()
             {
+                console.log("source: ", source);
+                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                console.log("simplified: ", simplified);
                 if (source != 'agent')
                 {
                     console.log("===source is ", source);
