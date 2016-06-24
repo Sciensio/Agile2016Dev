@@ -5,7 +5,7 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
- var source;
+var source;
 var fulfillmentSpeech;
 var simplified;
 
@@ -130,6 +130,9 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
+                        console.log("source: ", source);
+                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                        console.log("simplified: ", simplified);
                         //console.log("===user sent",userSaid);
                         //afterNlp(response);
                     });
