@@ -5,6 +5,9 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
+ var source;
+var fulfillmentSpeech;
+var simplified;
 
 const scriptRules = require('./script.json');
 
@@ -111,15 +114,12 @@ module.exports = new Script({
             function processMessage(isSilent) {
                 if (isSilent) {
                     return Promise.resolve("speak");
-                }
-
-                var source;
-                var fulfillmentSpeech;
-                var simplified;
-                
+                }     
+                           
                 promises.push(nlp(upperText, bot.userId));
 
-                Q.all(promises).then(function(responses) {
+                Q.all(promises)
+                .then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
@@ -130,27 +130,32 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-                        if (source != 'agent')
-                        {
-                            console.log("===source is ", source);
-                            if (fulfillmentSpeech)
-                            {
-                                console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                                return bot.say(fulfillmentSpeech).then(() => 'speak');
-                            }
-                            else if (simplified)
-                            {
-                                console.log("simplified is: ", simplified);
-                                upperText = simplified.toUpperCase();
-                            }
-                        }
+                        //console.log("===user sent",userSaid);
+                        //afterNlp(response);
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
                 });
                 //return next();
                 
-                
+            }
+            
+            function respondMessage()
+            {
+                if (source != 'agent')
+                {
+                    console.log("===source is ", source);
+                    if (fulfillmentSpeech)
+                    {
+                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
+                    }
+                    else if (simplified)
+                    {
+                        console.log("simplified is: ", simplified);
+                        upperText = simplified.toUpperCase();
+                    }
+                }
 
                 if (!_.has(scriptRules, upperText)) {
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
@@ -175,7 +180,8 @@ module.exports = new Script({
 
             return updateSilent()
                 .then(getSilent)
-                .then(processMessage);
+                .then(processMessage)
+                .then(respondMessage);
         }
     }
 });
