@@ -133,8 +133,8 @@ module.exports = new Script({
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                         console.log("simplified: ", simplified);
-                        //console.log("===user sent",userSaid);
-                        //afterNlp(response);
+                        
+                        respondMessage();
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
@@ -186,8 +186,7 @@ module.exports = new Script({
 
             return updateSilent()
                 .then(getSilent)
-                .then(processMessage)
-                .then(respondMessage);
+                .then(processMessage);
         }
     }
 });
