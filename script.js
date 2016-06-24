@@ -115,7 +115,10 @@ module.exports = new Script({
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }     
-                           
+                          
+                source = null;
+                fulfillmentSpeech = null;
+                simplified = null; 
                 promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises)
