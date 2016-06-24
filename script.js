@@ -5,9 +5,6 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var source;
-var fulfillmentSpeech;
-var simplified;
 
 const scriptRules = require('./script.json');
 
@@ -115,10 +112,10 @@ module.exports = new Script({
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }     
-                          
-                source = null;
-                fulfillmentSpeech = null;
-                simplified = null; 
+                                          
+                var source;
+                var fulfillmentSpeech;
+                var simplified;
                 promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises)
@@ -137,7 +134,7 @@ module.exports = new Script({
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                         console.log("simplified: ", simplified);
                         
-                        respondMessage();
+                        respondMessage(source, fulfillmentSpeech, simplified);
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
@@ -146,7 +143,7 @@ module.exports = new Script({
                 
             }
             
-            function respondMessage()
+            function respondMessage(source, fulfillmentSpeech, simplified)
             {
                 console.log("source: ", source);
                 console.log("fulfillmentSpeech: ", fulfillmentSpeech);
