@@ -72,26 +72,9 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
             let upperText = message.text.trim().toUpperCase();
 
-            pg.defaults.ssl = true;
-            pg.connect(process.env.DATABASE_URL, function(err,client){
-                if (err) throw err;
-                console.log('====Connected to postgres!!!!!');
-
-                client
-                    .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
-                    function(err,result) {
-                        if (err) {
-                            if (err.code == '23505'){
-                                console.log("===user already exists: ", bot.userId);
-                            }
-                            else{
-                                console.log("===Unknown error: ", err);
-                            }
-                        } else {
-                            console.log(JSON.stringify(result.rows[0]));
-                        }
-                    });
-            });
+            console.log("===before pg");
+            promises.push(createUser(bot));
+            console.log("===after pg");
 
             function updateSilent() {
                 switch (upperText) {
@@ -111,8 +94,8 @@ module.exports = new Script({
             function processMessage(isSilent) {
                 if (isSilent) {
                     return Promise.resolve("speak");
-                }     
-                                          
+                }
+
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
@@ -133,16 +116,16 @@ module.exports = new Script({
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                         console.log("simplified: ", simplified);
-                        
+
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
                 }, function(error) {
                     console.log("[webhook_post.js]", error);
                 });
                 //return next();
-                
+
             }
-            
+
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
                 console.log("source: ", source);
