@@ -5,7 +5,7 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var db = require("./db");
+var newUser = require("./db");
 
 const scriptRules = require('./script.json');
 
