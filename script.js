@@ -73,9 +73,13 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
             let upperText = message.text.trim().toUpperCase();
 
+
+
             console.log("===before db");
-            promises.push(db.createUser(bot));
+            promises.push(createUser(bot));
             console.log("===after db");
+
+
 
             function updateSilent() {
                 switch (upperText) {
