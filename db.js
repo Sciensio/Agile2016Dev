@@ -6,7 +6,7 @@ const scriptRules = require('./script.json');
 
 
 function newUser(bot) {
-
+  var deferred = Q.defer();
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err,client){
       if (err) throw err;
@@ -23,11 +23,15 @@ function newUser(bot) {
                       console.log("===Unknown error: ", err);
                   }
               } else {
-                  .then(console.log('=== userId ', bot.userId))
-                  .then(console.log('=== record ', JSON.stringify(result.rows[0])));
+                  (console.log('=== userId ', bot.userId));
+                  success: funtion() {
+                    (console.log('=== record ', JSON.stringify(result.rows[0])));
+                    deferred.resolve();
+                  }
               }
           });
   });
+  return deferred.promise;
 }
 
 module.exports = newUser;
