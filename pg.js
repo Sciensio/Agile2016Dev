@@ -5,7 +5,7 @@ var request = require("request");
 const scriptRules = require('./script.json');
 
 
-function createUser() {
+function createUser(bot) {
 
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err,client){
