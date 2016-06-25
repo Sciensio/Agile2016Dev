@@ -23,8 +23,8 @@ function newUser(bot) {
                       console.log("===Unknown error: ", err);
                   }
               } else {
-                  console.log('=== userId ', bot.userId);
-                  console.log('=== record ', JSON.stringify(result.rows[0]));
+                  .then(console.log('=== userId ', bot.userId))
+                  .then(console.log('=== record ', JSON.stringify(result.rows[0])));
               }
           });
   });
