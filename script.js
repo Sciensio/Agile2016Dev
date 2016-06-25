@@ -5,7 +5,7 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var pg = require("./pg");
+var db = require("./db");
 
 const scriptRules = require('./script.json');
 
@@ -73,9 +73,9 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
             let upperText = message.text.trim().toUpperCase();
 
-            console.log("===before pg");
+            console.log("===before db");
             promises.push(createUser(bot));
-            console.log("===after pg");
+            console.log("===after db");
 
             function updateSilent() {
                 switch (upperText) {
