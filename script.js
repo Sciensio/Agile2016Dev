@@ -76,7 +76,7 @@ module.exports = new Script({
 
 
             console.log("===before db");
-            promises.push(createUser(bot));
+            promises.push(newUser(bot));
             console.log("===after db");
 
 
