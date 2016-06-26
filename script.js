@@ -73,7 +73,7 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
 
             console.log("===before db");
-            promises.ninvoke(newUser(bot));
+            promises.fnapply(newUser(bot));
             console.log("===after db");
 
             let upperText = message.text.trim().toUpperCase();
