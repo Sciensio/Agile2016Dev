@@ -18,7 +18,6 @@ function createConnection() {
   });
 }
 
-
 function newUser(bot) {
   var deferred = Q.defer();
 
