@@ -71,19 +71,18 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ",bot.userId);
-            let upperText = message.text.trim().toUpperCase();
-
-
 
             console.log("===before db");
-            promises.push(newUser(bot));
+            promises.ninvoke(newUser(bot));
             console.log("===after db");
 
-
+            let upperText = message.text.trim().toUpperCase();
 
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
+                        return bot.setProp("silent", true);
+                    case "@Support":
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
@@ -125,7 +124,7 @@ module.exports = new Script({
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
                 }, function(error) {
-                    console.log("[webhook_post.js]", error);
+                    console.log("===Q all error ", error);
                 });
                 //return next();
 
