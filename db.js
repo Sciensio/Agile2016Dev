@@ -30,25 +30,21 @@ function newUser(bot) {
     .then (function(client) {
       client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
-      function(err,result) {
-          if (err) {
-              if (err.code == '23505'){
-                  console.log("===user already exists: ", bot.userId);
-                  deferred.reject(err);
-              }
-              else{
-                  console.error(err);
-                  deferred.reject(err);
-              }
-          } else {
-              (console.log('=== userId ', bot.userId));
-              deferred.resolve(client);
-          }
-      })
-      .on('row',function(row) {
-        console.log("===at row");
-        console.log('=== record ', JSON.stringify(row));
-      });
+        function(err,result) {
+            if (err) {
+                if (err.code == '23505'){
+                    console.log("===user already exists: ", bot.userId);
+                    deferred.reject(err);
+                }
+                else{
+                    console.error(err);
+                    deferred.reject(err);
+                }
+            } else {
+                (console.log('=== userId ', bot.userId));
+                deferred.resolve(client);
+            }
+        })
     });
   return deferred.promise;
 }

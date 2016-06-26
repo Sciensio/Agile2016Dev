@@ -129,6 +129,7 @@
     "#ESTHERBOT": "That's my hashtag – use it when talking about me on sites like TWITTER. 😎",
     "ESTHERBOT": "That's my hashtag – use it when talking about me on sites like TWITTER. 😎",
     "CONNECT ME": "",
-    "DISCONNECT": "Roger that, EstherBot is back."
-    
+    "@SUPPORT": "",
+    "DISCONNECT": "Roger that, EstherBot is back.",
+    "@ACE": "ACEBot is back, I hope the human was able to help."
 }
