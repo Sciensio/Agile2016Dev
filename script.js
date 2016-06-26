@@ -74,7 +74,7 @@ module.exports = new Script({
 
             console.log("===before db");
             Q.nfcall(newUser,bot);
-              console.log("===after db");
+            console.log("===after db");
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -85,6 +85,8 @@ module.exports = new Script({
                     case "@Support":
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
+                        return bot.setProp("silent", false);
+                    case "@ACE":
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();

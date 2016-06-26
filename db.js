@@ -43,8 +43,9 @@ function newUser(bot) {
           } else {
               (console.log('=== userId ', bot.userId));
               (console.log('=== record ', JSON.stringify(result.rows[0])));
+              deferred.resolve(client);
           }
-          deferred.resolve(client);
+          //deferred.resolve(client);
       });
     });
   return deferred.promise;
