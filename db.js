@@ -25,7 +25,7 @@ function newUser(bot) {
   console.log("===creating connection");
   createConnection()
     .then (function(client) {
-      client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f']),
+      client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
           if (err) {
               if (err.code == '23505'){
@@ -40,9 +40,9 @@ function newUser(bot) {
               (console.log('=== userId ', bot.userId));
               (console.log('=== record ', JSON.stringify(result.rows[0])));
           }
-      }
-      deferred.resolve(results);
-    });
+          deferred.resolve(results);
+      });
+    })
     .fail(function (err){
       console.log("error");
       console.error(JSON.stringify(err));
