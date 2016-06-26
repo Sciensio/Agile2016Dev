@@ -1,7 +1,6 @@
 var Q = require("q");
 var request = require("request");
 
-var promises = [];
 function nlp(query,sessionId){
 	var deferred = Q.defer();
 	var options = {

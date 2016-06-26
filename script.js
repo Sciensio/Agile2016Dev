@@ -66,7 +66,7 @@ module.exports = new Script({
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
-                Q.nfcall(nlp(message, bot.userId));
+                Q.nfcall(nlp(message.text, bot.userId));
                 var promises = [];
 
                 Q.all(promises)
