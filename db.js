@@ -24,7 +24,7 @@ function newUser(bot) {
   var deferred = Q.defer();
   console.log("===creating connection");
   createConnection()
-    .then (function(client) {
+    //.then (function(client) {
       client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
           if (err) {
@@ -42,7 +42,7 @@ function newUser(bot) {
           }
           deferred.resolve(results);
       });
-    })
+    //})
     //.fail(function (err){
     //  console.log("error");
     //  console.error(JSON.stringify(err));
