@@ -10,14 +10,14 @@ function createConnection() {
   var deferred = Q.defer();
 
   pg.defaults.ssl = true;
-  pg.connect(process.env.DATABASE_URL, function(err){
+  pg.connect(process.env.DATABASE_URL, function(err,result){
     console.log("===create connection");
     if (err) {
         console.error(err);
         deferred.reject(err);
     }
     console.log("===db connection created");
-    deferred.resolve(connect);
+    deferred.resolve(result);
   });
   return deferred.promise;
 }
