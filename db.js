@@ -10,14 +10,14 @@ function createConnection() {
   var deferred = Q.defer();
 
   pg.defaults.ssl = true;
-  pg.connect(process.env.DATABASE_URL, function(err){
+  pg.connect(process.env.DATABASE_URL, function(err,client){
     console.log("===create connection");
     if (err) {
         console.error(err);
         deferred.reject(err);
     }
     console.log("===db connection created");
-    deferred.resolve(pg);
+    deferred.resolve(client);
   });
   return deferred.promise;
 }
@@ -27,8 +27,8 @@ function newUser(bot) {
 
   console.log("===creating connection");
   createConnection()
-    .then (function(pg) {
-      client
+    .then (function(client) {
+      //client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
           if (err) {
@@ -46,7 +46,7 @@ function newUser(bot) {
           }
           deferred.resolve(results);
       });
-    })
+    //})
     .fail(function (err){
       console.log("===error");
       console.error(JSON.stringify(err));
