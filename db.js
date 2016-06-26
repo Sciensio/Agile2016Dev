@@ -15,7 +15,9 @@ function createConnection() {
     }
     console.log("==db connection created");
     deferred.resolve(pg);
-});
+  });
+}
+
 
 function newUser(bot) {
   var deferred = Q.defer();
