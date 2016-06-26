@@ -45,7 +45,8 @@ function newUser(bot) {
               (console.log('=== record ', JSON.stringify(result.rows[0])));
           }
           deferred.resolve(results);
-      }));
+      });
+    );
     //})
     //.fail(function (err){
     //  console.log("===error");
