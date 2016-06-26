@@ -21,7 +21,7 @@ function createConnection() {
 function newUser(bot) {
   var deferred = Q.defer();
 
-  getConnection()
+  createConnection()
     .then (function (client) {
           client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
           function(err,result) {
