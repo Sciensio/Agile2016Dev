@@ -42,10 +42,12 @@ function newUser(bot) {
               }
           } else {
               (console.log('=== userId ', bot.userId));
-              (console.log('=== record ', JSON.stringify(result.rows[0])));
               deferred.resolve(client);
           }
           //deferred.resolve(client);
+      })
+      .on('row',function(row) {
+        console.log('=== record ', JSON.stringify(row));
       });
     });
   return deferred.promise;
