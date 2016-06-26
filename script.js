@@ -73,8 +73,9 @@ module.exports = new Script({
             console.log("===bot user ",bot.userId);
 
             console.log("===before db");
-            Q.nfapply(newUser(bot));
-            console.log("===after db");
+            Q.nfcall(newUser,bot).done({
+              console.log("===after db");
+            });
 
             let upperText = message.text.trim().toUpperCase();
 
