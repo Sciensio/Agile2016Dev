@@ -3,15 +3,14 @@ var Q = require("q");
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var request = require("request");
-var client = new pg.Client();
 
 const scriptRules = require('./script.json');
 
 function createConnection() {
   var deferred = Q.defer();
 
-  client.defaults.ssl = true;
-  client.connect(process.env.DATABASE_URL, function(err){
+  pg.defaults.ssl = true;
+  pg.connect(process.env.DATABASE_URL, function(err){
     console.log("===create connection");
     if (err) {
         console.error(err);
