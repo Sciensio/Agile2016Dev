@@ -39,7 +39,6 @@ function newUser(bot) {
                   deferred.resolve(results);
               }
           });
-  });
   return deferred.promise;
 }
 
