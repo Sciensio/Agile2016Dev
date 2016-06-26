@@ -11,7 +11,7 @@ function createConnection() {
   pg.connect(process.env.DATABASE_URL, function(err,client){
     console.log("===create connection");
     if (err) {
-        console.console.error(err);
+        console.error(err);
         deferred.reject(err);
     }
     console.log("===db connection created");
@@ -25,7 +25,7 @@ function newUser(bot) {
   var client = [];
   console.log("===creating connection");
   createConnection();
-    .then (function(client) {
+    promise.then (function(connect) {
       client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
@@ -44,12 +44,12 @@ function newUser(bot) {
           }
           deferred.resolve(results);
       });
-    })
-    //.fail(function (err){
-    //  console.log("error");
-    //  console.error(JSON.stringify(err));
-    //  deferred.reject(err);
-    //});
+    }),
+    .fail(function (err){
+      console.log("error");
+      console.error(JSON.stringify(err));
+      deferred.reject(err);
+    });
   return deferred.promise;
 }
 
