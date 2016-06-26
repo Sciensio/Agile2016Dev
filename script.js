@@ -71,7 +71,7 @@ module.exports = new Script({
                 var promises = [];
                 console.log("===after promises array");
 
-                Q.all(promises)
+                //Q.all(promises)
                 .then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
