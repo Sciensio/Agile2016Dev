@@ -46,7 +46,7 @@ function newUser(bot) {
           }
           deferred.resolve(results);
       });
-    );
+    )
     //})
     //.fail(function (err){
     //  console.log("===error");
