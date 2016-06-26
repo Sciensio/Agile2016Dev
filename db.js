@@ -47,11 +47,11 @@ function newUser(bot) {
           deferred.resolve(results);
       });
     //})
-    .fail(function (err){
-      console.log("===error");
-      console.error(JSON.stringify(err));
-      deferred.reject(err);
-    });
+    //.fail(function (err){
+    //  console.log("===error");
+    //  console.error(JSON.stringify(err));
+    //  deferred.reject(err);
+    //});
   return deferred.promise;
 }
 
