@@ -28,7 +28,7 @@ function newUser(bot) {
   console.log("===creating connection");
   createConnection()
     .then (function(client) {
-      //client
+      client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
           if (err) {
