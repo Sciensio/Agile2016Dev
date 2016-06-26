@@ -63,19 +63,16 @@ module.exports = new Script({
                     return Promise.resolve("speak");
                 }
 
+                var promises = [];
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
-                Q.nfcall(nlp(message.text, bot.userId));
-                console.log("===after nlp");
-                var promises = [];
-                console.log("===after promises array");
+                promises.push(nlp(message.text, bot.userId));
 
-                //Q.all(promises)
-                .then(function(nlp) {
+                Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
-                        console.log("===in Q.all");
+                        //console.log("===in Q.all");
                         console.log("===received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
