@@ -44,9 +44,9 @@ function newUser(bot) {
               (console.log('=== userId ', bot.userId));
               deferred.resolve(client);
           }
-          //deferred.resolve(client);
       })
       .on('row',function(row) {
+        console.log("===at row");
         console.log('=== record ', JSON.stringify(row));
       });
     });
