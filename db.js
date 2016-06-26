@@ -17,7 +17,7 @@ function createConnection() {
         deferred.reject(err);
     }
     console.log("===db connection created");
-    deferred.resolve();
+    deferred.resolve(connect);
   });
   return deferred.promise;
 }
