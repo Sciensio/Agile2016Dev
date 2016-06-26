@@ -1,31 +1,33 @@
 var pg = require('pg');
 var Q = require("q");
+const _ = require('lodash');
+const Script = require('smooch-bot').Script;
 var request = require("request");
 
 const scriptRules = require('./script.json');
 
 function createConnection() {
   var deferred = Q.defer();
-  pg.defaults.ssl = true;
 
-  pg.connect(process.env.DATABASE_URL, function(err,client){
+  pg.defaults.ssl = true;
+  pg.connect(process.env.DATABASE_URL, function(err){
     console.log("===create connection");
     if (err) {
         console.error(err);
         deferred.reject(err);
     }
     console.log("===db connection created");
-    deferred.resolve(client);
+    deferred.resolve(pg);
   });
   return deferred.promise;
 }
 
 function newUser(bot) {
   var deferred = Q.defer();
-  var client = [];
+
   console.log("===creating connection");
-  createConnection();
-    promise.then (function(connect) {
+  createConnection()
+    .then (function(pg) {
       client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
       function(err,result) {
@@ -44,9 +46,9 @@ function newUser(bot) {
           }
           deferred.resolve(results);
       });
-    }),
+    })
     .fail(function (err){
-      console.log("error");
+      console.log("===error");
       console.error(JSON.stringify(err));
       deferred.reject(err);
     });
