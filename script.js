@@ -72,7 +72,7 @@ module.exports = new Script({
                 console.log("===after promises array");
 
                 //Q.all(promises)
-                .then(function(responses) {
+                .then(function(nlp) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
