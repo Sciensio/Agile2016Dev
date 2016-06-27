@@ -54,7 +54,7 @@ module.exports = new Script({
             //newUser(bot)
             .then (function (updateSilent) {
               console.log("===after db");
-            });
+            })
             .done();
 
 
