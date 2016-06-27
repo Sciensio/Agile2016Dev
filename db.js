@@ -19,7 +19,7 @@ function createConnection() {
         console.error(err);
         deferred.reject(err);
     }
-    success: {
+    success: function(result) {
     console.log("===db connection created");
     deferred.resolve(result);
     }
