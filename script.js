@@ -36,7 +36,7 @@ module.exports = new Script({
             console.log("===before db");
             Q.nfcall(newUser,bot)
             //newUser(bot)
-              .then (function (return) {
+              .then (function () {
                 console.log("===after db"));
               })
               .done();
