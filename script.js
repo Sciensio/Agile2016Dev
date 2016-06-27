@@ -54,7 +54,7 @@ module.exports = new Script({
                         return Promise.resolve();
                 }
             }
-          });
+          })
           .done();
 
 
