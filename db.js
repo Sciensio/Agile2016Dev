@@ -11,15 +11,18 @@ const scriptRules = require('./script.json');
 function createConnection() {
   var deferred = Q.defer();
 
+  console.log("===create connection");
+
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err,result){
-    console.log("===create connection");
     if (err) {
         console.error(err);
         deferred.reject(err);
     }
+    success: function() {
     console.log("===db connection created");
     deferred.resolve(result);
+    }
   });
   return deferred.promise;
 }
