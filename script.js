@@ -32,17 +32,13 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ",bot.userId);
+            let upperText = message.text.trim().toUpperCase();
 
             console.log("===before db");
             Q.nfcall(newUser,bot)
             //newUser(bot)
-            //.then (function (result) {
-
-            //});
-            .done();
-            console.log("===after db");
-
-            let upperText = message.text.trim().toUpperCase();
+            .then (function (result) {
+              console.log("===after db");
 
             function updateSilent() {
                 switch (upperText) {
@@ -58,6 +54,8 @@ module.exports = new Script({
                         return Promise.resolve();
                 }
             }
+          });
+          .done();
 
 
             function getSilent() {
