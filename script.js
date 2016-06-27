@@ -36,7 +36,8 @@ module.exports = new Script({
             console.log("===before db");
             //Q.nfcall(newUser,bot);
             newUser(bot)
-              .then console.log("===after db");
+              .then (
+                console.log("===after db");
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -54,6 +55,7 @@ module.exports = new Script({
                         return Promise.resolve();
                 }
             }
+          )
 
             function getSilent() {
                 return bot.getProp("silent");
