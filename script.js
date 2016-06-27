@@ -37,9 +37,10 @@ module.exports = new Script({
             Q.nfcall(newUser,bot)
             //newUser(bot)
             .then (function (result) {
-              console.log("===after db");
+
             });
-            //  .done();
+            .done();
+            console.log("===after db");
 
             let upperText = message.text.trim().toUpperCase();
 
