@@ -130,7 +130,7 @@ module.exports = new Script({
                         });
                     });
                     //if it was support then go silent
-                    if (response = "@support"){return bot.setProp("silent", true);}
+                    //if (response = "@support"){return bot.setProp("silent", true);}
                 });
 
                 return p.then(() => 'speak');
