@@ -11,8 +11,6 @@ const scriptRules = require('./script.json');
 function createConnection() {
   var deferred = Q.defer();
 
-  console.log("===create connection");
-
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err,result){
     if (err) {
@@ -45,7 +43,7 @@ function newUser(bot) {
                 }
             } else {
                 (console.log('=== userId ', bot.userId));
-                deferred.resolve(client);
+                deferred.resolve(result);
             }
         })
     });
