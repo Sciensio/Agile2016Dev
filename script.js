@@ -38,10 +38,11 @@ module.exports = new Script({
             //newUser(bot)
               .then (function (result) {
                 console.log("===after db",result);
-              })
-              .done();
 
             let upperText = message.text.trim().toUpperCase();
+          })
+          .done();
+
 
             function updateSilent() {
                 switch (upperText) {
