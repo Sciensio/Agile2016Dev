@@ -130,16 +130,14 @@ module.exports = new Script({
                         });
                     });
                 });
-
+                if (response = "@ace"){return bot.setProp("silent", false);}
+                if (response = "@support"){return bot.setProp("silent", true);}
                 return p.then(() => 'speak');
             }
 
             return updateSilent()
                 .then(getSilent)
                 .then(processMessage);
-                //if it was support then go silent
-                if (response = "@ace"){return bot.setProp("silent", false);}
-                if (response = "@support"){return bot.setProp("silent", true);}
         }
     }
 });
