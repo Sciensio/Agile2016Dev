@@ -130,8 +130,9 @@ module.exports = new Script({
                         });
                     });
                 });
-                if (response = "@ace"){return bot.setProp("silent", false);}
-                if (response = "@support"){return bot.setProp("silent", true);}
+                console.log("===",response);
+                if (response = "@ACE"){return bot.setProp("silent", false);}
+                if (response = "@SUPPORT"){return bot.setProp("silent", true);}
                 return p.then(() => 'speak');
             }
 
