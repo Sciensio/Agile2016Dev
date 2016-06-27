@@ -39,7 +39,7 @@ module.exports = new Script({
               .then (function (result) {
                 console.log("===after db",result);
 
-            let upperText = message.text.trim().toUpperCase();
+            upperText = message.text.trim().toUpperCase();
           })
           .done();
 
