@@ -35,10 +35,10 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             console.log("===before db");
-            Q.nfcall(newUser,bot)
-            //newUser(bot)
-            .then (console.log("===after db"))
-            .done();
+            //Q.nfcall(newUser,bot)
+            newUser(bot)
+            //.then (console.log("===after db"))
+            //.done();
 
             function updateSilent() {
                 switch (upperText) {
