@@ -43,12 +43,12 @@ module.exports = new Script({
                 switch (upperText) {
                     case "CONNECT ME":
                         return bot.setProp("silent", true);
-                    case "@SUPPORT":
-                        return bot.setProp("silent", true);
+                    //case "@SUPPORT":
+                    //    return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
-                    case "@ACE":
-                        return bot.setProp("silent", false);
+                    //case "@ACE":
+                    //    return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
                 }
@@ -129,16 +129,17 @@ module.exports = new Script({
                             return bot.say(line);
                         });
                     });
-                    //if it was support then go silent
-                    //if (response = "@support"){return bot.setProp("silent", true);}
                 });
 
                 return p.then(() => 'speak');
             }
 
             return updateSilent()
+                if (response = "@ace"){return bot.setProp("silent", false);}
                 .then(getSilent)
                 .then(processMessage);
+                if it was support then go silent
+                if (response = "@support"){return bot.setProp("silent", true);}
         }
     }
 });
