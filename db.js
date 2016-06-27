@@ -6,6 +6,8 @@ var request = require("request");
 
 const scriptRules = require('./script.json');
 
+//undone add db connection pooling
+
 function createConnection() {
   var deferred = Q.defer();
 
