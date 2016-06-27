@@ -36,7 +36,7 @@ module.exports = new Script({
             console.log("===before db");
             //Q.nfcall(newUser,bot);
             newUser(bot)
-              .then (console.log("===after db"));
+              .then (console.log("===after db"))
               .then (let upperText = message.text.trim().toUpperCase());
 
             function updateSilent() {
