@@ -138,7 +138,7 @@ module.exports = new Script({
                 if (response = "@ace"){return bot.setProp("silent", false);}
                 .then(getSilent)
                 .then(processMessage);
-                if it was support then go silent
+                //if it was support then go silent
                 if (response = "@support"){return bot.setProp("silent", true);}
         }
     }
