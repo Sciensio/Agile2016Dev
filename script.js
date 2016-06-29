@@ -37,18 +37,18 @@ module.exports = new Script({
             console.log("===before db");
             //Q.nfcall(newUser,bot)
             newUser(bot)
-            //.then (console.log("===after db"))
+            .then (console.log("===after db"))
             //.done();
 
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
                         return bot.setProp("silent", true);
-                    case "@SUPPORT":
+                    case "-SUPPORT":
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
-                    case "@ACE":
+                    case "-ACE":
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();

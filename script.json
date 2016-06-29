@@ -129,7 +129,7 @@
     "#ESTHERBOT": "That's my hashtag – use it when talking about me on sites like TWITTER. 😎",
     "ESTHERBOT": "That's my hashtag – use it when talking about me on sites like TWITTER. 😎",
     "CONNECT ME": "",
-    "@SUPPORT": "I have notified my human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type @ace",
+    "-SUPPORT": "I have notified my human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type @ace",
     "DISCONNECT": "Roger that, EstherBot is back.",
-    "@ACE": "ACEBot is back, I hope the human was able to help."
+    "-ACE": "ACEBot is back, I hope the human was able to help."
 }
