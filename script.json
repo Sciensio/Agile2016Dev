@@ -3,7 +3,7 @@
   "MENU": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:CONFERENCE_DETAILS) %[Agile Alliance](postback:AGILE_ALLIANCE)",
   "PROGRAM": "Do you want to explore: %[Sessions](postback:SESSIONS) %[Keynotes](postback:KEYNOTES) %[Special Events](postback:SPECIAL_EVENTS)",
   "SESSIONS": "Would you like: %[Sessions by Day]() %[Session(s) by Speaker]()",
-  "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/kwXYO5) %[Wednesday Keynote](https://goo.gl/Tg0DkC) %[Closing Keynote](https://goo.gl/wtEGTR)",
+  "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
   "SPECIAL EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Getting Started](postback:GETTING_STARTED) %[Daily Events](postback:DAILY_EVENTS) %[More](postback:MORE_SE)",
   "MORE SE": "%[Evening Events](postback:EVENING_EVENTS) %[Industry Analyst Panel Discussion](https://goo.gl/Il25Xb)",
   "GETTING STARTED": "Kick-off your Agile2016 experience with: %[Registration Desk](https://goo.gl/sRckXZ) %[First Time Attendee Orientation](https://goo.gl/Yw8inT) %[Early Registration Meet and Greet] https://goo.gl/dwrvqs)",
@@ -11,14 +11,14 @@
   "MORE DE": "%[Sponsor Exhibition](https://goo.gl/cfPKCd) %[Bookstore](https://goo.gl/abo9xN)",
   "EVENING EVENTS": "Relax and unwind at: %[Early Registration Meet and Greet(https://goo.gl/DR0KbU) %[Ice Breaker Reception](https://goo.gl/CaFwgv) %[More](postback:MORE_EE)",
   "MORE EE": "%[Sponsor Reception(https://goo.gl/BZ8odT) %[Conference Party!](https://goo.gl/4U5rO7)",
-  "CONFERENCE DETAILS": "Would you like: %[WiFi Access](postback:WIFI) %[Conference Center Maps](postback:CONFERENCE_CENTER_MAPS) %[More](postback:MORE_CD)",
+  "CONFERENCE DETAILS": "Would you like: %[WIFI_ACCESS](postback:WIFI) %[Conference Maps](postback:CONFERENCE_MAPS) %[More](postback:MORE_CD)",
   "WIFI": "WiFI Access Coming Soon!",
-  "CONFERENCE CENTER MAPS": "Maps Coming Soon!",
+  "CONFERENCE MAPS": "Conference Maps Coming Soon!",
   "MORE CD": "%[FAQs](postback:FAQS) %[Sponsors](https://goo.gl/jazVEZ)",
   "FAQS": "FAQs Coming Soon!",
   "AGILE ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Members Meeting](https://goo.gl/NYpLRz) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ )",
 
-  
+
   "I LOVE YOU": "Awh, shucks! I love you too!",
   "RESTART": "Hello!  I'm EventBOT and can help you with the following for the Event: \n%[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS) %%[WiFi](postback:WIFI) \nAlso at any time you can use INFO to see your options",
   "CONNECT ME": "",
