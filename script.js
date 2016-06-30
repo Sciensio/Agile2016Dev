@@ -32,7 +32,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ",bot.userId);
-            console.log("===preprocess message",message);
+            console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
             console.log("===before db");
@@ -56,6 +56,7 @@ module.exports = new Script({
                 }
             }
 
+            console.log("===receive step 2",upperText);
 
             function getSilent() {
                 return bot.getProp("silent");
@@ -101,6 +102,8 @@ module.exports = new Script({
                 console.log("source: ", source);
                 console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                 console.log("simplified: ", simplified);
+                console.log("===receive step 3",upperText);
+
                 if (source != 'agent')
                 {
                     console.log("===source is ", source);
@@ -119,6 +122,9 @@ module.exports = new Script({
                     console.log("===no rule", upperText, message.text);
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
                 }
+
+                console.log("===receive step 3",upperText);
+
 
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
