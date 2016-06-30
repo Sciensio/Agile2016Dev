@@ -49,8 +49,8 @@ function newUser(bot) {
         })
     })
     .fail(function(err){
-        console.error("===bogus error here ",err);
-        deferred.reject(err);
+        console.error("===bogus error here ",err.code);
+        //deferred.reject(err);
     });
   return deferred.promise;
 }
