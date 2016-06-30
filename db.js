@@ -36,7 +36,7 @@ function newUser(bot) {
             if (err) {
                 if (err.code == '23505'){
                     console.log("===user already exists: ", bot.userId);
-                    //deferred.resolve(result);
+                    deferred.resolve(result);
                 }
                 else{
                     console.error(err);
@@ -49,7 +49,7 @@ function newUser(bot) {
         })
     })
     .fail(function(err){
-        console.error(JSON.stringify(err));
+        console.error("===bogus error here ",err);
         deferred.reject(err);
     });
   return deferred.promise;
