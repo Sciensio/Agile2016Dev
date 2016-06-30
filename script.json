@@ -1,5 +1,5 @@
 {
-  "HELLO": "Hello!  I am A16Bot, the Agile2016 Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
+  "HELLO": "Hello!  I'm A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
   "MENU": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:CONFERENCE_DETAILS) %[Agile Alliance](postback:AGILE_ALLIANCE)",
   "PROGRAM": "Do you want to explore: %[Sessions](postback:SESSIONS) %[Keynotes](postback:KEYNOTES) %[Special Events](postback:SPECIAL_EVENTS)",
   "SESSIONS": "Would you like: %[Sessions by Day]() %[Session(s) by Speaker]()",
@@ -18,18 +18,7 @@
   "FAQS": "FAQs Coming Soon!",
   "AGILE ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Members Meeting](https://goo.gl/NYpLRz) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ )",
 
-  "LOCATION": "The Event is being held in Festival Hall at the Navy Pier on 600 E Grand Ave in Chicago, IL 60611. ![Navy Pier Image](https://raw.githubusercontent.com/Sciensio/SciensioEventBot/master/img/navypierimage.jpg)",
-  "DIRECTIONS": "Google directions: %[Directions](https://goo.gl/maps/ULPGpfUHpXQ2)",
-  "PARKING": "The following parking options are available: %[Navy Pier Garages](https://goo.gl/0ZAa2F) %[SpotHero](http://goo.gl/s6FFnD)",
-  "NAVY PIER GARAGES": "Navy Pier and partner garages' information: %[Garages](https://goo.gl/0ZAa2F)",
-  "SPOTHERO": "Find and book convenient garages, lots & valets near Navy Pier with SpotHero's on-demand parking marketplace: %[SpotHero](http://goo.gl/s6FFnD)",
-  "ONSITE DETAILS": "This is some useful information for when you arrive: %[WiFi](postback:WIFI) %[Venue Map](https://goo.gl/pG0crr) %[Pier Visitor Map](https://goo.gl/XAEnPZ)",
-
-  "VENUE MAP": "The Event is being held in Festival Hall: %[Venue Map](https://goo.gl/pG0crr)",
-  "VENUE": "The Event is being held in Festival Hall. ![Venue Map](https://raw.githubusercontent.com/Sciensio/SciensioEventBot/master/img/navypiereventmap.jpg)",
-  "PIER MAP": "Find Parking Pay Stations, Restaurants, ATMs and fun activities: %[Navy Pier Visitor Map](https://goo.gl/XAEnPZ)",
-  "PIER": "Find Parking Pay Stations, Restaurants, ATMs and fun activities. ![Navy Pier Visitor Map](https://raw.githubusercontent.com/Sciensio/SciensioEventBot/master/img/navypiervisitormap.jpg)",
-  "TEST": "I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.",
+  
   "I LOVE YOU": "Awh, shucks! I love you too!",
   "RESTART": "Hello!  I'm EventBOT and can help you with the following for the Event: \n%[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS) %%[WiFi](postback:WIFI) \nAlso at any time you can use INFO to see your options",
   "CONNECT ME": "",
