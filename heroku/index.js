@@ -111,7 +111,7 @@ console.log("=in app.post");
     } else {
         msg = req.body.postbacks[0];
         console.log("=== POSTBACK",msg.action.payload);
-        msg.text = msg.action.text;
+        msg.text = msg.action.payload;
     }
 
     stateMachine.receiveMessage(msg)
