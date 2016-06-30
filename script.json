@@ -32,9 +32,8 @@
   "TEST": "I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.",
   "I LOVE YOU": "Awh, shucks! I love you too!",
   "RESTART": "Hello!  I'm EventBOT and can help you with the following for the Event: \n%[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS) %%[WiFi](postback:WIFI) \nAlso at any time you can use INFO to see your options",
-
-    "CONNECT ME": "",
-    "-SUPPORT": "I have notified my human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type @ace",
-    "DISCONNECT": "Roger that, EstherBot is back.",
-    "-ACE": "ACEBot is back, I hope the human was able to help."
+  "CONNECT ME": "",
+  "-SUPPORT": "I have notified my human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type @ace",
+  "DISCONNECT": "Roger that, EstherBot is back.",
+  "-ACE": "ACEBot is back, I hope the human was able to help."
 }
