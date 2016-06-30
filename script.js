@@ -70,7 +70,7 @@ module.exports = new Script({
                 var fulfillmentSpeech;
                 var simplified;
                 promises.push(nlp(message.text, bot.userId));
-                console.log("===preprocess message",message.text);
+                console.log("===preprocess message",upperText);
 
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
