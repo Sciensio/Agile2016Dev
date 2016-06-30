@@ -29,7 +29,7 @@ function newUser(bot) {
 
   console.log("===creating connection");
   createConnection()
-    .then (function(client) {
+    .then (function(pg) {
       client
       .query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);', [bot.userId, 'f'],
         function(err,result) {
@@ -47,6 +47,10 @@ function newUser(bot) {
                 deferred.resolve(result);
             }
         })
+    })
+    .fail(function(err){
+        console.error(JSON.stringify(err));
+        deferred.reject(err);
     });
   return deferred.promise;
 }
