@@ -114,8 +114,8 @@ module.exports = new Script({
                         upperText = simplified.toUpperCase();
                     }
                 }
-
                 if (!_.has(scriptRules, upperText)) {
+                    console.log("===no rule", upperText, message.text);
                     return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
                 }
 
