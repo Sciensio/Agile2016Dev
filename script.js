@@ -32,7 +32,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ",bot.userId);
-            console.log("===preprocess message",upperText);
+            console.log("===preprocess message",message.text);
             let upperText = message.text.trim().toUpperCase();
 
             console.log("===before db");
