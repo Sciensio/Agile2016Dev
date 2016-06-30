@@ -17,7 +17,7 @@
   "MORE CD": "%[FAQs](postback:FAQS) %[Sponsors](https://goo.gl/jazVEZ)",
   "FAQS": "FAQs Coming Soon!",
   "AGILE ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Members Meeting](https://goo.gl/NYpLRz) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ )",
-
+  "COMPANIES": "I've got the list right here to make things easier. %[Weight Watchers](postback:career_weightwatchers) %[Kmart](postback:career_kmart) %[Glmps](postback:career_glmps) %[Lift / Coach.me](postback:career_lift) %[Stride](postback:career_stride)",
 
   "I LOVE YOU": "Awh, shucks! I love you too!",
   "RESTART": "Hello!  I'm EventBOT and can help you with the following for the Event: \n%[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS) %%[WiFi](postback:WIFI) \nAlso at any time you can use INFO to see your options",
