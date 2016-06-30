@@ -30,9 +30,9 @@ module.exports = new Script({
     },
 
     speak: {
-        receive: (bot, message) => {
+        receive: (bot, message, trigger) => {
             console.log("===bot user ",bot.userId);
-            console.log("===preprocess message",message);
+            console.log("===preprocess message",message,trigger);
             let upperText = message.text.trim().toUpperCase();
 
             console.log("===before db");
