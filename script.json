@@ -38,10 +38,3 @@
     "DISCONNECT": "Roger that, EstherBot is back.",
     "-ACE": "ACEBot is back, I hope the human was able to help."
 }
-
-
-
-"WHAT CAN YOU DO": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:CONFERENCE_DETAILS) %[Agile Alliance](postback:AGILE_ALLIANCE)",
-"?": "I can help you with: %[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS)",
-"INFO": "I can help you with: %[Meeting Details](postback:MEETING_DETAILS) %[Getting There](postback:GETTING_THERE) %[Onsite Details](postback:ONSITE_DETAILS)",
-"KEY": "![Keywords](https://raw.githubusercontent.com/Sciensio/SciensioEventBot/master/img/Keywords.JPG)",
