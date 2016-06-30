@@ -5,7 +5,7 @@ const Script = require('smooch-bot').Script;
 var request = require("request");
 
 const scriptRules = require('./script.json');
-var LOG_PREFIX = '[CONN] - ';
+//var LOG_PREFIX = '[CONN] - ';
 
 //undone add db connection pooling
 
@@ -13,17 +13,13 @@ function createConnection() {
   var deferred = Q.defer();
 
   pg.defaults.ssl = true;
-  var connection = pg.connect(process.env.DATABASE_URL, function(err,result){
-  });
-
-  connection.connect(function (err){
+  pg.connect(process.env.DATABASE_URL, function(err,result){
     if (err) {
         console.error(err);
         deferred.reject(err);
     }
-
-    console.log(LOG_PREFIX + "just copying code");
-    deferred.resolve(connection);
+    console.log("===db connection created");
+    deferred.resolve(pg);
   });
   return deferred.promise;
 }
