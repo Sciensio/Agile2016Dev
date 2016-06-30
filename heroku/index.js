@@ -81,7 +81,7 @@ if (process.env.SERVICE_URL) {
 app.post('/webhook', function(req, res, next) {
     var isPostback = req.body.trigger == "postback";
     var msg = '';
-
+console.log("=in app.post");
     const appUser = req.body.appUser;
     const userId = appUser.userId || appUser._id;
     const stateMachine = new StateMachine({
@@ -110,8 +110,8 @@ app.post('/webhook', function(req, res, next) {
         msg = messages[0];
     } else {
         msg = req.body.postbacks[0];
-        console.log("===new teritory", msg);
-        msg.text = msg.action.payload;
+        console.log("=== POSTBACK");
+        msg.text = msg.action.text;
     }
 
     stateMachine.receiveMessage(msg)
