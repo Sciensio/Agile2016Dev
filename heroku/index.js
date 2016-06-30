@@ -111,7 +111,7 @@ app.post('/webhook', function(req, res, next) {
     } else {
         msg = req.body.postbacks[0];
         console.log("===new teritory", msg);
-        msg.text = msg.action.text;
+        msg.text = msg.action.payload;
     }
 
     stateMachine.receiveMessage(msg)
