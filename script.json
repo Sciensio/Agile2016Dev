@@ -4,7 +4,7 @@
   "PROGRAM": "Do you want to explore: %[Sessions](postback:SESSIONS) %[Keynotes](postback:KEYNOTES) %[Special Events](postback:SPECIAL_EVENTS)",
   "SESSIONS": "Would you like: %[Sessions by Day]() %[Session(s) by Speaker]()",
   "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
-  "SPECIAL EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Getting Started](postback:GETTING_STARTED) %[Daily Events](postback:DAILY_EVENTS) %[More](postback:MORE_SE)",
+  "SPECIAL EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Getting Started](postback:GETTING_STARTED) %[Daily Events](postback:DAILY_EVENTS) %[chris](postback:MORE_SE)",
   "MORE SE": "%[Evening Events](postback:EVENING_EVENTS) %[Industry Analyst Panel Discussion](https://goo.gl/Il25Xb)",
   "GETTING STARTED": "Kick-off your Agile2016 experience with: %[Registration Desk](https://goo.gl/sRckXZ) %[First Time Attendee Orientation](https://goo.gl/Yw8inT) %[Early Registration Meet and Greet](https://goo.gl/dwrvqs)",
   "DAILY EVENTS": "Check out these events happening daily: %[Open Jam](https://goo.gl/ATGxXR) %[Coaches Clinic](https://goo.gl/26SxK4) %[More](postback:MORE_DE)",
