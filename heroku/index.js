@@ -110,7 +110,7 @@ console.log("=in app.post");
         msg = messages[0];
     } else {
         msg = req.body.postbacks[0];
-        console.log("=== POSTBACK");
+        console.log("=== POSTBACK",msg.action.text);
         msg.text = msg.action.text;
     }
 
