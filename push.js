@@ -15,7 +15,7 @@ function pushMessage(bot) {
   origUserId = bot.userId;
   bot.userId = newUserID;
   return bot.say("fulfillmentSpeech").then(() => 'speak');
-  bot.userId = origUserId
+  bot.userId = origUserId;
 }
 
 
