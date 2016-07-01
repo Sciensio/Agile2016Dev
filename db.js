@@ -4,7 +4,7 @@ const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var request = require("request");
 
-const scriptRules = require('./script.json');
+//const scriptRules = require('./script.json');
 //var LOG_PREFIX = '[CONN] - ';
 
 //undone add db connection pooling

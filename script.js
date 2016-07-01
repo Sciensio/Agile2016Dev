@@ -7,6 +7,7 @@ var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
 var nlp = require("./nlp");
+var push = require("./push");
 
 const scriptRules = require('./script.json');
 
@@ -37,6 +38,9 @@ module.exports = new Script({
 
             console.log("===before db");
             //Q.nfcall(newUser,bot)
+            pushMessage()
+            .then (console.log("===after msg to chris"))
+            
             newUser(bot)
             .then (console.log("===after db"))
             //.done();
@@ -104,22 +108,7 @@ module.exports = new Script({
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
 
-                //temp test code
-                console.log("===IN TEMP");
-                var deferred1 = Q.defer();
-
-                smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
-                  text: 'Just put some vinegar on it',
-                  role: 'appMaker'
-                  }).then(() => {
-                    console.log("===did it send?");
-                    deferred1.resolve();
-                  });
-                  return deferred1.promise;
-
-                //End test code
-
-                if (source != 'agent')
+              if (source != 'agent')
                 {
                     console.log("===source is ", source);
                     if (fulfillmentSpeech)
@@ -148,7 +137,7 @@ module.exports = new Script({
                 _.each(lines, function(line) {
                     line = line.trim();
                     p = p.then(function() {
-                        console.log(line);
+                        console.log("=== p line",line);
                         return wait(50).then(function() {
                             return bot.say(line);
                         });
