@@ -1,7 +1,9 @@
-var pg = require('pg');
-var Q = require("q");
+'use strict';
+
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
+var pg = require('pg');
+var Q = require("q");
 var request = require("request");
 
 function pushMessage() {
