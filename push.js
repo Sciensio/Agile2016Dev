@@ -14,9 +14,10 @@ function pushMessage(bot) {
   console.log("===IN TEMP");
   origUserId = bot.userId;
   bot.userId = newUserID;
-  bot.say("fulfillmentSpeech").then(() => 'speak');
-  bot.userId = origUserId;
-  console.log("===revert to old bot.user.id",bot.userId);
+  return bot.say("fulfillmentSpeech").then((
+  bot.userId = origUserId
+  console.log("===revert to old bot.user.id",bot.userId)
+  ) => 'speak');
 }
 
 
