@@ -36,10 +36,10 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            console.log("===before push",bot);
+            console.log("===before push",bot.userId);
             pushMessage(bot)
               .then (console.log("===after db"))
-              
+
             console.log("===before db",bot);
             //Q.nfcall(newUser,bot)
             newUser(bot)

@@ -6,10 +6,16 @@ var pg = require('pg');
 var Q = require("q");
 var request = require("request");
 
-function pushMessage() {
+function pushMessage(bot) {
   var deferred = Q.defer();
+  var origUserId;
+  var newUserID = a30fa820d0a0f0216fa26070;
 
-  console.log("===IN TEMP",bot);
+  console.log("===IN TEMP");
+  origUserId = bot.userId;
+  bot.userId = newUserID;
+  return bot.say(fulfillmentSpeech).then(() => 'speak');
+  bot.userId = origUserId
 }
 
 
