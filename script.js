@@ -7,7 +7,6 @@ var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
 var nlp = require("./nlp");
-var pushMessage = require("./push");
 
 const scriptRules = require('./script.json');
 
@@ -36,11 +35,8 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            console.log("===before db");
+            console.log("===before db",bot);
             //Q.nfcall(newUser,bot)
-            pushMessage()
-            .then (console.log("===after msg to chris"))
-
             newUser(bot)
             .then (console.log("===after db"))
             //.done();
