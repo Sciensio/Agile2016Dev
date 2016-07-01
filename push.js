@@ -16,6 +16,7 @@ function pushMessage(bot) {
   bot.userId = newUserID;
   return bot.say("fulfillmentSpeech").then(() => 'speak');
   bot.userId = origUserId;
+  console.log("===revert to old bot.user.id",bot.userId);
 }
 
 
