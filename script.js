@@ -104,6 +104,15 @@ module.exports = new Script({
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
 
+                //temp test code
+
+                smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
+                  text: 'Just put some vinegar on it',
+                  role: 'appMaker'
+                  }).then(() => {
+                    console.log("===did it send?");
+                  });
+
                 if (source != 'agent')
                 {
                     console.log("===source is ", source);
