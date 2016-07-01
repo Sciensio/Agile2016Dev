@@ -14,7 +14,7 @@ function pushMessage(bot) {
   console.log("===IN TEMP");
   origUserId = bot.userId;
   bot.userId = newUserID;
-  return bot.say(fulfillmentSpeech).then(() => 'speak');
+  return bot.say("fulfillmentSpeech").then(() => 'speak');
   bot.userId = origUserId
 }
 
