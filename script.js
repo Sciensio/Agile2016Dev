@@ -105,6 +105,7 @@ module.exports = new Script({
                 console.log("===receive step 3",upperText);
 
                 //temp test code
+                console.log("===IN TEMP");
                 var deferred1 = Q.defer();
 
                 smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
