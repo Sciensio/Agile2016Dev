@@ -105,16 +105,18 @@ module.exports = new Script({
                 console.log("===receive step 3",upperText);
 
                 //temp test code
+                var deferred1 = Q.defer();
 
                 smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
-                  var deferred = Q.defer();
                   text: 'Just put some vinegar on it',
                   role: 'appMaker'
                   }).then(() => {
                     console.log("===did it send?");
-                    deferred.resolve();
+                    deferred1.resolve();
                   });
-                  return deferred.promise;
+                  return deferred1.promise;
+
+                //End test code
 
                 if (source != 'agent')
                 {
