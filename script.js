@@ -7,7 +7,7 @@ var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
 var nlp = require("./nlp");
-var push = require("./push");
+var pushMessage = require("./push");
 
 const scriptRules = require('./script.json');
 
@@ -40,7 +40,7 @@ module.exports = new Script({
             //Q.nfcall(newUser,bot)
             pushMessage()
             .then (console.log("===after msg to chris"))
-            
+
             newUser(bot)
             .then (console.log("===after db"))
             //.done();
