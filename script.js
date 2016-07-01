@@ -38,7 +38,7 @@ module.exports = new Script({
 
             console.log("===before push",bot.userId);
             pushMessage(bot)
-              .then (console.log("===after db"))
+              .then (console.log("===after push"))
 
             console.log("===before db",bot);
             //Q.nfcall(newUser,bot)
