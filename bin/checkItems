@@ -1,12 +1,6 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
-var Smooch = require('smooch');
-
-Smooch.init({appToken: 'SMOOCH_APP_TOKEN'});
-
-Smooch.track("test");
-
 
 console.log("===task worked")
 
