@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
-var Smooch = require('smooch');
+var Smooch = require('./smooch');
 
 Smooch.init({appToken: 'SMOOCH_APP_TOKEN'});
 
