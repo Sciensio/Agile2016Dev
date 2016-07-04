@@ -31,10 +31,10 @@ function pushConv(bot, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     client
       .query('SELECT SmoochId FROM attendees;')
-      .on('row', function(row){
-        bot.userId = JSON.stringify(row);
-        return bot.say("push message")
-          .then(() => 'speak');
+        .on('row', function(row){
+          bot.userId = JSON.stringify(row);
+          return bot.say("push message")
+            .then(() => 'speak');
       })
   });
 }

@@ -43,7 +43,7 @@ module.exports = new Script({
             //end conversation and do not send a response to the user that kicked things off
             //
             console.log("===before push",bot.userId);
-            pushMessage(bot)
+            pushConv(bot)
               .then (console.log("===after push"))
 
             //Undone - currently only creates new user
