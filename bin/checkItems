@@ -7,7 +7,7 @@ var pg = require('pg');
 console.log("===task worked")
 
 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  console.log("===created connection",client);
+  console.log("===created connection");
 
   client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
       .on('row', function(row){
