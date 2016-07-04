@@ -4,7 +4,7 @@ const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var request = require("request");
 
-function newUser(bot) {
+function newUser(bot, response) {
   var deferred = Q.defer();
 
   console.log("===creating connection");
