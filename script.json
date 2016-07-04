@@ -19,7 +19,7 @@
   "EVENING_EVENTS": "Relax and unwind at: %[Early Registration Meet and Greet](https://goo.gl/DR0KbU) %[Ice Breaker Reception](https://goo.gl/CaFwgv) %[More](postback:MORE_EE)",
   "MORE_EE": "%[Sponsor Reception(https://goo.gl/BZ8odT) %[Conference Party!](https://goo.gl/4U5rO7)",
   "CONFERENCE_DETAILS": "Would you like: %[WiFi Access](postback:WIFI) %[Conference Maps](postback:CONFERENCE_MAPS) %[More](postback:MORE_CD)",
-  "WIFI": "WiFI Access Coming Soon!",
+  "WIFI": "WiFi Access Coming Soon!",
   "CONFERENCE_MAPS": "Conference Maps Coming Soon!",
   "MAPS": "Conference Maps Coming Soon!",
   "MORE_CD": "%[FAQs](postback:FAQS) %[Sponsors](https://goo.gl/jazVEZ)",
