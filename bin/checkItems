@@ -16,5 +16,5 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 //        bot.userId = row.smoochid;
     });
     done();
-    pg.end();
+//    pg.end();
   });
