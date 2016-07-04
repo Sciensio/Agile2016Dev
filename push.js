@@ -34,7 +34,7 @@ function pushConv(bot, response) {
       .on('row', function(row){
         bot.userId = JSON.stringify(row);
         return bot.say("push message")
-          .then(() >= 'speak');
+          .then(() => 'speak');
       })
   });
 }
