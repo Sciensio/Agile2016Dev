@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
+var pushConv = require("./push")
 
 console.log("===task worked")
 
-pg.connect(process.env.DATABASE_URL, function(err,client,done) {
+pg.connect(process.env.DATABASE_URL, function(err, client, done) {
   var handleError = function(err) {
     if(!err) return false;
     done(client);
@@ -14,12 +15,14 @@ pg.connect(process.env.DATABASE_URL, function(err,client,done) {
 
   console.log("===created connection")
 
-  client.query('SELECT * FROM attendees', function(err, result) {
+  client.query('SELECT smoochid, attendees.createddate + INTERVAL '-5 hour' as dateAdd FROM Attendees WHERE unsubscribed = FALSE', function(err, result) {
     if(handleError(err, client, done)) return;
 
-    if (result.rows.legnth > 0) {
-      console.log("===db querry worked")
-    }
+    .on('row', function(row){
+      console.log("===SmoochId ",row.smoochid);
+      bot.userId = row.smoochid;
+    })
+    
     done();
     pg.end();
   });
