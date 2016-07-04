@@ -6,8 +6,7 @@ console.log("===task worked")
 
 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
   console.log("===created connection")
-  client
-    .query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
+  client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
       .on('row', function(row){
         console.log("===SmoochId ",row.smoochid);
         bot.userId = row.smoochid;
