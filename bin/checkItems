@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
-var pushConv = require("./push")
 
 console.log("===task worked")
 
