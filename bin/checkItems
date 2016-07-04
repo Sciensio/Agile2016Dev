@@ -6,19 +6,9 @@ var pushConv = require("./push")
 console.log("===task worked")
 
 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  var handleError = function(err) {
-    if(!err) return false;
-    done(client);
-    next(err);
-    return true;
-  };
-
   console.log("===created connection")
-
-  client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE', function(err, result) {
-    if(handleError(err, client, done)) return;
-
-    if (result.rows.length > 0 ){
+  client
+    .query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
       .on('row', function(row){
         console.log("===SmoochId ",row.smoochid);
         bot.userId = row.smoochid;
@@ -26,4 +16,3 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     done();
     pg.end();
   });
-});
