@@ -40,4 +40,4 @@ function pushConv(bot, response) {
 }
 
 
-module.exports = pushMessage;
+module.exports = pushConv;//pushMessage;
