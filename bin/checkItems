@@ -2,6 +2,8 @@
 
 var pg = require('pg');
 
+console.log("===task worked")
+
 pg.connect(process.env.DATABASE_URL, function(err,client,done) {
   var handleError = function(err) {
     if(!err) return false;
@@ -14,7 +16,7 @@ pg.connect(process.env.DATABASE_URL, function(err,client,done) {
     if(handleError(err, client, done)) return;
 
     if (result.rows.legnth > 0) {
-      console.log("===task worked")
+      console.log("===db querry worked")
     }
     done();
     pg.end();
