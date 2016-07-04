@@ -10,14 +10,15 @@ function newUser(bot) {
   console.log("===creating connection");
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
-    return client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);',
+    client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);',
       [bot.userId, 'f'],
       function(err,result) {
         done();
           if (err) {
               if (err.code == '23505'){
                   console.log("===user already exists: ", bot.userId);
-                  deferred.resolve(result);
+                  //deferred.resolve(result);
+                  response.resolve(result);
               }
               else{
                   console.error(err);
@@ -29,7 +30,7 @@ function newUser(bot) {
           }
     })
   });
-//  return deferred.promise;
+  return deferred.promise;
 }
 
 module.exports = newUser;
