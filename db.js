@@ -10,7 +10,7 @@ function newUser(bot) {
   console.log("===creating connection");
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
-    client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);',
+    return client.query('insert into Attendees (SmoochId, Unsubscribed, UnsubscribedDate, CreatedDate) values ($1,$2, null, CURRENT_TIMESTAMP);',
       [bot.userId, 'f'],
       function(err,result) {
         done();
@@ -29,7 +29,7 @@ function newUser(bot) {
           }
     })
   });
-  return deferred.promise;
+//  return deferred.promise;
 }
 
 module.exports = newUser;
