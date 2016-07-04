@@ -23,5 +23,21 @@ function pushMessage(bot) {
 
 }
 
+function pushConv(bot, response) {
+  var deferred = Q.defer();
+
+  console.log("===creating pushconv connection");
+  pg.defaults.ssl = true;
+  pg.connect(process.env.DATABASE_URL, function(err, client, done){
+    client
+      .query('SELECT SmoochId FROM attendees;')
+      .on('row', function(row){
+        bot.userId = JSON.stringify(row);
+        return bot.say("push message")
+          .then(() >= 'speak');
+      })
+  });
+}
+
 
 module.exports = pushMessage;
