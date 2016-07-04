@@ -42,21 +42,15 @@ module.exports = new Script({
             //write loop to go through the database of users to send each message
             //end conversation and do not send a response to the user that kicked things off
             //
-
-
             console.log("===before push",bot.userId);
             pushMessage(bot)
               .then (console.log("===after push"))
 
-
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
-            
             console.log("===before db",bot);
-            //Q.nfcall(newUser,bot)
             newUser(bot)
-            .then (console.log("===after db"))
-            //.done();
+              .then (console.log("===after db"))
 
             function updateSilent() {
                 switch (upperText) {

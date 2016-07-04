@@ -17,8 +17,7 @@ function newUser(bot, response) {
           if (err) {
               if (err.code == '23505'){
                   console.log("===user already exists: ", bot.userId);
-                  //deferred.resolve(result);
-                  response.resolve(result);
+                  deferred.resolve(result);
               }
               else{
                   console.error(err);
