@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
+const script = require('../script');
 var pg = require('pg');
 
 console.log("===task worked")
