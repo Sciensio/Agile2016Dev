@@ -29,10 +29,11 @@ function pushConv(bot, response) {
   console.log("===creating pushconv connection");
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
+    console.log("===bot",bot);
     client
       .query('SELECT SmoochId FROM attendees;')
-        .on('row', function(row){
-          console.log("===SmoochId ",JSON.stringify(row));
+        .on('row', function(row.[0]){
+          console.log("===SmoochId ",JSON.stringify(row.[0]));
           bot.userId = JSON.stringify(row);
           return bot.say("push message").then(() => 'speak');
       })
