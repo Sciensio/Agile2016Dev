@@ -34,8 +34,7 @@ function pushConv(bot, response) {
         .on('row', function(row){
           console.log("===SmoochId ",JSON.stringify(row));
           bot.userId = JSON.stringify(row);
-          return bot.say("push message")
-            .then(() => 'speak');
+          return bot.say("push message").then(() => 'speak');
       })
   });
 }
