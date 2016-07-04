@@ -18,9 +18,10 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done) {
   client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE', function(err, result) {
     if(handleError(err, client, done)) return;
 
-    .on('row', function(row){
-      console.log("===SmoochId ",row.smoochid);
-      bot.userId = row.smoochid;
+    if (result.rows.length > 0 ){
+      .on('row', function(row){
+        console.log("===SmoochId ",row.smoochid);
+        bot.userId = row.smoochid;
     })
     done();
     pg.end();
