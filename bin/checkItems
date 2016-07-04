@@ -12,6 +12,8 @@ pg.connect(process.env.DATABASE_URL, function(err,client,done) {
     return true;
   };
 
+  console.log("===created connection")
+
   client.query('SELECT * FROM attendees', function(err, result) {
     if(handleError(err, client, done)) return;
 
