@@ -33,8 +33,8 @@ function pushConv(bot, response) {
     client
       .query('SELECT SmoochId FROM attendees;')
         .on('row', function(row){
-          console.log("===SmoochId ",JSON.stringify(smoochId));
-          bot.userId = JSON.stringify(smoochId);
+          console.log("===SmoochId ",rows[0].value);
+          bot.userId = JSON.stringify(row);
           return bot.say("push message").then(() => 'speak');
       })
   });
