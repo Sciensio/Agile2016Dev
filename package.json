@@ -19,7 +19,8 @@
     "request": "^2.72.0",
     "smooch": "^3.1.2",
     "smooch-bot": "https://github.com/skhavari/smooch-bot.git",
-    "smooch-core": "^1.1.1"
+    "smooch-core": "^1.1.1",
+    "react": "^15.2.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
