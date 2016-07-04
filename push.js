@@ -40,7 +40,7 @@ function pushConv(bot, response) {
           return bot.say(bot.userId)
             .then(
               console.log("===bot.userId ",bot.userId),
-              () => 'speak',
+              () => 'speak'
             );
         })
     console.log("===set bot to original");
