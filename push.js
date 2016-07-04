@@ -39,11 +39,12 @@ function pushConv(bot, response) {
           bot.userId = row.smoochid;
           return bot.say(bot.userId)
             .then(
-              console.log("===userId ",bot.userId),
-              bot.userId = origUserId,
-              () => 'speak'
+              console.log("===bot.userId ",bot.userId),
+              () => 'speak',
             );
         })
+    console.log("===set bot to original");
+    bot.userId = origUserId;
   });
 }
 
