@@ -38,20 +38,22 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
 
-            //undone - test for userid and or message
-            //look at stacking messages in DB and looking them up
-            //write loop to go through the database of users to send each message
-            //end conversation and do not send a response to the user that kicked things off
-            //
-            console.log("===before push",bot.userId);
-            pushConv(bot)
-              .then (console.log("===after push"))
-
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
             console.log("===before db",bot);
             newUser(bot)
               .then (console.log("===after db"))
+
+
+              //undone - test for userid and or message
+              //look at stacking messages in DB and looking them up
+              //write loop to go through the database of users to send each message
+              //end conversation and do not send a response to the user that kicked things off
+              //
+              console.log("===before push",bot.userId);
+              pushConv(bot)
+                .then (console.log("===after push"))
+
 
             function updateSilent() {
                 switch (upperText) {
