@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
+var app = require('../heroku/index')
 const script = require('../script');
 
 console.log("===task worked")
@@ -12,7 +13,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       .on('row', function(row){
       if (err) {console.error(err);};
         console.log("===SmoochId ",row.smoochid);
-//        bot.userId = row.smoochid;
+        bot.userId = row.smoochid;
     });
     done();
   });
