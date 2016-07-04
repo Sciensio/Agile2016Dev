@@ -26,7 +26,7 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Get started by saying BOT.')
+            return bot.say('Hello!  I\'m A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.')
                 .then(() => 'speak');
         }
     },
@@ -134,7 +134,7 @@ module.exports = new Script({
                 }
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
-                    return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
+                    return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
                 console.log("===receive step 3",upperText);
