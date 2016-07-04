@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
+const script = require('../script');
 
 console.log("===task worked")
 
