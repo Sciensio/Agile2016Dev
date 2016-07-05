@@ -12,4 +12,4 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-smooch.track("test");
+smooch-core.smooch(track:"test");
