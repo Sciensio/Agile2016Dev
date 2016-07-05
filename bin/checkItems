@@ -9,8 +9,8 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('../app');
 const script = require('../script');
 const SmoochCore = require('smooch-core');
-var Smooch = require('SmoochCore/Smooch');
+//var Smooch = require('SmoochCore/Smooch');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-Smooch(track,"test");
+SmoochCore.Smooch(track,"test");
