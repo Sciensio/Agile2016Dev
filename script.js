@@ -37,6 +37,7 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             var botUser = bot.userId;
+            var authUsers = ['a30fa820d0a0f0216fa26070'];
 
 
             //Undone - currently only creates new user
@@ -48,12 +49,11 @@ module.exports = new Script({
 
               //undone - test for userid and or message
               //look at stacking messages in DB and looking them up
-              //write loop to go through the database of users to send each message
               //end conversation and do not send a response to the user that kicked things off
               //
-              if (bot.userId == 'a30fa820d0a0f0216fa26070') {
+              if (authUsers.indexOf(bot.userId) !== -1) {
                 console.log("===before push",bot);
-                pushConv(bot);
+                //pushConv(bot);
               }
 
             function updateSilent() {
@@ -145,7 +145,7 @@ module.exports = new Script({
                 var lines = response.split('\n');
 
                 bot.userId = botUser;
-                
+
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
                     line = line.trim();
