@@ -7,7 +7,7 @@ var Q = require("q");
 var request = require("request");
 var extend = require('util')._extend;
 
-function pushConv(bot, response) {
+function pushConv(bot, message, response) {
   var deferred = Q.defer();
   //var newBot = extend({}, bot);
   var newBot = bot;
@@ -21,7 +21,7 @@ function pushConv(bot, response) {
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
-          newBot.say(newBot.userId).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
+          newBot.say(message.text).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
         })
   });
   console.log("=== did bot change",bot);
