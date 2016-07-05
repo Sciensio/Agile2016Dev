@@ -34,3 +34,4 @@ var msg = "hello world";
 
 console.log("smooch bot structure ",newBot);
 pushConv(newBot, msg);
+console.log("=== It should end now");
