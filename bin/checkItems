@@ -12,7 +12,7 @@ const SmoochCore = require('smooch-core');
 //var Smooch = require('SmoochCore/Smooch');
 const jwt = require('../jwt');
 const fs = require('fs');
-var pushConv = require(./push);
+var pushConv = require('./push');
 
 const name = 'A16';
 const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
