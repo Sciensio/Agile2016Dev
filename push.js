@@ -35,7 +35,8 @@ function pushConv(bot, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     console.log("===bot",newBot);
     client
-      .query('SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE;')
+      //.query('SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE;')
+      .query(queryText)
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
