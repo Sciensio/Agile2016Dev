@@ -13,4 +13,3 @@ const jwt = require('../jwt');
 const fs = require('fs');
 
 Smooch.track("test");
-);
