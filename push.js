@@ -23,7 +23,7 @@ function pushConv(bot, message, response) {
           newBot.userId = row.smoochid;
           return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
         })
-      //done();
+      done();
       //pg.end();
   });
   console.log("=== did bot change",bot);
