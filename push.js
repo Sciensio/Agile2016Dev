@@ -11,6 +11,7 @@ function pushConv(bot, message, response) {
   var deferred = Q.defer();
   //var newBot = extend({}, bot);
   var newBot = bot;
+  var msg = message.text.substr(5);
 
   console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
@@ -21,7 +22,7 @@ function pushConv(bot, message, response) {
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
-          newBot.say(message.text).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
+          return newBot.say(msg).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
         })
   });
   console.log("=== did bot change",bot);
