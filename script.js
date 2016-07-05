@@ -52,10 +52,10 @@ module.exports = new Script({
               //end conversation and do not send a response to the user that kicked things off
               //
               if (authUsers.indexOf(bot.userId) !== -1) {
-                if (message.substr(0,5) == '/msg ') {
-                  console.log("===before push",bot);
+                //if (message.substr(0,5) == '/msg ') {
+                  console.log("===before push",message);
                 //pushConv(bot);
-                }
+                //}
               }
 
             function updateSilent() {
