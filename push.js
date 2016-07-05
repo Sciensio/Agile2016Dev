@@ -6,8 +6,8 @@ var pg = require('pg');
 var Q = require("q");
 var request = require("request");
 
-function pushMessage(bot) {
-  var deferred = Q.defer();
+//function pushMessage(bot) {
+//  var deferred = Q.defer();
 //  var origUserId;
 //  var newUserID = "a30fa820d0a0f0216fa26070";
 
