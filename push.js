@@ -37,8 +37,8 @@ function pushConv(bot, response) {
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
+          return newBot.say(newBot.userId).then(console.log("===bot.userId ",newBot.userId),() => 'speak');
         })
-    return newBot.say(newBot.userId).then(console.log("===bot.userId ",newBot.userId),() => 'speak');
   });
 }
 
