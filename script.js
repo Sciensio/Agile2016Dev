@@ -54,7 +54,7 @@ module.exports = new Script({
               if (authUsers.indexOf(bot.userId) !== -1) {
                 if (message.text.substr(0,5) == '/msg ') {
                   console.log("===Push message triggered",message.text);
-                  pushConv(bot, message);
+                  pushConv(bot, message.text);
                 }
               }
 

@@ -11,7 +11,7 @@ function pushConv(bot, message, response) {
   var deferred = Q.defer();
   //var newBot = extend({}, bot);
   var newBot = bot;
-  var msg = message.text.substr(5);
+  var msg = message.substr(5);
 
   console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
