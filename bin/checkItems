@@ -13,4 +13,4 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-console.log(SmoochCore.Smooch.serviceUrl);
+console.log(SmoochCore.Smooch.appUsers);
