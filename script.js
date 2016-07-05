@@ -43,7 +43,7 @@ module.exports = new Script({
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
             console.log("===before db",bot);
-            newUser(bot, message)
+            newUser(bot)
               .then (console.log("===after db", bot.userId))
 
 
@@ -54,7 +54,7 @@ module.exports = new Script({
               if (authUsers.indexOf(bot.userId) !== -1) {
                 if (message.text.substr(0,5) == '/msg ') {
                   console.log("===Push message triggered",message.text);
-                pushConv(bot);
+                pushConv(bot, message);
                 }
               }
 
