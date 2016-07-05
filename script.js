@@ -55,6 +55,7 @@ module.exports = new Script({
                 if (message.text.substr(0,5) == '/msg ') {
                   console.log("===Push message triggered",message.text);
                   pushConv(bot, message.text.substr(5));
+                  message.text = message.text.substr(0,5);
                 }
               }
 
@@ -68,8 +69,6 @@ module.exports = new Script({
                         return bot.setProp("silent", false);
                     case "-ACE":
                         return bot.setProp("silent", false);
-                    case "/msg":
-                        return upperText = upperText.substr(0,5);
                     default:
                         return Promise.resolve();
                 }
