@@ -13,7 +13,7 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
+Smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
     text: 'hello',
     role: 'appMaker'
 }).then(() => 'speak');
