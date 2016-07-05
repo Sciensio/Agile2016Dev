@@ -30,4 +30,4 @@ var newBot = new SmoochApiBot({
 });
 
 console.log("smooch bot structure ",newBot);
-SmoochApiBot.say('a30fa820d0a0f0216fa26070');
+newBot.say('a30fa820d0a0f0216fa26070');
