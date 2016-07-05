@@ -50,7 +50,7 @@ module.exports = new Script({
               //end conversation and do not send a response to the user that kicked things off
               //
               console.log("===before push",bot);
-              //pushConv(bot)
+              pushConv(bot)
               //  .then (console.log("===after push ",bot))
               //console.log("===after push ",bot)
 
