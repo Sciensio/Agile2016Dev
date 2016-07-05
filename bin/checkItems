@@ -12,7 +12,7 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-Smooch.track:@"test";
+Smooch.track(@"test");
 
 //console.log("===task worked")
 
