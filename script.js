@@ -53,7 +53,7 @@ module.exports = new Script({
               //
               if (authUsers.indexOf(bot.userId) !== -1) {
                 if (message.text.substr(0,5) == '/msg ') {
-                  upperText = upperText.substr(0,5);
+                  upperText = upperText.substr(0,4);
                   pushConv(bot, message.text.substr(5));
                   console.log("****after push msg:  ",message.text);
                 }
