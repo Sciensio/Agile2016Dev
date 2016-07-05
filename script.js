@@ -36,6 +36,8 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
+            var botUser = bot.userId;
+
 
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
@@ -142,6 +144,8 @@ module.exports = new Script({
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
 
+                bot.userId = botUser;
+                
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
                     line = line.trim();
