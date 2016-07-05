@@ -1,19 +1,29 @@
 #!/usr/bin/env node
 
 var pg = require('pg');
-var app = require('../heroku/index')
+const smoochBot = require('smooch-bot');
+const MemoryLock = smoochBot.MemoryLock;
+const SmoochApiStore = smoochBot.SmoochApiStore;
+const SmoochApiBot = smoochBot.SmoochApiBot;
+const StateMachine = smoochBot.StateMachine;
+const app = require('../app');
 const script = require('../script');
+const SmoochCore = require('smooch-core');
+const jwt = require('../jwt');
+const fs = require('fs');
 
-console.log("===task worked")
+Smooch track:@"test";
 
-pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  console.log("===created connection");
+//console.log("===task worked")
 
-  client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
-      .on('row', function(row){
-      if (err) {console.error(err);};
-        console.log("===SmoochId ",row.smoochid);
-        bot.userId = row.smoochid;
-    });
-    done();
+//pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+//  console.log("===created connection");
+
+//  client.query('SELECT * FROM Attendees WHERE unsubscribed = FALSE;')
+//      .on('row', function(row){
+//      if (err) {console.error(err);};
+//        console.log("===SmoochId ",row.smoochid);
+
+//    });
+//    done();
   });

@@ -7,7 +7,6 @@ var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
 var nlp = require("./nlp");
-//var pushMessage = require("./push");
 var pushConv = require("./push");
 
 const scriptRules = require('./script.json');

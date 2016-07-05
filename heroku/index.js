@@ -31,8 +31,8 @@ class BetterSmoochApiBot extends SmoochApiBot {
     }
 }
 
-const name = 'SmoochBot';
-const avatarUrl = 'https://s.gravatar.com/avatar/f91b04087e0125153623a3778e819c0a?s=80';
+const name = 'A16';
+const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
 const store = new SmoochApiStore({
     jwt
 });
