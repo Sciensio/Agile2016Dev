@@ -26,7 +26,7 @@ function pushMessage(bot) {
 function pushConv(bot, response) {
   var deferred = Q.defer();
   var newBot = bot;
-  var queryText = 'SELECT SmoochId FROM attendees WHERE unsubscibed = FALSE AND SmoochId != ',bot.userId,';';
+  var queryText = "SELECT SmoochId FROM attendees WHERE unsubscibed = FALSE AND SmoochId != ",bot.userId,";";
 
   console.log("===creating pushconv connection");
   //origUserId = newBot.userId;
