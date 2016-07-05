@@ -41,7 +41,7 @@ module.exports = new Script({
             //needs to create conversation record and update it throughout the prcoess
             console.log("===before db",bot);
             newUser(bot)
-              .then (console.log("===after db"))
+              .then (console.log("===after db", bot.userId))
 
 
               //undone - test for userid and or message
