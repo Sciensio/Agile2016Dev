@@ -9,7 +9,8 @@ var extend = require('util')._extend;
 
 function pushConv(bot, response) {
   var deferred = Q.defer();
-  var newBot = extend({}, bot);
+  //var newBot = extend({}, bot);
+  var newBot = bot;
 
   console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
