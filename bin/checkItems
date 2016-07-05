@@ -13,7 +13,7 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-var neBot = new BetterSmoochApiBot({
+var neBot = new SmoochApiBot({
     name,
     avatarUrl,
     lock,
