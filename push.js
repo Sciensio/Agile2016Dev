@@ -29,7 +29,7 @@ function pushConv(bot, response) {
   //var botUser = bot.userId;
   //var queryText = "SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE AND SmoochId != 'a30fa820d0a0f0216fa26070' ;";
 
-  console.log("===creating pushconv connection ",queryText);
+  console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     console.log("===bot",newBot);
