@@ -51,11 +51,8 @@ module.exports = new Script({
               //
               if (bot.userId = 'a30fa820d0a0f0216fa26070') {
                 console.log("===before push",bot);
-                pushConv(bot)
+                pushConv(bot);
               }
-              //  .then (console.log("===after push ",bot))
-              //console.log("===after push ",bot)
-
 
             function updateSilent() {
                 switch (upperText) {
