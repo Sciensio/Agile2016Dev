@@ -27,7 +27,7 @@ function pushConv(bot, response) {
   var deferred = Q.defer();
   var newBot = bot;
   var botUser = bot.userId;
-  var queryText = "SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE AND SmoochId != "+botUser+";";
+  var queryText = 'SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE AND SmoochId != '+botUser+';';
 
   console.log("===creating pushconv connection");
   //origUserId = newBot.userId;
@@ -35,7 +35,7 @@ function pushConv(bot, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     console.log("===bot",newBot);
     client
-      .query(queryText)
+      .query('SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE;')
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
