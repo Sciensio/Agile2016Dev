@@ -24,7 +24,7 @@ function pushConv(bot, message, response) {
           return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
         })
       done();
-      pg.end();
+      //pg.end();
   });
   console.log("=== did bot change",bot);
 }
