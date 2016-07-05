@@ -28,6 +28,8 @@ function newUser(bot, response) {
               deferred.resolve(result);
           }
     })
+    done();
+    pg.end();
   });
   return deferred.promise;
 }
