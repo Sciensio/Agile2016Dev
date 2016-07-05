@@ -9,7 +9,7 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('../app');
 const script = require('../script');
 const SmoochCore = require('smooch-core');
-var Smooch = require('../smooch');
+var Smooch = require('../node_modules/smooch-core/smooch');
 const jwt = require('../jwt');
 const fs = require('fs');
 
