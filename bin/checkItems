@@ -16,4 +16,4 @@ const fs = require('fs');
 smooch.conversations.sendMessage('a30fa820d0a0f0216fa26070', {
     text: 'Just put some vinegar on it',
     role: 'appMaker'
-}).then(() => );
+}).then(() => 'speak');
