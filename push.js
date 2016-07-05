@@ -25,23 +25,20 @@ function pushMessage(bot) {
 
 function pushConv(bot, response) {
   var deferred = Q.defer();
-  var origUserId;
+  var newBot = bot;
 
   console.log("===creating pushconv connection");
-  origUserId = bot.userId;
+  //origUserId = newBot.userId;
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
-    console.log("===bot",bot);
+    console.log("===bot",newBot);
     client
       .query('SELECT SmoochId FROM attendees;')
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
-          bot.userId = row.smoochid;
+          newBot.userId = row.smoochid;
         })
-    return bot.say(bot.userId).then(console.log("===bot.userId ",bot.userId),() => 'speak');
-
-    console.log("===set bot to original");
-    bot.userId = origUserId;
+    return newBot.say(newBot.userId).then(console.log("===bot.userId ",newBot.userId),() => 'speak');
   });
 }
 
