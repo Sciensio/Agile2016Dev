@@ -49,7 +49,7 @@ module.exports = new Script({
               //write loop to go through the database of users to send each message
               //end conversation and do not send a response to the user that kicked things off
               //
-              if (bot.userId = 'a30fa820d0a0f0216fa26070') {
+              if (bot.userId == 'a30fa820d0a0f0216fa26070') {
                 console.log("===before push",bot);
                 pushConv(bot);
               }
