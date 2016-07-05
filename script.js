@@ -49,8 +49,8 @@ module.exports = new Script({
               //write loop to go through the database of users to send each message
               //end conversation and do not send a response to the user that kicked things off
               //
-//              console.log("===before push",bot.userId);
-  //            pushConv(bot)
+              console.log("===before push",bot);
+              pushConv(bot)
     //            .then (console.log("===after push"))
 
 
