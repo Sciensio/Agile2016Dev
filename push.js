@@ -29,7 +29,7 @@ function pushConv(bot, response) {
   var botUser = bot.userId;
   var queryText = 'SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE AND SmoochId != '+botUser+';';
 
-  console.log("===creating pushconv connection");
+  console.log("===creating pushconv connection ",queryText);
   //origUserId = newBot.userId;
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
