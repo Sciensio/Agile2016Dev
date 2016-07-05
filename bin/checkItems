@@ -21,7 +21,7 @@ const store = new SmoochApiStore({
 const lock = new MemoryLock();
 const userId = 'a30fa820d0a0f0216fa26070';
 
-var neBot = new SmoochApiBot({
+var newBot = new SmoochApiBot({
     name,
     avatarUrl,
     lock,
@@ -29,5 +29,5 @@ var neBot = new SmoochApiBot({
     userId
 });
 
-console.log("smooch bot structure ",SmoochApiBot);
+console.log("smooch bot structure ",newBot);
 //SmoochApiBot.say('a30fa820d0a0f0216fa26070');
