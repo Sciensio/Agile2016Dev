@@ -51,7 +51,8 @@ module.exports = new Script({
               //
               console.log("===before push",bot);
               pushConv(bot)
-                .then (console.log("===after push ",bot))
+                //.then (console.log("===after push ",bot))
+              console.log("===after push ",bot);
 
 
             function updateSilent() {
