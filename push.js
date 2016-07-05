@@ -42,9 +42,9 @@ function pushConv(bot, response) {
           newBot.userId = row.smoochid;
           return newBot.say(newBot.userId).then(console.log("===bot.userId ",newBot.userId),() => 'speak');
         })
-    done(client);
+      .done(client);
   });
-  console.log("=== ",bot)
+  console.log("=== ",bot);
 }
 
 
