@@ -13,4 +13,5 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-SmoochApiBot.say('a30fa820d0a0f0216fa26070');
+console.log("smooch bot structure ",SmoochApiBot);
+//SmoochApiBot.say('a30fa820d0a0f0216fa26070');
