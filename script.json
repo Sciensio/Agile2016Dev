@@ -1,5 +1,4 @@
 {
-  "HELLO": "Hello!  I'm A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
   "HI": "Hello!  I'm A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
   "\/START": "Hello!  I'm A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
   "MENU": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:CONFERENCE_DETAILS) %[Agile Alliance](postback:AGILE_ALLIANCE)",
@@ -28,8 +27,6 @@
   "AGILE_ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Members Meeting](https://goo.gl/NYpLRz) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
   "ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Members Meeting](https://goo.gl/NYpLRz) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
 
-  "I LOVE YOU": "Awh, shucks! I love you too!",
-  "RESTART": "Hello!  I'm A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.",
   "CONNECT ME": "test",
   "\/MSG": "",
   "\/SUPPORT": "I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type /A16",
