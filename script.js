@@ -6,7 +6,7 @@ var pg = require('pg');
 var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
-var logConversation = require("./db");
+var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 
@@ -181,7 +181,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(50).then(function() {
+                        return wait(5).then(function() {
                             msgLog.responsemessage = line;
                             //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
                             //msgLog.senttime = senttime;
