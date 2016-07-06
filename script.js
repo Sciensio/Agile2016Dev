@@ -155,7 +155,7 @@ module.exports = new Script({
                         return upperText = simplified.trim().toUpperCase();
                       case "what do you know":
                         return upperText = simplified.trim().toUpperCase();
-                      case "can you talk"
+                      case "can you talk":
                         return upperText = simplified.trim().toUpperCase();
                       default:
                         msgLog.responsemessage = fulfillmentSpeech;
