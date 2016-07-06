@@ -129,7 +129,7 @@ module.exports = new Script({
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        upperText = simplified;
+                        upperText = simplified.trim().toUpperCase();
                     }
                     else if (simplified)
                     {
