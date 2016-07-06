@@ -63,11 +63,11 @@ module.exports = new Script({
                 switch (upperText) {
                     case "CONNECT ME":
                         return bot.setProp("silent", true);
-                    case "-SUPPORT":
+                    case "/SUPPORT":
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
-                    case "-ACE":
+                    case "/A16":
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
@@ -128,7 +128,8 @@ module.exports = new Script({
                     if (fulfillmentSpeech)
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = simplified;
                     }
                     else if (simplified)
                     {
