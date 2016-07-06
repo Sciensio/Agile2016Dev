@@ -42,7 +42,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done){
           pushConv(newBot, msg);
       })
     done();
-    client.end();
+    //client.end();
 });
 
 //var msg = "hello world";
