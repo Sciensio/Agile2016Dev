@@ -45,10 +45,10 @@ module.exports = new Script({
     },
 
     speakers: {
-      prompt: (bot) => bot.say("does this work?"),
-      receive: (bot, message) =>{
+      prompt: (bot) => bot.say('What speaker are you searching for?'),
+      receive: (bot, message) => {
         const name = message.text;
-        //return bot.setProp('name', name)
+        return bot.setProp('name', name)
           .then(() => bot.say("I will search for ${name} is that OK? %[Yes](postback:hello) %[No](postback:hello)"))
           .then(() => 'finish');
       }
