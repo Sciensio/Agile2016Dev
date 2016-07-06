@@ -158,7 +158,7 @@ module.exports = new Script({
                           msgLog.responsemessage = line;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
-                          logConversation(==="in FS, should be sending message: ",msgLog);
+                          logConversation("===in FS, should be sending message: ",msgLog);
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                         }
                         upperText = simplified.trim().toUpperCase();
