@@ -151,23 +151,28 @@ module.exports = new Script({
                   {
                     console.log("===source is ", source);
                     if (fulfillmentSpeech) {
-                     switch (simplified) {
-                      case "hello":
-                        console.log("===in hello");
+                     //switch (simplified) {
+                    //  case "hello":
+                    //    console.log("===in hello");
+                    //    upperText = simplified.trim().toUpperCase();
+                    //  case "what do you know":
+                    //  console.log("===in what do you know");
+                    //    upperText = simplified.trim().toUpperCase();
+                    //  case "can you talk":
+                    //    console.log("===can you talk");
+                    //    upperText = simplified.trim().toUpperCase();
+                    //  default:
+                    //    console.log("===in switch default");
+                    //    msgLog.responsemessage = fulfillmentSpeech;
+                    //    msgLog.responsetime = new Date;
+                    //    msgLog.responsetype = 'API.AI';
+                    //    return bot.say(fulfillmentSpeech).then(() => 'speak');
+                    //}
+                    console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
+                        if (fulfillmentSpeech !== "hello") {
+                            return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        }
                         upperText = simplified.trim().toUpperCase();
-                      case "what do you know":
-                      console.log("===in what do you know");
-                        upperText = simplified.trim().toUpperCase();
-                      case "can you talk":
-                        console.log("===can you talk");
-                        upperText = simplified.trim().toUpperCase();
-                      default:
-                        console.log("===in switch default");
-                        msgLog.responsemessage = fulfillmentSpeech;
-                        msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    }
                   }
                   else if (simplified)
                   {
