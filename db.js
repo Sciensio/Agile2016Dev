@@ -44,7 +44,7 @@ function logConversation(msgLog) {
                   console.error(err);
                   deferred.reject(err);
               }
-          } else {
+          else {
               (console.log('=== conversation logged '));
               deferred.resolve(result);
           }
