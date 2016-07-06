@@ -68,6 +68,7 @@ module.exports = new Script({
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
                     case "/A16":
+                        console.log("*** ",upperText," ***");
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
