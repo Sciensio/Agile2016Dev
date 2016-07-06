@@ -42,7 +42,7 @@ module.exports = new Script({
 
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
-            console.log("===before db",bot);
+            console.log("===before db",bot.conversations);
             newUser(bot)
               .then (console.log("===after db", bot.userId))
 
