@@ -30,7 +30,21 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-var msg = "hello world";
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client, done){
+  client
+    .query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes';")
+      .on('row', function(row){
+//        console.log("===SmoochId ",row.smoochid);
+//        newBot.userId = row.smoochid;
+//        return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
+          var msg = row.message;
+      })
+    done();
+    client.end();
+});
+
+//var msg = "hello world";
 
 console.log("smooch bot structure ",newBot);
 pushConv(newBot, msg);
