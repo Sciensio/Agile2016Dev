@@ -12,7 +12,7 @@ var pushConv = require("./push");
 const scriptRules = require('./script.json');
 
 var msgLog = {
-    smoochID,
+    smoochID: '',
     received,
     usermessage,
     role,
