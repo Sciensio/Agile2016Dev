@@ -33,7 +33,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
-            console.log("===receive step 1",message);
+            console.log("===receive step 1",message.source.type);
             let upperText = message.text.trim().toUpperCase();
 
             var botUser = bot.userId;
@@ -42,9 +42,9 @@ module.exports = new Script({
 
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
-            console.log("===before db",bot.store.api.conversations);
+            //console.log("===before db");
             newUser(bot)
-              .then (console.log("===after db", bot.userId))
+            //  .then (console.log("===after db", bot.userId))
 
 
               //undone - test for userid and or message
