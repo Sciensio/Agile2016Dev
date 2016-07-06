@@ -6,6 +6,7 @@ var pg = require('pg');
 var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
+var logConversation = require("./db");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 
@@ -21,7 +22,7 @@ var msgLog = {
     receivedtime: '',
     responsemessage: '',
     responsetype: '',
-    senttime: ''
+    responsetime: ''
   };
 
 function wait(ms) {
@@ -186,6 +187,7 @@ module.exports = new Script({
                             //msgLog.senttime = senttime;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
+                            logConversation(msgLog);
                             return bot.say(line);
                         });
                     });
