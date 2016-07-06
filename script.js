@@ -143,26 +143,28 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-                console.log("source: ", source);
-                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                console.log("simplified: ", simplified);
-                console.log("===receive step 3",upperText);
-
+                //console.log("source: ", source);
+                //console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                //console.log("simplified: ", simplified);
+                //console.log("===receive step 3",upperText);
               if (source != 'agent')
                 {
                     console.log("===source is ", source);
-                    if (fulfillmentSpeech)
-                    {
-                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        if (simplified != "hello") {
-                          msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI';
-                          return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        }
-                        upperText = simplified.trim().toUpperCase();
+                    switch (simplified) {
+                      case "hello":
+                        return upperText = simplified.trim().toUpperCase();
+                      case "what do you know":
+                        return upperText = simplified.trim().toUpperCase();
+                      case "can you talk"
+                        return upperText = simplified.trim().toUpperCase();
+                      default:
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
-                    else if (simplified)
+
+                } else if (simplified)
                     {
                         console.log("simplified is: ", simplified);
                         upperText = simplified.toUpperCase();
