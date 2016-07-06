@@ -40,9 +40,13 @@ module.exports = new Script({
             var authUsers = ['a30fa820d0a0f0216fa26070'];
 
 
+            smooch.conversations.get('c7f6e6d6c3a637261bd9656f').then((response) => {
+              console.log(response);  // async code
+            });
+
             //Undone - currently only creates new user
             //needs to create conversation record and update it throughout the prcoess
-            console.log("===before db",bot.conversations.get(bot.userId));
+            console.log("===before db");//,bot.conversations.get(bot.userId));
             newUser(bot)
               .then (console.log("===after db", bot.userId))
 
