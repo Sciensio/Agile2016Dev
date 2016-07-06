@@ -70,6 +70,7 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             if (message.text = 'speakers') {
+              console.log("$$ not sure why $$")
               .then(() => 'speakers');
             }
 
