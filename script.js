@@ -147,31 +147,34 @@ module.exports = new Script({
                 console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
-              if (source = 'domains')
-                {
-                  console.log("===source is ", source);
-                  switch (simplified) {
-                    case "hello":
-                      console.log("===in hello");
-                      return upperText = simplified.trim().toUpperCase();
-                    case "what do you know":
-                    console.log("===in what do you know");
-                      return upperText = simplified.trim().toUpperCase();
-                    case "can you talk":
-                      console.log("===can you talk");
-                      return upperText = simplified.trim().toUpperCase();
-                    default:
-                      console.log("===in switch default");
-                      msgLog.responsemessage = fulfillmentSpeech;
-                      msgLog.responsetime = new Date;
-                      msgLog.responsetype = 'API.AI';
-                      return bot.say(fulfillmentSpeech).then(() => 'speak');
-                  }
-                } else if (simplified)
-                    {
-                        console.log("simplified is: ", simplified);
-                        upperText = simplified.toUpperCase();
+                if (source = 'domains')
+                  {
+                    console.log("===source is ", source);
+                    if (fulfillmentSpeech) {
+                     switch (simplified) {
+                      case "hello":
+                        console.log("===in hello");
+                        return upperText = simplified.trim().toUpperCase();
+                      case "what do you know":
+                      console.log("===in what do you know");
+                        return upperText = simplified.trim().toUpperCase();
+                      case "can you talk":
+                        console.log("===can you talk");
+                        return upperText = simplified.trim().toUpperCase();
+                      default:
+                        console.log("===in switch default");
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
+                  }
+                  else if (simplified)
+                  {
+                    console.log("simplified is: ", simplified);
+                    upperText = simplified.toUpperCase();
+                  }
+                }
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
