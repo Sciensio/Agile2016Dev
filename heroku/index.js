@@ -31,8 +31,8 @@ class BetterSmoochApiBot extends SmoochApiBot {
     }
 }
 
-const name = 'SmoochBot';
-const avatarUrl = 'https://s.gravatar.com/avatar/f91b04087e0125153623a3778e819c0a?s=80';
+const name = 'A16';
+const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
 const store = new SmoochApiStore({
     jwt
 });
@@ -56,7 +56,7 @@ function createWebhook(smoochCore, target) {
                         console.error('Error creating Smooch webhook:', err);
                         console.error(err.stack);
                     });
-            }            
+            }
         )
         .catch((err) => {
             console.error('Error creating Smooch webhook:', err);
@@ -81,7 +81,7 @@ if (process.env.SERVICE_URL) {
 app.post('/webhook', function(req, res, next) {
     var isPostback = req.body.trigger == "postback";
     var msg = '';
-
+//console.log("=in app.post");
     const appUser = req.body.appUser;
     const userId = appUser.userId || appUser._id;
     const stateMachine = new StateMachine({
@@ -93,7 +93,7 @@ app.post('/webhook', function(req, res, next) {
             store,
             userId
         })
-    });    
+    });
 
     if(!isPostback) {
         const messages = req.body.messages.reduce((prev, current) => {
@@ -110,7 +110,8 @@ app.post('/webhook', function(req, res, next) {
         msg = messages[0];
     } else {
         msg = req.body.postbacks[0];
-        msg.text = msg.action.text;
+        console.log("=== POSTBACK",msg.action.payload);
+        msg.text = msg.action.payload;
     }
 
     stateMachine.receiveMessage(msg)

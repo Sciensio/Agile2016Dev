@@ -7,6 +7,7 @@ var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
 var nlp = require("./nlp");
+var pushConv = require("./push");
 
 const scriptRules = require('./script.json');
 
@@ -24,35 +25,56 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Get started by saying BOT.')
+            return bot.say('Hello!  I\'m A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.')
                 .then(() => 'speak');
         }
     },
 
     speak: {
         receive: (bot, message) => {
-            console.log("===bot user ",bot.userId);
-
-            console.log("===before db");
-            Q.nfcall(newUser,bot);
-            console.log("===after db");
-
+            console.log("===bot user ");
+            console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
+
+            var botUser = bot.userId;
+            var authUsers = ['a30fa820d0a0f0216fa26070'];
+
+
+            //Undone - currently only creates new user
+            //needs to create conversation record and update it throughout the prcoess
+            console.log("===before db",bot);
+            newUser(bot)
+              .then (console.log("===after db", bot.userId))
+
+
+              //undone - test for userid and or message
+              //look at stacking messages in DB and looking them up
+              //end conversation and do not send a response to the user that kicked things off
+              //
+              if (authUsers.indexOf(bot.userId) !== -1) {
+                if (message.text.substr(0,5) == '/msg ') {
+                  upperText = upperText.substr(0,4);
+                  pushConv(bot, message.text.substr(5));
+                  console.log("****after push msg:  ",message.text);
+                }
+              }
 
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
                         return bot.setProp("silent", true);
-                    case "@SUPPORT":
+                    case "/SUPPORT":
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
-                    case "@ACE":
+                    case "/A16":
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
                 }
             }
+
+            console.log("===receive step 2",upperText);
 
             function getSilent() {
                 return bot.getProp("silent");
@@ -98,13 +120,16 @@ module.exports = new Script({
                 console.log("source: ", source);
                 console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                 console.log("simplified: ", simplified);
-                if (source != 'agent')
+                console.log("===receive step 3",upperText);
+
+              if (source != 'agent')
                 {
                     console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = simplified.trim().toUpperCase();
                     }
                     else if (simplified)
                     {
@@ -112,19 +137,24 @@ module.exports = new Script({
                         upperText = simplified.toUpperCase();
                     }
                 }
-
                 if (!_.has(scriptRules, upperText)) {
-                    return bot.say(`So, I'm good at structured conversations but stickers, emoji and sentences still confuse me. Say 'more' to chat about something else.`).then(() => 'speak');
+                    console.log("===no rule", upperText);
+                    return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
+
+                console.log("===receive step 3",upperText);
+
 
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
+
+                bot.userId = botUser;
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
                     line = line.trim();
                     p = p.then(function() {
-                        console.log(line);
+                        console.log("=== p line",line);
                         return wait(50).then(function() {
                             return bot.say(line);
                         });
