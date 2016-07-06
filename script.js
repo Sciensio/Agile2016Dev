@@ -13,15 +13,15 @@ const scriptRules = require('./script.json');
 
 var msgLog = {
     smoochID: '',
-    received,
-    usermessage,
-    role,
-    message_id,
-    sourcetype,
-    receivedtime,
-    respondmessage,
-    responsetype,
-    senttime
+    received: '',
+    usermessage: '',
+    role: '',
+    message_id: '',
+    sourcetype: '',
+    receivedtime: '',
+    respondmessage: '',
+    responsetype: '',
+    senttime:
   };
 
 function wait(ms) {
