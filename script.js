@@ -155,7 +155,11 @@ module.exports = new Script({
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
                         if (simplified !== "hello") {
-                            return bot.say(fulfillmentSpeech).then(() => 'speak');
+                          msgLog.responsemessage = line;
+                          msgLog.responsetime = new Date;
+                          msgLog.responsetype = 'API.AI';
+                          logConversation(msgLog);
+                          return bot.say(fulfillmentSpeech).then(() => 'speak');
                         }
                         upperText = simplified.trim().toUpperCase();
                     }
@@ -185,7 +189,6 @@ module.exports = new Script({
                         console.log("=== p line",line);
                         return wait(5).then(function() {
                             msgLog.responsemessage = line;
-                            //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
                             msgLog.responsetime = new Date;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
