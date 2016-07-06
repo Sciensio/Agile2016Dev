@@ -69,7 +69,8 @@ module.exports = new Script({
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log("*** ",upperText," ***");
-                        return bot.setProp("silent", false);
+                        bot.setProp("silent", false);
+                        return processMessage(false);
                     default:
                         return Promise.resolve();
                 }
