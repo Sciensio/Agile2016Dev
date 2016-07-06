@@ -54,10 +54,11 @@ module.exports = new Script({
       }
     },
 
-    searchName {
+    finish {
       receive: (bot, message) => {
-        .then => bot.say("That's all!")
-        .then(() => 'finish');
+        return bot.getProp('name')
+          .then((name) => bot.say('That is all!'))
+          .then(() => 'finish');
       }
     },
 
