@@ -154,7 +154,9 @@ module.exports = new Script({
                     if (fulfillmentSpeech)
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        if (fulfillmentSpeech !== "hello") {
+                            return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        }
                         upperText = simplified.trim().toUpperCase();
                     }
                     else if (simplified)
