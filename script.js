@@ -49,7 +49,7 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            var receivedtime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
+            //var receivedtime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
@@ -57,7 +57,7 @@ module.exports = new Script({
             msgLog.role = message.role;
             msgLog.message_id = message.message_id;
             msgLog.sourcetype = message.source.type;
-            msgLog.receivedtime = receivedtime;
+            //msgLog.receivedtime = receivedtime;
 
             var botUser = bot.userId;
             var authUsers = ['a30fa820d0a0f0216fa26070'];
@@ -182,8 +182,8 @@ module.exports = new Script({
                         console.log("=== p line",line);
                         return wait(50).then(function() {
                             msgLog.responsemessage = line;
-                            var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
-                            msgLog.senttime = senttime;
+                            //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
+                            //msgLog.senttime = senttime;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
                             return bot.say(line);
