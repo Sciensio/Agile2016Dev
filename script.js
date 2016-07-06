@@ -154,13 +154,13 @@ module.exports = new Script({
                      switch (simplified) {
                       case "hello":
                         console.log("===in hello");
-                        return upperText = simplified.trim().toUpperCase();
+                        upperText = simplified.trim().toUpperCase();
                       case "what do you know":
                       console.log("===in what do you know");
-                        return upperText = simplified.trim().toUpperCase();
+                        upperText = simplified.trim().toUpperCase();
                       case "can you talk":
                         console.log("===can you talk");
-                        return upperText = simplified.trim().toUpperCase();
+                        upperText = simplified.trim().toUpperCase();
                       default:
                         console.log("===in switch default");
                         msgLog.responsemessage = fulfillmentSpeech;
