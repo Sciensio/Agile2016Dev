@@ -147,40 +147,24 @@ module.exports = new Script({
                 console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
-                if (source = 'domains')
-                  {
+
+              if (source != 'agent')
+                {
                     console.log("===source is ", source);
-                    if (fulfillmentSpeech) {
-                     //switch (simplified) {
-                    //  case "hello":
-                    //    console.log("===in hello");
-                    //    upperText = simplified.trim().toUpperCase();
-                    //  case "what do you know":
-                    //  console.log("===in what do you know");
-                    //    upperText = simplified.trim().toUpperCase();
-                    //  case "can you talk":
-                    //    console.log("===can you talk");
-                    //    upperText = simplified.trim().toUpperCase();
-                    //  default:
-                    //    console.log("===in switch default");
-                    //    msgLog.responsemessage = fulfillmentSpeech;
-                    //    msgLog.responsetime = new Date;
-                    //    msgLog.responsetype = 'API.AI';
-                    //    return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    //}
-                    console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
+                    if (fulfillmentSpeech)
+                    {
+                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
                         if (fulfillmentSpeech !== "hello") {
                             return bot.say(fulfillmentSpeech).then(() => 'speak');
                         }
                         upperText = simplified.trim().toUpperCase();
-                  }
-                  else if (simplified)
-                  {
-                    console.log("simplified is: ", simplified);
-                    upperText = simplified.toUpperCase();
-                  }
+                    }
+                    else if (simplified)
+                    {
+                        console.log("simplified is: ", simplified);
+                        upperText = simplified.toUpperCase();
+                    }
                 }
-
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
@@ -201,6 +185,7 @@ module.exports = new Script({
                         console.log("=== p line",line);
                         return wait(5).then(function() {
                             msgLog.responsemessage = line;
+                            //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
                             msgLog.responsetime = new Date;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
