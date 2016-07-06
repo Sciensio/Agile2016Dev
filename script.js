@@ -155,10 +155,10 @@ module.exports = new Script({
                     {
                         console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
                         if (simplified != "hello") {
-                          msgLog.responsemessage = line;
-                          msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI';
-                          logConversation("===in FS, should be sending message: ",msgLog);
+                          //msgLog.responsemessage = line;
+                          //msgLog.responsetime = new Date;
+                          //msgLog.responsetype = 'API.AI';
+                          //logConversation("===in FS, should be sending message: ",msgLog);
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                         }
                         upperText = simplified.trim().toUpperCase();
