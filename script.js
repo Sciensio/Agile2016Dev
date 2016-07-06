@@ -55,7 +55,7 @@ module.exports = new Script({
     },
 
 
-    finish {
+    finish: {
       receive: (bot, message) => {
         return bot.getProp('name')
           .then((name) => bot.say('That is all!'))
