@@ -149,27 +149,26 @@ module.exports = new Script({
                 //console.log("===receive step 3",upperText);
               if (source != 'agent')
                 {
-                    console.log("===source is ", source);
-                    switch (simplified) {
-                      case "hello":
-                        return upperText = simplified.trim().toUpperCase();
-                      case "what do you know":
-                        return upperText = simplified.trim().toUpperCase();
-                      case "can you talk":
-                        return upperText = simplified.trim().toUpperCase();
-                      default:
-                        msgLog.responsemessage = fulfillmentSpeech;
-                        msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    }
-
+                  console.log("===source is ", source);
+                  switch (simplified) {
+                    case "hello":
+                      return upperText = simplified.trim().toUpperCase();
+                    case "what do you know":
+                      return upperText = simplified.trim().toUpperCase();
+                    case "can you talk":
+                      return upperText = simplified.trim().toUpperCase();
+                    default:
+                      msgLog.responsemessage = fulfillmentSpeech;
+                      msgLog.responsetime = new Date;
+                      msgLog.responsetype = 'API.AI';
+                      return bot.say(fulfillmentSpeech).then(() => 'speak');
+                  }
                 } else if (simplified)
                     {
                         console.log("simplified is: ", simplified);
                         upperText = simplified.toUpperCase();
                     }
-                }
+                
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
