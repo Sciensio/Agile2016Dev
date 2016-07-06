@@ -157,12 +157,15 @@ module.exports = new Script({
                         case "hello":
                           console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
+                          break;
                         case "what do you know":
                           console.log("===in what do you know");
                           upperText = simplified.trim().toUpperCase();
+                          break;
                         case "can you talk":
                           console.log("===can you talk");
                           upperText = simplified.trim().toUpperCase();
+                          break;
                         default:
                           console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
