@@ -21,7 +21,7 @@ var msgLog = {
     receivedtime: '',
     respondmessage: '',
     responsetype: '',
-    senttime:
+    senttime: ''
   };
 
 function wait(ms) {
