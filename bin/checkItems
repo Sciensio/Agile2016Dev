@@ -39,6 +39,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done){
 //        newBot.userId = row.smoochid;
 //        return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
           var msg = row.message;
+          pushConv(newBot, msg);
       })
     done();
     client.end();
@@ -46,6 +47,4 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done){
 
 //var msg = "hello world";
 
-console.log("smooch bot structure ",newBot);
-pushConv(newBot, msg);
 console.log("=== It should end now");
