@@ -44,13 +44,32 @@ module.exports = new Script({
         }
     },
 
+    speakers: {
+      prompt: (bot) => bot.say("does this work?"),
+      receive: (bot, message) =>{
+        const name = message.text;
+        //return bot.setProp('name', name)
+          .then(() => bot.say("I will search for ${name} is that OK? %[Yes](postback:hello) %[No](postback:hello)"))
+          .then(() => 'finish');
+      }
+    },
+
+    searchName {
+      receive: (bot, message) => {
+        .then => bot.say("That's all!")
+        .then(() => 'finish');
+      }
+    },
+
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            //var receivedtime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
+            if (message.text = 'speakers') {
+              .then(() => 'speakers');
+            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
