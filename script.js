@@ -91,7 +91,7 @@ module.exports = new Script({
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
-                promises.push(nlp(message.text, bot.userId));
+                promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
