@@ -5,6 +5,8 @@ const Script = require('smooch-bot').Script;
 var request = require("request");
 
 function logConversation(msgLog) {
+  var deferred = Q.defer();
+  
   console.log("=== in db, msgLog",msgLog);
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
