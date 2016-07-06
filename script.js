@@ -33,7 +33,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
-            console.log("===receive step 1",message.source.type);
+            console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
             var botUser = bot.userId;
