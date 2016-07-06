@@ -169,6 +169,7 @@ module.exports = new Script({
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
+                      }
                     }
                     else if (simplified)
                     {
