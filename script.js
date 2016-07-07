@@ -84,7 +84,7 @@ console.log("before loading msgLog ", message.action);
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            if (message.role == 'appMaker') {
+            if (message.action) {
               console.log("!!!! appMake = T, message.role", message.text);
               //msgLog.sourcetype = 'postback: ' + message.actions.text;
             } else {
