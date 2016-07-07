@@ -6,7 +6,7 @@
   "KEY": "![Keywords](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/keywordsv1.png)",
   "PROGRAM": "Do you want to explore: %[Sessions](postback:SESSIONS_DAY) %[Keynotes](postback:KEYNOTES) %[Special Events](postback:SPECIAL_EVENTS)",
   "SESSIONS": "%[Sessions by Day](postback:SESSIONS_DAY)",
-  "SESSIONS_DAY": "To view sessions by day Tap the Day or enter Day (dd): %[July 24](https://goo.gl/ICxdzY) %[July 25](https://goo.gl/W9cDa0) %[More](postback:MORE_S2)",
+  "SESSIONS_DAY": "To view sessions by day Tap the Day: %[July 24](https://goo.gl/ICxdzY) %[July 25](https://goo.gl/W9cDa0) %[More](postback:MORE_S2)",
   "MORE_S2": "%[July 26](https://goo.gl/FcTlfg) %[July 27](https://goo.gl/Zwksvx) %[More](postback:MORE_S3)",
   "MORE_S3": "%[July 28](https://goo.gl/Rl6IIK) %[July 29](https://goo.gl/lzPt2g) %[Back to Menu](postback:MENU)",
   "SESSIONS_SPEAKER": "Enter speaker last name to view their session(s): %[Session(s) by Speaker](postback:SESSIONS_SPEAKER)",
