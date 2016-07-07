@@ -6,22 +6,23 @@ var pg = require('pg');
 var Q = require("q");
 var request = require("request");
 var newUser = require("./db");
+var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 
 const scriptRules = require('./script.json');
 
 var msgLog = {
-    smoochID,
-    received,
-    usermessage,
-    role,
-    message_id,
-    sourcetype,
-    receivedtime,
-    respondmessage,
-    responsetype,
-    senttime
+    smoochId: '',
+    received: '',
+    usermessage: '',
+    role: '',
+    message_id: '',
+    sourcetype: '',
+    receivedtime: '',
+    responsemessage: '',
+    responsetype: '',
+    responsetime: ''
   };
 
 function wait(ms) {
@@ -43,11 +44,43 @@ module.exports = new Script({
         }
     },
 
+    speakers: {
+      prompt: (bot) => bot.say('What speaker are you searching for?'),
+      receive: (bot, message) => {
+        const name = message.text;
+        return bot.setProp('name', name)
+          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:hello) %[No](postback:hello)`))
+          .then(() => 'speak');
+      }
+    },
+
+
+    finish: {
+      receive: (bot, message) => {
+        return bot.getProp('name')
+          .then((name) => bot.say('That is all!'))
+          .then(() => 'speak');
+      }
+    },
+
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
+
+            if (upperText == 'SPEAKERS') {
+              return bot.getProp('name')
+              .then(() => 'speakers');
+            }
+
+            msgLog.smoochId = bot.userId;
+            msgLog.received = message.received;
+            msgLog.usermessage = message.text;
+            msgLog.role = message.role;
+            msgLog.message_id = message.message_id;
+            msgLog.sourcetype = message.source.type;
+            msgLog.receivedtime = new Date();
 
             var botUser = bot.userId;
             var authUsers = ['a30fa820d0a0f0216fa26070'];
@@ -142,9 +175,26 @@ module.exports = new Script({
                     console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
-                        console.log("fulfillmentSpeech is: ", fulfillmentSpeech);
-                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        upperText = simplified.trim().toUpperCase();
+                      switch (simplified) {
+                        case "hello":
+                          console.log("===in hello");
+                          upperText = simplified.trim().toUpperCase();
+                          break;
+                        case "what do you know":
+                          console.log("===in what do you know");
+                          upperText = simplified.trim().toUpperCase();
+                          break;
+                        case "can you talk":
+                          console.log("===can you talk");
+                          upperText = simplified.trim().toUpperCase();
+                          break;
+                        default:
+                          console.log("===in switch default");
+                          msgLog.responsemessage = fulfillmentSpeech;
+                          msgLog.responsetime = new Date;
+                          msgLog.responsetype = 'API.AI';
+                          return bot.say(fulfillmentSpeech).then(() => 'speak');
+                      }
                     }
                     else if (simplified)
                     {
@@ -170,7 +220,13 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(50).then(function() {
+                        return wait(5).then(function() {
+                            msgLog.responsemessage = line;
+                            //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
+                            msgLog.responsetime = new Date;
+                            msgLog.responsetype = 'JSON';
+                            console.log("=== msgLog  obj",msgLog);
+                            logConversation(msgLog);
                             return bot.say(line);
                         });
                     });
