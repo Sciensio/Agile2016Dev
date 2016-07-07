@@ -20,7 +20,7 @@ function prepRequest(schedRequest){
 			console.log("===in case");
 			var options = {
 				"method" : "POST",
-				"url" : "https://sciensiotestevent2016.sched.org/api/session/count",
+				"url" : "https://agile2016.sched.org/api/session/count",
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN
 				},
@@ -32,7 +32,7 @@ function prepRequest(schedRequest){
 		case "SessionList":
 			var options = {
 				"method" : "POST",
-				"url" : "https://sciensiotestevent2016.sched.org/api/session/list",
+				"url" : "https://agile2016.sched.org/api/session/export",
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN,
 					"format" : "json",
