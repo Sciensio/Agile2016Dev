@@ -78,17 +78,17 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-console.log("before loading msgLog ", message.actions);
+console.log("before loading msgLog ", message.action);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
             if (message.role == 'appMaker') {
-              console.log("!!!! appMake = T, message.role", message.role);
+              console.log("!!!! appMake = T, message.role", message.text);
               //msgLog.sourcetype = 'postback: ' + message.actions.text;
             } else {
-              console.log("!!!! appUser = T, message.role", message.role);
+              console.log("!!!! appUser = T, message.role", message.text);
               //msgLog.sourcetype = message.source.type;
             }
 //
