@@ -72,10 +72,10 @@ module.exports = new Script({
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-//            if (upperText == 'S1') {
-//              return bot.getProp('name')
-//              .then(() => 's1');
-//            }
+            if (upperText == 'S1') {
+              return bot.getProp('name')
+              .then(() => 's1');
+            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
