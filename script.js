@@ -50,7 +50,7 @@ module.exports = new Script({
         const name = message.text;
         return bot.setProp('name', name)
           .then(() => bot.say('I will search for ${name} is that OK? %[Yes](postback:hello) %[No](postback:hello)'))
-          .then(() => 'finish');
+          .then(() => 'speak');
       }
     },
 
@@ -69,10 +69,10 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            //if (message.text == 'speakers') {
-            //  return bot.getProp('name')
-            //  .then(() => 'speakers');
-            //}
+            if (message.text == 'speakers') {
+              return bot.getProp('name')
+              .then(() => 'speakers');
+            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
