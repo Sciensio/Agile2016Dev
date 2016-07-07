@@ -53,7 +53,7 @@ module.exports = new Script({
       receive: (bot, message) => {
         const name = message.text;
         return bot.setProp('name', name)
-          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes]() %[No](postback:hello)`))
+          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:menu) %[No](postback:hello)`))
           .then(() => 'speak');
       }
     },
