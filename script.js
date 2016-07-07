@@ -48,15 +48,15 @@ module.exports = new Script({
         }
     },
 
-    s1: {
-      prompt: (bot) => bot.say('Type part of the session name?'),
-      receive: (bot, message) => {
-        console.log("$$$ message", message);
-        findSession(message.text)
-          .then(() => bot.say(`got here`))
-          .then(() => 'speak');
-      }
-    },
+//    s1: {
+//      prompt: (bot) => bot.say('Type part of the session name?'),
+//      receive: (bot, message) => {
+//        console.log("$$$ message", message);
+//        findSession(message.text)
+//          .then(() => bot.say(`got here`))
+//          .then(() => 'speak');
+//      }
+//    },
 
 
 //    chris: {
@@ -72,10 +72,10 @@ module.exports = new Script({
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-            if (upperText == 'S1') {
-              return bot.getProp('name')
-              .then(() => 's1');
-            }
+//            if (upperText == 'S1') {
+//              return bot.getProp('name')
+//              .then(() => 's1');
+//            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
