@@ -172,6 +172,10 @@ module.exports = new Script({
 //                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
+                          case "what do you know":
+  //                          console.log("===in what do you know");
+                            upperText = 'Know';
+                            break;
                         case "what do you know":
 //                          console.log("===in what do you know");
                           upperText = simplified.trim().toUpperCase();
