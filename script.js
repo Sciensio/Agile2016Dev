@@ -48,15 +48,15 @@ module.exports = new Script({
         }
     },
 
-//    speakers: {
-//      prompt: (bot) => bot.say('Type part of the session name?'),
-//      receive: (bot, message) => {
-//        const name = message.text;
-//        return bot.setProp('name', name)
-//          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:yes) %[No](postback:no)`))
-//          .then(() => 'speak');
-//      }
-//    },
+    s1: {
+      prompt: (bot) => bot.say('Type part of the session name?'),
+      receive: (bot, message) => {
+        const name = message.text;
+        return bot.setProp('name', name)
+          .then(() => bot.say(`got here`))
+          .then(() => 'speak');
+      }
+    },
 
 
 //    chris: {
@@ -72,9 +72,9 @@ module.exports = new Script({
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-//            if (upperText == 'SPEAKERS') {
+//            if (upperText == 'S1') {
 //              return bot.getProp('name')
-//              .then(() => 'speakers');
+//              .then(() => 's1');
 //            }
 
             msgLog.smoochId = bot.userId;
