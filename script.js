@@ -73,7 +73,7 @@ module.exports = new Script({
 
             if (upperText == 'S1') {
               return bot.getProp('name')
-              .then(() => 'speakers');
+              .then(() => 'S1');
             }
 
             msgLog.smoochId = bot.userId;
