@@ -9,7 +9,7 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('../app');
 const script = require('../script');
 const SmoochCore = require('smooch-core');
-//var Smooch = require('SmoochCore/Smooch');
+
 const jwt = require('../jwt');
 const fs = require('fs');
 var pushConv = require('../push');
@@ -35,16 +35,8 @@ pg.connect(process.env.DATABASE_URL, function(err, client, done){
   client
     .query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes';")
       .on('row', function(row){
-//        console.log("===SmoochId ",row.smoochid);
-//        newBot.userId = row.smoochid;
-//        return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
           var msg = row.message;
           pushConv(newBot, msg);
       })
     done();
-    //client.end();
 });
-
-//var msg = "hello world";
-
-console.log("=== It should end now");
