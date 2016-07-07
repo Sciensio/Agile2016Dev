@@ -37,7 +37,7 @@ function prepRequest(schedRequest){
 					"api_key" : process.env.SCHED_TOKEN,
 					"format" : "json",
           "page" : "1",
-          "limit" : "10"
+          "limit" : "10",
           "strip_html" : "Y"
 				},
 				"headers" : {
