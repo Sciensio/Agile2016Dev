@@ -19,8 +19,8 @@ function findSession(session, response) {
               console.error(err);
               deferred.reject(err);
             } else {
-                (console.log('=== userId ', result));
-                deferred.resolve(result);
+              (console.log('=== userId ', result));
+              deferred.resolve(result);
             }
         }
       });

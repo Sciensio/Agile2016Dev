@@ -51,8 +51,7 @@ module.exports = new Script({
     s1: {
       prompt: (bot) => bot.say('Type part of the session name?'),
       receive: (bot, message) => {
-        const name = message.text;
-        return bot.setProp('name', name)
+        sessionsearch(message.text)
           .then(() => bot.say(`got here`))
           .then(() => 'speak');
       }
