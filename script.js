@@ -10,6 +10,7 @@ var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 var newBot_msg = require("./newBot");
+var findSession = require("./sessionsearch");
 
 var sched = require("./sched");  //delete later
 
