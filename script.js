@@ -101,7 +101,7 @@ module.exports = new Script({
             if (authUsers.indexOf(bot.userId) !== -1) {
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
-                pushConv(message.text.substr(4));
+                newBot_msg(message.text.substr(4));
                 console.log("****after push msg:  ",message.text);
               }
             }

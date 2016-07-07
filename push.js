@@ -4,8 +4,8 @@ const _ = require('lodash');
 var pg = require('pg');
 var extend = require('util')._extend;
 
-function pushConv(bot, message, response) {
-  var newBot = bot;
+function pushConv(newBot, message, response) {
+  //var newBot = bot;
 
   console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
