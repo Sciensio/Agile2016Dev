@@ -48,16 +48,16 @@ module.exports = new Script({
         }
     },
 
-    s1: {
-      prompt: (bot) => bot.say('Type part of the session name?'),
-      receive: (bot, message) => {
-        const name = message.text;
-        return bot.setProp('name', name)
-            .then(() => bot.say(`Great! I'll call you ${name}
-Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
-            .then(() => 'speak');
-      }
-    },
+//    s1: {
+//      prompt: (bot) => bot.say('Type part of the session name?'),
+//      receive: (bot, message) => {
+//        const name = message.text;
+//        return bot.setProp('name', name)
+//            .then(() => bot.say(`Great! I'll call you ${name}
+//Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
+//            .then(() => 'speak');
+//      }
+//    },
 
 
 //    chris: {
@@ -112,7 +112,7 @@ Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log("*** ",upperText," ***");
-                        processMessage(false);
+//                        processMessage(false);
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
