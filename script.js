@@ -47,7 +47,7 @@ module.exports = new Script({
         }
     },
 
-    s1: {
+    Speakers: {
       prompt: (bot) => bot.say('Type part of the session name?'),
       receive: (bot, message) => {
         const name = message.text;
@@ -71,7 +71,7 @@ module.exports = new Script({
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-            if (upperText == 'S1') {
+            if (upperText == 'Speakers') {
               return bot.getProp('name')
               .then(() => 'S1');
             }
