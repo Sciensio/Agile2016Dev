@@ -52,8 +52,8 @@ module.exports = new Script({
       prompt: (bot) => bot.say('Type part of the session name?'),
       receive: (bot, message) => {
         const name = message.text;
-        return findSession(message)
-          .then(() => bot.say(`I found some`))
+        return bot.setProp('name', name)
+          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes]() %[No](postback:hello)`))
           .then(() => 'speak');
       }
     },
