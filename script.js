@@ -70,7 +70,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            console.log("===bot message ", message.source.type);
+            console.log("===bot message ", message.source);
             let upperText = message.text.trim().toUpperCase();
 
 //            if (upperText == 'S1') {
