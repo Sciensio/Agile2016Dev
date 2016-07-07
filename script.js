@@ -59,7 +59,7 @@ module.exports = new Script({
       receive: (bot, message) => {
         return bot.getProp('name')
           .then((name) => bot.say('That is all!'))
-          .then(() => 'finish');
+          .then(() => 'speak');
       }
     },
 
