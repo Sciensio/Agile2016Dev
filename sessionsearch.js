@@ -26,4 +26,4 @@ function findSession(session, response) {
       });
 }
 
-module.exports = pushConv;
+module.exports = findSession;
