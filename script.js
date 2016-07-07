@@ -86,7 +86,7 @@ module.exports = new Script({
 
 
 ////here
-            sched.schedSessions('SessionList');
+            //sched.schedSessions('SessionList');
 
             var botUser = bot.userId;
             var authUsers = ['a30fa820d0a0f0216fa26070'];
