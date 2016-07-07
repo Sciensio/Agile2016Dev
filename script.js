@@ -104,9 +104,9 @@ module.exports = new Script({
               //end conversation and do not send a response to the user that kicked things off
               //
               if (authUsers.indexOf(bot.userId) !== -1) {
-                if (message.text.substr(0,5) == '/msg ') {
-                  upperText = upperText.substr(0,4);
-                  pushConv(bot, message.text.substr(5));
+                if (upperText.substr(0,4) == '/SK ') {
+                  upperText = upperText.substr(0,3);
+                  pushConv(bot, message.text.substr(4));
                   console.log("****after push msg:  ",message.text);
                 }
               }
