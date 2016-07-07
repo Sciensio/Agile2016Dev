@@ -210,7 +210,7 @@ module.exports = new Script({
                           upperText = "";
                           break;
                         default:
-//                          console.log("===in switch default");
+                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
