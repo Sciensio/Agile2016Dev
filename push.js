@@ -1,15 +1,10 @@
 'use strict';
 
 const _ = require('lodash');
-//const Script = require('smooch-bot').Script;
 var pg = require('pg');
-//var Q = require("q");
-//var request = require("request");
 var extend = require('util')._extend;
 
 function pushConv(bot, message, response) {
-  //var deferred = Q.defer();
-  //var newBot = extend({}, bot);
   var newBot = bot;
 
   console.log("===creating pushconv connection ");
@@ -24,7 +19,6 @@ function pushConv(bot, message, response) {
           return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
         })
       done();
-      //pg.end();
   });
   console.log("=== did bot change",bot);
 }
