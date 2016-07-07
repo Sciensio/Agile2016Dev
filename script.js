@@ -180,17 +180,33 @@ module.exports = new Script({
                         case "how to open you":
                         case "what can you talk about":
                         case "what do you know":
-                          console.log("===in what do you know");
+//                          console.log("===in what do you know");
                           upperText = 'KNOW';
                           break;
-//                        case "do you have":
-//                          console.log("===in what do you know");
-//                          upperText = "KNOW";
-//                          break;
-//                        case "can you talk":
-//                          console.log("===can you talk");
-//                          upperText = simplified.trim().toUpperCase();
-//                          break;
+                        case "what do you do":
+                        case "how do you know":
+//                          console.log("===in what do do");
+                          upperText = "JOB";
+                          break;
+                        case "do you know me":
+                        case "do you remember me":
+//                          console.log("===do you know me");
+                          upperText = "ME";
+                          break;
+                        case "who named you":
+//                        console.log("===NAME");
+                          upperText = "NAME";
+                          break;
+                        case "can you hear me":
+                        case "can you speak":
+                        case "change your":
+                        case "hurry":
+                        case "talk faster":
+                        case "do you drink":
+                        case "do you eat":
+                          console.log("===set to NULL and question");
+                          upperText = "";
+                          break;
                         default:
 //                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
