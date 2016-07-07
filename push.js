@@ -1,10 +1,10 @@
 'use strict';
 
 const _ = require('lodash');
-const Script = require('smooch-bot').Script;
+//const Script = require('smooch-bot').Script;
 var pg = require('pg');
-var Q = require("q");
-var request = require("request");
+//var Q = require("q");
+//var request = require("request");
 var extend = require('util')._extend;
 
 function pushConv(bot, message, response) {
@@ -30,4 +30,4 @@ function pushConv(bot, message, response) {
 }
 
 
-module.exports = pushConv;//pushMessage;
+module.exports = pushConv;
