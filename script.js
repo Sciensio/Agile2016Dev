@@ -185,6 +185,7 @@ module.exports = new Script({
                           break;
                         case "what do you do":
                         case "how do you know":
+                        case "job":
 //                          console.log("===in what do do");
                           upperText = "JOB";
                           break;
