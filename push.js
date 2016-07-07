@@ -48,8 +48,6 @@ function pushConv(message, response) {
         })
       done();
   });
-  console.log("=== did bot change",bot);
 }
-
 
 module.exports = pushConv;
