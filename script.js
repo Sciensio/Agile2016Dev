@@ -208,7 +208,7 @@ module.exports = new Script({
                     p = p.then(function() {
                         console.log("=== p line",line);
                         return wait(5).then(function() {
-                            msgLog.responsemessage = line;
+                            msgLog.responsemessage = response;
                             msgLog.responsetime = new Date;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
