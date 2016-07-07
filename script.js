@@ -47,12 +47,12 @@ module.exports = new Script({
         }
     },
 
-    speakers: {
-      prompt: (bot) => bot.say('What speaker are you searching for?'),
+    s1: {
+      prompt: (bot) => bot.say('Type part of the session name?'),
       receive: (bot, message) => {
         const name = message.text;
-        return bot.setProp('name', name)
-          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes]() %[No](postback:hello)`))
+        return findSession(message)
+          .then(() => bot.say(`I found some`))
           .then(() => 'speak');
       }
     },
