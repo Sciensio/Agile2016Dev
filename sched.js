@@ -30,7 +30,7 @@ function schedSessions(schedRequest){
 //                }
 //            else {
                 console.log('=== body:  ',body);
-                deferred.resolve(result);
+//                deferred.resolve(result);
 //            }
 //      })
 //}))
@@ -61,7 +61,7 @@ function prepRequest(schedRequest){
 		case "SessionList":
 			var options = {
 				"method" : "POST",
-				"url" : "https://agile2016.sched.org/api/session/export",
+				"url" : "https://agile2016.sched.org/api/session/list",
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN,
 					"format" : "json"
