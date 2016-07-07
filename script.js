@@ -78,18 +78,21 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-console.log("before loading msgLog ", message.action.type);
+//console.log("before loading msgLog ", message.action.type);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            if (message.action) {
-              console.log("!!!! appMake = T, message.role", message.text);
-              //msgLog.sourcetype = 'postback: ' + message.actions.text;
-            } else {
-              console.log("!!!! appUser = T, message.role", message.text);
-              msgLog.sourcetype = message.source.type;
+            switch (_.IsEmpty(message.source.type)) {
+              case true:
+                  console.log("!!!! appMaker = T, message.role");
+                  msgLog.sourcetype = message.action.type;
+                break;
+              default:
+                console.log("!!!! appUser = T, message.role");
+                msgLog.sourcetype = message.source.type;
+                break;
             }
 //
             msgLog.receivedtime = new Date();
