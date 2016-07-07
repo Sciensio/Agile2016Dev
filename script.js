@@ -48,15 +48,16 @@ module.exports = new Script({
         }
     },
 
-//    s1: {
-//      prompt: (bot) => bot.say('Type part of the session name?'),
-//      receive: (bot, message) => {
-//        console.log("$$$ message", message);
-//        findSession(message.text)
-//          .then(() => bot.say(`got here`))
-//          .then(() => 'speak');
-//      }
-//    },
+    s1: {
+      prompt: (bot) => bot.say('Type part of the session name?'),
+      receive: (bot, message) => {
+        const name = message.text;
+        return bot.setProp('name', name)
+            .then(() => bot.say(`Great! I'll call you ${name}
+Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
+            .then(() => 'speak');
+      }
+    },
 
 
 //    chris: {
