@@ -84,16 +84,16 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            switch (_.IsEmpty(message.source)) {
-              case true:
-                  console.log("!!!! appMaker = T, message.role");
-                  msgLog.sourcetype = message.action.type;
-                break;
-              default:
-                console.log("!!!! appUser = T, message.role");
-                msgLog.sourcetype = message.source.type;
-                break;
-            }
+//            switch (_.IsEmpty(message.source)) {
+//              case true:
+//                  console.log("!!!! appMaker = T, message.role");
+//                  msgLog.sourcetype = message.action.type;
+//                break;
+//              default:
+//                console.log("!!!! appUser = T, message.role");
+//                msgLog.sourcetype = message.source.type;
+//                break;
+//            }
 //
             msgLog.receivedtime = new Date();
 
