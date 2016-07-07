@@ -69,10 +69,10 @@ module.exports = new Script({
             console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
-            if (message.text == 'speakers') {
-              return bot.getProp('name')
-              .then(() => 'speakers');
-            }
+            //if (message.text == 'speakers') {
+            //  return bot.getProp('name')
+            //  .then(() => 'speakers');
+            //}
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
