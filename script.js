@@ -80,7 +80,7 @@ module.exports = new Script({
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
-            msgLog.message_id = message.message_id;
+            msgLog.message_id = message._id;
             msgLog.sourcetype = message.source.type;
             msgLog.receivedtime = new Date();
 
