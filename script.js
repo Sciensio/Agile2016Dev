@@ -201,6 +201,11 @@ module.exports = new Script({
 
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
+                msgLog.responsemessage = response;
+                msgLog.responsetime = new Date;
+                msgLog.responsetype = 'JSON';
+                console.log("=== msgLog  obj",msgLog);
+                logConversation(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
@@ -208,11 +213,6 @@ module.exports = new Script({
                     p = p.then(function() {
                         console.log("=== p line",line);
                         return wait(5).then(function() {
-                            msgLog.responsemessage = response;
-                            msgLog.responsetime = new Date;
-                            msgLog.responsetype = 'JSON';
-                            console.log("=== msgLog  obj",msgLog);
-                            logConversation(msgLog);
                             return bot.say(line);
                         });
                     });
