@@ -8,7 +8,7 @@ function schedSessions(schedRequest){
 	console.log("===after option prep",options);
   request(options,function(err,response,body){
       deferred.resolve(body);
-			console.log("===list count:",response);
+			console.log("===list count:",body);
 	});
   return deferred.promise;
 }
