@@ -70,7 +70,7 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             if (message.text = 'speakers') {
-              console.log("$$ not sure why $$")
+              return bot.getProp('name')
               .then(() => 'speakers');
             }
 
