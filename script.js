@@ -100,8 +100,8 @@ module.exports = new Script({
             //For ad hoc messages - scheduled messages are done differently in checkItems
             if (authUsers.indexOf(bot.userId) !== -1) {
               if (upperText.substr(0,4) == '/SK ') {
-                pushConv(bot, upperText.substr(4));
                 upperText = upperText.substr(0,3);
+                pushConv(bot, message.text.substr(4));
                 console.log("****after push msg:  ",message.text);
               }
             }
