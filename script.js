@@ -51,6 +51,7 @@ module.exports = new Script({
     s1: {
       prompt: (bot) => bot.say('Type part of the session name?'),
       receive: (bot, message) => {
+        console.log("$$$ message", message);
         findSession(message.text)
           .then(() => bot.say(`got here`))
           .then(() => 'speak');
