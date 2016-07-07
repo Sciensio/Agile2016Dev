@@ -83,10 +83,10 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            if (message.role !== 'appMaker') {
-              msgLog.sourcetype = message.source.type;
-            } else {
+            if (message.role == 'appMaker') {
               msgLog.sourcetype = 'postback: ' + message.actions.text;
+            } else {
+              msgLog.sourcetype = message.source.type;
             }
 //
             msgLog.receivedtime = new Date();
