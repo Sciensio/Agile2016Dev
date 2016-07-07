@@ -10,6 +10,8 @@ var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 
+var sched = require("./sched");  //delete later
+
 const scriptRules = require('./script.json');
 
 var msgLog = {
@@ -49,7 +51,7 @@ module.exports = new Script({
       receive: (bot, message) => {
         const name = message.text;
         return bot.setProp('name', name)
-          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:hello) %[No](postback:hello)`))
+          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes]() %[No](postback:hello)`))
           .then(() => 'speak');
       }
     },
@@ -81,6 +83,10 @@ module.exports = new Script({
             msgLog.message_id = message.message_id;
             msgLog.sourcetype = message.source.type;
             msgLog.receivedtime = new Date();
+
+
+////here
+            sched.schedSessions('SessionList');
 
             var botUser = bot.userId;
             var authUsers = ['a30fa820d0a0f0216fa26070'];
