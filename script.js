@@ -48,34 +48,34 @@ module.exports = new Script({
         }
     },
 
-    speakers: {
-      prompt: (bot) => bot.say('Type part of the session name?'),
-      receive: (bot, message) => {
-        const name = message.text;
-        return bot.setProp('name', name)
-          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:yes) %[No](postback:no)`))
-          .then(() => 'speak');
-      }
-    },
+//    speakers: {
+//      prompt: (bot) => bot.say('Type part of the session name?'),
+//      receive: (bot, message) => {
+//        const name = message.text;
+//        return bot.setProp('name', name)
+//          .then(() => bot.say(`I will search for ${name} is that OK? %[Yes](postback:yes) %[No](postback:no)`))
+//          .then(() => 'speak');
+//      }
+//    },
 
 
-    chris: {
-      receive: (bot, message) => {
-        return bot.getProp('name')
-          .then((name) => bot.say('That is all!'))
-          .then(() => 'speak');
-      }
-    },
+//    chris: {
+//      receive: (bot, message) => {
+//        return bot.getProp('name')
+//          .then((name) => bot.say('That is all!'))
+//          .then(() => 'speak');
+//      }
+//    },
 
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-            if (upperText == 'SPEAKERS') {
-              return bot.getProp('name')
-              .then(() => 'speakers');
-            }
+//            if (upperText == 'SPEAKERS') {
+//              return bot.getProp('name')
+//              .then(() => 'speakers');
+//            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
