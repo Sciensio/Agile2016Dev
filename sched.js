@@ -32,13 +32,10 @@ function prepRequest(schedRequest){
 		case "SessionList":
 			var options = {
 				"method" : "POST",
-				"url" : "https://agile2016.sched.org/api/session/export",
+				"url" : "https://agile2016.sched.org/api/session/list",
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN,
-					"format" : "json",
-          "page" : "1",
-          "limit" : "2",
-          "strip_html" : "Y"
+					"format" : "json"
 				},
 				"headers" : {
 					"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
