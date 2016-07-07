@@ -89,7 +89,7 @@ console.log("before loading msgLog ", message.action);
               //msgLog.sourcetype = 'postback: ' + message.actions.text;
             } else {
               console.log("!!!! appUser = T, message.role", message.text);
-              //msgLog.sourcetype = message.source.type;
+              msgLog.sourcetype = message.source.type;
             }
 //
             msgLog.receivedtime = new Date();
