@@ -69,7 +69,6 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
             console.log("===bot user ");
-            console.log("===receive step 1",message);
             let upperText = message.text.trim().toUpperCase();
 
             if (upperText == 'SPEAKERS') {
@@ -85,17 +84,12 @@ module.exports = new Script({
             msgLog.sourcetype = message.source.type;
             msgLog.receivedtime = new Date();
 
-
 ////here
             //sched.schedSessions('SessionList');
 
-            var botUser = bot.userId;
+            //This is the control list of smoochId that can send broadcast messages
             var authUsers = ['a30fa820d0a0f0216fa26070'];
 
-
-            //Undone - currently only creates new user
-            //needs to create conversation record and update it throughout the prcoess
-            //console.log("===before db");
             newUser(bot)
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
@@ -103,7 +97,7 @@ module.exports = new Script({
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
-                console.log("****after push msg:  ",message.text);
+                console.log("****after push msg:  ",message.text," authUser:  ",authUser);
               }
             }
 
@@ -123,8 +117,6 @@ module.exports = new Script({
                         return Promise.resolve();
                 }
             }
-
-            console.log("===receive step 2",upperText);
 
             function getSilent() {
                 return bot.getProp("silent");
@@ -152,46 +144,44 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-                        console.log("source: ", source);
-                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                        console.log("simplified: ", simplified);
+//                        console.log("source: ", source);
+//                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+//                        console.log("simplified: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
                 }, function(error) {
                     console.log("===Q all error ", error);
                 });
-                //return next();
-
             }
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-                console.log("source: ", source);
-                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                console.log("simplified: ", simplified);
-                console.log("===receive step 3",upperText);
+//                console.log("source: ", source);
+//                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+//                console.log("simplified: ", simplified);
+//                console.log("===receive step 3",upperText);
 
               if (source != 'agent')
                 {
-                    console.log("===source is ", source);
+//                    console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
                       switch (simplified) {
                         case "hello":
-                          console.log("===in hello");
+//                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         case "what do you know":
-                          console.log("===in what do you know");
+//                          console.log("===in what do you know");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         case "can you talk":
-                          console.log("===can you talk");
+//                          console.log("===can you talk");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         default:
-                          console.log("===in switch default");
+//                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
@@ -200,22 +190,17 @@ module.exports = new Script({
                     }
                     else if (simplified)
                     {
-                        console.log("simplified is: ", simplified);
+//                        console.log("simplified is: ", simplified);
                         upperText = simplified.toUpperCase();
                     }
                 }
                 if (!_.has(scriptRules, upperText)) {
-                    console.log("===no rule", upperText);
+//                    console.log("===no rule", upperText);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
-                console.log("===receive step 3",upperText);
-
-
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
-
-                bot.userId = botUser;
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
@@ -224,7 +209,6 @@ module.exports = new Script({
                         console.log("=== p line",line);
                         return wait(5).then(function() {
                             msgLog.responsemessage = line;
-                            //var senttime = new new Date( new Date().getTime() -6 * 3600 * 1000).toUTCString().replace( / GMT$/, "" );
                             msgLog.responsetime = new Date;
                             msgLog.responsetype = 'JSON';
                             console.log("=== msgLog  obj",msgLog);
