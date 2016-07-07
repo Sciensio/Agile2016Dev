@@ -172,18 +172,25 @@ module.exports = new Script({
 //                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
-                          case "what do you know":
-                            console.log("===in what do you know");
-                            upperText = 'KNOW';
-                            break;
+                        case "do you know":
+                        case "can you help":
                         case "do you have":
+                        case "how does this app work":
+                        case "how much time do you need":
+                        case "how to open you":
+                        case "what can you talk about":
+                        case "what do you know":
+                          console.log("===in what do you know");
+                          upperText = 'KNOW';
+                          break;
+//                        case "do you have":
 //                          console.log("===in what do you know");
-                          upperText = "KNOW";
-                          break;
-                        case "can you talk":
+//                          upperText = "KNOW";
+//                          break;
+//                        case "can you talk":
 //                          console.log("===can you talk");
-                          upperText = simplified.trim().toUpperCase();
-                          break;
+//                          upperText = simplified.trim().toUpperCase();
+//                          break;
                         default:
 //                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
