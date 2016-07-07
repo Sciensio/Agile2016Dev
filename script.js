@@ -174,11 +174,11 @@ module.exports = new Script({
                           break;
                           case "what do you know":
                             console.log("===in what do you know");
-                            upperText = 'know';
+                            upperText = 'KNOW';
                             break;
                         case "do you have":
 //                          console.log("===in what do you know");
-                          upperText = "know";
+                          upperText = "KNOW";
                           break;
                         case "can you talk":
 //                          console.log("===can you talk");
