@@ -97,7 +97,7 @@ module.exports = new Script({
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
-                console.log("****after push msg:  ",message.text," authUser:  ",authUser);
+                console.log("****after push msg:  ",message.text," authUser:  ",authUsers);
               }
             }
 
