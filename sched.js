@@ -8,7 +8,7 @@ function schedSessions(schedRequest){
 	console.log("===after option prep",options);
   request(options,function(err,response,body){
       deferred.resolve(body);
-			console.log("===list count:",body);
+			console.log("===list count:",response);
 	});
   return deferred.promise;
 }
@@ -36,6 +36,8 @@ function prepRequest(schedRequest){
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN,
 					"format" : "json",
+          "page" : "1",
+          "limit" : "10"
           "strip_html" : "Y"
 				},
 				"headers" : {
