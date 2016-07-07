@@ -1,23 +1,52 @@
+'use strict';
+
+const _ = require('lodash');
+const Script = require('smooch-bot').Script;
+var pg = require('pg');
+var Q = require("q");
+var request = require("request");
+var extend = require('util')._extend;
+
 var Q = require("q");
 var request = require("request");
 //
 function schedSessions(schedRequest){
 	var deferred = Q.defer();
-	console.log("===before option prep");
 	var options = new prepRequest(schedRequest);
-	console.log("===after option prep",options);
   request(options,function(err,response,body){
+    if (err) {
+      console.error(err);
+    }
+//    .then(() =>
+//      pg.defaults.ssl = true;
+//      pg.connect(process.env.DATABASE_URL, function(err, client, done){
+//      client.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
+//        [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
+//        function(err,result) {
+//          done();
+//            if (err) {
+//                    console.error(err);
+//                    deferred.reject(err);
+//                }
+//            else {
+                console.log('=== body:  ',body);
+                deferred.resolve(result);
+//            }
+//      })
+//}))
+
+
+
+
+
       deferred.resolve(body);
-			console.log("===list count:",body);
 	});
   return deferred.promise;
 }
 
 function prepRequest(schedRequest){
-	console.log("===before switch");
 	switch(schedRequest){
 		case "SessionCount":
-			console.log("===in case");
 			var options = {
 				"method" : "POST",
 				"url" : "https://agile2016.sched.org/api/session/count",
@@ -32,7 +61,7 @@ function prepRequest(schedRequest){
 		case "SessionList":
 			var options = {
 				"method" : "POST",
-				"url" : "https://agile2016.sched.org/api/session/list",
+				"url" : "https://agile2016.sched.org/api/session/export",
 				"qs" : {
 					"api_key" : process.env.SCHED_TOKEN,
 					"format" : "json"
