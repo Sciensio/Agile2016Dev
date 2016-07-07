@@ -70,7 +70,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            console.log("===bot message ", message.source);
+            console.log("===bot message ", message);
             let upperText = message.text.trim().toUpperCase();
 
 //            if (upperText == 'S1') {
@@ -83,7 +83,12 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-//            msgLog.sourcetype = message.source.type;
+            if (message.source.type) {
+              msgLog.sourcetype = message.source.type;
+            } else {
+              msgLog.sourcetype = 'postback';
+            }
+//
             msgLog.receivedtime = new Date();
 
             //sched.schedSessions('SessionList');
