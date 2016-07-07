@@ -12,7 +12,7 @@ var pushConv = require("./push");
 var newBot_msg = require("./newBot");
 //var findSession = require("./sessionsearch");
 
-var sched = require("./sched");  //delete later
+//var sched = require("./sched");
 
 const scriptRules = require('./script.json');
 
@@ -59,7 +59,6 @@ module.exports = new Script({
 //      }
 //    },
 
-
 //    chris: {
 //      receive: (bot, message) => {
 //        return bot.getProp('name')
@@ -70,7 +69,7 @@ module.exports = new Script({
 
     speak: {
         receive: (bot, message) => {
-            console.log("===bot user ");
+            console.log("===bot message " message);
             let upperText = message.text.trim().toUpperCase();
 
 //            if (upperText == 'S1') {
@@ -83,7 +82,7 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            msgLog.sourcetype = message.source.type;
+            //msgLog.sourcetype = message.source.type;
             msgLog.receivedtime = new Date();
 
             //sched.schedSessions('SessionList');
@@ -137,7 +136,7 @@ module.exports = new Script({
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
-                        //console.log("===in Q.all");
+                        console.log("===in Q.all");
                         console.log("===received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
@@ -145,9 +144,9 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-//                        console.log("source: ", source);
-//                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-//                        console.log("simplified: ", simplified);
+                        console.log("source: ", source);
+                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                        console.log("simplified: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
@@ -158,19 +157,19 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-//                console.log("source: ", source);
-//                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-//                console.log("simplified: ", simplified);
-//                console.log("===receive step 3",upperText);
+                console.log("source: ", source);
+                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                console.log("simplified: ", simplified);
+                console.log("===receive step 3",upperText);
 
               if (source != 'agent')
                 {
-//                    console.log("===source is ", source);
+                    console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
                       switch (simplified) {
                         case "hello":
-//                          console.log("===in hello");
+                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         case "do you know":
@@ -181,22 +180,22 @@ module.exports = new Script({
                         case "how to open you":
                         case "what can you talk about":
                         case "what do you know":
-//                          console.log("===in what do you know");
+                          console.log("===in what do you know");
                           upperText = 'KNOW';
                           break;
                         case "what do you do":
                         case "how do you know":
                         case "job":
-//                          console.log("===in what do do");
+                          console.log("===in what do do");
                           upperText = "JOB";
                           break;
                         case "do you know me":
                         case "do you remember me":
-//                          console.log("===do you know me");
+                          console.log("===do you know me");
                           upperText = "ME";
                           break;
                         case "who named you":
-//                        console.log("===NAME");
+                        console.log("===NAME");
                           upperText = "NAME";
                           break;
                         case "can you hear me":
@@ -219,7 +218,7 @@ module.exports = new Script({
                     }
                     else if (simplified)
                     {
-//                        console.log("simplified is: ", simplified);
+                        console.log("simplified is: ", simplified);
                         upperText = simplified.toUpperCase();
                     }
                 }
@@ -227,7 +226,7 @@ module.exports = new Script({
                 console.log("===finished switch, upperText now:",upperText);
 
                 if (!_.has(scriptRules, upperText)) {
-//                    console.log("===no rule", upperText);
+                    console.log("===no rule", upperText);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
