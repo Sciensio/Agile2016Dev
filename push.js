@@ -8,7 +8,7 @@ var pg = require('pg');
 var extend = require('util')._extend;
 
 function pushConv(bot, message, response) {
-  var deferred = Q.defer();
+  //var deferred = Q.defer();
   //var newBot = extend({}, bot);
   var newBot = bot;
 
