@@ -83,7 +83,7 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            if (message.source.type !== 'undefined') {
+            if (message.role !== 'appMaker') {
               msgLog.sourcetype = message.source.type;
             } else {
               msgLog.sourcetype = 'postback: ' + message.actions.text;
