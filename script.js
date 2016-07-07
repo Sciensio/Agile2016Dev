@@ -84,7 +84,6 @@ module.exports = new Script({
             msgLog.sourcetype = message.source.type;
             msgLog.receivedtime = new Date();
 
-////here
             //sched.schedSessions('SessionList');
 
             //This is the control list of smoochId that can send broadcast messages
