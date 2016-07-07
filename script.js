@@ -173,12 +173,12 @@ module.exports = new Script({
                           upperText = simplified.trim().toUpperCase();
                           break;
                           case "what do you know":
-  //                          console.log("===in what do you know");
-                            upperText = 'Know';
+                            console.log("===in what do you know");
+                            upperText = "know";
                             break;
-                        case "what do you know":
+                        case "do you have":
 //                          console.log("===in what do you know");
-                          upperText = simplified.trim().toUpperCase();
+                          upperText = "know";
                           break;
                         case "can you talk":
 //                          console.log("===can you talk");
