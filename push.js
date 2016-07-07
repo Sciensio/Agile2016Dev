@@ -32,8 +32,8 @@ var newBot1 = new SmoochApiBot({
     userId
 });
 
-function pushConv(bot, message, response) {
-  var newBot = bot;
+function pushConv(message, response) {
+  //var newBot = bot;
 
   console.log("===creating pushconv connection ");
   pg.defaults.ssl = true;
