@@ -22,8 +22,8 @@ function findSession(session, response) {
                 (console.log('=== userId ', result));
                 deferred.resolve(result);
             }
-      })
-  });
+        }
+      });
 }
 
 module.exports = pushConv;
