@@ -71,7 +71,7 @@ module.exports = new Script({
             console.log("===bot user ");
             let upperText = message.text.trim().toUpperCase();
 
-            if (upperText == 'SPEAKERS') {
+            if (upperText == 'S1') {
               return bot.getProp('name')
               .then(() => 'speakers');
             }
