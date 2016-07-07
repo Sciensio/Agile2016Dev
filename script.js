@@ -174,7 +174,7 @@ module.exports = new Script({
                           break;
                           case "what do you know":
                             console.log("===in what do you know");
-                            upperText = "know";
+                            upperText = 'know';
                             break;
                         case "do you have":
 //                          console.log("===in what do you know");
@@ -198,6 +198,9 @@ module.exports = new Script({
                         upperText = simplified.toUpperCase();
                     }
                 }
+
+                console.log("===finished switch, upperText now:",upperText);
+
                 if (!_.has(scriptRules, upperText)) {
 //                    console.log("===no rule", upperText);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
