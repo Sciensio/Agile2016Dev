@@ -96,20 +96,15 @@ module.exports = new Script({
             //needs to create conversation record and update it throughout the prcoess
             //console.log("===before db");
             newUser(bot)
-            //  .then (console.log("===after db", bot.userId))
 
-
-              //undone - test for userid and or message
-              //look at stacking messages in DB and looking them up
-              //end conversation and do not send a response to the user that kicked things off
-              //
-              if (authUsers.indexOf(bot.userId) !== -1) {
-                if (upperText.substr(0,4) == '/SK ') {
-                  upperText = upperText.substr(0,3);
-                  pushConv(bot, message.text.substr(4));
-                  console.log("****after push msg:  ",message.text);
-                }
+            //For ad hoc messages - scheduled messages are done differently in checkItems
+            if (authUsers.indexOf(bot.userId) !== -1) {
+              if (upperText.substr(0,4) == '/SK ') {
+                upperText = upperText.substr(0,3);
+                pushConv(bot, message.text.substr(4));
+                console.log("****after push msg:  ",message.text);
               }
+            }
 
             function updateSilent() {
                 switch (upperText) {
