@@ -84,7 +84,7 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            switch (_.IsEmpty(message.source.type)) {
+            switch (_.IsEmpty(message.source)) {
               case true:
                   console.log("!!!! appMaker = T, message.role");
                   msgLog.sourcetype = message.action.type;
