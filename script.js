@@ -70,7 +70,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-//            console.log("===bot message ", message);
+            console.log("===bot message ", message);
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -89,7 +89,7 @@ console.log("before loading msgLog ", message.message.source.type);
 
             switch (typeof message.message === "undefined") {
               case false:
-                  console.log("!!!! appUser = T, message.role", message.source.type);
+                  console.log("!!!! appUser = T, message.role", message.authorId);
 //                  msgLog.sourcetype = message.action.type;
                 break;
               default:
