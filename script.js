@@ -87,7 +87,7 @@ console.log("before loading msgLog ", message.message.source.type);
             msgLog.message_id = message._id;
             //if (msgLog.smoochId = )
 
-            switch (typeof message.message === "undefined")) {
+            switch (typeof message.message === "undefined") {
               case false:
                   console.log("!!!! appUser = T, message.role", message.source.type);
 //                  msgLog.sourcetype = message.action.type;
