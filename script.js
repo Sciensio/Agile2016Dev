@@ -96,7 +96,7 @@ console.log("before loading msgLog ", message.message.source.type);
                 console.log("!!!! appMaker = T, message.role", message.message);
 //                msgLog.sourcetype = message.source.type;
                 break;
-//            }
+            }
 //
             msgLog.receivedtime = new Date();
 
