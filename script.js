@@ -79,22 +79,20 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-//console.log("before loading msgLog ", message.message.source.type);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            //if (msgLog.smoochId = )
 
             switch (typeof message.message === "undefined") {
               case false:
                   console.log("!!!! appUser = T, message.role", message.authorId);
-//                  msgLog.sourcetype = message.action.type;
+                  msgLog.sourcetype = message.source.type;
                 break;
               default:
-                console.log("!!!! appMaker = T, message.role", message.message);
-//                msgLog.sourcetype = message.source.type;
+                  console.log("!!!! appMaker = T, message.role", message.message);
+                  msgLog.sourcetype = message.action.type;
                 break;
             }
 //
