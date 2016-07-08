@@ -70,8 +70,8 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            console.log("===bot message ", message);
-            console.log("===look at bot obj delta", bot);
+//            console.log("===bot message ", message);
+
             let upperText = message.text.trim().toUpperCase();
 
 //            if (upperText == 'S1') {
@@ -79,12 +79,14 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-console.log("before loading msgLog ", message.authorId);
+console.log("before loading msgLog ", message.message.authorId);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
+            //if (msgLog.smoochId = )
+
 //            switch (_.IsEmpty(message.source)) {
 //              case true:
 //                  console.log("!!!! appMaker = T, message.role");
