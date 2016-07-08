@@ -79,7 +79,7 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-console.log("before loading msgLog ", message.message.source.type);
+//console.log("before loading msgLog ", message.message.source.type);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
