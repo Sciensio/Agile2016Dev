@@ -84,21 +84,21 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            console.log("===message.message",message.message);
+//this mess is my way around the fact that smooch completely  changes the structure of the message obj if it is a postback vs user entered text
+//            console.log("===message.message",message.message);
             switch (typeof message.message === "undefined") {
               case false:
-                  console.log("!!!! appMaker = T, message.role", message.message);
+//                  console.log("!!!! appMaker = T, message.role", message.message);
                   msgLog.sourcetype = message.action.type;
                 break;
               default:
-                  console.log("!!!! appUser = T, message.role", message.source);
+//                  console.log("!!!! appUser = T, message.role", message.source);
                   msgLog.sourcetype = message.source.type;
                 break;
             }
 //
             msgLog.receivedtime = new Date();
 
-            //sched.schedSessions('SessionList');
 
             //This is the control list of smoochId that can send broadcast messages
             var authUsers = ['a30fa820d0a0f0216fa26070'];
@@ -150,16 +150,16 @@ module.exports = new Script({
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
-                        console.log("===received result from API.ai",response);
+//                        console.log("===received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-                        console.log("source: ", source);
-                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                        console.log("simplified: ", simplified);
+//                        console.log("source: ", source);
+//                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+//                        console.log("simplified: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
@@ -170,10 +170,10 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-                console.log("source: ", source);
-                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                console.log("simplified: ", simplified);
-                console.log("===receive step 3",upperText);
+//                console.log("source: ", source);
+//                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+//                console.log("simplified: ", simplified);
+//                console.log("===receive step 3",upperText);
 
               if (source != 'agent')
                 {
@@ -182,7 +182,7 @@ module.exports = new Script({
                     {
                       switch (simplified) {
                         case "hello":
-                          console.log("===in hello");
+//                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         case "do you know":
@@ -193,22 +193,22 @@ module.exports = new Script({
                         case "how to open you":
                         case "what can you talk about":
                         case "what do you know":
-                          console.log("===in what do you know");
+//                          console.log("===in what do you know");
                           upperText = 'KNOW';
                           break;
                         case "what do you do":
                         case "how do you know":
                         case "job":
-                          console.log("===in what do do");
+//                          console.log("===in what do do");
                           upperText = "JOB";
                           break;
                         case "do you know me":
                         case "do you remember me":
-                          console.log("===do you know me");
+//                          console.log("===do you know me");
                           upperText = "ME";
                           break;
                         case "who named you":
-                        console.log("===NAME");
+//                        console.log("===NAME");
                           upperText = "NAME";
                           break;
                         case "can you hear me":
@@ -218,11 +218,11 @@ module.exports = new Script({
                         case "talk faster":
                         case "do you drink":
                         case "do you eat":
-                          console.log("===set to NULL and question");
+//                          console.log("===set to NULL and question");
                           upperText = "";
                           break;
                         default:
-                          console.log("===in switch default");
+//                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
@@ -236,7 +236,7 @@ module.exports = new Script({
                     }
                 }
 
-                console.log("===finished switch, upperText now:",upperText);
+//                console.log("===finished switch, upperText now:",upperText);
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
@@ -248,7 +248,7 @@ module.exports = new Script({
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
-                console.log("=== msgLog  obj",msgLog);
+//                console.log("=== msgLog  obj",msgLog);
                 logConversation(msgLog);
 
                 var p = Promise.resolve();
