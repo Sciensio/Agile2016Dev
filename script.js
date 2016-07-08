@@ -84,6 +84,7 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
+            msgLog.receivedtime = new Date();
 //this mess is my way around the fact that smooch completely  changes the structure of the message obj if it is a postback vs user entered text
 //            console.log("===message.message",message.message);
             switch (typeof message.message === "undefined") {
@@ -96,13 +97,11 @@ module.exports = new Script({
                   msgLog.sourcetype = message.source.type;
                 break;
             }
-//
-            msgLog.receivedtime = new Date();
-
 
             //This is the control list of smoochId that can send broadcast messages
             var authUsers = ['a30fa820d0a0f0216fa26070'];
 
+            //need to figure out way to not check this all the time
             newUser(bot)
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
