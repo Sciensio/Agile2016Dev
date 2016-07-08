@@ -84,15 +84,15 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-
+            console.log("===message.message",message.message);
             switch (typeof message.message === "undefined") {
               case false:
                   console.log("!!!! appUser = T, message.role", message.authorId);
-                  msgLog.sourcetype = message.source.type;
+                  //msgLog.sourcetype = message.source.type;
                 break;
               default:
                   console.log("!!!! appMaker = T, message.role", message.message);
-                  msgLog.sourcetype = message.action.type;
+                  //msgLog.sourcetype = message.action.type;
                 break;
             }
 //
