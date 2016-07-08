@@ -22,7 +22,7 @@
   "CONFERENCE_DETAILS": "Would you like: %[WiFi Access](postback:WIFI) %[Conference Map](postback:CONFERENCE_MAP) %[FAQs](postback:FAQS) \nMore details: %[Sponsors](https://goo.gl/jazVEZ) %[Back to Menu](postback:MENU)",
   "WIFI": "WiFi Access Coming Soon!",
   "CONFERENCE_MAP": "Conference Center Map Coming Soon!",
-  "MAP": "Conference Center Map Coming Soon!",
+  "MAPS": "Conference Center Map Coming Soon!",
   "FAQS": "FAQs Coming Soon!",
   "AGILE_ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Executive Forum](https://goo.gl/GurRP2) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
   "ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Executive Forum](https://goo.gl/GurRP2) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
