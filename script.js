@@ -79,7 +79,7 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-console.log("before loading msgLog ", message.message.authorId);
+console.log("before loading msgLog ", message.message.source.type);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
@@ -87,15 +87,15 @@ console.log("before loading msgLog ", message.message.authorId);
             msgLog.message_id = message._id;
             //if (msgLog.smoochId = )
 
-//            switch (_.IsEmpty(message.source)) {
-//              case true:
-//                  console.log("!!!! appMaker = T, message.role");
+            switch (typeof message.message === "undefined")) {
+              case false:
+                  console.log("!!!! appUser = T, message.role", message.source.type);
 //                  msgLog.sourcetype = message.action.type;
-//                break;
-//              default:
-//                console.log("!!!! appUser = T, message.role");
+                break;
+              default:
+                console.log("!!!! appMaker = T, message.role", message.message);
 //                msgLog.sourcetype = message.source.type;
-//                break;
+                break;
 //            }
 //
             msgLog.receivedtime = new Date();
