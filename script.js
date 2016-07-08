@@ -71,6 +71,7 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("===bot message ", message);
+            console.log("===look at bot obj delta", bot);
             let upperText = message.text.trim().toUpperCase();
 
 //            if (upperText == 'S1') {
@@ -78,7 +79,7 @@ module.exports = new Script({
 //              .then(() => 's1');
 //            }
 
-//console.log("before loading msgLog ", message.action.type);
+console.log("before loading msgLog ", message.authorId);
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
