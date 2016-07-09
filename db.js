@@ -29,7 +29,6 @@ function newUser(bot, response) {
           }
     })
     done();
-    pg.end();
   });
   return deferred.promise;
 }

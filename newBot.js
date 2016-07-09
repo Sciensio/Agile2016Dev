@@ -1,18 +1,16 @@
-#!/usr/bin/env node
-
 var pg = require('pg');
 const smoochBot = require('smooch-bot');
 const MemoryLock = smoochBot.MemoryLock;
 const SmoochApiStore = smoochBot.SmoochApiStore;
 const SmoochApiBot = smoochBot.SmoochApiBot;
 const StateMachine = smoochBot.StateMachine;
-const app = require('../app');
-const script = require('../script');
+const app = require('./app');
+const script = require('./script');
 const SmoochCore = require('smooch-core');
 
-const jwt = require('../jwt');
+const jwt = require('./jwt');
 const fs = require('fs');
-var pushConv = require('../push');
+var pushConv = require('./push');
 
 const name = 'A16';
 const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
@@ -30,13 +28,8 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client, done){
-  client
-    .query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes';")
-      .on('row', function(row){
-          var msg = row.message;
-          pushConv(newBot, msg);
-      })
-    done();
-});
+function newBot_msg(message) {
+  pushConv(newBot, message);
+}
+
+module.exports = newBot_msg;
