@@ -101,8 +101,8 @@ module.exports = new Script({
             }
 
             //This is the control list of smoochId that can send broadcast messages
-//TODO: try and move this to heroku variables; test with two or more items             
-            var authUsers = ['a30fa820d0a0f0216fa26070'];
+//TODO: try and move this to heroku variables; test with two or more items
+            var authUsers = process.env.SK_ACCESS//['a30fa820d0a0f0216fa26070'];
 
             //need to figure out way to not check this all the time
             //TODO: when the newUser is called return a property to add to msgLog
