@@ -74,6 +74,8 @@ module.exports = new Script({
 
             let upperText = message.text.trim().toUpperCase();
 
+//TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
+//then the submit is speaker name and call speakersearch won't work for is session expires
 //            if (upperText == 'S1') {
 //              return bot.getProp('name')
 //              .then(() => 's1');
@@ -102,6 +104,8 @@ module.exports = new Script({
             var authUsers = ['a30fa820d0a0f0216fa26070'];
 
             //need to figure out way to not check this all the time
+            //TODO: when the newUser is called return a property to add to msgLog
+            //then is property is set don't rerun  will return on already exits and new
             newUser(bot)
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
