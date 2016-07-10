@@ -8,7 +8,7 @@
   "SESSIONS_DAY": "To view sessions by day tap the day or type date (dd): %[July 24](https://goo.gl/ICxdzY) %[July 25](https://goo.gl/W9cDa0) %[July 26](https://goo.gl/FcTlfg) \nMore sessions: %[July 27](https://goo.gl/Zwksvx) %[July 28](https://goo.gl/Rl6IIK) %[July 29](https://goo.gl/lzPt2g)",
   "24": "Sessions for: %[July 24](https://goo.gl/ICxdzY)",
   "25": "Sessions for: %[July 25](https://goo.gl/W9cDa0)",
-  "26": "Sessions for: %[July 26](https://goo.gl/FcTlfg)",
+  "26": "Sessions for: %[July 26](https://agile2016.sched.org/mobile/#2016-07-26)",
   "27": "Sessions for: %[July 27](https://goo.gl/Zwksvx)",
   "28": "Sessions for: %[July 28](https://goo.gl/Rl6IIK)",
   "29": "Sessions for: %[July 29](https://goo.gl/lzPt2g)",
@@ -35,7 +35,7 @@
   "\/SUPPORT": "I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type: /A16.",
   "DISCONNECT": "A16 is back.",
 
-  "SBSN": "To search for a session type in part of the sessions, for best results pick the most unique word", 
+  "SBSN": "To search for a session type in part of the sessions, for best results pick the most unique word",
 
   "\/A16": "A16 is back! I hope my human colleagues were able to help."
 }
