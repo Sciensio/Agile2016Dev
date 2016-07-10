@@ -8,7 +8,7 @@ var request = require("request");
 var extend = require('util')._extend;
 
 function findSession(session, response) {
-  //var newBot = bot;
+  var deferred = Q.defer();
 
   console.log("===creating sessionsearch connection ",session);
   pg.defaults.ssl = true;

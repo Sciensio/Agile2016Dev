@@ -10,7 +10,7 @@ var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 var newBot_msg = require("./newBot");
-var findSession = require("./sessionsearch");
+//var findSession = require("./sessionsearch");
 
 //var sched = require("./sched");
 
@@ -77,12 +77,12 @@ module.exports = new Script({
 
 //TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
 //then the submit is speaker name and call speakersearch won't work for is session expires
-            if (msgLog.usermessage == 'SBSN') {
-                console.log("=== search string", upperText);
-                var msg = {};
-                findSession(upperText, msg);
-                return bot.setProp("silent", true);
-            }
+//            if (msgLog.usermessage == 'SBSN') {
+//                console.log("=== search string", upperText);
+//                var msg = {};
+//                findSession(upperText, msg);
+//                return bot.setProp("silent", true);
+//            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
