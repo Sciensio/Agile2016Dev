@@ -103,13 +103,8 @@ module.exports = new Script({
                 break;
             }
 
-            //This is the control list of smoochId that can send broadcast messages
-<<<<<<< HEAD
-            var authUsers = ['a30fa820d0a0f0216fa26070'];
-=======
             //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
             var authUsers = process.env.SK_ACCESS
->>>>>>> refs/remotes/origin/extended-db
 
             //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
             if(msgLog.newUsercheck == 'false') {
