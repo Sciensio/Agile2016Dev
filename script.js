@@ -103,7 +103,6 @@ module.exports = new Script({
                 break;
             }
 
-            //This is the control list of smoochId that can send broadcast messages
             //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
             var authUsers = process.env.SK_ACCESS
 
@@ -268,7 +267,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(50).then(function() {
+                        return wait(500).then(function() {
                             return bot.say(line);
                         });
                     });
