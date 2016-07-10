@@ -34,5 +34,8 @@
   "\/SK": "Your message has been sent",
   "\/SUPPORT": "I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type: /A16.",
   "DISCONNECT": "A16 is back.",
+
+  "TEST": "To view sessions %[1](https://goo.gl/AP35fA) %[2](https://goo.gl/FXYGTN) %[3](https://goo.gl/H5sxrH) \nMore sessions: %[4](https://goo.gl/m7LKVI) %[5](https://goo.gl/mvGw4c) %[6](https://goo.gl/qn1wK0) \nMore sessions: %[7](https://goo.gl/m7LKVI) %[8](https://goo.gl/mvGw4c) %[9](https://goo.gl/qn1wK0) \nMore sessions: %[10](https://goo.gl/m7LKVI) %[11](https://goo.gl/mvGw4c) %[12](https://goo.gl/qn1wK0) \nMore sessions: %[13](https://goo.gl/m7LKVI) %[14](https://goo.gl/mvGw4c) %[15](https://goo.gl/qn1wK0) \nMore sessions: %[16](https://goo.gl/m7LKVI) %[17](https://goo.gl/mvGw4c) %[18](https://goo.gl/qn1wK0) \nMore sessions: %[19](https://goo.gl/m7LKVI) %[20](https://goo.gl/mvGw4c) %[21](https://goo.gl/qn1wK0)"
+
     "\/A16": "A16 is back! I hope my human colleagues were able to help."
 }
