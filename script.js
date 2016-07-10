@@ -26,7 +26,8 @@ var msgLog = {
     receivedtime: '',
     responsemessage: '',
     responsetype: '',
-    responsetime: ''
+    responsetime: '',
+    newUsercheck: 'false'
   };
 
 function wait(ms) {
@@ -108,6 +109,7 @@ module.exports = new Script({
             //TODO: when the newUser is called return a property to add to msgLog
             //then is property is set don't rerun  will return on already exits and new
             newUser(bot)
+              .then(console.log("newUser", response);)
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
             if (authUsers.indexOf(bot.userId) !== -1) {
