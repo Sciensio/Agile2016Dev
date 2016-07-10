@@ -77,9 +77,8 @@ module.exports = new Script({
 
 //TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
 //then the submit is speaker name and call speakersearch won't work for is session expires
-//            if (upperText == 'S1') {
-//              return bot.getProp('name')
-//              .then(() => 's1');
+//            if (if msgLog.usermessage == 'text') {
+                console.log("=== search string", message.text);
 //            }
 
             msgLog.smoochId = bot.userId;
@@ -105,10 +104,8 @@ module.exports = new Script({
             //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
             var authUsers = process.env.SK_ACCESS
 
-            //need to figure out way to not check this all the time
-            //TODO: when the newUser is called return a property to add to msgLog
-            //then is property is set don't rerun  will return on already exits and new
-            if (msgLog.newUsercheck = 'false') {
+            //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
+            if(msgLog.newUsercheck == 'false') {
               console.log("===NewUser");
               newUser(bot)
                 .then(msgLog.newUsercheck = 'true');
