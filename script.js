@@ -79,6 +79,7 @@ module.exports = new Script({
 //then the submit is speaker name and call speakersearch won't work for is session expires
             if (msgLog.usermessage == 'SBSN') {
                 console.log("=== search string", upperText);
+                var msg = {};
                 findSession(upperText, msg);
                 return bot.setProp("silent", true);
             }
