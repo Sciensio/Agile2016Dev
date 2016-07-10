@@ -267,7 +267,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(50).then(function() {
+                        return wait(500).then(function() {
                             return bot.say(line);
                         });
                     });

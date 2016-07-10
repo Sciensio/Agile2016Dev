@@ -5,7 +5,7 @@
   "MENU": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:CONFERENCE_DETAILS) %[Agile Alliance](postback:AGILE_ALLIANCE)",
   "KEY": "![Keywords](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/keywordsv1.png)",
   "PROGRAM": "Do you want to explore: %[Sessions](postback:SESSIONS_DAY) %[Keynotes](postback:KEYNOTES) %[Special Events](postback:SPECIAL_EVENTS)",
-  "SESSIONS_DAY": "To view sessions by day tap the day or type date (dd): %[July 24](https://goo.gl/ICxdzY) %[July 25](https://goo.gl/W9cDa0) %[July 26](https://goo.gl/FcTlfg) \nMore sessions: %[July 27](https://goo.gl/Zwksvx) %[July 28](https://goo.gl/Rl6IIK) %[July 29](https://goo.gl/lzPt2g)",
+  "SESSIONS_DAY": "To view sessions by day tap the day or type date (dd): %[July 24](https://goo.gl/AP35fA) %[July 25](https://goo.gl/FXYGTN) %[July 26](https://goo.gl/H5sxrH) \nMore sessions: %[July 27](https://goo.gl/m7LKVI) %[July 28](https://goo.gl/mvGw4c) %[July 29](https://goo.gl/qn1wK0)",
   "24": "Sessions for: %[July 24](https://goo.gl/AP35fA)",
   "25": "Sessions for: %[July 25](https://goo.gl/FXYGTN)",
   "26": "Sessions for: %[July 26](https://goo.gl/H5sxrH)",
