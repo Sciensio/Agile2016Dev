@@ -108,8 +108,10 @@ module.exports = new Script({
             //need to figure out way to not check this all the time
             //TODO: when the newUser is called return a property to add to msgLog
             //then is property is set don't rerun  will return on already exits and new
+            if (msgLog.newUsercheck = 'false') {
             newUser(bot)
-              .then(console.log("newUser", response));
+              .then(msgLog.newUsercheck = 'true');
+            }
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
             if (authUsers.indexOf(bot.userId) !== -1) {
