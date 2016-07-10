@@ -12,7 +12,7 @@
   "27": "Sessions for: %[July 27](https://goo.gl/m7LKVI)",
   "28": "Sessions for: %[July 28](https://goo.gl/mvGw4c)",
   "29": "Sessions for: %[July 29](https://goo.gl/qn1wK0)",
-  "SESSIONS": "To view sessions by day tap the day or type date (dd): %[July 24](https://goo.gl/ICxdzY) %[July 25](https://goo.gl/W9cDa0) %[July 26](https://goo.gl/FcTlfg) \nMore sessions: %[July 27](https://goo.gl/Zwksvx) %[July 28](https://goo.gl/Rl6IIK) %[July 29](https://goo.gl/lzPt2g)",
+  "SESSIONS": "To view sessions by day tap the day or type date (dd): %[July 24](https://goo.gl/AP35fA) %[July 25](https://goo.gl/FXYGTN) %[July 26](https://goo.gl/H5sxrH) \nMore sessions: %[July 27](https://goo.gl/m7LKVI) %[July 28](https://goo.gl/mvGw4c) %[July 29](https://goo.gl/qn1wK0)",
   "SESSIONS_SPEAKER": "Enter speaker last name to view their session(s): %[Session(s) by Speaker](postback:SESSIONS_SPEAKER)",
   "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
   "SPECIAL_EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Daily Events](postback:DAILY_EVENTS) %[Evening Events](postback:EVENING_EVENTS) %[Back to Menu](postback:MENU)",
