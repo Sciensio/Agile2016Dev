@@ -10,7 +10,7 @@ var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var pushConv = require("./push");
 var newBot_msg = require("./newBot");
-//var findSession = require("./sessionsearch");
+var findSession = require("./sessionsearch");
 
 //var sched = require("./sched");
 
@@ -79,7 +79,7 @@ module.exports = new Script({
 //then the submit is speaker name and call speakersearch won't work for is session expires
             if (msgLog.usermessage == 'SBSN') {
                 console.log("=== search string", upperText);
-                sessionsearch(upperText, msg);
+                findSession(upperText, msg);
                 return bot.setProp("silent", true);
             }
 
