@@ -35,7 +35,7 @@
   "\/SUPPORT": "I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type: /A16.",
   "DISCONNECT": "A16 is back.",
 
-  "TEXT": "To search for a session type in part of the seesions or speakers name", 
+  "SBSN": "To search for a session type in part of the sessions, for best results pick the most unique word", 
 
   "\/A16": "A16 is back! I hope my human colleagues were able to help."
 }

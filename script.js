@@ -77,9 +77,11 @@ module.exports = new Script({
 
 //TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
 //then the submit is speaker name and call speakersearch won't work for is session expires
-//            if (if msgLog.usermessage == 'text') {
-                console.log("=== search string", message.text);
-//            }
+            if (if msgLog.usermessage == 'SBSN') {
+                console.log("=== search string", upperText);
+                sessionsearch(upperText, msg);
+                return bot.setProp("silent", true);
+            }
 
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;

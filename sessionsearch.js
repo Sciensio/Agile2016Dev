@@ -11,7 +11,7 @@ function findSession(session, response) {
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     client
-      .query("SELECT * FROM session WHERE LOWER(sessionname) like session;"),
+      .query("SELECT * FROM session WHERE LOWER(sessionname) LIKE '%session%') values ($1);",
         [session],
         function(err,result) {
           done();
@@ -19,7 +19,7 @@ function findSession(session, response) {
               console.error(err);
               deferred.reject(err);
             } else {
-              (console.log('=== userId ', result));
+              (console.log('=== search result:  ', result));
               deferred.resolve(result);
             }
         }
