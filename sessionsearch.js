@@ -2,6 +2,9 @@
 
 const _ = require('lodash');
 var pg = require('pg');
+var Q = require("q");
+var request = require("request");
+
 var extend = require('util')._extend;
 
 function findSession(session, response) {
