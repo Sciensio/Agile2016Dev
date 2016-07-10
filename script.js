@@ -26,7 +26,8 @@ var msgLog = {
     receivedtime: '',
     responsemessage: '',
     responsetype: '',
-    responsetime: ''
+    responsetime: '',
+    newUsercheck: 'false'
   };
 
 function wait(ms) {
@@ -76,9 +77,11 @@ module.exports = new Script({
 
 //TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
 //then the submit is speaker name and call speakersearch won't work for is session expires
-//            if (upperText == 'S1') {
-//              return bot.getProp('name')
-//              .then(() => 's1');
+//            if (msgLog.usermessage == 'SBSN') {
+//                console.log("=== search string", upperText);
+//                var msg = {};
+//                findSession(upperText, msg);
+//                return bot.setProp("silent", true);
 //            }
 
             msgLog.smoochId = bot.userId;
@@ -100,13 +103,15 @@ module.exports = new Script({
                 break;
             }
 
-            //This is the control list of smoochId that can send broadcast messages
-            var authUsers = ['a30fa820d0a0f0216fa26070'];
+            //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
+            var authUsers = process.env.SK_ACCESS
 
-            //need to figure out way to not check this all the time
-            //TODO: when the newUser is called return a property to add to msgLog
-            //then is property is set don't rerun  will return on already exits and new
-            newUser(bot)
+            //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
+            if(msgLog.newUsercheck == 'false') {
+              console.log("===NewUser");
+              newUser(bot)
+                .then(msgLog.newUsercheck = 'true');
+            }
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
             if (authUsers.indexOf(bot.userId) !== -1) {
@@ -117,16 +122,19 @@ module.exports = new Script({
               }
             }
 
+
+//TODO: There is a bug with /support and /a16 now.  /support does not present message and /a16 sometimes doubles the message
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
+                        console.log("*** /support", upperText);
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
                     case "/A16":
-                        console.log("*** ",upperText," ***");
+                        console.log("*** /A16 ",upperText," ***");
                         processMessage(false);
                         return bot.setProp("silent", false);
                     default:
@@ -160,9 +168,9 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         }
-//                        console.log("source: ", source);
-//                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-//                        console.log("simplified: ", simplified);
+                        console.log("source: ", source);
+                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                        console.log("simplified: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
@@ -173,10 +181,10 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-//                console.log("source: ", source);
-//                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-//                console.log("simplified: ", simplified);
-//                console.log("===receive step 3",upperText);
+                console.log("source: ", source);
+                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
+                console.log("simplified: ", simplified);
+                console.log("===receive step 3",upperText);
 
               if (source != 'agent')
                 {
@@ -185,7 +193,7 @@ module.exports = new Script({
                     {
                       switch (simplified) {
                         case "hello":
-//                          console.log("===in hello");
+                          console.log("===in hello");
                           upperText = simplified.trim().toUpperCase();
                           break;
                         case "do you know":
@@ -196,22 +204,22 @@ module.exports = new Script({
                         case "how to open you":
                         case "what can you talk about":
                         case "what do you know":
-//                          console.log("===in what do you know");
+                          console.log("===in what do you know");
                           upperText = 'KNOW';
                           break;
                         case "what do you do":
                         case "how do you know":
                         case "job":
-//                          console.log("===in what do do");
+                          console.log("===in what do do");
                           upperText = "JOB";
                           break;
                         case "do you know me":
                         case "do you remember me":
-//                          console.log("===do you know me");
+                          console.log("===do you know me");
                           upperText = "ME";
                           break;
                         case "who named you":
-//                        console.log("===NAME");
+                        console.log("===NAME");
                           upperText = "NAME";
                           break;
                         case "can you hear me":
@@ -221,11 +229,11 @@ module.exports = new Script({
                         case "talk faster":
                         case "do you drink":
                         case "do you eat":
-//                          console.log("===set to NULL and question");
+                          console.log("===set to NULL and question");
                           upperText = "";
                           break;
                         default:
-//                          console.log("===in switch default");
+                          console.log("===in switch default");
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
@@ -239,7 +247,7 @@ module.exports = new Script({
                     }
                 }
 
-//                console.log("===finished switch, upperText now:",upperText);
+                console.log("===finished switch, upperText now:",upperText);
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
@@ -251,7 +259,7 @@ module.exports = new Script({
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
-//                console.log("=== msgLog  obj",msgLog);
+                console.log("=== msgLog  obj",msgLog);
                 logConversation(msgLog);
 
                 var p = Promise.resolve();
@@ -259,7 +267,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(5).then(function() {
+                        return wait(50).then(function() {
                             return bot.say(line);
                         });
                     });

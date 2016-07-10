@@ -2,16 +2,19 @@
 
 const _ = require('lodash');
 var pg = require('pg');
+var Q = require("q");
+var request = require("request");
+
 var extend = require('util')._extend;
 
 function findSession(session, response) {
-  //var newBot = bot;
+  var deferred = Q.defer();
 
   console.log("===creating sessionsearch connection ",session);
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     client
-      .query("SELECT * FROM session WHERE LOWER(sessionname) like session;"),
+      .query("SELECT * FROM session WHERE LOWER(sessionname) LIKE '%session%') values ($1);",
         [session],
         function(err,result) {
           done();
@@ -19,10 +22,10 @@ function findSession(session, response) {
               console.error(err);
               deferred.reject(err);
             } else {
-              (console.log('=== userId ', result));
+              (console.log('=== search result:  ', result));
               deferred.resolve(result);
             }
-        }
+        })
       });
 }
 
