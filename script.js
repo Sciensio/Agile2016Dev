@@ -5,7 +5,6 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var newUser = require("./db");
 var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var newBot_msg = require("./newBot");
@@ -23,8 +22,7 @@ var msgLog = {
     receivedtime: '',
     responsemessage: '',
     responsetype: '',
-    responsetime: '',
-    newUsercheck: 'false'
+    responsetime: ''
   };
 
   var know = [
@@ -117,17 +115,6 @@ module.exports = new Script({
                 // This is appUser - which means it is a message typed in by the user
                   msgLog.sourcetype = message.source.type;
                 break;
-            }
-
-
-            //Not sure if this is the best way to accomplish not calling newUser everytime,
-            //but it seems to work
-            if(msgLog.newUsercheck == 'false') {
-              console.log("- newUser check");
-              newUser(bot)
-                .then(msgLog.newUsercheck = 'true');
-            } else {
-              console.log("- newUser not checked");
             }
 
             //SK_ACCESS is a heroku config var that has the list of user/devices
