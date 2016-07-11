@@ -31,22 +31,22 @@ var msgLog = {
     {
       tag: 'KNOW',
       phrase: [
-        "do you know",
-        "can you help",
-        "do you have",
-        "how does this app work",
-        "how much time do you need",
-        "how to open you",
-        "what can you talk about",
-        "what do you know"
+        text: "do you know",
+        text: "can you help",
+        text: "do you have",
+        text: "how does this app work",
+        text: "how much time do you need",
+        text: "how to open you",
+        text: "what can you talk about",
+        text: "what do you know"
       ]
     },
     {
       tag: 'JOB',
       phrase: [
-        "what do you do",
-        "how do you know",
-        "job"
+        text: "what do you do",
+        text: "how do you know",
+        text: "job"
       ]
     }
   ];
@@ -205,9 +205,10 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
 
-                    var isThere = (domainRtn.phrase.indexOf(simplified) );
-                    var isThat = _.findWhere(domainRtn, {phrase: 'job'});
-                    console.log('^^^^ well? ', isThere, 'that:', isThat.tag);
+                  //  var isThere = (domainRtn.phrase.indexOf(simplified) );
+                  //  var isThat = _.findWhere(domainRtn, {phrase: 'job'});
+                  //  console.log('^^^^ well? ', isThere, 'that:', isThat.tag);
+                  console.log('%%%% domainRtn', domainRtn);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
