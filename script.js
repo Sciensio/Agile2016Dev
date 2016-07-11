@@ -49,7 +49,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            console.log("===bot message ", message);
+            console.log("- bot message ", message);
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -99,12 +99,16 @@ module.exports = new Script({
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
             //-1 indicates that a user is not authorized to send broadcast messages
-            if (authUsers.indexOf(bot.userId) !== -1) {
-              //TODO remove this once tested console.log("- ad hoc msg: ", upperText.substr(0,4), " sent by: ", msgLog.smoochId);
-              if (upperText.substr(0,4) == '/SK ') {
+
+            //switch the order of the nexted ifs, to pick up /sk first
+
+            if (upperText.substr(0,4) == '/SK ') {
+              if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+              } else {
+                upperText = "NO_SK";
               }
             }
 
