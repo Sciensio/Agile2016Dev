@@ -178,23 +178,11 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-              //switch (source) {
-                //using smal.talk domain from api.ai because not all their responses are
-                //appropriate we have implemented this case statement
-              //  case 'domains':
-              //      console.log("===why am I here? ", source);
-                    //hello is a special case; we are using the smaltalk domains to narrow conversation down
-                    //then using JSON to provide answer.
-                    //the rest are answers that we intercept because we do not like the domain answers
+                    //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
                     if (fulfillmentSpeech && source === 'domains')
                     {
                       switch (simplified) {
-                        //moved response to API.ai
-                        //case "hello":
-                        //  console.log("===in hello");
-                        //  upperText = simplified.trim().toUpperCase();
-                        //  break;
                         case "do you know":
                         case "can you help":
                         case "do you have":
@@ -244,21 +232,6 @@ module.exports = new Script({
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
-                  //  break;
-                  //case 'agent':
-                    //custom agent set up on api.ai for this
-                    //if (simplified == 'agile2017')
-                    //  {
-                    //      console.log("- In agent switch agile2017 ");
-                    //      msgLog.responsemessage = fulfillmentSpeech;
-                    //      msgLog.responsetime = new Date;
-                    //      msgLog.responsetype = 'API.AI Intent';
-                    //      return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    //  }
-                    //break;
-                  //default:
-                  //  console.log("===finished switch, upperText now:",upperText);
-                  //}
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
