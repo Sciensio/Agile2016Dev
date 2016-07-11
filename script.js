@@ -206,7 +206,7 @@ module.exports = new Script({
                     //and it does not appear that we can customize these items
 
                     var isThere = (domainRtn.phrase.indexOf(simplified) );
-                    var isThat = _.filter(domainRtn, {phrase: simplified});
+                    var isThat = _.filter(domainRtn, {phrase: 'job'});
                     console.log('^^^^ well? ', isThere, 'that:', isThat);
 
                     if (fulfillmentSpeech && source === 'domains')
