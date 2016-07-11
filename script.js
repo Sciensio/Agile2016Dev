@@ -244,7 +244,10 @@ module.exports = new Script({
                     else if (simplified)
                     {
                         console.log("simplified is: ", simplified);
-                        upperText = simplified.toUpperCase();
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
                 }
 
