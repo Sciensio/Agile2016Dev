@@ -115,6 +115,7 @@ module.exports = new Script({
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
             if (authUsers.indexOf(bot.userId) !== -1) {
+              console.log("=== ad hoc msg", upperText.substr(0,4));
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
