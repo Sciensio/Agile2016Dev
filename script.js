@@ -234,7 +234,7 @@ module.exports = new Script({
                           break;
                         default:
                           console.log("===in switch default");
-                          if (upperText = "EVENING") {break;}
+                          if (upperText == "EVENING") {break;}
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
                           msgLog.responsetype = 'API.AI';
