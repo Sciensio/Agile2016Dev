@@ -217,7 +217,7 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
 
-                  //  var isThere = (domainRtn.phrase.indexOf(simplified) );
+                    var isThere = (domainRtn.phrase.indexOf(simplified) );
                   //  var isThat = _.findWhere(domainRtn, {phrase: {text: 'job'}});
                   //  console.log('^^^^ well? ', isThere, 'that:', isThat.tag);
                   console.log('%%%% domainRtn', domainRtn,isThat);
@@ -225,7 +225,7 @@ module.exports = new Script({
                     if (fulfillmentSpeech && source === 'domains')
                     {
                       switch (true) {
-                        case (know.indexOf(simplified)>-1):
+                        case (know.indexOf(simplified) >- 1):
                           console.log("-In domains, what do you know");
                           upperText = 'KNOW';
                           break;
@@ -233,15 +233,15 @@ module.exports = new Script({
                           console.log("- In domains, what do you do");
                           upperText = "JOB";
                           break;
-                        case me.indexOf(simplified)>-1):
+                        case (me.indexOf(simplified)>-1):
                           console.log("- In domains, do you know me");
                           upperText = "ME";
                           break;
-                        case name.indexOf(simplified)>-1):
+                        case (name.indexOf(simplified)>-1):
                         console.log("- in domains, who named you");
                           upperText = "NAME";
                           break;
-                        case noanswer.indexOf(simplified)>-1):
+                        case (noanswer.indexOf(simplified)>-1):
                           console.log("- In domains do you eat");
                           //in these cases we want to return 'not something I know about'
                           upperText = "";
