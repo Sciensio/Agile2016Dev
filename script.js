@@ -169,7 +169,7 @@ module.exports = new Script({
                             console.log("====Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
-                        } else if (source.fulfillmentSpeech && source == 'agent') {
+                        } else if (source.resolvedQuery == 'agile2017' && source == 'agent') {
                           console.log("=== source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
                           simplified = response.result.metadata.parameters.event;
