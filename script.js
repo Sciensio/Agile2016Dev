@@ -31,22 +31,22 @@ var msgLog = {
     {
       tag: 'KNOW',
       phrase: [
-        text: "do you know",
-        text: "can you help",
-        text: "do you have",
-        text: "how does this app work",
-        text: "how much time do you need",
-        text: "how to open you",
-        text: "what can you talk about",
-        text: "what do you know"
+        {text: "do you know"},
+        {text: "can you help"},
+        {text: "do you have"},
+        {text: "how does this app work"},
+        {text: "how much time do you need"},
+        {text: "how to open you"},
+        {text: "what can you talk about"},
+        {text: "what do you know"}
       ]
     },
     {
       tag: 'JOB',
       phrase: [
-        text: "what do you do",
-        text: "how do you know",
-        text: "job"
+        {text: "what do you do"},
+        {text: "how do you know"},
+        {text: "job"}
       ]
     }
   ];
