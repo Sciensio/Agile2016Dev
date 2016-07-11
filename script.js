@@ -31,7 +31,8 @@ var msgLog = {
     phrase: "KNOW",
     simplified: [
       "do you know",
-      "can you help""do you have",
+      "can you help",
+      "do you have",
       "how does this app work",
       "how much time do you need",
       "how to open you",
