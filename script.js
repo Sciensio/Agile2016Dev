@@ -27,40 +27,10 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var know = [
-    "do you know",
-    "can you help",
-    "do you have",
-    "how does this app work",
-    "how much time do you need",
-    "how to open you",
-    "what can you talk about",
-    "what do you know"
-  ];
-
-  var job = [
-    "what do you do",
-    "how do you know",
-    "job"
-  ];
-
-  var me = []
-    "do you know me",
-    "do you remember me"
-  ];
-
-  var name = []
-    "who named you"
-  ];
-
-  var noanswer = [
-    "can you hear me",
-    "can you speak",
-    "change your",
-    "hurry",
-    "talk faster",
-    "do you drink",
-    "do you eat"
+  var cars = [
+      "Saab",
+      "Volvo",
+      "BMW"
   ];
 
 function wait(ms) {
