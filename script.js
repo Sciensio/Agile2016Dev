@@ -280,7 +280,9 @@ module.exports = new Script({
             }
 
             return updateSilent()
+                .then(console.log('--updateSilent step 1'))
                 .then(getSilent)
+                .then(console.log('--updateSilent step 1'))
                 .then(processMessage);
         }
     }
