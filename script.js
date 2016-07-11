@@ -193,7 +193,7 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
                     var isThere = (know.indexOf(simplified) > -1);
-                    console.log('^^^^ well? 'isThere);
+                    console.log('^^^^ well? ', isThere);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
