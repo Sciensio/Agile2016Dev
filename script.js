@@ -150,22 +150,24 @@ module.exports = new Script({
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
-                        console.log("===in Q.all");
-                        console.log("===received result from API.ai",response);
+                        console.log("- In Q.all");
+                        console.log("- Received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
-                            console.log("====Q all not agent");
+                            console.log("- Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         } else if (response.result.fulfillment.speech && source == 'agent') {
-                          console.log("=== source is agent ", response.result);
+                          console.log("- Source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
+                          //Is is done to capture if it is using an agent that we set up on API.ai
+                          //API.ai sends agent back if !== domains; wish they had a 3rd state
                           simplified = response.result.parameters.event;
                         }
-                        console.log("source: ", source);
-                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                        console.log("simplified: ", simplified);
+                        console.log("- Process meesage set source to: ", source);
+                        console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
+                        console.log("- Process meesage set simplified to: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
@@ -176,24 +178,19 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-                console.log("source: ", source);
-                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                console.log("simplified: ", simplified);
-                console.log("===receive step 3",upperText);
-
-              //if (source != 'agent')
-              console.log("?????? what is the source:  ", source);
-
               switch (source) {
+                //using smal.talk domain from api.ai because not all their responses are
+                //appropriate we have implemented this case statement
                 case 'domains':
                     console.log("===why am I here? ", source);
+                    //hello is a special case because we want
                     if (fulfillmentSpeech)
                     {
                       switch (simplified) {
-                        case "hello":
-                          console.log("===in hello");
-                          upperText = simplified.trim().toUpperCase();
-                          break;
+                        //case "hello":
+                        //  console.log("===in hello");
+                        //  upperText = simplified.trim().toUpperCase();
+                        //  break;
                         case "do you know":
                         case "can you help":
                         case "do you have":
@@ -284,7 +281,7 @@ module.exports = new Script({
                 //TODO may have to put a case statement in for /a16 processing
                 .then(console.log('--updateSilent step 1'))
                 .then(getSilent)
-                .then(console.log('--updateSilent step 1'))
+                .then(console.log('--updateSilent step 2'))
                 .then(processMessage);
         }
     }
