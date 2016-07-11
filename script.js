@@ -192,6 +192,7 @@ module.exports = new Script({
                 console.log("===receive step 3",upperText);
 
               //if (source != 'agent')
+              console.log("?????? what is the source:  ", source);
               switch (source) {
                 case 'domain':
                     console.log("===source is ", source);
