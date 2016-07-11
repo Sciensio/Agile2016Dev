@@ -114,7 +114,9 @@ module.exports = new Script({
             }
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
+            console.log("????? why this", authUsers.indexOf(bot.userId));
             if (authUsers.indexOf(bot.userId) !== -1) {
+              console.log("=== ad hoc msg", upperText.substr(0,4));
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
@@ -162,16 +164,17 @@ module.exports = new Script({
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
-//                        console.log("===received result from API.ai",response);
+                        console.log("===received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
+                            console.log("====Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
-                        } else if (source && source == 'agent') {
-                          console.log("=== source is agent ", response.result.metadata.intentName);
+                        } else if (response.result.fulfillment.speech && source == 'agent') {
+                          console.log("=== source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
-                          simplified = response.result.metadata.intentName;
+                          simplified = response.result.parameters.event;
                         }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
@@ -191,9 +194,12 @@ module.exports = new Script({
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
 
-              if (source != 'agent')
-                {
-                    console.log("===source is ", source);
+              //if (source != 'agent')
+              console.log("?????? what is the source:  ", source);
+
+              switch (source) {
+                case 'domains':
+                    console.log("===why am I here? ", source);
                     if (fulfillmentSpeech)
                     {
                       switch (simplified) {
@@ -246,18 +252,20 @@ module.exports = new Script({
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
+                    break;
+                  case 'agent':
+                    if (simplified == 'agile2017')
+                      {
+                          console.log("simplified is: ", simplified);
+                          msgLog.responsemessage = fulfillmentSpeech;
+                          msgLog.responsetime = new Date;
+                          msgLog.responsetype = 'API.AI Intent';
+                          return bot.say(fulfillmentSpeech).then(() => 'speak');
+                      }
+                    break;
+                  default:
+                    console.log("===finished switch, upperText now:",upperText);
                   }
-                    else if (simplified)
-                    {
-                        console.log("simplified is: ", simplified);
-                        msgLog.responsemessage = fulfillmentSpeech;
-                        msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI Intent';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    }
-                //}
-
-                console.log("===finished switch, upperText now:",upperText);
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);

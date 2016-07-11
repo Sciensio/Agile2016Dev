@@ -14,7 +14,7 @@ function findSession(session, response) {
   pg.defaults.ssl = true;
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     client
-      .query("SELECT * FROM session WHERE LOWER(sessionname) LIKE '%session%') values ($1);",
+      .query("SELECT * FROM session WHERE LOWER(sessionname) LIKE '%($1)%') values ($1);",
         [session],
         function(err,result) {
           done();
