@@ -27,8 +27,8 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var domainRtn = {
-      tag: 'KNOW',
+  var domainRtn = [
+    {tag: 'KNOW',
       phrase: [
       "do you know",
       "can you help",
@@ -38,9 +38,14 @@ var msgLog = {
       "how to open you",
       "what can you talk about",
       "what do you know"
-      ]
-  };
-
+    ]},
+    {tag: 'JOB',
+    phrase: [
+      "what do you do",
+      "how do you know",
+      "job"
+    ]}
+  ];
 
 function wait(ms) {
     return new Promise((resolve) => {
