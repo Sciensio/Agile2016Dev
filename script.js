@@ -130,9 +130,8 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log("*** /support", upperText);
-                        //processMessage(false);
-                        processMessage(false);
-                          .then (return bot.setProp("silent", true));
+//                        processMessage(false);
+                        return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
                     case "/A16":
