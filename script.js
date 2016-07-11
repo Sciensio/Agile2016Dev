@@ -136,6 +136,7 @@ module.exports = new Script({
             }
 
             function processMessage(isSilent) {
+                console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
@@ -280,6 +281,7 @@ module.exports = new Script({
             }
 
             return updateSilent()
+                //TODO may have to put a case statement in for /a16 processing
                 .then(console.log('--updateSilent step 1'))
                 .then(getSilent)
                 .then(console.log('--updateSilent step 1'))
