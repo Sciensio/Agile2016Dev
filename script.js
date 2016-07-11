@@ -28,8 +28,8 @@ var msgLog = {
   };
 
   var smalltalkSub = {
-    phrase: "KNOW",
-    simplified: [
+    key: "KNOW",
+    phrase: [
       "do you know",
       "can you help",
       "do you have",
@@ -194,7 +194,7 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
                     var test1 = _.filter(smalltalkSub, function(item) {
-                        return item.phrase === simplified;
+                        return item.key.phrase === "do you know";
                     });
                     console.log('^^^^ phrase', test1);
 
