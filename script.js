@@ -193,18 +193,13 @@ module.exports = new Script({
             {
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
+                    var phrase = _.filter(smalltalkSub, ['simplified', simplified]));
+                    console.log('^^^^ phrase', phrase);
+
                     if (fulfillmentSpeech && source === 'domains')
                     {
-                      function findSimplified(nameKey, myArray) {
-                        for (var i=0; i < myArray.length; i++) {
-                            if (myArray[i].name === nameKey) {
-                                return myArray[i];
-                            }
-                        }
-                    }
 
-                    var phrase = findSimplified(simplified, smalltalkSub);
-                    console.log('well? ', phrase.phrase);
+
                       switch (simplified) {
                         case "do you know":
                         case "can you help":
