@@ -27,9 +27,7 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var smalltalkSub = {
-    key: "KNOW",
-    {phrase: [
+  var know = {
       "do you know",
       "can you help",
       "do you have",
@@ -37,7 +35,7 @@ var msgLog = {
       "how much time do you need",
       "how to open you",
       "what can you talk about",
-      "what do you know"]}
+      "what do you know"
   };
 
 function wait(ms) {
@@ -193,8 +191,8 @@ module.exports = new Script({
             {
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
-
-                    console.log('^^^^ phrase', _.filter(smalltalkSub, {key: {phrase: 'do you know'}}));
+                    var isThere = (know.indexOf(simplified) > -1);
+                    console.log('^^^^ well? 'isThere);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
