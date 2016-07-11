@@ -162,7 +162,7 @@ module.exports = new Script({
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
                         console.log("===in Q.all");
-//                        console.log("===received result from API.ai",response);
+                        console.log("===received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
