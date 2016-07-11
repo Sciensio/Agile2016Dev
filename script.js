@@ -27,7 +27,7 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var know = {
+  var know = [
     "do you know",
     "can you help",
     "do you have",
@@ -36,24 +36,24 @@ var msgLog = {
     "how to open you",
     "what can you talk about",
     "what do you know"
-  };
+  ];
 
-  var job = {
-    "what do you do"},
-    "how do you know"},
-    "job"}
-  };
+  var job = [
+    "what do you do",
+    "how do you know",
+    "job"
+  ];
 
-  var me = {
+  var me = []
     "do you know me",
     "do you remember me"
-  };
+  ];
 
-  var name = {
+  var name = []
     "who named you"
-  };
+  ];
 
-  var noanswer = {
+  var noanswer = [
     "can you hear me",
     "can you speak",
     "change your",
@@ -61,7 +61,7 @@ var msgLog = {
     "talk faster",
     "do you drink",
     "do you eat"
-  };
+  ];
 
 function wait(ms) {
     return new Promise((resolve) => {
