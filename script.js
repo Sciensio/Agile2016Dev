@@ -71,8 +71,6 @@ module.exports = new Script({
             //this mess is my way around the fact that smooch completely
             //changes the structure of the message obj if it is a postback vs user entered text
             //console.log("===message.message",message.message);
-            //this is a test to see if they are different
-            console.log("&&&& what does this return? ", message.prototype.toString.call(t) );
             //switch to the inverse should be faster because it does not have to traverse the whole prototype chain
             switch (typeof message.message !== "undefined") {
               case true:
