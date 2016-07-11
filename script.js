@@ -254,7 +254,7 @@ module.exports = new Script({
                         msgLog.responsetype = 'API.AI Intent';
                         return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
-                }
+                //}
 
                 console.log("===finished switch, upperText now:",upperText);
 
