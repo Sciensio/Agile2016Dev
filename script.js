@@ -8,11 +8,8 @@ var request = require("request");
 var newUser = require("./db");
 var logConversation = require("./conversation");
 var nlp = require("./nlp");
-var pushConv = require("./push");
 var newBot_msg = require("./newBot");
 //var findSession = require("./sessionsearch");
-
-//var sched = require("./sched");
 
 const scriptRules = require('./script.json');
 
@@ -49,25 +46,6 @@ module.exports = new Script({
         }
     },
 
-//    s1: {
-//      prompt: (bot) => bot.say('Type part of the session name?'),
-//      receive: (bot, message) => {
-//        const name = message.text;
-//        return bot.setProp('name', name)
-//            .then(() => bot.say(`Great! I'll call you ${name}
-//Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
-//            .then(() => 'speak');
-//      }
-//    },
-
-//    chris: {
-//      receive: (bot, message) => {
-//        return bot.getProp('name')
-//          .then((name) => bot.say('That is all!'))
-//          .then(() => 'speak');
-//      }
-//    },
-
     speak: {
         receive: (bot, message) => {
 
@@ -90,37 +68,45 @@ module.exports = new Script({
             msgLog.role = message.role;
             msgLog.message_id = message._id;
             msgLog.receivedtime = new Date();
-//this mess is my way around the fact that smooch completely  changes the structure of the message obj if it is a postback vs user entered text
-//            console.log("===message.message",message.message);
-            switch (typeof message.message === "undefined") {
-              case false:
-//                  console.log("!!!! appMaker = T, message.role", message.message);
+            //this mess is my way around the fact that smooch completely
+            //changes the structure of the message obj if it is a postback vs user entered text
+            //console.log("===message.message",message.message);
+            //this is a test to see if they are different
+            console.log("&&&& what does this return? ", message.prototype.toString.call(t) );
+            //switch to the inverse should be faster because it does not have to traverse the whole prototype chain
+            switch (typeof message.message !== "undefined") {
+              case true:
+//                console.log("!!!! appMaker = T, message.role", message.message);
                   msgLog.sourcetype = message.action.type;
                 break;
               default:
-//                  console.log("!!!! appUser = T, message.role", message.source);
+//                console.log("!!!! appUser = T, message.role", message.source);
                   msgLog.sourcetype = message.source.type;
                 break;
             }
 
-            //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
+            //SK_ACCESS is a heroku config var that has the list of user/devices
+            //smoochids for auth users to send ad hoc push conversations
             var authUsers = process.env.SK_ACCESS;
 
-            //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
+            //Not sure if this is the best way to accomplish not calling newUser everytime,
+            //but it seems to work
             if(msgLog.newUsercheck == 'false') {
-              console.log("===NewUser");
+              console.log("- newUser check");
               newUser(bot)
                 .then(msgLog.newUsercheck = 'true');
+            } else {
+              console.log("- newUser not checked");
             }
 
             //For ad hoc messages - scheduled messages are done differently in checkItems
-            console.log("????? why this", authUsers.indexOf(bot.userId));
+            //-1 indicates that a user is not authorized to send broadcast messages
             if (authUsers.indexOf(bot.userId) !== -1) {
-              console.log("=== ad hoc msg", upperText.substr(0,4));
+              //TODO remove this once tested console.log("- ad hoc msg: ", upperText.substr(0,4), " sent by: ", msgLog.smoochId);
               if (upperText.substr(0,4) == '/SK ') {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
-                console.log("****after push msg:  ",message.text," authUser:  ",authUsers);
+                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               }
             }
 
