@@ -245,6 +245,7 @@ module.exports = new Script({
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
+                  }
                     else if (simplified)
                     {
                         console.log("simplified is: ", simplified);
