@@ -163,11 +163,11 @@ module.exports = new Script({
                         console.log("===in Q.all");
 //                        console.log("===received result from API.ai",response);
                         source = response.result.source;
-                        if (source && source !== 'agent')
-                        {
+//                        if (source && source !== 'agent')
+//                        {
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
-                        }
+//                        }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                         console.log("simplified: ", simplified);
