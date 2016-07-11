@@ -166,6 +166,7 @@ module.exports = new Script({
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
+                            console.log("====Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         } else if (source && source == 'agent') {
@@ -194,7 +195,7 @@ module.exports = new Script({
               //if (source != 'agent')
               console.log("?????? what is the source:  ", source);
               switch (source) {
-                case 'domain':
+                case 'domains':
                     console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
