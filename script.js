@@ -27,6 +27,18 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
+  var smalltalkSub = {
+    phrase: "KNOW",
+    simplified: [
+      "do you know",
+      "can you help""do you have",
+      "how does this app work",
+      "how much time do you need",
+      "how to open you",
+      "what can you talk about",
+      "what do you know"]
+  };
+
 function wait(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
@@ -182,6 +194,16 @@ module.exports = new Script({
                     //and it does not appear that we can customize these items
                     if (fulfillmentSpeech && source === 'domains')
                     {
+                      function findSimplified(nameKey, myArray) {
+                        for (var i=0; i < myArray.length; i++) {
+                            if (myArray[i].name === nameKey) {
+                                return myArray[i];
+                            }
+                        }
+                    }
+
+                    var phrase = findSimplified(simplified, smalltalkSub);
+                    console.log('well? ', phrase.phrase);
                       switch (simplified) {
                         case "do you know":
                         case "can you help":
