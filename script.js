@@ -104,7 +104,7 @@ module.exports = new Script({
             }
 
             //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
-            var authUsers = process.env.SK_ACCESS
+            var authUsers = process.env.SK_ACCESS;
 
             //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
             if(msgLog.newUsercheck == 'false') {

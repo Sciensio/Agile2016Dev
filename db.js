@@ -27,7 +27,7 @@ function newUser(bot, response) {
               (console.log('=== userId ', bot.userId));
               deferred.resolve(result);
           }
-    })
+    });//codacy semi-colon issue not sure whre it is supposed to go
     done();
   });
   return deferred.promise;

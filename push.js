@@ -17,7 +17,7 @@ function pushConv(newBot, message, response) {
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
           return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
-        })
+        });
       done();
   });
 }
