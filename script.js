@@ -27,7 +27,7 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var domainRtn = (
+  var domainRtn = [
     {
       tag: 'KNOW',
       phrase: [
@@ -49,7 +49,7 @@ var msgLog = {
         "job"
       ]
     }
-  );
+  ];
 
 function wait(ms) {
     return new Promise((resolve) => {
@@ -206,17 +206,11 @@ module.exports = new Script({
                     //and it does not appear that we can customize these items
 
                     var isThere = (domainRtn.phrase.indexOf(simplified) );
-                    console.log('^^^^ well? ', isThere);
-
-                    var test1 = _.filter(smalltalkSub, function(item) {
-                        return item.key.phrase === "do you know";
-                    });
-                    console.log('^^^^ phrase', test1);
+                    var isThat = _.filter(domainRtn, {phrase: simplified});
+                    console.log('^^^^ well? ', isThere, 'that:', isThat);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
-
-
                       switch (simplified) {
                         case "do you know":
                         case "can you help":
