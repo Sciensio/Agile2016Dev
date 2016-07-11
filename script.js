@@ -194,7 +194,7 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
                     var phrase = _.filter(smalltalkSub, ['simplified', simplified]);
-                    console.log('^^^^ phrase', phrase);
+                    console.log('^^^^ phrase', phrase, ' simplified is:',simplified);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
