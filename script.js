@@ -163,11 +163,14 @@ module.exports = new Script({
                         console.log("===in Q.all");
 //                        console.log("===received result from API.ai",response);
                         source = response.result.source;
-//                        if (source && source !== 'agent')
-//                        {
+                        if (source && source !== 'agent')
+                        {
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
-//                        }
+                        } else if (source && source == 'agent') {
+                          fulfillmentSpeech = response.result.fulfillment.speech;
+                          simplified = response.result.metadata.intentName;
+                        }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
                         console.log("simplified: ", simplified);
@@ -237,7 +240,7 @@ module.exports = new Script({
                           if (upperText == "EVENING") {break;}
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI';
+                          msgLog.responsetype = 'API.AI Domain';
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
@@ -246,7 +249,7 @@ module.exports = new Script({
                         console.log("simplified is: ", simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI';
+                        msgLog.responsetype = 'API.AI Intent';
                         return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
                 }
