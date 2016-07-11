@@ -74,18 +74,15 @@ module.exports = new Script({
             //switch to the inverse should be faster because it does not have to traverse the whole prototype chain
             switch (typeof message.message !== "undefined") {
               case true:
-//                console.log("!!!! appMaker = T, message.role", message.message);
+                  //This is appMaker - which means it is a postback
                   msgLog.sourcetype = message.action.type;
                 break;
               default:
-//                console.log("!!!! appUser = T, message.role", message.source);
+                // This is appUser - which means it is a message typed in by the user
                   msgLog.sourcetype = message.source.type;
                 break;
             }
 
-            //SK_ACCESS is a heroku config var that has the list of user/devices
-            //smoochids for auth users to send ad hoc push conversations
-            var authUsers = process.env.SK_ACCESS;
 
             //Not sure if this is the best way to accomplish not calling newUser everytime,
             //but it seems to work
@@ -97,11 +94,11 @@ module.exports = new Script({
               console.log("- newUser not checked");
             }
 
+            //SK_ACCESS is a heroku config var that has the list of user/devices
+            //smoochids for auth users to send ad hoc push conversations
+            var authUsers = process.env.SK_ACCESS;
             //For ad hoc messages - scheduled messages are done differently in checkItems
             //-1 indicates that a user is not authorized to send broadcast messages
-
-            //switch the order of the nexted ifs, to pick up /sk first
-
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
@@ -117,16 +114,17 @@ module.exports = new Script({
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
+                        console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
-                        console.log("*** /support", upperText);
-//                        processMessage(false);
+                        console.log('- Special Case: /SUPPORT'); //turns off bot
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
+                        console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
                     case "/A16":
-                        console.log("*** /A16 ",upperText," ***");
-                        processMessage(false);
+                        console.log('- Special Case: /A16'); //turns bot back on
+                        //processMessage(false); TODO remove if bot works on /a16 test
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
