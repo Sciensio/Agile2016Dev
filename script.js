@@ -193,8 +193,8 @@ module.exports = new Script({
             {
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
-                    var test1 = _.filter(smalltalkSub, function(item) {
-                        return item.key.phrase === "do you know";
+                    var test1 = _.filter(smalltalkSub, function(result) {
+                        return result.key.phrase === "do you know";
                     });
                     console.log('^^^^ phrase', test1);
 
