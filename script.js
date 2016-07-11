@@ -168,6 +168,7 @@ module.exports = new Script({
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         } else if (source && source == 'agent') {
+                          console.log("=== source is agent ", response.result.metadata.intentName);
                           fulfillmentSpeech = response.result.fulfillment.speech;
                           simplified = response.result.metadata.intentName;
                         }
