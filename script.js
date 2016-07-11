@@ -172,7 +172,7 @@ module.exports = new Script({
                         } else if (response.result.fulfillment.speech && source == 'agent') {
                           console.log("=== source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
-                          simplified = response.result.metadata.parameters.event;
+                          simplified = response.result.parameters.event;
                         }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
