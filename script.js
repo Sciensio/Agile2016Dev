@@ -191,8 +191,9 @@ module.exports = new Script({
                 console.log("simplified: ", simplified);
                 console.log("===receive step 3",upperText);
 
-              if (source != 'agent')
-                {
+              //if (source != 'agent')
+              switch (source) {
+                case 'domain':
                     console.log("===source is ", source);
                     if (fulfillmentSpeech)
                     {
@@ -246,18 +247,20 @@ module.exports = new Script({
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
+                    break;
+                  case 'agent':
+                    if (simplified == 'agile2017')
+                      {
+                          console.log("simplified is: ", simplified);
+                          msgLog.responsemessage = fulfillmentSpeech;
+                          msgLog.responsetime = new Date;
+                          msgLog.responsetype = 'API.AI Intent';
+                          return bot.say(fulfillmentSpeech).then(() => 'speak');
+                      }
+                    break;
+                  default:
+                    console.log("===finished switch, upperText now:",upperText);
                   }
-                    else if (simplified == 'agile2017')
-                    {
-                        console.log("simplified is: ", simplified);
-                        msgLog.responsemessage = fulfillmentSpeech;
-                        msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI Intent';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    }
-                //}
-
-                console.log("===finished switch, upperText now:",upperText);
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
