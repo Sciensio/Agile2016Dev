@@ -234,7 +234,10 @@ module.exports = new Script({
                     }
 
                 if (!_.has(scriptRules, upperText)) {
-                    console.log("===no rule", upperText);
+                    console.log("- No match in Script.json ", upperText);
+                    msgLog.responsemessage = upperText;
+                    msgLog.responsetime = new Date();
+                    msgLog.responsetype = 'No Match';
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
