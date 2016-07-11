@@ -27,29 +27,41 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var domainRtn = [
-    {
-      tag: 'KNOW',
-      phrase: [
-        {text: "do you know"},
-        {text: "can you help"},
-        {text: "do you have"},
-        {text: "how does this app work"},
-        {text: "how much time do you need"},
-        {text: "how to open you"},
-        {text: "what can you talk about"},
-        {text: "what do you know"}
-      ]
-    },
-    {
-      tag: 'JOB',
-      phrase: [
-        {text: "what do you do"},
-        {text: "how do you know"},
-        {text: "job"}
-      ]
-    }
-  ];
+  var know = {
+    "do you know",
+    "can you help",
+    "do you have",
+    "how does this app work",
+    "how much time do you need",
+    "how to open you",
+    "what can you talk about",
+    "what do you know"
+  };
+
+  var job = {
+    "what do you do"},
+    "how do you know"},
+    "job"}
+  };
+
+  var me = {
+    "do you know me",
+    "do you remember me"
+  };
+
+  var name = {
+    "who named you"
+  };
+
+  var noanswer = {
+    "can you hear me",
+    "can you speak",
+    "change your",
+    "hurry",
+    "talk faster",
+    "do you drink",
+    "do you eat"
+  };
 
 function wait(ms) {
     return new Promise((resolve) => {
@@ -206,46 +218,30 @@ module.exports = new Script({
                     //and it does not appear that we can customize these items
 
                   //  var isThere = (domainRtn.phrase.indexOf(simplified) );
-                    var isThat = _.findWhere(domainRtn, {phrase: {text: 'job'}});
+                  //  var isThat = _.findWhere(domainRtn, {phrase: {text: 'job'}});
                   //  console.log('^^^^ well? ', isThere, 'that:', isThat.tag);
                   console.log('%%%% domainRtn', domainRtn,isThat);
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
-                      switch (simplified) {
-                        case "do you know":
-                        case "can you help":
-                        case "do you have":
-                        case "how does this app work":
-                        case "how much time do you need":
-                        case "how to open you":
-                        case "what can you talk about":
-                        case "what do you know":
+                      switch (>-1) {
+                        case (know.indexOf(simplified):
                           console.log("-In domains, what do you know");
                           upperText = 'KNOW';
                           break;
-                        case "what do you do":
-                        case "how do you know":
-                        case "job":
+                        case (job.indexOf(simplified):
                           console.log("- In domains, what do you do");
                           upperText = "JOB";
                           break;
-                        case "do you know me":
-                        case "do you remember me":
+                        case me.indexOf(simplified):
                           console.log("- In domains, do you know me");
                           upperText = "ME";
                           break;
-                        case "who named you":
+                        case name.indexOf(simplified):
                         console.log("- in domains, who named you");
                           upperText = "NAME";
                           break;
-                        case "can you hear me":
-                        case "can you speak":
-                        case "change your":
-                        case "hurry":
-                        case "talk faster":
-                        case "do you drink":
-                        case "do you eat":
+                        case noanswer.indexOf(simplified):
                           console.log("- In domains do you eat");
                           //in these cases we want to return 'not something I know about'
                           upperText = "";
