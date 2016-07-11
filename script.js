@@ -192,8 +192,15 @@ module.exports = new Script({
             {
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
+<<<<<<< HEAD
                     var isThere = (know.indexOf(simplified) > -1);
                     console.log('^^^^ well? ', isThere);
+=======
+                    var test1 = _.filter(smalltalkSub, function(item) {
+                        return item.key.phrase === "do you know";
+                    });
+                    console.log('^^^^ phrase', test1);
+>>>>>>> parent of c678501... 6
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
