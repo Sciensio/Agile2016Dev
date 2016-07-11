@@ -169,7 +169,7 @@ module.exports = new Script({
                             console.log("====Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
-                        } else if (source && source == 'agent') {
+                        } else {//if (source && source == 'agent') {}
                           console.log("=== source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
                           simplified = response.result.metadata.parameters.event;
@@ -197,7 +197,7 @@ module.exports = new Script({
 
               switch (source) {
                 case 'blueberries':
-                    console.log("===source is ", source);
+                    console.log("===why am I here? ", source);
                     if (fulfillmentSpeech)
                     {
                       switch (simplified) {
