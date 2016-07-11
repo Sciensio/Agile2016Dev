@@ -178,15 +178,19 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-              switch (source) {
+              //switch (source) {
                 //using smal.talk domain from api.ai because not all their responses are
                 //appropriate we have implemented this case statement
-                case 'domains':
-                    console.log("===why am I here? ", source);
-                    //hello is a special case because we want
-                    if (fulfillmentSpeech)
+              //  case 'domains':
+              //      console.log("===why am I here? ", source);
+                    //hello is a special case; we are using the smaltalk domains to narrow conversation down
+                    //then using JSON to provide answer.
+                    //the rest are answers that we intercept because we do not like the domain answers
+                    //and it does not appear that we can customize these items
+                    if (fulfillmentSpeech && source === 'domains')
                     {
                       switch (simplified) {
+                        //moved response to API.ai
                         //case "hello":
                         //  console.log("===in hello");
                         //  upperText = simplified.trim().toUpperCase();
@@ -199,22 +203,22 @@ module.exports = new Script({
                         case "how to open you":
                         case "what can you talk about":
                         case "what do you know":
-                          console.log("===in what do you know");
+                          console.log("-In domains, what do you know");
                           upperText = 'KNOW';
                           break;
                         case "what do you do":
                         case "how do you know":
                         case "job":
-                          console.log("===in what do do");
+                          console.log("- In domains, what do you do");
                           upperText = "JOB";
                           break;
                         case "do you know me":
                         case "do you remember me":
-                          console.log("===do you know me");
+                          console.log("- In domains, do you know me");
                           upperText = "ME";
                           break;
                         case "who named you":
-                        console.log("===NAME");
+                        console.log("- in domains, who named you");
                           upperText = "NAME";
                           break;
                         case "can you hear me":
@@ -224,32 +228,37 @@ module.exports = new Script({
                         case "talk faster":
                         case "do you drink":
                         case "do you eat":
-                          console.log("===set to NULL and question");
+                          console.log("- In domains do you eat");
+                          //in these cases we want to return 'not something I know about'
                           upperText = "";
                           break;
                         default:
-                          console.log("===in switch default");
+                          console.log("- In domains switch default");
+                          //evening is one of our keywords and also an answer in the small.talk domain
+                          //as a synonym for 'good evening' which we want to keep
                           if (upperText == "EVENING") {break;}
+                          //else let the domain answer be sent
                           msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date;
+                          msgLog.responsetime = new Date();
                           msgLog.responsetype = 'API.AI Domain';
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
-                    break;
-                  case 'agent':
-                    if (simplified == 'agile2017')
-                      {
-                          console.log("simplified is: ", simplified);
-                          msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI Intent';
-                          return bot.say(fulfillmentSpeech).then(() => 'speak');
-                      }
-                    break;
-                  default:
-                    console.log("===finished switch, upperText now:",upperText);
-                  }
+                  //  break;
+                  //case 'agent':
+                    //custom agent set up on api.ai for this
+                    //if (simplified == 'agile2017')
+                    //  {
+                    //      console.log("- In agent switch agile2017 ");
+                    //      msgLog.responsemessage = fulfillmentSpeech;
+                    //      msgLog.responsetime = new Date;
+                    //      msgLog.responsetype = 'API.AI Intent';
+                    //      return bot.say(fulfillmentSpeech).then(() => 'speak');
+                    //  }
+                    //break;
+                  //default:
+                  //  console.log("===finished switch, upperText now:",upperText);
+                  //}
 
                 if (!_.has(scriptRules, upperText)) {
                     console.log("===no rule", upperText);
