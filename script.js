@@ -27,10 +27,40 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var cars = [
-      "Saab",
-      "Volvo",
-      "BMW"
+  var know = [
+      "do you know",
+      "can you help",
+      "do you have",
+      "how does this app work",
+      "how much time do you need",
+      "how to open you",
+      "what can you talk about",
+      "what do you know"
+    ];
+
+  var job = [
+    "what do you do",
+    "how do you know",
+    "job"
+  ];
+
+  var me = [
+    "do you know me",
+    "do you remember me"
+  ];
+
+  var name = [
+    "who named you"
+  ];
+
+  var noanswer = [
+    "can you hear me",
+    "can you speak",
+    "change your",
+    "hurry",
+    "talk faster",
+    "do you drink",
+    "do you eat"
   ];
 
 function wait(ms) {
@@ -194,24 +224,24 @@ module.exports = new Script({
 
                     if (fulfillmentSpeech && source === 'domains')
                     {
-                      switch (>-1) {
-                        case (know.indexOf(simplified):
+                      switch (true) {
+                        case (know.indexOf(simplified)>-1):
                           console.log("-In domains, what do you know");
                           upperText = 'KNOW';
                           break;
-                        case (job.indexOf(simplified):
+                        case (job.indexOf(simplified)>-1):
                           console.log("- In domains, what do you do");
                           upperText = "JOB";
                           break;
-                        case me.indexOf(simplified):
+                        case me.indexOf(simplified)>-1):
                           console.log("- In domains, do you know me");
                           upperText = "ME";
                           break;
-                        case name.indexOf(simplified):
+                        case name.indexOf(simplified)>-1):
                         console.log("- in domains, who named you");
                           upperText = "NAME";
                           break;
-                        case noanswer.indexOf(simplified):
+                        case noanswer.indexOf(simplified)>-1):
                           console.log("- In domains do you eat");
                           //in these cases we want to return 'not something I know about'
                           upperText = "";
