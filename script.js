@@ -130,6 +130,7 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log("*** /support", upperText);
+//                        processMessage(false);
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         return bot.setProp("silent", false);
@@ -167,6 +168,10 @@ module.exports = new Script({
                         {
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
+                        } else if (source && source == 'agent') {
+                          console.log("=== source is agent ", response.result.metadata.intentName);
+                          fulfillmentSpeech = response.result.fulfillment.speech;
+                          simplified = response.result.metadata.intentName;
                         }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
@@ -234,19 +239,23 @@ module.exports = new Script({
                           break;
                         default:
                           console.log("===in switch default");
-                          if (upperText = "EVENING") {break;}
+                          if (upperText == "EVENING") {break;}
                           msgLog.responsemessage = fulfillmentSpeech;
                           msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI';
+                          msgLog.responsetype = 'API.AI Domain';
                           return bot.say(fulfillmentSpeech).then(() => 'speak');
                       }
                     }
+                  }
                     else if (simplified)
                     {
                         console.log("simplified is: ", simplified);
-                        upperText = simplified.toUpperCase();
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI Intent';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
-                }
+                //}
 
                 console.log("===finished switch, upperText now:",upperText);
 
