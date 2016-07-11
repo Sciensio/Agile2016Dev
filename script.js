@@ -27,7 +27,7 @@ var msgLog = {
     newUsercheck: 'false'
   };
 
-  var know = {
+  var know = [
       "do you know",
       "can you help",
       "do you have",
@@ -36,7 +36,7 @@ var msgLog = {
       "how to open you",
       "what can you talk about",
       "what do you know"
-  };
+  ];
 
 
 function wait(ms) {
