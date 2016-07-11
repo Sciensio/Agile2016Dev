@@ -118,7 +118,8 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log('- Special Case: /SUPPORT'); //turns off bot
-                        return bot.setProp("silent", true);
+                        bot.setProp("silent", true);
+                        break;
                     case "DISCONNECT":
                         console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
