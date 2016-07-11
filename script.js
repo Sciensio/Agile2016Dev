@@ -171,7 +171,7 @@ module.exports = new Script({
                         } else if (source && source == 'agent') {
                           console.log("=== source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
-                          simplified = response.result.metadata.intentName;
+                          simplified = response.result.metadata.parameters.event;
                         }
                         console.log("source: ", source);
                         console.log("fulfillmentSpeech: ", fulfillmentSpeech);
@@ -247,7 +247,7 @@ module.exports = new Script({
                       }
                     }
                   }
-                    else if (simplified)
+                    else if (simplified == 'agile2017')
                     {
                         console.log("simplified is: ", simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
