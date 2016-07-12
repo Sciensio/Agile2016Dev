@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var newBot = require('../newBot');
-var push.logConversation = require("../push");
+var push = require("../push");
 
 
 var msgLog = {
