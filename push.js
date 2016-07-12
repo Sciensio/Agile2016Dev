@@ -12,12 +12,12 @@ function pushConv(newBot, message, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done){
     console.log("===bot");
     client
-      .query('SELECT SmoochId FROM attendees WHERE unsubscribed = FALSE;')
+      .query('SELECT DISTINCT smoochid FROM conversation;')
         .on('row', function(row){
           console.log("===SmoochId ",row.smoochid);
           newBot.userId = row.smoochid;
           return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
-        })
+        });
       done();
   });
 }

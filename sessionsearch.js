@@ -25,7 +25,7 @@ function findSession(session, response) {
               (console.log('=== search result:  ', result));
               deferred.resolve(result);
             }
-        })
+        });
       });
 }
 

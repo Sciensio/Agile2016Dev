@@ -22,7 +22,7 @@ function logConversation(msgLog) {
               (console.log('=== conversation logged '));
               deferred.resolve(result);
           }
-    })
+    }); //codacy semi-colon issue not sure whre it is supposed to go
     done();
   });
   return deferred.promise;

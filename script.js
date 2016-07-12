@@ -5,14 +5,10 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var newUser = require("./db");
 var logConversation = require("./conversation");
 var nlp = require("./nlp");
-var pushConv = require("./push");
 var newBot_msg = require("./newBot");
 //var findSession = require("./sessionsearch");
-
-//var sched = require("./sched");
 
 const scriptRules = require('./script.json');
 
@@ -26,9 +22,44 @@ var msgLog = {
     receivedtime: '',
     responsemessage: '',
     responsetype: '',
-    responsetime: '',
-    newUsercheck: 'false'
+    responsetime: ''
   };
+
+  var know = [
+      "do you know",
+      "can you help",
+      "do you have",
+      "how does this app work",
+      "how much time do you need",
+      "how to open you",
+      "what can you talk about",
+      "what do you know"
+    ];
+
+  var job = [
+    "what do you do",
+    "how do you know",
+    "job"
+  ];
+
+  var me = [
+    "do you know me",
+    "do you remember me"
+  ];
+
+  var name = [
+    "who named you"
+  ];
+
+  var noanswer = [
+    "can you hear me",
+    "can you speak",
+    "change your",
+    "hurry",
+    "talk faster",
+    "do you drink",
+    "do you eat"
+  ];
 
 function wait(ms) {
     return new Promise((resolve) => {
@@ -49,29 +80,10 @@ module.exports = new Script({
         }
     },
 
-//    s1: {
-//      prompt: (bot) => bot.say('Type part of the session name?'),
-//      receive: (bot, message) => {
-//        const name = message.text;
-//        return bot.setProp('name', name)
-//            .then(() => bot.say(`Great! I'll call you ${name}
-//Is that OK? %[Yes](postback:yes) %[No](postback:no)`))
-//            .then(() => 'speak');
-//      }
-//    },
-
-//    chris: {
-//      receive: (bot, message) => {
-//        return bot.getProp('name')
-//          .then((name) => bot.say('That is all!'))
-//          .then(() => 'speak');
-//      }
-//    },
-
     speak: {
         receive: (bot, message) => {
 
-            console.log("===bot message ", message);
+            console.log("- bot message ", message);
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -90,37 +102,34 @@ module.exports = new Script({
             msgLog.role = message.role;
             msgLog.message_id = message._id;
             msgLog.receivedtime = new Date();
-//this mess is my way around the fact that smooch completely  changes the structure of the message obj if it is a postback vs user entered text
-//            console.log("===message.message",message.message);
-            switch (typeof message.message === "undefined") {
-              case false:
-//                  console.log("!!!! appMaker = T, message.role", message.message);
+            //this mess is my way around the fact that smooch completely
+            //changes the structure of the message obj if it is a postback vs user entered text
+            //console.log("===message.message",message.message);
+            //switch to the inverse should be faster because it does not have to traverse the whole prototype chain
+            switch (typeof message.message !== "undefined") {
+              case true:
+                  //This is appMaker - which means it is a postback
                   msgLog.sourcetype = message.action.type;
                 break;
               default:
-//                  console.log("!!!! appUser = T, message.role", message.source);
+                // This is appUser - which means it is a message typed in by the user
                   msgLog.sourcetype = message.source.type;
                 break;
             }
 
-            //SK_ACCESS is a heroku config var that has the list of devices smoochids for auth users to send ad hoc push conversations
-            var authUsers = process.env.SK_ACCESS
-
-            //Not sure if this is the best way to accomplish not calling newUser everytime, but it seems to work
-            if(msgLog.newUsercheck == 'false') {
-              console.log("===NewUser");
-              newUser(bot)
-                .then(msgLog.newUsercheck = 'true');
-            }
-
+            //SK_ACCESS is a heroku config var that has the list of user/devices
+            //smoochids for auth users to send ad hoc push conversations
+            var authUsers = process.env.SK_ACCESS;
             //For ad hoc messages - scheduled messages are done differently in checkItems
-            console.log("????? why this", authUsers.indexOf(bot.userId));
-            if (authUsers.indexOf(bot.userId) !== -1) {
-              console.log("=== ad hoc msg", upperText.substr(0,4));
-              if (upperText.substr(0,4) == '/SK ') {
+            //-1 indicates that a user is not authorized to send broadcast messages
+//TODO prepend 'ALERT:  ' then message
+            if (upperText.substr(0,4) == '/SK ') {
+              if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
                 newBot_msg(message.text.substr(4));
-                console.log("****after push msg:  ",message.text," authUser:  ",authUsers);
+                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+              } else {
+                upperText = "NO_SK";
               }
             }
 
@@ -129,16 +138,17 @@ module.exports = new Script({
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
+                        console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
-                        console.log("*** /support", upperText);
-//                        processMessage(false);
+                        console.log('- Special Case: /SUPPORT'); //turns off bot
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
+                        console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
                     case "/A16":
-                        console.log("*** /A16 ",upperText," ***");
-                        processMessage(false);
+                        console.log('- Special Case: /A16'); //turns bot back on
+                        //processMessage(false); TODO remove if bot works on /a16 test
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
@@ -150,10 +160,10 @@ module.exports = new Script({
             }
 
             function processMessage(isSilent) {
+                console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
-
                 var promises = [];
                 var source;
                 var fulfillmentSpeech;
@@ -163,22 +173,24 @@ module.exports = new Script({
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
                     responses.forEach(function(response) {
-                        console.log("===in Q.all");
-                        console.log("===received result from API.ai",response);
+                        console.log("- In Q.all");
+                        console.log("- Received result from API.ai",response);
                         source = response.result.source;
                         if (source && source !== 'agent')
                         {
-                            console.log("====Q all not agent");
+                            console.log("- Q all not agent");
                             fulfillmentSpeech = response.result.fulfillment.speech;
                             simplified = response.result.parameters.simplified;
                         } else if (response.result.fulfillment.speech && source == 'agent') {
-                          console.log("=== source is agent ", response.result);
+                          console.log("- Source is agent ", response.result);
                           fulfillmentSpeech = response.result.fulfillment.speech;
+                          //Is is done to capture if it is using an agent that we set up on API.ai
+                          //API.ai sends agent back if !== domains; wish they had a 3rd state
                           simplified = response.result.parameters.event;
                         }
-                        console.log("source: ", source);
-                        console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                        console.log("simplified: ", simplified);
+                        console.log("- Process meesage set source to: ", source);
+                        console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
+                        console.log("- Process meesage set simplified to: ", simplified);
 
                         respondMessage(source, fulfillmentSpeech, simplified);
                     });
@@ -189,86 +201,61 @@ module.exports = new Script({
 
             function respondMessage(source, fulfillmentSpeech, simplified)
             {
-                console.log("source: ", source);
-                console.log("fulfillmentSpeech: ", fulfillmentSpeech);
-                console.log("simplified: ", simplified);
-                console.log("===receive step 3",upperText);
+                    //these are answers that we intercept because we do not like the domain answers
+                    //and it does not appear that we can customize these items
 
-              //if (source != 'agent')
-              console.log("?????? what is the source:  ", source);
-
-              switch (source) {
-                case 'domains':
-                    console.log("===why am I here? ", source);
-                    if (fulfillmentSpeech)
-                    {
-                      switch (simplified) {
-                        case "hello":
-                          console.log("===in hello");
-                          upperText = simplified.trim().toUpperCase();
-                          break;
-                        case "do you know":
-                        case "can you help":
-                        case "do you have":
-                        case "how does this app work":
-                        case "how much time do you need":
-                        case "how to open you":
-                        case "what can you talk about":
-                        case "what do you know":
-                          console.log("===in what do you know");
-                          upperText = 'KNOW';
-                          break;
-                        case "what do you do":
-                        case "how do you know":
-                        case "job":
-                          console.log("===in what do do");
-                          upperText = "JOB";
-                          break;
-                        case "do you know me":
-                        case "do you remember me":
-                          console.log("===do you know me");
-                          upperText = "ME";
-                          break;
-                        case "who named you":
-                        console.log("===NAME");
-                          upperText = "NAME";
-                          break;
-                        case "can you hear me":
-                        case "can you speak":
-                        case "change your":
-                        case "hurry":
-                        case "talk faster":
-                        case "do you drink":
-                        case "do you eat":
-                          console.log("===set to NULL and question");
-                          upperText = "";
-                          break;
-                        default:
-                          console.log("===in switch default");
-                          if (upperText == "EVENING") {break;}
-                          msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI Domain';
-                          return bot.say(fulfillmentSpeech).then(() => 'speak');
-                      }
-                    }
-                    break;
-                  case 'agent':
-                    if (simplified == 'agile2017')
-                      {
-                          console.log("simplified is: ", simplified);
-                          msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date;
-                          msgLog.responsetype = 'API.AI Intent';
-                          return bot.say(fulfillmentSpeech).then(() => 'speak');
-                      }
-                    break;
-                  default:
-                    console.log("===finished switch, upperText now:",upperText);
+                if (fulfillmentSpeech && source === 'domains')
+                {
+                  switch (true) {
+                    case (know.indexOf(simplified) >- 1):
+                      console.log("-In domains, what do you know");
+                      upperText = 'KNOW';
+                      break;
+                    case (job.indexOf(simplified)>-1):
+                      console.log("- In domains, what do you do");
+                      upperText = "JOB";
+                      break;
+                    case (me.indexOf(simplified)>-1):
+                      console.log("- In domains, do you know me");
+                      upperText = "ME";
+                      break;
+                    case (name.indexOf(simplified)>-1):
+                    console.log("- in domains, who named you");
+                      upperText = "NAME";
+                      break;
+                    case (noanswer.indexOf(simplified)>-1):
+                      console.log("- In domains, do you eat");
+                      //in these cases we want to return 'not something I know about'
+                      upperText = "";
+                      break;
+                    default:
+                      console.log("- In domains, switch default");
+                      //evening is one of our keywords and also an answer in the small.talk domain
+                      //as a synonym for 'good evening' which we want to keep
+                      if (upperText == "EVENING") {break;}
+                      //else let the domain answer be sent
+                      msgLog.responsemessage = fulfillmentSpeech;
+                      msgLog.responsetime = new Date();
+                      msgLog.responsetype = 'API.AI Domain';
+                      return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
+                }
+
+                if (simplified == 'agile2017')
+                    {
+                        console.log("- In agent, agile2017");
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI Intent';
+                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = 'AGILE2017';
+                    }
 
                 if (!_.has(scriptRules, upperText)) {
-                    console.log("===no rule", upperText);
+                    console.log("- No match in Script.json ", upperText);
+                    msgLog.responsemessage = upperText;
+                    msgLog.responsetime = new Date();
+                    msgLog.responsetype = 'No Match';
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
@@ -285,7 +272,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         console.log("=== p line",line);
-                        return wait(500).then(function() {
+                        return wait(100).then(function() {
                             return bot.say(line);
                         });
                     });
@@ -294,7 +281,10 @@ module.exports = new Script({
             }
 
             return updateSilent()
+                //TODO may have to put a case statement in for /a16 processing
+                .then(console.log('--updateSilent step 1'))
                 .then(getSilent)
+                .then(console.log('--updateSilent step 2'))
                 .then(processMessage);
         }
     }

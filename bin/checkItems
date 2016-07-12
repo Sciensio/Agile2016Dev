@@ -33,7 +33,7 @@ var newBot = new SmoochApiBot({
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client, done){
   client
-    .query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes';")
+    .query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime;")
       .on('row', function(row){
           var msg = row.message;
           pushConv(newBot, msg);
