@@ -282,16 +282,15 @@ module.exports = new Script({
             }
 
             return updateSilent()
-              return wait(100).then(function() {
-                console.log('--updateSilent step 1',getSilent()))
-                //.then(getSilent)
+                .then(wait(100))
+                .then(console.log('--updateSilent step 1',getSilent()))
+                .then(getSilent)
                 //.then(function (upperText){
-                  if (upperText !== '/SUPPORT') {(getSilent)};
-                  console.log('************** /SUPPORT = true');
+                //  if (upperText !== '/SUPPORT') {(getSilent)};
+                //  console.log('************** /SUPPORT = true');
                 //})
-                (console.log('--updateSilent step 2'))
-              };
-              .then(processMessage);
+                .then(console.log('--updateSilent step 2'))
+                .then(processMessage);
         }
     }
 });
