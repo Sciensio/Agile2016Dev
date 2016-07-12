@@ -4,6 +4,12 @@ const _ = require('lodash');
 var pg = require('pg');
 var extend = require('util')._extend;
 
+//needed for conversation
+var Q = require("q");
+const Script = require('smooch-bot').Script;
+var request = require("request");
+
+
 //postgress connection
 var pg = require('pg');
 var Pool = require('pg').Pool;
@@ -47,4 +53,25 @@ function adhocConv(newBot, message, response) {
   });
 }
 
-module.exports = {adhocConv, schedConv}
+function logConversation(msgLog) {
+  var deferred = Q.defer();
+  console.log("|| in db, msgLog",msgLog);
+  pool.connect(function(err, client, release) {
+    client.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
+      [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime]);
+//      function(err,result) {
+    release();
+//          if (err) {
+//                  console.error(err);
+//                  deferred.reject(err);
+//              }
+//          else {
+//              (console.log('=== conversation logged '));
+//              deferred.resolve(result);
+//          }
+//    });
+  });
+//  return deferred.promise;
+}
+
+module.exports = {adhocConv, schedConv, logConversation}

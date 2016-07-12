@@ -5,9 +5,10 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var logConversation = require("./conversation");
+//var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
+var logConversation = require("./push");
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
