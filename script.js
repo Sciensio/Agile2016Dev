@@ -282,6 +282,7 @@ module.exports = new Script({
             }
 
             return updateSilent()
+                .then(wait(500))
                 .then(getSilent)
                 .then(processMessage);
         }
