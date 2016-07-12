@@ -28,8 +28,8 @@ function schedConv(newBot, response) {
         query2.on('row',function(row2) {
             release();
             newBot.userId = row2.smoochid;
-            console.log('[] message: ',row1.message);
-            return newBot.say(row1.message).then(console.log("[] Attendee ",row2.smoochid," received message"),() => 'speak');
+            console.log('|| message: ',row1.message);
+            return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
         })
     });
   });
@@ -37,19 +37,15 @@ function schedConv(newBot, response) {
 
 function adhocConv(newBot, message, response) {
 
-  console.log("|| creating pushconv connection ");
-  pg.defaults.ssl = true;
-  pg.connect(process.env.DATABASE_URL, function(err, client, done){
-    console.log("===bot");
-    client
-      .query('SELECT DISTINCT smoochid FROM conversation;')
-        .on('row', function(row){
-          console.log("===SmoochId ",row.smoochid);
-          newBot.userId = row.smoochid;
-          return newBot.say(message).then(console.log("===newBot.userId ",newBot.userId),() => 'speak');
-        });
-      done();
+  pool.connect(function(err, client, release) {
+  var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
+    query.on('row', function(row){
+      release();
+      newBot.userId = row.smoochid;
+      console.log("|| Sending ad hoc message toSmoochId ",row.smoochid);
+      return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+    });
   });
 }
 
-module.exports = pushConv;
+module.exports = adhocConv(), schedConv();

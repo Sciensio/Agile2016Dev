@@ -28,8 +28,8 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-function newBot_msg(message) {
-  pushConv(newBot, message);
+function newBot_msg() {
+  schedConv(newBot);
 }
 
 module.exports = newBot_msg;
