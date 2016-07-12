@@ -42,16 +42,15 @@ pool.on('error', function(e, client) {
 pool.connect(function(err, client, release) {
 
 
-  var query1 = client.query('SELECT message FROM batchmessage');
+  var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime > '07/12/2016'");
     query1.on('row', function(row1) {
-      //release();
       console.log('[] message: ',row1.message);
       var query2 = client.query('SELECT DISTINCT smoochid FROM conversation;');
         query2.on('row',function(row2) {
           release();
-          //console.log("[] SmoochId ",row.smoochid);
-          newBot.userId = row2.smoochid;
-          return newBot.say(row1.message).then(console.log("[] Attendee ",newBot.userId," received message"),() => 'speak');
+          .then(row2 =>
+            newBot.userId = row2.smoochid
+            return newBot.say(row1.message).then(console.log("[] Attendee ",newBot.userId," received message"),() => 'speak'));
         })
     });
 });
