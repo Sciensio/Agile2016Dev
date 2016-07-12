@@ -8,7 +8,7 @@ var request = require("request");
 //var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
-var logConversation = require("./push");
+var push = require("./push");
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
@@ -238,7 +238,7 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
-                      logConversation(msgLog);
+                      push.logConversation(msgLog);
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
                 }
@@ -258,7 +258,7 @@ module.exports = new Script({
                     msgLog.responsemessage = upperText;
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
-                    logConversation(msgLog);
+                    push.logConversation(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
@@ -268,7 +268,7 @@ module.exports = new Script({
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
                 console.log("=== msgLog  obj",msgLog);
-                logConversation(msgLog);
+                push.logConversation(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
