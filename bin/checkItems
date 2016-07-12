@@ -44,6 +44,7 @@ pool.connect(function(err, client, release) {
 
   var query = client.query('SELECT message FROM batchmessage');
     query.on('row', function(row) {
+      release();
       console.log('[] message: ',row.message);
     });
 });
