@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var newBot = require('../newBot');
-var logConversation = require("../push");
+var push.logConversation = require("../push");
 
 
 var msgLog = {
@@ -21,4 +21,4 @@ var msgLog = {
 //only for testing of ad hoc
 //return newBot('adhoc','well?');
 
-  logConversation(msgLog);
+  push.logConversation(msgLog);
