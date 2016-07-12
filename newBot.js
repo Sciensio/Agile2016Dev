@@ -29,7 +29,7 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-function newBot_msg(type) {
+function newBot_msg(type, message) {
   if (type === 'sched') {
     conv.schedConv(newBot);
   } else if (type === 'adhoc') {

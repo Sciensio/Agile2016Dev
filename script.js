@@ -7,7 +7,7 @@ var Q = require("q");
 var request = require("request");
 var logConversation = require("./conversation");
 var nlp = require("./nlp");
-var newBot_msg = require("./newBot");
+var newBot = require("./newBot");
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
@@ -126,7 +126,7 @@ module.exports = new Script({
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
-                newBot_msg(message.text.substr(4));
+                newBot('adhoc',message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
