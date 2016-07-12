@@ -40,7 +40,7 @@ pool.on('error', function(e, client) {
 })
 
 pool.connect(function(err, client, release) {
-
+console.log('release 23');
 
   var query1 = client.query("SELECT DISTINCT smoochid FROM conversation WHERE smoochid like 'a30%';");
     query1.on('row', function(row1) {
