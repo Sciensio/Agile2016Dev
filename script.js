@@ -282,14 +282,7 @@ module.exports = new Script({
             }
 
             return updateSilent()
-                .then(wait(100))
-                .then(console.log('--updateSilent step 1')
                 .then(getSilent)
-                //.then(function (upperText){
-                //  if (upperText !== '/SUPPORT') {(getSilent)};
-                //  console.log('************** /SUPPORT = true');
-                //})
-                .then(console.log('--updateSilent step 2'))
                 .then(processMessage);
         }
     }
