@@ -44,7 +44,7 @@ pool.on('error', function(e, client) {
 
 pool.query("SELECT message FROM batchmessage ORDER BY sendtime;")
   .then(res => .on('row', function(row){
-    console.log(res.rows[0].message)
+    console.log(res.row.message)
   })
   );
       //pushConv(newBot, msg);
