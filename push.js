@@ -42,7 +42,7 @@ function adhocConv(newBot, message, response) {
       release();
       newBot.userId = row.smoochid;
       console.log("|| Sending ad hoc message toSmoochId ",row.smoochid);
-      return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+      //return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
     });
   });
 }
