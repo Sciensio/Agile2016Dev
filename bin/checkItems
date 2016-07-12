@@ -40,14 +40,13 @@ pool.on('error', function(e, client) {
 })
 
 //used to actually send messages
-var pushConv = require('../push');
+//var pushConv = require('../push');
 
 pool.query("SELECT message FROM batchmessage ORDER BY sendtime;")
-  .then(res => console.log(res.rows[0].message));
-
-//  .on('row', function(row){
-//      var msg = row.message
-//      console.log("> message is - ",msg)
+  .then(res => .on('row', function(row){
+    console.log(res.rows[0].message)
+  })
+  );
       //pushConv(newBot, msg);
 //    });
 
