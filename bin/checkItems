@@ -42,7 +42,7 @@ pool.on('error', function(e, client) {
 //used to actually send messages
 var pushConv = require('../push');
 
-pool.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime;")
+pool.query("SELECT message FROM batchmessage ORDER BY sendtime;")
   .then(res => console.log(res.rows[0].message));
 
 //  .on('row', function(row){
