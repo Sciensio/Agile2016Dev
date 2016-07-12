@@ -42,7 +42,7 @@ pool.on('error', function(e, client) {
 //used to actually send messages
 //var pushConv = require('../push');
 
-var query = pool.query("SELECT message FROM batchmessage ORDER BY sendtime;")
+var query = pool.query("SELECT message FROM batchmessage ORDER BY sendtime;");
   query.on('row', function(row){
     console.log(row.message);
   });
