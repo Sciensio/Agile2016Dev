@@ -36,7 +36,6 @@ function schedConv(newBot, response) {
 }
 
 function adhocConv(newBot, message, response) {
-
   pool.connect(function(err, client, release) {
   var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
     query.on('row', function(row){
