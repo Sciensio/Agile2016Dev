@@ -237,6 +237,7 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
+                      logConversation(msgLog);
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
                 }
@@ -256,6 +257,7 @@ module.exports = new Script({
                     msgLog.responsemessage = upperText;
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
+                    logConversation(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
