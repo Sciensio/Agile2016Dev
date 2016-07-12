@@ -2,5 +2,6 @@
 
 var newBot = require('../newBot');
 
-//return newBot('sched','');
-return newBot('adhoc','well?');
+return newBot('sched','');
+//only for testing of ad hoc
+//return newBot('adhoc','well?');
