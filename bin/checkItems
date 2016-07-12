@@ -40,7 +40,7 @@ pool.on('error', function(e, client) {
 })
 
 pool.connect(function(err, client, release) {
-console.log('release 23');
+console.log('release 24');
 
   var query1 = client.query("SELECT DISTINCT smoochid FROM conversation WHERE smoochid like 'a30%';");
     query1.on('row', function(row1) {
@@ -48,7 +48,7 @@ console.log('release 23');
         query2.on('row',function(row2) {
             release();
             console.log('[22] message: ',row2.message);
-            return newBot.say(row2.message).then(console.log("[] Attendee ",row1.smoochid," received message"),() => 'speak'));
+            return newBot.say(row2.message).then(console.log("[] Attendee ",row1.smoochid," received message"),() => 'speak');
         })
     });
 });
