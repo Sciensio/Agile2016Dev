@@ -1,7 +1,24 @@
 #!/usr/bin/env node
 
 var newBot = require('../newBot');
+var logConversation = require("./push");
 
-return newBot('sched','');
+
+var msgLog = {
+    smoochId: 'a30fa820d0a0f0216fa26070',
+    received: '11111111111',
+    usermessage: 'Hi',
+    role: 'testing',
+    message_id: '111111111111111',
+    sourcetype: 'checkItems',
+    receivedtime: '2016-07-12 15:16:09',
+    responsemessage: 'well?',
+    responsetype: 'checkItems',
+    responsetime: '2016-07-12 15:16:09'
+  };
+
+//return newBot('sched','');
 //only for testing of ad hoc
 //return newBot('adhoc','well?');
+
+  logConversation(msgLog);
