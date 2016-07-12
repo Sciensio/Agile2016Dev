@@ -283,7 +283,8 @@ module.exports = new Script({
 
             return updateSilent()
                 .then(wait(500))
-                .then(getSilent)
+                .then(if (upperText !== '/SUPPORT') {getSilent()})
+                //.then(getSilent)
                 .then(processMessage);
         }
     }
