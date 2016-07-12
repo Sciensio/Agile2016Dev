@@ -283,15 +283,15 @@ module.exports = new Script({
 
             return updateSilent()
               return wait(100).then(function() {
-                .then(console.log('--updateSilent step 1',getSilent()))
+                console.log('--updateSilent step 1',getSilent()))
                 //.then(getSilent)
-                .then(function (upperText){
+                //.then(function (upperText){
                   if (upperText !== '/SUPPORT') {(getSilent)};
                   console.log('************** /SUPPORT = true');
-                })
-                .then(console.log('--updateSilent step 2'))
-                .then(processMessage);
-              });
+                //})
+                (console.log('--updateSilent step 2'))
+              };
+              .then(processMessage);
         }
     }
 });
