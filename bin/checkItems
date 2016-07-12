@@ -2,4 +2,5 @@
 
 var newBot = require('../newBot');
 
-return newBot('sched','');
+//return newBot('sched','');
+return newBot('adhoc','well?');
