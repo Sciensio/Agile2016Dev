@@ -43,15 +43,15 @@ pool.connect(function(err, client, release) {
 
 
   var query1 = client.query('SELECT message FROM batchmessage');
-    query1.on('row', function(row) {
+    query1.on('row', function(row1) {
       //release();
-      console.log('[] message: ',row.message);
+      console.log('[] message: ',row1.message);
       var query2 = client.query('SELECT DISTINCT smoochid FROM conversation;');
-        query2.on('row',function(row) {
+        query2.on('row',function(row2) {
           release();
           //console.log("[] SmoochId ",row.smoochid);
-          newBot.userId = row.smoochid;
-          return newBot.say(message).then(console.log("[] Attendee ",newBot.userId," received message"),() => 'speak');
+          newBot.userId = row2.smoochid;
+          return newBot.say(row1.message).then(console.log("[] Attendee ",newBot.userId," received message"),() => 'speak');
         })
     });
 });
