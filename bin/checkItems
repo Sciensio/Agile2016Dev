@@ -39,15 +39,34 @@ pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 })
 
-//used to actually send messages
-//var pushConv = require('../push');
+pool.connect(function(err, client, release) {
+  // TODO - you'll want to handle the error in real code
 
-var query = pool.query("SELECT message FROM batchmessage ORDER BY sendtime;");
-  query.on('row', function(row){
-    console.log(row.message);
-  });
-      //pushConv(newBot, msg);
-//    });
+  var query = client.query('SELECT message FROM batchmessage');
+    query.on('row', function(row) {
+      console.log('[] message: ',row.message);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //pg.defaults.ssl = true;
 //pg.connect(process.env.DATABASE_URL, function(err, client, done){
