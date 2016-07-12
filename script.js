@@ -282,7 +282,7 @@ module.exports = new Script({
             }
 
             return updateSilent()
-              .then wait(100).then(function() {
+              return wait(100).then(function() {
                 .then(console.log('--updateSilent step 1',getSilent()))
                 //.then(getSilent)
                 .then(function (upperText){
