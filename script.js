@@ -283,7 +283,10 @@ module.exports = new Script({
 
             return updateSilent()
               .then(console.log('--updateSilent step 1'))
-              .then(if (upperText !== '/SUPPORT') {getSilent})
+              //.then(getSilent)
+              .then(function (upperText){
+                if (upperText !== '/SUPPORT') {(getSilent)});
+              })
               .then(console.log('--updateSilent step 2'))
               .then(processMessage);
         }
