@@ -40,7 +40,7 @@ pool.on('error', function(e, client) {
 })
 
 pool.connect(function(err, client, release) {
-console.log('release 28');
+console.log('release 31');
 
   var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime > '07/12/2016' ORDER BY sendtime;");
     query1.on('row', function(row1) {
