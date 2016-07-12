@@ -224,12 +224,12 @@ module.exports = new Script({
                       upperText = "NAME";
                       break;
                     case (noanswer.indexOf(simplified)>-1):
-                      console.log("- In domains do you eat");
+                      console.log("- In domains, do you eat");
                       //in these cases we want to return 'not something I know about'
                       upperText = "";
                       break;
                     default:
-                      console.log("- In domains switch default");
+                      console.log("- In domains, switch default");
                       //evening is one of our keywords and also an answer in the small.talk domain
                       //as a synonym for 'good evening' which we want to keep
                       if (upperText == "EVENING") {break;}
@@ -243,11 +243,12 @@ module.exports = new Script({
 
                 if (simplified == 'agile2017')
                     {
-                        console.log("simplified is: ", simplified);
+                        console.log("- In agent, agile2017");
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = 'AGILE2017';
                     }
 
                 if (!_.has(scriptRules, upperText)) {
