@@ -40,16 +40,16 @@ pool.on('error', function(e, client) {
 })
 
 pool.connect(function(err, client, release) {
-console.log('release 34');
+console.log('release 35');
 
-var query1 = client.query("SELECT DISTINCT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070';");
+var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime > '07/12/2016' ORDER BY sendtime");
   query1.on('row', function(row1) {
-    var query2 = client.query("SELECT message FROM batchmessage WHERE sendtime > '07/12/2016' ORDER BY sendtime");
+    var query2 = client.query("SELECT DISTINCT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070';");
       query2.on('row',function(row2) {
           release();
-          newBot.userId = row1.smoochid;
-          console.log('[] message: ',row2.message);
-          return newBot.say(row2.message).then(console.log("[] Attendee ",row1.smoochid," received message"),() => 'speak');
+          newBot.userId = row2.smoochid;
+          console.log('[] message: ',row1.message);
+          return newBot.say(row1.message).then(console.log("[] Attendee ",row2.smoochid," received message"),() => 'speak');
       })
   });
 });
