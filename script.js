@@ -122,6 +122,7 @@ module.exports = new Script({
             var authUsers = process.env.SK_ACCESS;
             //For ad hoc messages - scheduled messages are done differently in checkItems
             //-1 indicates that a user is not authorized to send broadcast messages
+//TODO prepend 'ALERT:  ' then message
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
@@ -163,7 +164,6 @@ module.exports = new Script({
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
-
                 var promises = [];
                 var source;
                 var fulfillmentSpeech;
@@ -204,41 +204,50 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
 
-                    if (fulfillmentSpeech && source === 'domains')
+                if (fulfillmentSpeech && source === 'domains')
+                {
+                  switch (true) {
+                    case (know.indexOf(simplified) >- 1):
+                      console.log("-In domains, what do you know");
+                      upperText = 'KNOW';
+                      break;
+                    case (job.indexOf(simplified)>-1):
+                      console.log("- In domains, what do you do");
+                      upperText = "JOB";
+                      break;
+                    case (me.indexOf(simplified)>-1):
+                      console.log("- In domains, do you know me");
+                      upperText = "ME";
+                      break;
+                    case (name.indexOf(simplified)>-1):
+                    console.log("- in domains, who named you");
+                      upperText = "NAME";
+                      break;
+                    case (noanswer.indexOf(simplified)>-1):
+                      console.log("- In domains do you eat");
+                      //in these cases we want to return 'not something I know about'
+                      upperText = "";
+                      break;
+                    default:
+                      console.log("- In domains switch default");
+                      //evening is one of our keywords and also an answer in the small.talk domain
+                      //as a synonym for 'good evening' which we want to keep
+                      if (upperText == "EVENING") {break;}
+                      //else let the domain answer be sent
+                      msgLog.responsemessage = fulfillmentSpeech;
+                      msgLog.responsetime = new Date();
+                      msgLog.responsetype = 'API.AI Domain';
+                      return bot.say(fulfillmentSpeech).then(() => 'speak');
+                  }
+                }
+
+                if (simplified == 'agile2017')
                     {
-                      switch (true) {
-                        case (know.indexOf(simplified) >- 1):
-                          console.log("-In domains, what do you know");
-                          upperText = 'KNOW';
-                          break;
-                        case (job.indexOf(simplified)>-1):
-                          console.log("- In domains, what do you do");
-                          upperText = "JOB";
-                          break;
-                        case (me.indexOf(simplified)>-1):
-                          console.log("- In domains, do you know me");
-                          upperText = "ME";
-                          break;
-                        case (name.indexOf(simplified)>-1):
-                        console.log("- in domains, who named you");
-                          upperText = "NAME";
-                          break;
-                        case (noanswer.indexOf(simplified)>-1):
-                          console.log("- In domains do you eat");
-                          //in these cases we want to return 'not something I know about'
-                          upperText = "";
-                          break;
-                        default:
-                          console.log("- In domains switch default");
-                          //evening is one of our keywords and also an answer in the small.talk domain
-                          //as a synonym for 'good evening' which we want to keep
-                          if (upperText == "EVENING") {break;}
-                          //else let the domain answer be sent
-                          msgLog.responsemessage = fulfillmentSpeech;
-                          msgLog.responsetime = new Date();
-                          msgLog.responsetype = 'API.AI Domain';
-                          return bot.say(fulfillmentSpeech).then(() => 'speak');
-                      }
+                        console.log("simplified is: ", simplified);
+                        msgLog.responsemessage = fulfillmentSpeech;
+                        msgLog.responsetime = new Date;
+                        msgLog.responsetype = 'API.AI Intent';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
 
                 if (!_.has(scriptRules, upperText)) {
