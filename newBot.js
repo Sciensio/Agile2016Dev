@@ -33,7 +33,7 @@ function newBot_msg(type, message) {
   if (type === 'sched') {
     conv.schedConv(newBot);
   } else if (type === 'adhoc') {
-    conv.adhocConv(newBot);
+    conv.adhocConv(newBot, message);
   }
 }
 
