@@ -5,7 +5,6 @@ const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-//var logConversation = require("./conversation");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
@@ -200,8 +199,7 @@ module.exports = new Script({
                 });
             }
 
-            function respondMessage(source, fulfillmentSpeech, simplified)
-            {
+            function respondMessage(source, fulfillmentSpeech, simplified){
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
 
@@ -283,13 +281,13 @@ module.exports = new Script({
                 return p.then(() => 'speak');
             }
 
-
             return updateSilent()
-                //TODO may have to put a case statement in for /a16 processing
-                .then(console.log('--updateSilent step 1'))
+              .then(console.log('--updateSilent step 1'))
+              if (upperText !== '/SUPPORT') {
                 .then(getSilent)
-                .then(console.log('--updateSilent step 2'))
-                .then(processMessage);
+              }
+              .then(console.log('--updateSilent step 2'))
+              .then(processMessage);
         }
     }
 });
