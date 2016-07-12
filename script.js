@@ -280,6 +280,7 @@ module.exports = new Script({
                 return p.then(() => 'speak');
             }
 
+
             return updateSilent()
                 //TODO may have to put a case statement in for /a16 processing
                 .then(console.log('--updateSilent step 1'))
