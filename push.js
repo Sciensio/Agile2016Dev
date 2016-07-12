@@ -48,4 +48,4 @@ function adhocConv(newBot, message, response) {
   });
 }
 
-module.exports = adhocConv(), schedConv();
+module.exports = {adhocConv, schedConv}
