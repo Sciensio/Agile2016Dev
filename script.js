@@ -142,14 +142,14 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log('- Special Case: /SUPPORT'); //turns off bot
-                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. \nWhen you are ready to chat with me again type: /A16.").then(() => 'speak')
+                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. When you are ready to chat with me again type: /A16. %[Back to A16](postback:/A16)").then(() => 'speak');
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log('- Special Case: /A16'); //turns bot back on
-                        //processMessage(false); TODO remove if bot works on /a16 test
+                        bot.say("A16 is back! I hope my human colleagues were able to help.").then(() => 'speak');
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
