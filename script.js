@@ -84,8 +84,8 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("- bot message ", message);
+            //If sent a thumbs up answer in kind
             var isTextMessage = message.mediatype ? true : false;
-            console.log("- isTextMessage", isTextMessage);
 
             var questmark = (message.text === '?') ? true : false;
             console.log("is ?", questmark);
@@ -261,7 +261,11 @@ module.exports = new Script({
                     msgLog.responsetype = 'No Match';
                     push.logConversation(msgLog);
 //TODO test for images and gif and treat those separately
-                    return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                    if (isTextMessage === false) {
+                      return bot.say(`I'm sorry I don't know how to respond to media yet.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                    } else {
+                      return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                    }
                 }
 
                 var response = scriptRules[upperText];
