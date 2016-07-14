@@ -262,9 +262,9 @@ module.exports = new Script({
                     push.logConversation(msgLog);
 //TODO test for images and gif and treat those separately
                     if (isTextMessage === false) {
-                      return bot.say(`I'm sorry I don't know how to respond to media yet.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                     } else {
-                      return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                     }
                 }
 
