@@ -126,7 +126,7 @@ module.exports = new Script({
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
-                newBot('adhoc',message.text.substr(4));
+                newBot('adhoc',"ALERT: " + message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
@@ -258,7 +258,7 @@ module.exports = new Script({
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
                     push.logConversation(msgLog);
-//TODO test for images and gif and treat those separately                    
+//TODO test for images and gif and treat those separately
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
