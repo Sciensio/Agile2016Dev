@@ -86,7 +86,7 @@ module.exports = new Script({
             console.log("- bot message ", message);
             //If sent a thumbs up answer in kind
             var isTextMessage = message.mediatype ? true : false;
-
+            console.log("is text message? ", isTextMessage);
             var questmark = (message.text === '?') ? true : false;
             console.log("is ?", questmark);
 
