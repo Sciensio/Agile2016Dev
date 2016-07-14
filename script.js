@@ -84,7 +84,7 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("- bot message ", message);
-            var isTextMessage = message.message.text ? true : false;
+            var isTextMessage = message.mediatype ? true : false;
             console.log("- isTextMessage", isTextMessage);
 
             let upperText = message.text.trim().toUpperCase();
