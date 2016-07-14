@@ -87,6 +87,9 @@ module.exports = new Script({
             var isTextMessage = message.mediatype ? true : false;
             console.log("- isTextMessage", isTextMessage);
 
+            var questmark = (message.text === '?') ? true : false;
+            console.log("is ?", questmark);
+
             let upperText = message.text.trim().toUpperCase();
 
 //TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
