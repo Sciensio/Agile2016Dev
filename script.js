@@ -142,7 +142,7 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log('- Special Case: /SUPPORT'); //turns off bot
-                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. When you are ready to chat with me again type: /A16. %[Back to A16](postback:/A16)").then(() => 'speak');
+                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again type /A16 or tap the button. %[Return to A16](postback:/A16)").then(() => 'speak');
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         console.log('- Special Case: DISCONNECT'); //turns bot back on
@@ -258,6 +258,7 @@ module.exports = new Script({
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
                     push.logConversation(msgLog);
+//TODO test for images and gif and treat those separately                    
                     return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                 }
 
