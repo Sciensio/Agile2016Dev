@@ -84,6 +84,8 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("- bot message ", message);
+            var isTextMessage = message.message.text ? true : false;
+            console.log("- isTextMessage", isTextMessage);
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -122,7 +124,6 @@ module.exports = new Script({
             var authUsers = process.env.SK_ACCESS;
             //For ad hoc messages - scheduled messages are done differently in checkItems
             //-1 indicates that a user is not authorized to send broadcast messages
-//TODO prepend 'ALERT:  ' then message
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
@@ -133,8 +134,6 @@ module.exports = new Script({
               }
             }
 
-
-//TODO: There is a bug with /support and /a16 now.  /support does not present message and /a16 sometimes doubles the message
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
@@ -285,8 +284,6 @@ module.exports = new Script({
 
             return updateSilent()
                 .then(wait(500))
-                //.then(console.log('++++ getSilent ', getSilent()))
-                //.then(function (upperText) {if (upperText !== '/SUPPORT') {getSilent()}})
                 .then(getSilent)
                 .then(processMessage);
         }
