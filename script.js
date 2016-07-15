@@ -11,7 +11,7 @@
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
 //TODO: data collection
-//TODO: DEAL with A16 issue
+
 
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
@@ -190,6 +190,7 @@ module.exports = new Script({
                   upperText = upperText.replace("/", " ");
                 }
 
+                //This is in case a user uses the bots name in a request
                 console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
                 if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
                   console.log("in a16 search");
@@ -306,6 +307,7 @@ module.exports = new Script({
 
                 //the if statement is for those answer that we still need the json file for
                 if (response) {} else {var response = scriptRules[upperText];}
+                console.log("pre-split response", response);
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
