@@ -306,6 +306,7 @@ module.exports = new Script({
 
                 //the if statement is for those answer that we still need the json file for
                 //if (response) {} else {var response = scriptRules[upperText];}
+                console.log( require( "./config.json" ) );
                 var response = scriptRules[upperText];
                 console.log("pre-split response", response);
                 var lines = response.split('\n');
