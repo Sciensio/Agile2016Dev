@@ -186,7 +186,7 @@ module.exports = new Script({
                 var simplified;
 
                 //if((upperText.indexOf("/") + upperText.indexOf("-")) > -1)  &&  {
-                if upperText === ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" ) {
+                if (upperText === ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" )) {
                   console.log("PASED FIRST TEST");
                 }
 
