@@ -272,7 +272,8 @@ module.exports = new Script({
                     }
 
                 //no agent, not JSON rules
-                if (typeof response != 'undefined') {
+                if (typeof response === 'undefined') {
+
                 if (!_.has(scriptRules, upperText))
                 {
                     console.log("- No match in Script.json ", upperText);
