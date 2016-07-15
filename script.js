@@ -183,6 +183,11 @@ module.exports = new Script({
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
+
+                if (if(str.indexOf("/") && str.indexOf("-") > -1)) {
+                  console.log("PASED FIRST TEST");
+                }
+
                 promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises).then(function(responses) {
@@ -271,24 +276,24 @@ module.exports = new Script({
                         console.log("HERE");
                     }
 
-                //no agent, not JSON rules
+                //if it was answered by API then don't test it
                 if (typeof response === 'undefined') {
-
-                if (!_.has(scriptRules, upperText))
-                {
-                    console.log("- No match in Script.json ", upperText);
-                    msgLog.responsemessage = upperText;
-                    msgLog.responsetime = new Date();
-                    msgLog.responsetype = 'No Match';
-                    push.logConversation(msgLog);
-                    //TODO test for images and gif and treat those separately this is not working
-                    //TODO check for text vs emoji and parrot back what user sent
-                    if (isMediaMessage === true) {
-                      return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
-                    } else {
-                      return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
-                    }
-                }
+                  //no agent, not JSON rules
+                  if (!_.has(scriptRules, upperText))
+                  {
+                      console.log("- No match in Script.json ", upperText);
+                      msgLog.responsemessage = upperText;
+                      msgLog.responsetime = new Date();
+                      msgLog.responsetype = 'No Match';
+                      push.logConversation(msgLog);
+                      //TODO test for images and gif and treat those separately this is not working
+                      //TODO check for text vs emoji and parrot back what user sent
+                      if (isMediaMessage === true) {
+                        return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      } else {
+                        return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      }
+                  }
                 }
 
                 //the if statement is for those answer that we still need the json file for
