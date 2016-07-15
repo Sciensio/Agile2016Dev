@@ -261,7 +261,7 @@ module.exports = new Script({
                 //API Agent answer (we built in api) want to return answer but split lines and queue
                 if (fulfillmentSpeech && source === 'agent')
                     {
-                        console.log("- In agent," simplified);
+                        console.log("- In agent,");
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
@@ -289,7 +289,7 @@ module.exports = new Script({
                     }
                 }
 
-                var response = scriptRules[upperText];
+                //var response = scriptRules[upperText];
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
