@@ -190,8 +190,8 @@ module.exports = new Script({
                   upperText = upperText.replace("/", " ");
                 }
 
-                if (upperText.substr(0,3)  === "A16"  && upperText.length > 3 ) {
-                  upperText = upperText.substr(4)
+                if (upperText.indexOf("A16")  === "A16"  && upperText.length > 3 ) {
+                  upperText = upperText.replace("A16", "");
                 }
 
                 promises.push(nlp(upperText, bot.userId));
