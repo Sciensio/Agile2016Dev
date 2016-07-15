@@ -99,9 +99,7 @@ module.exports = new Script({
             console.log("- bot message ", message);
             //If sent a thumbs up answer in kind
             var isMediaMessage = message.mediaType ? true : false;
-            console.log("is Media message? ", isMediaMessage);
             var questmark = (message.text === '?') ? true : false;
-            console.log("is ?", questmark);
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -144,7 +142,7 @@ module.exports = new Script({
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
                 newBot('adhoc',"ALERT: " + message.text.substr(4));
-                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                //console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
               }
@@ -176,7 +174,7 @@ module.exports = new Script({
             }
 
             function processMessage(isSilent) {
-                console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
+                //console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
@@ -278,7 +276,7 @@ module.exports = new Script({
                         console.log("- In agent,",simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI Intent';
+                        msgLog.responsetype = 'API.AI/json';
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
                         upperText = simplified;
                         //var response = fulfillmentSpeech;
@@ -308,13 +306,11 @@ module.exports = new Script({
                 //if (response) {} else {var response = scriptRules[upperText];}
                 //console.log( require( "./config.json" ) );
                 var response = scriptRules[upperText];
-                console.log("pre-split response", response);
                 var lines = response.split('\n');
-                console.log("&&&&&&& LINES ", lines);
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
-                console.log("=== msgLog  obj",msgLog);
+                //console.log("=== msgLog  obj",msgLog);
                 push.logConversation(msgLog);
 
                 var p = Promise.resolve();
