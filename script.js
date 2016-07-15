@@ -215,8 +215,8 @@ module.exports = new Script({
             }
 
             function respondMessage(source, fulfillmentSpeech, simplified){
-                    //these are answers that we intercept because we do not like the domain answers
-                    //and it does not appear that we can customize these items
+                //these are answers that we intercept because we do not like the domain answers
+                //and it does not appear that we can customize these items
 
                 //answer and return converstaion directly - API auto-answers
                 //for exceptions answer with JSON file
@@ -261,7 +261,7 @@ module.exports = new Script({
                 //API Agent answer (we built in api) want to return answer but split lines and queue
                 if (fulfillmentSpeech && source === 'agent')
                     {
-                        console.log("- In agent,");
+                        console.log("- In agent,",simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
@@ -289,7 +289,7 @@ module.exports = new Script({
                     }
                 }
 
-                //var response = scriptRules[upperText];
+                if !(response) {var response = scriptRules[upperText];}
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
