@@ -279,9 +279,9 @@ module.exports = new Script({
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        upperText = 'AGILE2017';
-                        var response = fulfillmentSpeech;
+                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = simplified;
+                        //var response = fulfillmentSpeech;
                     }
 
                 //if it was answered by API then don't test it
