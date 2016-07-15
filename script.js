@@ -201,7 +201,7 @@ module.exports = new Script({
                           fulfillmentSpeech = response.result.fulfillment.speech;
                           //Is is done to capture if it is using an agent that we set up on API.ai
                           //API.ai sends agent back if !== domains; wish they had a 3rd state
-                          simplified = response.result.parameters.event;
+                          simplified = response.result.action;
                         }
                         console.log("- Process meesage set source to: ", source);
                         console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
@@ -218,6 +218,8 @@ module.exports = new Script({
                     //these are answers that we intercept because we do not like the domain answers
                     //and it does not appear that we can customize these items
 
+                //answer and return converstaion directly - API auto-answers
+                //for exceptions answer with JSON file
                 if (fulfillmentSpeech && source === 'domains')
                 {
                   switch (true) {
@@ -256,9 +258,10 @@ module.exports = new Script({
                   }
                 }
 
+                //API Agent answer (we built in api) want to return answer but split lines and queue
                 if (fulfillmentSpeech && source === 'agent')
                     {
-                        console.log("- In agent, agile2017");
+                        console.log("- In agent," simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
@@ -266,10 +269,12 @@ module.exports = new Script({
                         //upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
                         console.log("HERE");
-                        return response;
+                        //return response;
                     }
 
-                if (!_.has(scriptRules, upperText)) {
+                //no agent, not JSON rules
+                if (!_.has(scriptRules, upperText))
+                {
                     console.log("- No match in Script.json ", upperText);
                     msgLog.responsemessage = upperText;
                     msgLog.responsetime = new Date();
@@ -284,7 +289,7 @@ module.exports = new Script({
                     }
                 }
 
-                //var response = scriptRules[upperText];
+                var response = scriptRules[upperText];
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
