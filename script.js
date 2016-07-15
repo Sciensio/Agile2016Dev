@@ -190,7 +190,9 @@ module.exports = new Script({
                   upperText = upperText.replace("/", " ");
                 }
 
+                console.log("before a16 search ", upperText);
                 if (upperText.indexOf("A16")  === "A16"  && upperText.length > 3 ) {
+                  console.log("in a16 search");
                   upperText = upperText.replace("A16", "");
                 }
 
