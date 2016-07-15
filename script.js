@@ -269,7 +269,7 @@ module.exports = new Script({
                         //upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
                         console.log("HERE");
-                        //return response;
+                        return;
                     }
 
                 //no agent, not JSON rules
@@ -289,6 +289,7 @@ module.exports = new Script({
                     }
                 }
 
+                //the if statement is for those answer that we still need the json file for
                 if (response) {} else {var response = scriptRules[upperText];}
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
