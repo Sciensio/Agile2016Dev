@@ -264,7 +264,8 @@ module.exports = new Script({
                         msgLog.responsetype = 'API.AI Intent';
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
                         //upperText = 'AGILE2017';
-                        return var response = fulfillmentSpeech;
+                        var response = fulfillmentSpeech;
+                        return response;
                     }
 
                 if (!_.has(scriptRules, upperText)) {
