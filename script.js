@@ -289,7 +289,7 @@ module.exports = new Script({
                     }
                 }
 
-                if !(response) {var response = scriptRules[upperText];}
+                if (response) {} else {var response = scriptRules[upperText];})
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
