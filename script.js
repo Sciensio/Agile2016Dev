@@ -279,8 +279,8 @@ module.exports = new Script({
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
-                        //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        //upperText = 'AGILE2017';
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
                     }
 
@@ -305,7 +305,8 @@ module.exports = new Script({
                 }
 
                 //the if statement is for those answer that we still need the json file for
-                if (response) {} else {var response = scriptRules[upperText];}
+                //if (response) {} else {var response = scriptRules[upperText];}
+                var response = scriptRules[upperText];
                 console.log("pre-split response", response);
                 var lines = response.split('\n');
                 console.log("&&&&&&& LINES ", lines);
