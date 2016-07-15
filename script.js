@@ -1,5 +1,17 @@
 'use strict';
 
+//TODO: sentiment analysis
+//TODO: JSON to global data resource
+//TODO: Load testing - look for one that is scriptable
+//TODO: better process or API Agent responses
+//TODO: emoji handling
+//TODO: image hjandling
+//TODO: Fix Sched notice on SMS
+//TODO: find out why _ dont work any more
+//TODO: Demo ad hoc, sched notifications
+//TODO: Add unsubscribe
+//TODO: data collection
+
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var pg = require('pg');
@@ -86,7 +98,7 @@ module.exports = new Script({
             console.log("- bot message ", message);
             //If sent a thumbs up answer in kind
             var isMediaMessage = message.mediaType ? true : false;
-            console.log("is text message? ", isMediaMessage);
+            console.log("is Media message? ", isMediaMessage);
             var questmark = (message.text === '?') ? true : false;
             console.log("is ?", questmark);
 
@@ -244,14 +256,15 @@ module.exports = new Script({
                   }
                 }
 
-                if (simplified == 'agile2017')
+                if (fulfillmentSpeech && source === 'agent')
                     {
                         console.log("- In agent, agile2017");
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
                         msgLog.responsetype = 'API.AI Intent';
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        upperText = 'AGILE2017';
+                        //upperText = 'AGILE2017';
+                        var response = fulfillmentSpeech;
                     }
 
                 if (!_.has(scriptRules, upperText)) {
@@ -260,7 +273,8 @@ module.exports = new Script({
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
                     push.logConversation(msgLog);
-//TODO test for images and gif and treat those separately this is not working
+                    //TODO test for images and gif and treat those separately this is not working
+                    //TODO check for text vs emoji and parrot back what user sent
                     if (isMediaMessage === true) {
                       return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                     } else {
@@ -268,7 +282,7 @@ module.exports = new Script({
                     }
                 }
 
-                var response = scriptRules[upperText];
+                //var response = scriptRules[upperText];
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
