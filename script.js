@@ -85,7 +85,7 @@ module.exports = new Script({
 
             console.log("- bot message ", message);
             //If sent a thumbs up answer in kind
-            var isTextMessage = message.mediatype ? true : false;
+            var isMediaMessage = message.mediaType ? true : false;
             console.log("is text message? ", isTextMessage);
             var questmark = (message.text === '?') ? true : false;
             console.log("is ?", questmark);
@@ -260,8 +260,8 @@ module.exports = new Script({
                     msgLog.responsetime = new Date();
                     msgLog.responsetype = 'No Match';
                     push.logConversation(msgLog);
-//TODO test for images and gif and treat those separately
-                    if (isTextMessage === false) {
+//TODO test for images and gif and treat those separately this is not working
+                    if (isMediaMessage === true) {
                       return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                     } else {
                       return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
