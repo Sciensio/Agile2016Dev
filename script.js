@@ -185,7 +185,7 @@ module.exports = new Script({
                 var fulfillmentSpeech;
                 var simplified;
 
-                if((str.indexOf("/") && str.indexOf("-")) > -1) {
+                if((str.indexOf("/") + str.indexOf("-")) > -1) {
                   console.log("PASED FIRST TEST");
                 }
 
