@@ -265,6 +265,7 @@ module.exports = new Script({
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
                         //upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
+                        console.log("HERE");
                         return response;
                     }
 
