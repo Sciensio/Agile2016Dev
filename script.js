@@ -11,6 +11,7 @@
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
 //TODO: data collection
+//TODO: DEAL with A16 issue
 
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
@@ -184,7 +185,7 @@ module.exports = new Script({
                 var fulfillmentSpeech;
                 var simplified;
 
-                if (if(str.indexOf("/") && str.indexOf("-") > -1)) {
+                if(str.indexOf("/") && str.indexOf("-") > -1)) {
                   console.log("PASED FIRST TEST");
                 }
 
