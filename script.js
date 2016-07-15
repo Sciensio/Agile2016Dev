@@ -185,7 +185,8 @@ module.exports = new Script({
                 var fulfillmentSpeech;
                 var simplified;
 
-                if((upperText.indexOf("/") + upperText.indexOf("-")) > -1) {
+                //if((upperText.indexOf("/") + upperText.indexOf("-")) > -1)  &&  {
+                if ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" ) {
                   console.log("PASED FIRST TEST");
                 }
 
