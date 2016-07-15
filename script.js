@@ -282,7 +282,6 @@ module.exports = new Script({
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
                         //upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
-                        console.log("HERE");
                     }
 
                 //if it was answered by API then don't test it
@@ -309,6 +308,7 @@ module.exports = new Script({
                 if (response) {} else {var response = scriptRules[upperText];}
                 console.log("pre-split response", response);
                 var lines = response.split('\n');
+                console.log("&&&&&&& LINES ", lines);
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
