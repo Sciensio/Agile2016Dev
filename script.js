@@ -269,10 +269,10 @@ module.exports = new Script({
                         //upperText = 'AGILE2017';
                         var response = fulfillmentSpeech;
                         console.log("HERE");
-                        return;
                     }
 
                 //no agent, not JSON rules
+                if (typeof response != 'undefined') {
                 if (!_.has(scriptRules, upperText))
                 {
                     console.log("- No match in Script.json ", upperText);
@@ -287,6 +287,7 @@ module.exports = new Script({
                     } else {
                       return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                     }
+                }
                 }
 
                 //the if statement is for those answer that we still need the json file for
