@@ -36,7 +36,7 @@
   "ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Executive Forum](https://goo.gl/GurRP2) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
   "LOUNGE": "Chill in the: %[Agile Alliance Lounge](https://goo.gl/scAZBH)",
   "SUPPORT": "If you'd like to report an issue, make a request or ask for assistance from a human, I can notify the Event Staff for you: %[Notify Event Staff](postback:/SUPPORT)",
-  "ABOUT": "I'm here because of the cool people at the Agile Alliance and my creators at Sciens.io. Want to learn more about my kind or my creators? %[Concierge EventBot](postback:BOT) %[Sciens.io](https://goo.gl/VfnJzX)",
+  "ABOUT": "I'm here because of the cool people at the Agile Alliance and my creators at Sciens.io. Want to learn more about my kind or my creators? %[Concierge EventBot](https://goo.gl/YQ09dC) %[Sciens.io](https://goo.gl/VfnJzX)",
   "BOT": "I'm one of these! %[Concierge EventBot](https://goo.gl/YQ09dC)",
   "SCIENSIO": "You can learn more about my creators at: %[Sciens.io](https://goo.gl/VfnJzX)",
   "A16": "Yes - that's me!  What can I assist you with?",
