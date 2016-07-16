@@ -31,8 +31,10 @@ var newBot = new SmoochApiBot({
 
 function newBot_msg(type, message) {
   if (type === 'sched') {
+    console.log("> newBot, sched");
     conv.schedConv(newBot);
   } else if (type === 'adhoc') {
+    console.log("> newbot, ad hoc");
     conv.adhocConv(newBot, message);
   }
 }
