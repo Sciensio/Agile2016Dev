@@ -128,10 +128,4 @@ var server = app.listen(process.env.PORT || 8000, function() {
     var port = server.address().port;
 
     console.log('Smooch Bot listening at http://%s:%s', host, port);
-    console.log("path: ", __dirname)
-
-    //fs.writeFile('/app/loaderio-80dfee078f7b5616e36387242cb60cc4.txt', 'loaderio-80dfee078f7b5616e36387242cb60cc4', function (err) {
-    //if (err) return console.log(err);
-    //console.log('done?');
-    //});
 });
