@@ -19,11 +19,11 @@ var newBot = require('../newBot');
 
 //var i = 0;
 
-while i <10) {
+//while i <10) {
   console.log("run number ", i+1);
-  return newBot('sched','');
-  i++
-}
+//  return newBot('sched','');
+//  i++
+//}
 //only for testing of ad hoc
 //return newBot('adhoc','well?');
 
