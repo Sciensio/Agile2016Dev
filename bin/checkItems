@@ -39,6 +39,7 @@ var l = 0;
     push.logConversation(msgLog);
     l++
   }
+  
   return console.log("completed all tests");
 }
 
