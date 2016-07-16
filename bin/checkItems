@@ -17,7 +17,7 @@ var newBot = require('../newBot');
 //    responsetime: '2016-07-12 15:16:09'
 //  };
 
-var i = 0;
+//var i = 0;
 
 while i <10) {
   console.log("run number ", i+1);
