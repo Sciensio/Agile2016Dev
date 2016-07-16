@@ -13,9 +13,6 @@ app.get('/', function(req, res) {
     res.render('index', {
         appToken: process.env.SMOOCH_APP_TOKEN
     });
-    res.render('loaderio-80dfee078f7b5616e36387242cb60cc4', {
-        appToken: process.env.SMOOCH_APP_TOKEN
-    });
 });
 
 module.exports = app;
