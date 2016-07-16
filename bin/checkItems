@@ -20,25 +20,26 @@ var i = 0;
 var h = 0;
 var l = 0;
 
-  while (i <10) {
+  while (i <100) {
     console.log("sched run number ", i+1);
     //return newBot('sched','');
     newBot('sched','');
     i++
   }
 
-  while (h <10) {
+  while (h <100) {
     console.log("ad hoc run number ", h+1);
     //return newBot('adhoc','well?');
     newBot('adhoc','well?');
     h++
   }
 
-  while (l <100) {
+  while (l <1000) {
     console.log("log run number ", l+1);
     push.logConversation(msgLog);
     l++
   }
+  return console.log("completed all tests");
 }
 
 loadTest();
