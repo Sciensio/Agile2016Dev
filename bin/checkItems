@@ -16,6 +16,10 @@ var msgLog = {
   };
 
 function loadTest() {
+var i = 0;
+var h = 0;
+var l = 0;
+
   while (i <10) {
     console.log("sched run number ", i+1);
     //return newBot('sched','');
@@ -23,17 +27,17 @@ function loadTest() {
     i++
   }
 
-  while (i <10) {
-    console.log("ad hoc run number ", i+1);
+  while (h <10) {
+    console.log("ad hoc run number ", h+1);
     //return newBot('adhoc','well?');
     newBot('adhoc','well?');
-    i++
+    h++
   }
 
-  while (i <100) {
-    console.log("log run number ", i+1);
+  while (l <100) {
+    console.log("log run number ", l+1);
     push.logConversation(msgLog);
-    i++
+    l++
   }
 }
 
