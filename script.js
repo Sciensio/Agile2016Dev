@@ -1,16 +1,16 @@
 'use strict';
 
+//TODO: Load testing - look for one that is scriptable
+//TODO: image hjandling
+//TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
-//TODO: Load testing - look for one that is scriptable
 //TODO: better process or API Agent responses
-//TODO: emoji handling
-//TODO: image hjandling
 //TODO: Fix Sched notice on SMS
-//TODO: find out why _ dont work any more
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
 //TODO: data collection
+//TODO: find out why _ dont work any more
 
 
 const _ = require('lodash');
