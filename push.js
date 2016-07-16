@@ -31,7 +31,7 @@ function schedConv(newBot, response) {
               release();
               newBot.userId = row2.smoochid;
               console.log('|| message: ',row1.message);
-              return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
+              //return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
           })
       });
     });
@@ -44,7 +44,7 @@ function adhocConv(newBot, message, response) {
       release();
       newBot.userId = row.smoochid;
       console.log("|| Sending ad hoc message toSmoochId ",row.smoochid);
-      return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+      //return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
     });
   });
 }
