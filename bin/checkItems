@@ -41,7 +41,7 @@ var i = 0;
   return console.log("completed all tests");
 }
 
-loadTest(1);
+loadTest(10);
 
 //only for testing of ad hoc
 //return newBot('adhoc','well?');
