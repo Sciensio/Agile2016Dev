@@ -29,7 +29,7 @@ function schedConv(newBot, response) {
             release();
             newBot.userId = row2.smoochid;
             console.log('|| message: ',row1.message);
-            //return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
+            return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
         })
     });
   });
