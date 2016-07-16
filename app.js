@@ -16,7 +16,6 @@ app.get('/', function(req, res) {
     res.render('loaderio-80dfee078f7b5616e36387242cb60cc4', {
         appToken: process.env.SMOOCH_APP_TOKEN
     });
-    console.log("app.js req", req, " res", res);
 });
 
 module.exports = app;

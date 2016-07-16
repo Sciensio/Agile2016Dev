@@ -128,4 +128,5 @@ var server = app.listen(process.env.PORT || 8000, function() {
     var port = server.address().port;
 
     console.log('Smooch Bot listening at http://%s:%s', host, port);
+    console.log("path: ", __dirname)
 });
