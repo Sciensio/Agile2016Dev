@@ -15,35 +15,33 @@ var msgLog = {
     responsetime: '2016-07-12 15:16:09'
   };
 
-function loadTest() {
+function loadTest(runs) {
 var i = 0;
-var h = 0;
-var l = 0;
 
-  while (i <100) {
+  while (i <runs) {
     console.log("sched run number ", i+1);
     //return newBot('sched','');
     newBot('sched','');
+    //i++
+  //}
+
+  //while (h <100) {
+    console.log("ad hoc run number ", i+1);
+    //return newBot('adhoc','well?');
+    newBot('adhoc','well?');
+  //  h++
+  //}
+
+  //while (l <1000) {
+    console.log("log run number ", i+1);
+    push.logConversation(msgLog);
     i++
   }
 
-  while (h <100) {
-    console.log("ad hoc run number ", h+1);
-    //return newBot('adhoc','well?');
-    newBot('adhoc','well?');
-    h++
-  }
-
-  while (l <1000) {
-    console.log("log run number ", l+1);
-    push.logConversation(msgLog);
-    l++
-  }
-  
   return console.log("completed all tests");
 }
 
-loadTest();
+loadTest(50);
 
 //only for testing of ad hoc
 //return newBot('adhoc','well?');
