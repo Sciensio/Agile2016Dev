@@ -21,7 +21,7 @@ var i = 0;
   while (i <runs) {
   //  console.log("sched run number ", i+1);
     //return newBot('sched','');
-    newBot('sched','');
+    return newBot('sched','');
     //i++
   //}
 
