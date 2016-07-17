@@ -20,6 +20,8 @@ var pool = new Pool ({
 });
 }
 
+console.log(typeof pool);
+
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 });
