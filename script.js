@@ -190,7 +190,6 @@ module.exports = new Script({
 
                 Q.all(promises).then(function(responses) {
                     // response is the JSON from API.ai
-                    console.log("@@@@@ Q response", response);
                     responses.forEach(function(response) {
                         console.log("- In Q.all");
                         console.log("- Received result from API.ai",response);
