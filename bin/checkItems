@@ -26,15 +26,15 @@ var i = 0;
   //}
 
   //while (h <100) {
-  //  console.log("ad hoc run number ", i+1);
-    //return newBot('adhoc','well?');
+    console.log("ad hoc run number ", i+1);
+    return newBot('adhoc','well?');
   //  newBot('adhoc',i);
   //  h++
   //}
 
   //while (l <1000) {
-    console.log("log run number ", i+1);
-    push.logConversation(msgLog);
+  //  console.log("log run number ", i+1);
+  //  push.logConversation(msgLog);
     i++
   }
 
