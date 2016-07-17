@@ -38,28 +38,6 @@ const store = new SmoochApiStore({
 });
 const lock = new MemoryLock();
 
-//start of experiment
-
-var pg = require('pg');
-var Pool = require('pg').Pool;
-
-pg.defaults.ssl = true;
-var pool1 = new Pool ({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  max: process.env.DB_CONNECTION_LIMIT,
-  idleTimeoutMillis: 1000
-});
-
-pool1.on('error', function(e, client) {
-    console.log('|| Error in DB pool1 in index: ',e );
-});
-
-
-//end of experiment
-
 function createWebhook(smoochCore, target) {
     return smoochCore.webhooks.create({
             target,
@@ -151,5 +129,3 @@ var server = app.listen(process.env.PORT || 8000, function() {
 
     console.log('Smooch Bot listening at http://%s:%s', host, port);
 });
-
-module.exports = pool1;
