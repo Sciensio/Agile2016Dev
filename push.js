@@ -7,6 +7,9 @@ var extend = require('util')._extend;
 //postgress connection
 var pg = require('pg');
 var Pool = require('pg').Pool;
+
+if (typeof pool === 'undefined') {
+console.log("new pool");
 var pool = new Pool ({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -15,6 +18,7 @@ var pool = new Pool ({
   max: process.env.DB_CONNECTION_LIMIT,
   idleTimeoutMillis: 1000
 });
+}
 
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
