@@ -24,7 +24,7 @@ pool.on('error', function(e, client) {
 });
 
   if(typeof pool1 === 'undefined') {
-    console.log("pool1 exists");
+    console.log("pool1 does not exists");
   }
 
 function schedConv(newBot, response) {
@@ -62,7 +62,7 @@ function adhocConv(newBot, message, response) {
 
 function logConversation(msgLog) {
   console.log("|| in db, msgLog",msgLog);
-  pool.connect(function(err, client, release) {
+  pool1.connect(function(err, client, release) {
     if (err) {
       console.error("pool error: ",err);
     }
