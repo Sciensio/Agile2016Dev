@@ -103,15 +103,6 @@ module.exports = new Script({
 
             let upperText = message.text.trim().toUpperCase();
 
-//TODO: don't try stateMachine; instead capture last text and if a search thing ie is search by speaker
-//then the submit is speaker name and call speakersearch won't work for is session expires
-//            if (msgLog.usermessage == 'SBSN') {
-//                console.log("=== search string", upperText);
-//                var msg = {};
-//                findSession(upperText, msg);
-//                return bot.setProp("silent", true);
-//            }
-
             msgLog.smoochId = bot.userId;
             msgLog.received = message.received;
             msgLog.usermessage = message.text;
@@ -154,7 +145,7 @@ module.exports = new Script({
                         console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
                     case "/NOTIFY":
-                        console.log('- Special Case: /SUPPORT'); //turns off bot
+                        console.log('- Special Case: /NOTIFY'); //turns off bot
                         bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again type /A16 or tap the button. %[Return to A16](postback:/A16)").then(() => 'speak');
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
@@ -192,7 +183,7 @@ module.exports = new Script({
                 console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
                 if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
                   console.log("in a16 search");
-                  upperText = upperText.replace("A16", "");
+                  upperText = upperText.replace("/A16", "");
                 }
 
                 promises.push(nlp(upperText, bot.userId));
