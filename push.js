@@ -25,8 +25,13 @@ pool.on('error', function(e, client) {
 
   if(typeof pool1 === 'undefined') {
     console.log("+++++++++++++++++++++++ pool1 does not exists");
-  } else if (typeof pool === 'undefined') {
+  } else {
+    console.log("---------------- pool1 exists now");
+  }
+  if (typeof pool === 'undefined') {
     console.log("+++++++++++++++++++++++ pool does not exists");
+  } else {
+    console.log("---------------- pool exists now");
   }
 
 function schedConv(newBot, response) {
