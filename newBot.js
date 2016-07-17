@@ -10,7 +10,8 @@ const SmoochCore = require('smooch-core');
 
 const jwt = require('./jwt');
 const fs = require('fs');
-var pushConv = require('./push');
+var conv = require('./push');
+
 
 const name = 'A16';
 const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
@@ -28,8 +29,14 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-function newBot_msg(message) {
-  pushConv(newBot, message);
+function newBot_msg(type, message) {
+  if (type === 'sched') {
+    //console.log("> newBot, sched");
+    conv.schedConv(newBot);
+  } else if (type === 'adhoc') {
+    //console.log("> newbot, ad hoc");
+    conv.adhocConv(newBot, message);
+  }
 }
 
 module.exports = newBot_msg;

@@ -1,13 +1,26 @@
 'use strict';
 
+//TODO: Load testing - look for one that is scriptable
+//TODO: image hjandling
+//TODO: emoji handling
+//TODO: sentiment analysis
+//TODO: JSON to global data resource
+//TODO: better process or API Agent responses
+//TODO: Fix Sched notice on SMS
+//TODO: Demo ad hoc, sched notifications
+//TODO: Add unsubscribe
+//TODO: data collection
+//TODO: find out why _ dont work any more
+
+
 const _ = require('lodash');
 const Script = require('smooch-bot').Script;
 var pg = require('pg');
 var Q = require("q");
 var request = require("request");
-var logConversation = require("./conversation");
 var nlp = require("./nlp");
-var newBot_msg = require("./newBot");
+var newBot = require("./newBot");
+var push = require("./push");
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
@@ -84,6 +97,9 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("- bot message ", message);
+            //If sent a thumbs up answer in kind
+            var isMediaMessage = message.mediaType ? true : false;
+            var questmark = (message.text === '?') ? true : false;
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -122,19 +138,16 @@ module.exports = new Script({
             var authUsers = process.env.SK_ACCESS;
             //For ad hoc messages - scheduled messages are done differently in checkItems
             //-1 indicates that a user is not authorized to send broadcast messages
-//TODO prepend 'ALERT:  ' then message
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
-                newBot_msg(message.text.substr(4));
-                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                newBot('adhoc',"ALERT: " + message.text.substr(4));
+                //console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
               }
             }
 
-
-//TODO: There is a bug with /support and /a16 now.  /support does not present message and /a16 sometimes doubles the message
             function updateSilent() {
                 switch (upperText) {
                     case "CONNECT ME":
@@ -142,13 +155,14 @@ module.exports = new Script({
                         return bot.setProp("silent", true);
                     case "/SUPPORT":
                         console.log('- Special Case: /SUPPORT'); //turns off bot
+                        //bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again type /A16 or tap the button. %[Return to A16](postback:/A16)").then(() => 'speak');
                         return bot.setProp("silent", true);
                     case "DISCONNECT":
                         console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log('- Special Case: /A16'); //turns bot back on
-                        //processMessage(false); TODO remove if bot works on /a16 test
+                        bot.say("A16 is back! I hope my human colleagues were able to help.").then(() => 'speak');
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
@@ -160,7 +174,7 @@ module.exports = new Script({
             }
 
             function processMessage(isSilent) {
-                console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
+                //console.log("- processMessage ", upperText, "isSilent set to ",isSilent);
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
@@ -168,6 +182,19 @@ module.exports = new Script({
                 var source;
                 var fulfillmentSpeech;
                 var simplified;
+
+                //if((upperText.indexOf("/") + upperText.indexOf("-")) > -1)  &&  {
+                if (upperText === ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" )) {
+                  upperText = upperText.replace("/", " ");
+                }
+
+                //This is in case a user uses the bots name in a request
+                console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
+                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
+                  console.log("in a16 search");
+                  upperText = upperText.replace("A16", "");
+                }
+
                 promises.push(nlp(upperText, bot.userId));
 
                 Q.all(promises).then(function(responses) {
@@ -186,7 +213,7 @@ module.exports = new Script({
                           fulfillmentSpeech = response.result.fulfillment.speech;
                           //Is is done to capture if it is using an agent that we set up on API.ai
                           //API.ai sends agent back if !== domains; wish they had a 3rd state
-                          simplified = response.result.parameters.event;
+                          simplified = response.result.action;
                         }
                         console.log("- Process meesage set source to: ", source);
                         console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
@@ -199,11 +226,12 @@ module.exports = new Script({
                 });
             }
 
-            function respondMessage(source, fulfillmentSpeech, simplified)
-            {
-                    //these are answers that we intercept because we do not like the domain answers
-                    //and it does not appear that we can customize these items
+            function respondMessage(source, fulfillmentSpeech, simplified){
+                //these are answers that we intercept because we do not like the domain answers
+                //and it does not appear that we can customize these items
 
+                //answer and return converstaion directly - API auto-answers
+                //for exceptions answer with JSON file
                 if (fulfillmentSpeech && source === 'domains')
                 {
                   switch (true) {
@@ -237,35 +265,53 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
+                      push.logConversation(msgLog);
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
                 }
 
-                if (simplified == 'agile2017')
+                //API Agent answer (we built in api) want to return answer but split lines and queue
+                if (fulfillmentSpeech && source === 'agent')
                     {
-                        console.log("- In agent, agile2017");
+                        console.log("- In agent,",simplified);
                         msgLog.responsemessage = fulfillmentSpeech;
                         msgLog.responsetime = new Date;
-                        msgLog.responsetype = 'API.AI Intent';
+                        msgLog.responsetype = 'API.AI/json';
                         //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        upperText = 'AGILE2017';
+                        upperText = simplified;
+                        //var response = fulfillmentSpeech;
                     }
 
-                if (!_.has(scriptRules, upperText)) {
-                    console.log("- No match in Script.json ", upperText);
-                    msgLog.responsemessage = upperText;
-                    msgLog.responsetime = new Date();
-                    msgLog.responsetype = 'No Match';
-                    return bot.say(`I'm sorry that is not something I know.  Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                //if it was answered by API then don't test it
+                if (typeof response === 'undefined') {
+                  //no agent, not JSON rules
+                  if (!_.has(scriptRules, upperText))
+                  {
+                      console.log("- No match in Script.json ", upperText);
+                      msgLog.responsemessage = upperText;
+                      msgLog.responsetime = new Date();
+                      msgLog.responsetype = 'No Match';
+                      push.logConversation(msgLog);
+                      //TODO test for images and gif and treat those separately this is not working
+                      //TODO check for text vs emoji and parrot back what user sent
+                      if (isMediaMessage === true) {
+                        return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      } else {
+                        return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                      }
+                  }
                 }
 
+                //the if statement is for those answer that we still need the json file for
+                //if (response) {} else {var response = scriptRules[upperText];}
+                //console.log( require( "./config.json" ) );
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
                 msgLog.responsemessage = response;
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
-                console.log("=== msgLog  obj",msgLog);
-                logConversation(msgLog);
+                //console.log("=== msgLog  obj",msgLog);
+                push.logConversation(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
@@ -281,10 +327,8 @@ module.exports = new Script({
             }
 
             return updateSilent()
-                //TODO may have to put a case statement in for /a16 processing
-                .then(console.log('--updateSilent step 1'))
+                .then(wait(500))
                 .then(getSilent)
-                .then(console.log('--updateSilent step 2'))
                 .then(processMessage);
         }
     }
