@@ -8,6 +8,7 @@ var extend = require('util')._extend;
 var pg = require('pg');
 var Pool = require('pg').Pool;
 
+pg.defaults.ssl = true;
 var pool = new Pool ({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
