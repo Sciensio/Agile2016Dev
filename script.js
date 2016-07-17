@@ -153,7 +153,7 @@ module.exports = new Script({
                     case "CONNECT ME":
                         console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
-                    case "/SUPPORT":
+                    case "/NOTIFY":
                         console.log('- Special Case: /SUPPORT'); //turns off bot
                         bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again type /A16 or tap the button. %[Return to A16](postback:/A16)").then(() => 'speak');
                         return bot.setProp("silent", true);
