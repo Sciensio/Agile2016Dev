@@ -28,7 +28,7 @@ var i = 0;
   //while (h <100) {
     console.log("ad hoc run number ", i+1);
     //return newBot('adhoc',i);
-    newBot('adhoc',"Hello");
+    newBot('adhoc',"Hello "+i);
   //  h++
   //}
 
