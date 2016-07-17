@@ -45,7 +45,7 @@ function adhocConv(newBot, message, response) {
       query.on('row', function(row){
         newBot.userId = row.smoochid;
         console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
-        
+
         return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
         if(err) {
           return console.error("|| ", err);
@@ -55,8 +55,11 @@ function adhocConv(newBot, message, response) {
 }
 
 function logConversation(msgLog) {
-  //console.log("|| in db, msgLog",msgLog);
+  console.log("|| in db, msgLog",msgLog);
   pool.connect(function(err, client, release) {
+    if (err) {
+      console.error("pool error: ",err);
+    }
     client.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
       [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime]);
     release();
