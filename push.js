@@ -3,6 +3,7 @@
 const _ = require('lodash');
 var pg = require('pg');
 var extend = require('util')._extend;
+var pool1 = require('./heroku/index').pool1;
 
 //postgress connection
 var pg = require('pg');
@@ -21,6 +22,10 @@ var pool = new Pool ({
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 });
+
+  if(typeof pool1 === 'undefined') {
+    console.log("pool1 exists");
+  }
 
 function schedConv(newBot, response) {
   //console.log("< push.sched");
