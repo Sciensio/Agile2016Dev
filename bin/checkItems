@@ -21,14 +21,14 @@ var i = 0;
   while (i <runs) {
   //  console.log("sched run number ", i+1);
     //return newBot('sched','');
-    //newBot('sched','');
+    newBot('sched','');
     //i++
   //}
 
   //while (h <100) {
-    console.log("ad hoc run number ", i+1);
+    //console.log("ad hoc run number ", i+1);
     //return newBot('adhoc',i);
-    newBot('adhoc',"Hello "+i);
+    //newBot('adhoc',"Hello "+i);
   //  h++
   //}
 
@@ -38,7 +38,7 @@ var i = 0;
     i++
   }
 
-  return console.log("completed all tests");
+  return console.log("completed");
 }
 
 loadTest(process.env.LOAD_RUNS);
