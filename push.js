@@ -12,7 +12,6 @@ pg.defaults.ssl = true;
 
   function schedConv(newBot, response) {
     var client = new Client(process.env.DATABASE_URL);
-    client.on('drain', client.end.bind(client));
     client.connect();
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
@@ -24,6 +23,7 @@ pg.defaults.ssl = true;
                 client.end();
             });
         });
+    client.on('drain', client.end.bind(client));
   }
 
 module.exports = {schedConv};
