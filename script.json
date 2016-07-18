@@ -13,7 +13,7 @@
   "28": "Sessions for: %[July 28](https://goo.gl/mvGw4c)",
   "29": "Sessions for: %[July 29](https://goo.gl/qn1wK0)",
   "SPONSORS": "Check out our amazing Agile2016 sponsors: %[Sponsor Exhibition](postback:EXPO) %[Sponsor Reception](https://goo.gl/BZ8odT) %[List of Sponsors](https://goo.gl/jazVEZ)",
-  "SCHEDULE": "![Schedule at a Glance](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Schedule.pdf)",
+  "SCHEDULE": "![Schedule at a Glance](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Schedule.jpg)",
   "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
   "EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Daily Events](postback:DAILY_EVENTS) %[Evening Events](postback:EVENING_EVENTS) %[Back to Menu](postback:MENU)",
   "DAILY": "These events are happening daily: %[Registration Desk](https://goo.gl/sRckXZ) %[1st Timers Orientation](https://goo.gl/Yw8inT) %[Open Jam](https://goo.gl/ATGxXR) \nMore daily events: %[Coaches Clinic](https://goo.gl/26SxK4) %[Sponsor Exhibition](https://goo.gl/cfPKCd) %[Bookstore](https://goo.gl/abo9xN)",
