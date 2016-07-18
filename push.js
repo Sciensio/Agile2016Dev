@@ -27,10 +27,6 @@ if (typeof pool === 'undefined') {
   console.log("----------------------- pool does exist");
 }
 
-var onError = function(err) {
-  console.log("!!!!!!!!!!!!!!! error in log ",err);
-};
-
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 });
@@ -73,19 +69,12 @@ pool.on('error', function(e, client) {
   }
 
   function logConversation(msgLog) {
-    //console.log("|| in db, msgLog",msgLog);
-    pool.connect(function(err, client, release) {
-      if (err) {
-        console.error("pool error: ",err);
+    pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
+      [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
+      function(err){
+        if(err) console.log("!!!!!!!!!!!!!!! error in log ",err);
       }
-      pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
-        [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
-        function(err){
-          if(err) return OnError(err);
-        }
-      );
-      release();
-    });
+    );
   }
 
 module.exports = {adhocConv, schedConv, logConversation};
