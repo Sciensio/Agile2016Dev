@@ -180,7 +180,7 @@ module.exports = new Script({
 
                 //This is in case a user uses the bots name in a request
                 //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
-                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
+                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 4)) {
                   //console.log("in a16 search");
                   upperText = upperText.replace("A16", "");
                 }
