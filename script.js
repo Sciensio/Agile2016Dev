@@ -4,7 +4,6 @@
 //TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
-//TODO: Fix Sched notice on SMS
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
 //TODO: data collection
@@ -256,9 +255,9 @@ module.exports = new Script({
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
 
-                      //for (var i = 0; i < 6000; i++) {
+                      for (var i = 0; i < 9000; i++) {
                         logConv(msgLog);
-                      //}
+                      }
 
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
