@@ -7,6 +7,7 @@ var extend = require('util')._extend;
 //postgress connection
 var pg = require('pg');
 var Pool = require('pg').Pool;
+var Client = require('pg').Client;
 
 pg.defaults.ssl = true;
 
@@ -32,10 +33,14 @@ pool.on('error', function(e, client) {
 });
 
   function schedConv(newBot, response) {
-      var query1 = pool.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
-      //console.log("|| rowCount is", query1.rows.length);
+    var client = new Client(process.env.DATABASE_URL);
+    client.on('drain', client.end.bind(client));
+    client.connect();
+      var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
+      console.log("|| rowCount is", query1.rowCount);
       query1.on('row', function(row1) {
-        var query2 = pool.query("SELECT DISTINCT smoochid FROM conversation;");
+        var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
+          client.end();
           query2.on('row',function(row2) {
               newBot.userId = row2.smoochid;
               console.log('|| message: ',row1.message);
