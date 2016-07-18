@@ -1,6 +1,5 @@
 'use strict';
 
-//TODO: image hjandling
 //TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
@@ -130,8 +129,8 @@ module.exports = new Script({
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
-                newBot('adhoc',"ALERT: " + message.text.substr(4));
-                //console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                newBot('adhoc',process.env.ADHOC_PREFIX + message.text.substr(4));
+                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
               }
@@ -281,17 +280,18 @@ module.exports = new Script({
                   if (!_.has(scriptRules, upperText))
                   {
                       console.log("- No match in Script.json ", upperText);
-                      msgLog.responsemessage = upperText;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'No Match';
                       logConv(msgLog);
                       //TODO test for images and gif and treat those separately this is not working
                       //TODO check for text vs emoji and parrot back what user sent
                       if (isMediaMessage === true) {
-                        return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                        var msg = `I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`;
                       } else {
-                        return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                        var msg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
                       }
+                      msgLog.responsemessage = msg;
+                      return bot.say(msg).then(() => 'speak');
                   }
                 }
 

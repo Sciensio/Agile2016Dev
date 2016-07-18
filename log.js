@@ -1,10 +1,10 @@
 'use strict';
 
-const _ = require('lodash');
-var pg = require('pg');
-var extend = require('util')._extend;
+//const _ = require('lodash');
+//var pg = require('pg');
+//var extend = require('util')._extend;
 
-//postgress connection
+//postgress pool connection
 var pg = require('pg');
 var Pool = require('pg').Pool;
 
