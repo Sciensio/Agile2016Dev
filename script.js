@@ -259,7 +259,7 @@ module.exports = new Script({
 
 
                       console.log("starting for");
-                      for (var i = 0; i < 200; i++) {
+                      for (var i = 0; i < 300; i++) {
                         //console.log(">>>>>>>>>>>>> in test");
                         msgLog.responsemessage = i;
                         push.logConversation(msgLog);
