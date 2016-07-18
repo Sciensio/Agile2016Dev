@@ -66,7 +66,7 @@ pool.on('error', function(e, client) {
   }
 
   function logConversation(msgLog) {
-    console.log("|| in db, msgLog",msgLog);
+    //console.log("|| in db, msgLog",msgLog);
     pool.connect(function(err, client, release) {
       if (err) {
         console.error("pool error: ",err);
