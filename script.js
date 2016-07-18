@@ -152,7 +152,7 @@ module.exports = new Script({
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log('- Special Case: /A16'); //turns bot back on
-                        bot.say("A16 is back! I hope my human colleagues were able to help.").then(() => 'speak');
+                        bot.say("A16 is back! I hope my human colleagues were able to help you.").then(() => 'speak');
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();

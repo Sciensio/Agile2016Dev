@@ -19,7 +19,7 @@ pg.defaults.ssl = true;
           var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                console.log('|| message: ',row1.message);
+                //console.log('|| message: ',row1.message);
                 return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
                 client.end();
             });
