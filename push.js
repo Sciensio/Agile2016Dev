@@ -28,7 +28,7 @@ if (typeof pool === 'undefined') {
 }
 
 var onError = function(err) {
-  console.log(e.message, e.stack)
+  console.log("!!!!!!!!!!!!!!! error in log ",err);
 };
 
 pool.on('error', function(e, client) {
