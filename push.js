@@ -33,19 +33,18 @@ pool.on('error', function(e, client) {
 });
 
   function schedConv(newBot, response) {
-    var client = new Client(process.env.DATABASE_URL);
-    client.on('drain', client.end.bind(client));
-    client.connect();
+    pool.connect(function(err, client, release) {
       var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
-      console.log("|| rowCount is", query1.rowCount);
-      query1.on('row', function(row1) {
-        var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
-          client.end();
-          query2.on('row',function(row2) {
-              newBot.userId = row2.smoochid;
-              console.log('|| message: ',row1.message);
-              return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
-          })
+        query1.on('row', function(row1) {
+          console.log("row count",row.rowCount);
+          var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
+            query2.on('row',function(row2) {
+                release();
+                newBot.userId = row2.smoochid;
+                console.log('|| message: ',row1.message);
+                return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
+            })
+        });
       });
   }
 
