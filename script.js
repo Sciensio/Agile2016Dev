@@ -255,9 +255,9 @@ module.exports = new Script({
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
 
-                      for (var i = 0; i < 9000; i++) {
+                      //for (var i = 0; i < 9000; i++) {
                         logConv(msgLog);
-                      }
+                      //}
 
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
