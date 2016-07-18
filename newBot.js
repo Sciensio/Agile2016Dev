@@ -10,7 +10,8 @@ const SmoochCore = require('smooch-core');
 
 const jwt = require('./jwt');
 const fs = require('fs');
-var conv = require('./push');
+var sched = require('./push');
+var adhoc = require('./log');
 
 
 const name = 'A16';
@@ -32,10 +33,10 @@ var newBot = new SmoochApiBot({
 function newBot_msg(type, message) {
   if (type === 'sched') {
     //console.log("> newBot, sched");
-    return conv.schedConv(newBot);
+    return sched..schedConv(newBot);
   } else if (type === 'adhoc') {
     //console.log("> newbot, ad hoc");
-    return conv.adhocConv(newBot, message);
+    return adhoc.adhocConv(newBot, message);
   }
 }
 

@@ -182,7 +182,7 @@ module.exports = new Script({
                 //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
                 if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
                   //console.log("in a16 search");
-                  upperText = upperText.replace("/A16", "");
+                  upperText = upperText.replace("A16", "");
                 }
 
                 promises.push(nlp(upperText, bot.userId));

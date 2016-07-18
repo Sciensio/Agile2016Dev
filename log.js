@@ -31,4 +31,24 @@ pool.on('error', function(e, client) {
     );
   }
 
-module.exports = logConversation;
+    function adhocConv(newBot, message, response) {
+      pool.connect(function(err, client, release) {
+        if (err) {
+          console.error("pool error: ",err);
+        }
+        //TODO: there is a mistake in this that needs to be fixed
+        var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
+          //release();
+          query.on('row', function(row, err){
+            newBot.userId = row.smoochid;
+            console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
+            return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+            if(err) {
+              return console.error("|| ", err);
+            }
+          });
+      });
+    }
+
+
+module.exports = {logConversation,adhocConv};
