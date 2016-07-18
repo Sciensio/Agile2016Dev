@@ -33,7 +33,7 @@ pool.on('error', function(e, client) {
 });
 
   function schedConv(newBot, response) {
-    //pool.connect(function(err, client, release) {
+    pool.connect(function(err, client, release) {
       var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
@@ -45,9 +45,9 @@ pool.on('error', function(e, client) {
             })
         });
         query1.on('end', function(result) {
-          console.log(result.rows.length + ' rows were received');
+          return;console.log(result.rows.length + ' rows were received');
         });
-      //});
+    });
   }
 
   function adhocConv(newBot, message, response) {
