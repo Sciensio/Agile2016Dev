@@ -39,6 +39,7 @@ pool.on('error', function(e, client) {
         function(err){
           if(err) console.log("!!!!!!!!!!!!!!! error in log ",err);
         });
+        console.log("|| rowCount is", query1.rowCount);
         if (query1.rowCount > 0) {
           query1.on('row', function(row1) {
             var query2 = pool.query("SELECT DISTINCT smoochid FROM conversation;");
