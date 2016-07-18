@@ -11,7 +11,7 @@ const SmoochCore = require('smooch-core');
 const jwt = require('./jwt');
 const fs = require('fs');
 var sched = require('./push');
-var adhoc = require('./log').adhocConv;
+var adhoc = require('./log');
 
 
 const name = 'A16';
