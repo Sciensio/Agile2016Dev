@@ -16,6 +16,7 @@ var pool = new Pool ({
   database: process.env.DB_DATABASE,
   max: process.env.DB_CONNECTION_LIMIT,
   idleTimeoutMillis: 1000
+});
 
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
