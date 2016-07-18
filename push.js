@@ -44,7 +44,7 @@ pool.on('error', function(e, client) {
                 return newBot.say(row1.message).then(console.log("|| Attendee ",row2.smoochid," received message"),() => 'speak');
             })
         });
-        query.on('end', function(result) {
+        query1.on('end', function(result) {
           console.log(result.rows.length + ' rows were received');
         });
       });
