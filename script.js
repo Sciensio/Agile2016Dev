@@ -257,9 +257,8 @@ module.exports = new Script({
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
 
-
                       console.log("starting for");
-                      for (var i = 0; i < 3000; i++) {
+                      for (var i = 0; i < 6000; i++) {
                         push.logConversation(msgLog);
                       }
 
