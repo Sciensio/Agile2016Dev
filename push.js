@@ -10,7 +10,10 @@ var Pool = require('pg').Pool;
 
 pg.defaults.ssl = true;
 
+
+//remove if statement before final release
 if (typeof pool === 'undefined') {
+  console.log("+++++++++++++++++++++++ pool does not exist");
   var pool = new Pool ({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -19,12 +22,14 @@ if (typeof pool === 'undefined') {
     max: process.env.DB_CONNECTION_LIMIT,
     idleTimeoutMillis: 1000
   });
-  console.log("+++++++++++++++++++++++ pool does not exist");
+  console.log("+++++++++++++++++++++++ pool created");
 } else {
   console.log("----------------------- pool does exist");
 }
 
-
+var onError = function(err) {
+  console.log(e.message, e.stack)
+};
 
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
@@ -69,13 +74,17 @@ pool.on('error', function(e, client) {
 
   function logConversation(msgLog) {
     //console.log("|| in db, msgLog",msgLog);
-    pool.connect(function(err, client, release) {
-      if (err) {
-        console.error("pool error: ",err);
-      }
-      client.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
-        [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime]);
-      release();
+    //pool.connect(function(err, client, release) {
+    //  if (err) {
+    //    console.error("pool error: ",err);
+    //  }
+      pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
+        [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
+        function(err, result){
+          if(err) return OnError(err);
+          release();
+        });
+
     });
   }
 
