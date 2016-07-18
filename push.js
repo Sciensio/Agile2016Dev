@@ -83,9 +83,10 @@ pool.on('error', function(e, client) {
         function(err, result){
           if(err) return OnError(err);
           release();
-        });
+        }
+      );
 
-    });
+    //});
   }
 
 module.exports = {adhocConv, schedConv, logConversation};
