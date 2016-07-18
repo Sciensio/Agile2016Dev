@@ -1,11 +1,9 @@
 'use strict';
 
-//TODO: Load testing - look for one that is scriptable
 //TODO: image hjandling
 //TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
-//TODO: better process or API Agent responses
 //TODO: Fix Sched notice on SMS
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
@@ -21,6 +19,7 @@ var request = require("request");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
+var logConv = require("./log");
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
@@ -258,7 +257,7 @@ module.exports = new Script({
                       msgLog.responsetype = 'API.AI Domain';
 
                       //for (var i = 0; i < 6000; i++) {
-                        push.logConversation(msgLog);
+                        logConv(msgLog);
                       //}
 
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
@@ -286,7 +285,7 @@ module.exports = new Script({
                       msgLog.responsemessage = upperText;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'No Match';
-                      push.logConversation(msgLog);
+                      logConv(msgLog);
                       //TODO test for images and gif and treat those separately this is not working
                       //TODO check for text vs emoji and parrot back what user sent
                       if (isMediaMessage === true) {
@@ -306,7 +305,7 @@ module.exports = new Script({
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
                 //console.log("=== msgLog  obj",msgLog);
-                push.logConversation(msgLog);
+                logConv(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
