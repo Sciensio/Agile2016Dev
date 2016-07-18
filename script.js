@@ -256,7 +256,12 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
-                      push.logConversation(msgLog);
+                      for (var i = 0; i < 50; i++) {
+                        push.logConversation(msgLog);
+                        array[i]
+                      }
+                      //push.logConversation(msgLog);
+
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
                 }
