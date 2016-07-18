@@ -45,7 +45,7 @@ pool.on('error', function(e, client) {
             })
         });
         query1.on('end', function(result) {
-          return;console.log(result.rows.length + ' rows were received');
+          return console.log(result.rows.length + ' rows were received');
         });
     });
   }
