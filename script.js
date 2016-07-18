@@ -281,17 +281,18 @@ module.exports = new Script({
                   if (!_.has(scriptRules, upperText))
                   {
                       console.log("- No match in Script.json ", upperText);
-                      msgLog.responsemessage = upperText;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'No Match';
                       logConv(msgLog);
                       //TODO test for images and gif and treat those separately this is not working
                       //TODO check for text vs emoji and parrot back what user sent
                       if (isMediaMessage === true) {
-                        return bot.say(`I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                        var msg = `I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`
                       } else {
-                        return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                        var msg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`
                       }
+                      msgLog.responsemessage = msg;
+                      return bot.say(msg).then(() => 'speak');
                   }
                 }
 
