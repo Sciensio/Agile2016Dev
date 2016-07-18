@@ -38,6 +38,7 @@ pool.on('error', function(e, client) {
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
           release();
+          //TODO: need to test for no rows and exit
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
                 console.log('|| message: ',row1.message);
@@ -52,6 +53,7 @@ pool.on('error', function(e, client) {
       if (err) {
         console.error("pool error: ",err);
       }
+      //TODO: there is a mistake in this that needs to be fixed
       var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
         release();
         query.on('row', function(row){
