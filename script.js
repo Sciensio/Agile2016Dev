@@ -1,12 +1,9 @@
 'use strict';
 
-//TODO: Load testing - look for one that is scriptable
 //TODO: image hjandling
 //TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
-//TODO: better process or API Agent responses
-//TODO: Fix Sched notice on SMS
 //TODO: Demo ad hoc, sched notifications
 //TODO: Add unsubscribe
 //TODO: data collection
@@ -21,6 +18,7 @@ var request = require("request");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
+var logConv = require("./log").logConversation;
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
@@ -153,7 +151,7 @@ module.exports = new Script({
                         return bot.setProp("silent", false);
                     case "/A16":
                         console.log('- Special Case: /A16'); //turns bot back on
-                        bot.say("A16 is back! I hope my human colleagues were able to help.").then(() => 'speak');
+                        bot.say("A16 is back! I hope my human colleagues were able to help you.").then(() => 'speak');
                         return bot.setProp("silent", false);
                     default:
                         return Promise.resolve();
@@ -180,10 +178,10 @@ module.exports = new Script({
                 }
 
                 //This is in case a user uses the bots name in a request
-                console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
-                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 3)) {
-                  console.log("in a16 search");
-                  upperText = upperText.replace("/A16", "");
+                //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
+                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 4)) {
+                  //console.log("in a16 search");
+                  upperText = upperText.replace("A16", "");
                 }
 
                 promises.push(nlp(upperText, bot.userId));
@@ -256,7 +254,11 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
-                      push.logConversation(msgLog);
+
+                      //for (var i = 0; i < 9000; i++) {
+                        logConv(msgLog);
+                      //}
+
                       return bot.say(fulfillmentSpeech).then(() => 'speak');
                   }
                 }
@@ -282,7 +284,7 @@ module.exports = new Script({
                       msgLog.responsemessage = upperText;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'No Match';
-                      push.logConversation(msgLog);
+                      logConv(msgLog);
                       //TODO test for images and gif and treat those separately this is not working
                       //TODO check for text vs emoji and parrot back what user sent
                       if (isMediaMessage === true) {
@@ -302,7 +304,7 @@ module.exports = new Script({
                 msgLog.responsetime = new Date;
                 msgLog.responsetype = 'JSON';
                 //console.log("=== msgLog  obj",msgLog);
-                push.logConversation(msgLog);
+                logConv(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
