@@ -24,10 +24,11 @@ if (typeof pool === 'undefined') {
   console.log("----------------------- pool does exist");
 }
 
+
+
 pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 });
-
 
   function schedConv(newBot, response) {
     //console.log("< push.sched");
