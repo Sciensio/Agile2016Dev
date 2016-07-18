@@ -21,6 +21,7 @@ var newBot = require('../newBot');
   //while (i <runs) {
   //  console.log("sched run number ", i+1);
     //return newBot('sched','');
+    newBot('sched','');
     return newBot('sched','');
     //i++
   //}
