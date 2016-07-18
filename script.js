@@ -19,7 +19,7 @@ var request = require("request");
 var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
-var logConv = require("./log");
+var logConv = require("./log").logConversation;
 //var findSession = require("./sessionsearch");
 
 const scriptRules = require('./script.json');
