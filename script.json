@@ -16,7 +16,7 @@
   "SCHEDULE": "![Schedule at a Glance](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Schedule.jpg)",
   "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
   "EVENTS": "We are pleased to offer several opportunities for you to network with participants and speakers: %[Daily Events](postback:DAILY_EVENTS) %[Evening Events](postback:EVENING_EVENTS) %[Back to Menu](postback:MENU)",
-  "DAILY": "These events are happening daily: %[Registration Desk](https://goo.gl/sRckXZ) %[1st Timers Orientation](https://goo.gl/Yw8inT) %[Open Jam](https://goo.gl/ATGxXR) \nMore daily events: %[Coaches Clinic](https://goo.gl/26SxK4) %[Sponsor Exhibition](https://goo.gl/cfPKCd) %[Bookstore](https://goo.gl/abo9xN)",
+  "DAILY": "These events are happening daily: %[Registration Desk](https://goo.gl/sRckXZ) %[1st Timers Orientation](https://goo.gl/Yw8inT) %[Open Jam](https://goo.gl/ATGxXR) \nMore daily events: %[Coaches Clinic](https://goo.gl/26SxK4) %[Sponsor Exhibition](postback:EXPO) %[Bookstore](https://goo.gl/abo9xN)",
   "REG": "Pick-up your badge and materials, or ask questions at: %[Registration Desk](https://goo.gl/sRckXZ)",
   "ORIENT": "New to Agile2016? Got 30 minutes? Check out the 101 Guide to Agile2016: %[1st Timers Orientation](https://goo.gl/Yw8inT)",
   "JAM": "Interested in discussing ideas and techniques with fellow attendees? Try one of these interactive sessions: %[Open Jam](https://goo.gl/ATGxXR)",
