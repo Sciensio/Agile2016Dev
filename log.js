@@ -26,7 +26,7 @@ pool.on('error', function(e, client) {
     pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
       [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
       function(err){
-        if(err) console.log("!!!!!!!!!!!!!!! error in log ",err);
+        if(err) console.log("|| error in log ",err);
       }
     );
   }
@@ -36,12 +36,10 @@ pool.on('error', function(e, client) {
         if (err) {
           console.error("pool error: ",err);
         }
-        //TODO: there is a mistake in this that needs to be fixed
         var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
-          //release();
           query.on('row', function(row, err){
             newBot.userId = row.smoochid;
-            console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
+            //console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
             return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
             if(err) {
               return console.error("|| ", err);
@@ -49,6 +47,5 @@ pool.on('error', function(e, client) {
           });
       });
     }
-
 
 module.exports = {logConversation,adhocConv};
