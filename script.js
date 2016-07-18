@@ -1,6 +1,5 @@
 'use strict';
 
-//TODO: image hjandling
 //TODO: emoji handling
 //TODO: sentiment analysis
 //TODO: JSON to global data resource
@@ -130,8 +129,8 @@ module.exports = new Script({
             if (upperText.substr(0,4) == '/SK ') {
               if (authUsers.indexOf(bot.userId) !== -1) {
                 upperText = upperText.substr(0,3);
-                newBot('adhoc',"ALERT: " + message.text.substr(4));
-                //console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                newBot('adhoc',process.env.ADHOC_PREFIX + message.text.substr(4));
+                console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
               } else {
                 upperText = "NO_SK";
               }
