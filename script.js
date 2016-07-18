@@ -256,7 +256,7 @@ module.exports = new Script({
                       msgLog.responsemessage = fulfillmentSpeech;
                       msgLog.responsetime = new Date();
                       msgLog.responsetype = 'API.AI Domain';
-                      for (var i = 0; i < 100; i++) {
+                      for (var i = 0; i < 500; i++) {
                         console.log(">>>>>>>>>>>>> in test");
                         push.logConversation(msgLog);
                       }
