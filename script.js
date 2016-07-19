@@ -166,52 +166,55 @@ module.exports = new Script({
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
-                var promises = [];
-                var source;
-                var fulfillmentSpeech;
-                var simplified;
 
-                //if((upperText.indexOf("/") + upperText.indexOf("-")) > -1)  &&  {
-                if (upperText === ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" )) {
-                  upperText = upperText.replace("/", " ");
-                }
+                console.log("___________________________typeof ", typeof message.action.type);
+                if (message.action.type !== 'postback') {
+                  var promises = [];
+                  var source;
+                  var fulfillmentSpeech;
+                  var simplified;
 
-                //This is in case a user uses the bots name in a request
-                //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
-                if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 4)) {
-                  //console.log("in a16 search");
-                  upperText = upperText.replace("A16", "");
-                }
+                  if (upperText === ("7/24" || "7/25" || "7/26" || "7/27" || "7/28" || "7/29" )) {
+                    upperText = upperText.replace("/", " ");
+                  }
 
-                promises.push(nlp(upperText, bot.userId));
+                  //This is in case a user uses the bots name in a request
+                  //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
+                  if ((upperText.indexOf("A16")  > -1)  && (upperText.length > 4)) {
+                    //console.log("in a16 search");
+                    upperText = upperText.replace("A16", "");
+                  }
 
-                Q.all(promises).then(function(responses) {
-                    // response is the JSON from API.ai
-                    responses.forEach(function(response) {
-                        console.log("- In Q.all");
-                        console.log("- Received result from API.ai",response);
-                        source = response.result.source;
-                        if (source && source !== 'agent')
-                        {
-                            console.log("- Q all not agent");
+                  promises.push(nlp(upperText, bot.userId));
+
+                  Q.all(promises).then(function(responses) {
+                      // response is the JSON from API.ai
+                      responses.forEach(function(response) {
+                          console.log("- In Q.all");
+                          console.log("- Received result from API.ai",response);
+                          source = response.result.source;
+                          if (source && source !== 'agent')
+                          {
+                              console.log("- Q all not agent");
+                              fulfillmentSpeech = response.result.fulfillment.speech;
+                              simplified = response.result.parameters.simplified;
+                          } else if (response.result.fulfillment.speech && source == 'agent') {
+                            console.log("- Source is agent ", response.result);
                             fulfillmentSpeech = response.result.fulfillment.speech;
-                            simplified = response.result.parameters.simplified;
-                        } else if (response.result.fulfillment.speech && source == 'agent') {
-                          console.log("- Source is agent ", response.result);
-                          fulfillmentSpeech = response.result.fulfillment.speech;
-                          //Is is done to capture if it is using an agent that we set up on API.ai
-                          //API.ai sends agent back if !== domains; wish they had a 3rd state
-                          simplified = response.result.action;
-                        }
-                        console.log("- Process meesage set source to: ", source);
-                        console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
-                        console.log("- Process meesage set simplified to: ", simplified);
+                            //Is is done to capture if it is using an agent that we set up on API.ai
+                            //API.ai sends agent back if !== domains; wish they had a 3rd state
+                            simplified = response.result.action;
+                          }
+                          console.log("- Process meesage set source to: ", source);
+                          console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
+                          console.log("- Process meesage set simplified to: ", simplified);
 
-                        respondMessage(source, fulfillmentSpeech, simplified);
-                    });
-                }, function(error) {
-                    console.log("===Q all error ", error);
-                });
+                          respondMessage(source, fulfillmentSpeech, simplified);
+                      });
+                  }, function(error) {
+                      console.log("===Q all error ", error);
+                  });
+                }
             }
 
             function respondMessage(source, fulfillmentSpeech, simplified){
