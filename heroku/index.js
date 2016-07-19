@@ -11,6 +11,17 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
+//installing clustering
+const throng = require('throng');
+
+var WORKERS = process.env.WEB_CONCURRENCY || 1;
+
+function start() {
+    workers: WORKERS,
+    lifetime: Infinity// ...
+});
+
+
 class BetterSmoochApiBot extends SmoochApiBot {
     constructor(options) {
         super(options);
