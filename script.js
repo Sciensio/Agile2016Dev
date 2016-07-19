@@ -183,7 +183,7 @@ module.exports = new Script({
                   source = response.result.source;
                   fulfillmentSpeech = response.result.fulfillment.speech;
                   simplified = response.result.parameters.simplified;
-
+                responses.forEach(function(response) {
                   if (source === 'domains')
                   {
                     console.log("apiMessage - domains");
@@ -233,7 +233,7 @@ module.exports = new Script({
                     console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
                     console.log("- Process meesage set simplified to: ", simplified);
                     jResponse();
-                  //});
+                  });
               }, function(error) {
                   console.log("===Q all error ", error);
               });
