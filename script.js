@@ -165,6 +165,7 @@ module.exports = new Script({
 
             function apiMessage() {
               //prepare to send to API.ai
+              console.log("in apiMessage");
               var promises = [];
               var source;
               var fulfillmentSpeech;
@@ -185,6 +186,7 @@ module.exports = new Script({
 
                   if (source === 'domains')
                   {
+                    console.log("apiMessage - domains");
                     switch (true) {
                       case (know.indexOf(simplified) >- 1):
                         console.log("-In domains, what do you know");
@@ -249,13 +251,14 @@ module.exports = new Script({
 
                 if (!_.has(scriptRules, upperText))
                 {
+                  console.log("ProcessMessage no ", upperText);
                   apiMessage();
-                    console.log("- No match in Script.json ", upperText);
                     //msgLog.responsetime = new Date();
                     //msgLog.responsetype = 'No Match';
                     //msgLog.responsemessage = msg;
                     //logConv(msgLog);
                 } else {
+                  console.log("processMessage has rule");
                   jResponse();
                 }
             }
