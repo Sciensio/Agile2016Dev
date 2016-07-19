@@ -181,7 +181,7 @@ module.exports = new Script({
 
               Q.all(promises).then(function(responses) {
                   // response is the JSON from API.ai
-                //responses.forEach(function(response) {
+                responses.forEach(function(response) {
                   console.log("- In Q.all");
                   console.log("- Received result from API.ai",response);
                   source = response.result.source;
@@ -196,7 +196,7 @@ module.exports = new Script({
                             //msgLog.responsetype = 'API.AI Domain';
                             //  logConv(msgLog);
                         return bot.say(fulfillmentSpeech).then(() => 'speak');
-                        
+
                   } else if (fulfillmentSpeech) {
                     simplified = response.result.action;
                     console.log("- In agent,",simplified);
@@ -211,7 +211,7 @@ module.exports = new Script({
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
                   return jResponse();
-                //});
+                });
               }, function(error) {
                   console.log("===Q all error ", error);
               });
