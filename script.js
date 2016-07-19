@@ -177,6 +177,8 @@ module.exports = new Script({
 
               promises.push(nlp(upperText, bot.userId));
 
+              console.log("after promise");
+
               Q.all(promises).then(function(responses) {
                   // response is the JSON from API.ai
                   console.log("- Received result from API.ai",response);
