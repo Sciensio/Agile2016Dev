@@ -181,11 +181,11 @@ module.exports = new Script({
                   console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   fulfillmentSpeech = response.result.fulfillment.speech;
+                  simplified = response.result.parameters.simplified;
 
                   if (source === 'domains')
                   {
                     switch (true) {
-                      simplified = response.result.parameters.simplified;
                       case (know.indexOf(simplified) >- 1):
                         console.log("-In domains, what do you know");
                         upperText = 'KNOW';
