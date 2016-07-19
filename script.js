@@ -167,8 +167,7 @@ module.exports = new Script({
                     return Promise.resolve("speak");
                 }
 
-                console.log("___________________________typeof ", typeof message.action.type);
-                if (message.action.type !== 'postback') {
+                if (msgLog.sourcetype !== 'postback') {
                   var promises = [];
                   var source;
                   var fulfillmentSpeech;
@@ -214,6 +213,8 @@ module.exports = new Script({
                   }, function(error) {
                       console.log("===Q all error ", error);
                   });
+                } else {
+                  respondMessage();
                 }
             }
 
