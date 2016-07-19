@@ -196,6 +196,7 @@ module.exports = new Script({
                             //msgLog.responsetype = 'API.AI Domain';
                             //  logConv(msgLog);
                         return bot.say(fulfillmentSpeech).then(() => 'speak');
+                        
                   } else if (fulfillmentSpeech) {
                     simplified = response.result.action;
                     console.log("- In agent,",simplified);
