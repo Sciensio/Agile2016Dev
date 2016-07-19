@@ -189,43 +189,14 @@ module.exports = new Script({
 
                   if (source === 'domains') {
                     console.log("apiMessage - domains");
-                    simplified = response.result.parameters.simplified;
-                    switch (true) {
-                      case (know.indexOf(simplified) >- 1):
-                        console.log("-In domains, what do you know");
-                        upperText = 'KNOW';
-                      break;
-                      //return jResponse();
-                      case (job.indexOf(simplified)>-1):
-                        console.log("- In domains, what do you do");
-                        upperText = "JOB";
-                      break;
-                      //return jResponse();
-                      case (me.indexOf(simplified)>-1):
-                        console.log("- In domains, do you know me");
-                        upperText = "ME";
-                      break;
-                      //  return jResponse();
-                      case (name.indexOf(simplified)>-1):
-                      console.log("- in domains, who named you");
-                        upperText = "NAME";
-                        break;
-                        //return jResponse();
-                      case (noanswer.indexOf(simplified)>-1):
-                        console.log("- In domains, do you eat");
-                        //in these cases we want to return 'not something I know about'
-                        upperText = "";
-                        break;
-                        //return jResponse();
-                      default:
-                        console.log("- In domains, switch default");
-                        //msgLog.responsemessage = fulfillmentSpeech;
-                        //msgLog.responsetime = new Date();
-                        //msgLog.responsetype = 'API.AI Domain';
-                        //  logConv(msgLog);
+                    //simplified = response.result.parameters.simplified;
+                    //    console.log("- In domains, switch default");
+                            //msgLog.responsemessage = fulfillmentSpeech;
+                            //msgLog.responsetime = new Date();
+                            //msgLog.responsetype = 'API.AI Domain';
+                            //  logConv(msgLog);
                         return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
-                    console.log("end of switch");
                   } else if (fulfillmentSpeech) {
                     simplified = response.result.action;
                     console.log("- In agent,",simplified);
@@ -234,7 +205,8 @@ module.exports = new Script({
                     //msgLog.responsetype = 'API.AI/json';
                     //return bot.say(fulfillmentSpeech).then(() => 'speak');
                     upperText = simplified;
-                    return jResponse();
+                    console.log("IS Agent - upperText: ",upperText);
+                    jResponse();
                   } else {
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
