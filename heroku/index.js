@@ -16,7 +16,7 @@ const throng = require('throng');
 
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
 
-function start() {
+function start(, {
     workers: WORKERS,
     lifetime: Infinity// ...
 });
