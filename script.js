@@ -170,7 +170,7 @@ module.exports = new Script({
               var fulfillmentSpeech;
               var simplified;
               //To better pass to API.AI does not deal with '/' well
-              if (upperText.match(/7\/2[456789]/g) {
+              if (upperText.match(/7\/2[456789]/g)) {
                 upperText = upperText.replace("/", " ");
               }
 
