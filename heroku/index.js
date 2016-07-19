@@ -16,7 +16,6 @@ if(cluster.isMaster) {
 
 } else {
   // Child process, put app initialisation code here.
-}
 
   const smoochBot = require('smooch-bot');
   const MemoryLock = smoochBot.MemoryLock;
