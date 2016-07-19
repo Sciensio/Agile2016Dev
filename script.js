@@ -234,7 +234,7 @@ module.exports = new Script({
                     //msgLog.responsetype = 'API.AI/json';
                     //return bot.say(fulfillmentSpeech).then(() => 'speak');
                     upperText = simplified;
-                    jResponse();
+                    return jResponse();
                   } else {
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
