@@ -214,7 +214,7 @@ module.exports = new Script({
                       //msgLog.responsetime = new Date();
                       //msgLog.responsetype = 'API.AI Domain';
                       //  logConv(msgLog);
-                      return bot.say(fulfillmentSpeech).then(() => 'speak');
+                      return bot.say(response.result.fulfillment.speech).then(() => 'speak');
                     }
                     console.log("end switch");
                   });
