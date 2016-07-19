@@ -6,11 +6,6 @@ const throng = require('throng');
 
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
 
-throng(start, {
-    workers: WORKERS,
-    lifetime: Infinity// ...
-});
-
 function start() {
 
 
@@ -146,3 +141,8 @@ var server = app.listen(process.env.PORT || 8000, function() {
     console.log('Smooch Bot listening at http://%s:%s', host, port);
 });
 }
+
+throng(start, {
+    workers: WORKERS,
+    lifetime: Infinity// ...
+});
