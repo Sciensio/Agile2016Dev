@@ -1,5 +1,19 @@
 'use strict';
 
+
+//installing clustering
+const throng = require('throng');
+
+var WORKERS = process.env.WEB_CONCURRENCY || 1;
+
+throng(start, {
+    workers: WORKERS,
+    lifetime: Infinity// ...
+});
+
+function start() {
+
+
 const smoochBot = require('smooch-bot');
 const MemoryLock = smoochBot.MemoryLock;
 const SmoochApiStore = smoochBot.SmoochApiStore;
@@ -11,15 +25,6 @@ const SmoochCore = require('smooch-core');
 const jwt = require('../jwt');
 const fs = require('fs');
 
-//installing clustering
-const throng = require('throng');
-
-var WORKERS = process.env.WEB_CONCURRENCY || 1;
-
-function start(, {
-    workers: WORKERS,
-    lifetime: Infinity// ...
-});
 
 
 class BetterSmoochApiBot extends SmoochApiBot {
@@ -140,3 +145,4 @@ var server = app.listen(process.env.PORT || 8000, function() {
 
     console.log('Smooch Bot listening at http://%s:%s', host, port);
 });
+}
