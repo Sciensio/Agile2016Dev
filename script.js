@@ -13,29 +13,6 @@ var logConv = require("./log").logConversation;
 
 const scriptRules = require('./script.json');
 
-var msgLog = {
-    smoochId: '',
-    received: '',
-    usermessage: '',
-    role: '',
-    message_id: '',
-    sourcetype: '',
-    receivedtime: '',
-    responsemessage: '',
-    responsetype: '',
-    responsetime: ''
-  };
-
-  var know = [];
-
-  var job = [];
-
-  var me = [];
-
-  var name = [];
-
-  var noanswer = [];
-
 function wait(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
@@ -61,7 +38,10 @@ module.exports = new Script({
             //console.log("- bot message ", message);
 
             //exit right away
-            if (message.mediaType) {return bot.say("I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.").then(() => 'speak');}
+//            if (message.mediaType) {
+//              return bot.say("I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.")
+//                .then(() => 'speak');
+//            }
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -71,27 +51,33 @@ module.exports = new Script({
               upperText = upperText.replace(process.env.BOT_NAME, "");
             }
 
+            var msgLog = {
+                smoochId: '',
+                received: '',
+                usermessage: '',
+                role: '',
+                message_id: '',
+                sourcetype: '',
+                receivedtime: '',
+                responsemessage: '',
+                responsetype: '',
+                responsetime: ''
+              };
+
             //create message log to pesist in db
-//            msgLog.smoochId = bot.userId;
-//            msgLog.received = message.received;
-//            msgLog.usermessage = message.text;
-//            msgLog.role = message.role;
-//            msgLog.message_id = message._id;
-//            msgLog.receivedtime = new Date();
-            //this mess is my way around the fact that smooch completely
-            //changes the structure of the message obj if it is a postback vs user entered text
-            //console.log("===message.message",message.message);
-            //switch to the inverse should be faster because it does not have to traverse the whole prototype chain
-//            switch (typeof message.message !== "undefined") {
-//              case true:
-                  //This is appMaker - which means it is a postback
-//                  msgLog.sourcetype = message.action.type;
-//                break;
-//              default:
-                // This is appUser - which means it is a message typed in by the user
-//                  msgLog.sourcetype = message.source.type;
-//                break;
-//            }
+            msgLog.smoochId = bot.userId;
+            msgLog.received = message.received;
+            msgLog.usermessage = message.text;
+            msgLog.role = message.role;
+            msgLog.message_id = message._id;
+            msgLog.receivedtime = new Date();
+            if (typeof message.message !== "undefined") {
+              //postback
+              msgLog.sourcetype = message.action.type;
+            } else {
+              // This is appUser - which means it is a message typed in by the user
+              msgLog.sourcetype = message.source.type;
+            }
 
             //SK_ACCESS is a heroku config var that has the list of user/platform
             //smoochids for users to send ad hoc push conversations
@@ -107,6 +93,7 @@ module.exports = new Script({
                 upperText = upperText.substr(0,3);
                 newBot('adhoc',process.env.ADHOC_PREFIX + message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                return jResponse();
               } else {
                 upperText = "NO_SK";
               }
@@ -154,61 +141,47 @@ module.exports = new Script({
               console.log("after promise");
 
               Q.all(promises).then(function(responses) {
-                  // response is the JSON from API.ai
                 responses.forEach(function(response) {
                   console.log("- In Q.all");
                   console.log("- Received result from API.ai",response);
                   source = response.result.source;
-                  fulfillmentSpeech = response.result.fulfillment.speech;
+                  msgLog.responsemessage = response.result.fulfillment.speech;
+                  msgLog.responsetime = new Date();
 
                   if (source === 'domains') {
                     console.log("apiMessage - domains");
-                    //simplified = response.result.parameters.simplified;
-                    //    console.log("- In domains, switch default");
-                            //msgLog.responsemessage = fulfillmentSpeech;
-                            //msgLog.responsetime = new Date();
-                            //msgLog.responsetype = 'API.AI Domain';
-                            //  logConv(msgLog);
-                    return bot.say(fulfillmentSpeech).then(() => 'speak');
-                  } else if (fulfillmentSpeech) {
-                    simplified = response.result.action;
-                    console.log("- In agent,",simplified);
-                    //msgLog.responsemessage = fulfillmentSpeech;
-                    //msgLog.responsetime = new Date;
-                    //msgLog.responsetype = 'API.AI/json';
-                    //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    upperText = simplified;
-                    console.log("IS Agent - upperText: ",upperText);
+                    //console.log("- In domains, switch default");
+                    msgLog.responsetype = 'API.ai aomain';
+                    logConv(msgLog);
+                    return bot.say(msgLog.responsemessage).then(() => 'speak');
+                  } else if (msgLog.responsemessage) {
+                    //console.log("- In agent,",simplified);
+                    upperText = response.result.action;
+                    msgLog.responsetype = 'API.ai agent';
                     return jResponse();
                   } else {
+                    msgLog.responsetype = 'Unknown';
+                    logConv(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
                 });
               }, function(error) {
-                  console.log("===Q all error ", error);
+                  console.log("- Q.all error: ", error);
               });
             }
 
             function processMessage(isSilent){
-                //these are answers that we intercept because we do not like the domain answers
-                //and it does not appear that we can customize these items
-                //answer and return converstaion directly - API auto-answers
-                //for exceptions answer with JSON file
-
                 if (isSilent) {
                     return Promise.resolve("speak");
                 }
-
                 if (!_.has(scriptRules, upperText))
                 {
                   console.log("ProcessMessage no ", upperText);
                   apiMessage();
-                    //msgLog.responsetime = new Date();
-                    //msgLog.responsetype = 'No Match';
-                    //msgLog.responsemessage = msg;
-                    //logConv(msgLog);
                 } else {
                   console.log("processMessage has rule");
+                  msgLog.responsetime = new Date;
+                  msgLog.responsetype = 'JSON';
                   jResponse();
                 }
             }
@@ -216,11 +189,7 @@ module.exports = new Script({
             function jResponse() {
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
-                //msgLog.responsemessage = response;
-                //msgLog.responsetime = new Date;
-                //msgLog.responsetype = 'JSON';
                 //console.log("=== msgLog  obj",msgLog);
-                //logConv(msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
@@ -232,6 +201,7 @@ module.exports = new Script({
                         });
                     });
                 });
+                logConv(msgLog);
                 return p.then(() => 'speak');
             }
 
