@@ -1,28 +1,21 @@
 'use strict';
 
+var cluster = require('cluster');
+var numWorkers = process.env.WEB_CONCURRENCY;
 
-//installing clustering
-const throng = require('throng');
+if(cluster.isMaster) {
+  // Master process: fork our child processes
+  for (var i = 0; i < numWorkers; i++) {
+    cluster.fork();
+  }
 
-var WORKERS = process.env.WEB_CONCURRENCY || 1;
+  // Respawn any child processes that die
+  cluster.on('exit', function() {
+    cluster.fork();
+  });
 
-throng(start, {
-    workers: WORKERS,
-    lifetime: Infinity// ...
-});
-
-function start() {
-  const smoochBot = require('smooch-bot');
-  const MemoryLock = smoochBot.MemoryLock;
-  const SmoochApiStore = smoochBot.SmoochApiStore;
-  const SmoochApiBot = smoochBot.SmoochApiBot;
-  const StateMachine = smoochBot.StateMachine;
-  const app = require('../app');
-  const script = require('../script');
-  const SmoochCore = require('smooch-core');
-  const jwt = require('../jwt');
-  const fs = require('fs');
-
+} else {
+  // Child process, put app initialisation code here.
 
 
   class BetterSmoochApiBot extends SmoochApiBot {
