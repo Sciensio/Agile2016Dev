@@ -26,41 +26,15 @@ var msgLog = {
     responsetime: ''
   };
 
-  var know = [
-      "do you know",
-      "can you help",
-      "do you have",
-      "how does this app work",
-      "how much time do you need",
-      "how to open you",
-      "what can you talk about",
-      "what do you know"
-    ];
+  var know = [];
 
-  var job = [
-    "what do you do",
-    "how do you know",
-    "job"
-  ];
+  var job = [];
 
-  var me = [
-    "do you know me",
-    "do you remember me"
-  ];
+  var me = [];
 
-  var name = [
-    "who named you"
-  ];
+  var name = [];
 
-  var noanswer = [
-    "can you hear me",
-    "can you speak",
-    "change your",
-    "hurry",
-    "talk faster",
-    "do you drink",
-    "do you eat"
-  ];
+  var noanswer = [];
 
 function wait(ms) {
     return new Promise((resolve) => {
@@ -195,8 +169,7 @@ module.exports = new Script({
                             //msgLog.responsetime = new Date();
                             //msgLog.responsetype = 'API.AI Domain';
                             //  logConv(msgLog);
-                        return bot.say(fulfillmentSpeech).then(() => 'speak');
-
+                    return bot.say(fulfillmentSpeech).then(() => 'speak');
                   } else if (fulfillmentSpeech) {
                     simplified = response.result.action;
                     console.log("- In agent,",simplified);
@@ -206,11 +179,10 @@ module.exports = new Script({
                     //return bot.say(fulfillmentSpeech).then(() => 'speak');
                     upperText = simplified;
                     console.log("IS Agent - upperText: ",upperText);
-                    jResponse();
+                    return jResponse();
                   } else {
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
-                  return jResponse();
                 });
               }, function(error) {
                   console.log("===Q all error ", error);
