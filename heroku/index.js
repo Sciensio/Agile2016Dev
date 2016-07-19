@@ -16,6 +16,19 @@ if(cluster.isMaster) {
 
 } else {
   // Child process, put app initialisation code here.
+}
+
+  const smoochBot = require('smooch-bot');
+  const MemoryLock = smoochBot.MemoryLock;
+  const SmoochApiStore = smoochBot.SmoochApiStore;
+  const SmoochApiBot = smoochBot.SmoochApiBot;
+  const StateMachine = smoochBot.StateMachine;
+  const app = require('../app');
+  const script = require('../script');
+  const SmoochCore = require('smooch-core');
+  const jwt = require('../jwt');
+  const fs = require('fs');
+
 
 
   class BetterSmoochApiBot extends SmoochApiBot {
