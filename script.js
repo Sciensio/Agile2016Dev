@@ -184,63 +184,62 @@ module.exports = new Script({
                 responses.forEach(function(response) {
                   console.log("- In Q.all");
                   console.log("- Received result from API.ai",response);
-                  console.log("apiMessage - domains");
+                  source = response.result.source;
+                  fulfillmentSpeech = response.result.fulfillment.speech;
 
                   if (source === 'domains') {
+                    console.log("apiMessage - domains");
+                    simplified = response.result.parameters.simplified;
                     switch (true) {
                       case (know.indexOf(simplified) >- 1):
                         console.log("-In domains, what do you know");
                         upperText = 'KNOW';
-                        break;
+                      break;
+                      //return jResponse();
                       case (job.indexOf(simplified)>-1):
                         console.log("- In domains, what do you do");
                         upperText = "JOB";
-                        break;
+                      break;
+                      //return jResponse();
                       case (me.indexOf(simplified)>-1):
                         console.log("- In domains, do you know me");
                         upperText = "ME";
-                        break;
+                      break;
+                      //  return jResponse();
                       case (name.indexOf(simplified)>-1):
                       console.log("- in domains, who named you");
                         upperText = "NAME";
                         break;
+                        //return jResponse();
                       case (noanswer.indexOf(simplified)>-1):
                         console.log("- In domains, do you eat");
                         //in these cases we want to return 'not something I know about'
                         upperText = "";
                         break;
+                        //return jResponse();
                       default:
                         console.log("- In domains, switch default");
                         //msgLog.responsemessage = fulfillmentSpeech;
                         //msgLog.responsetime = new Date();
                         //msgLog.responsetype = 'API.AI Domain';
                         //  logConv(msgLog);
-                        return bot.say(response.result.fulfillment.speech).then(() => 'speak');
+                        return bot.say(fulfillmentSpeech).then(() => 'speak');
                     }
-                    console.log("end switch");
-                  } else if (fulfillmentSpeech && source == 'agent') {
+                    console.log("end of switch");
+                  } else if (fulfillmentSpeech) {
                     simplified = response.result.action;
                     console.log("- In agent,",simplified);
                     //msgLog.responsemessage = fulfillmentSpeech;
                     //msgLog.responsetime = new Date;
                     //msgLog.responsetype = 'API.AI/json';
                     //return bot.say(fulfillmentSpeech).then(() => 'speak');
-                    upperText = response.result.parameters.simplified;
-                    //var response = fulfillmentSpeech;
+                    upperText = simplified;
+                    jResponse();
                   } else {
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
-                  console.log("- Process meesage set source to: ", source);
-                  console.log("- Process meesage set fulfillmentSpeech to: ", fulfillmentSpeech);
-                  console.log("- Process meesage set simplified to: ", simplified);
                   jResponse();
-
-
-
-
-
-
-                  });
+                });
               }, function(error) {
                   console.log("===Q all error ", error);
               });
