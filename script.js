@@ -151,6 +151,7 @@ module.exports = new Script({
                     console.log("- In domains, switch default");
                     msgLog.responsetype = 'API.ai domains';
                     logConv(msgLog);
+                    console.log("- in domains msg logged");
                     return bot.say(msgLog.responsemessage).then(() => 'speak');
                   } else if (msgLog.responsemessage) {
                     console.log("- In agent,",simplified);
