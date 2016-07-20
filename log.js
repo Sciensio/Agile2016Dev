@@ -26,7 +26,7 @@ pool.on('error', function(e, client) {
     pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
       [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
       function(err){
-        if(err) console.log("|| error in log ",err,"message log: ", msgLog);
+        if(err) console.log("|| error in log ",err);
       }
     );
   }

@@ -96,7 +96,7 @@ module.exports = new Script({
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
                 msgLog.responsemessage = upperText;
                 msgLog.responsetype = "adhoc msg";
-                return jResponse();
+                //return jResponse();
               } else {
                 upperText = "NO_SK";
               }
