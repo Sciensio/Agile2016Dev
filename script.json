@@ -1,5 +1,5 @@
 {
-  "HELLO": "Hello!  I'm A16, the Agile2016 Concierge EventBot.  To chat with me you can tap the buttons or type keywords.  For a list of keywords tap the button or type KEY. %[Menu](postback:MENUS) %[Keywords](postback:KEY)",
+  "HELLO": "Hello!  I'm A16, the Agile2016 Concierge EventBot.  To chat with me you can tap the buttons or type keywords.  For a list of keywords tap the button or type KEY. %[Menus](postback:MENUS) %[Keywords](postback:KEY)",
   "\/START": "Hello!  I'm A16, the Agile2016 Concierge EventBot.  To chat with me you can tap the buttons or type keywords.  For a list of keywords tap the button or type KEY. %[Menu](postback:MENU) %[Keywords](postback:KEY)",
   "KNOW": "To see what I can help you with tap the buttons or type KEY for a list of keywords. %[Menu](postback:MENU) %[Keywords](postback:KEY)",
   "MENU": "I can help you with: %[Program](postback:PROGRAM) %[Conference Details](postback:DETAILS) %[Agile Alliance](postback:ALLIANCE)\n More: %[Support](postback:SUPPORT) %[About](postback:ABOUT)",
