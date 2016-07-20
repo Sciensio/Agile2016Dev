@@ -196,8 +196,9 @@ module.exports = new Script({
 
             function jResponse() {
                 var response = scriptRules[upperText];
-                msgLog.response = response;
+                msgLog.responsemessage = response;
                 msgLog.responsetime = new Date();
+                logConv(msgLog);
                 var lines = response.split('\n');
                 console.log("=== msgLog  obj",msgLog);
 
@@ -216,9 +217,7 @@ module.exports = new Script({
 
             return updateSilent()
                 .then(getSilent)
-                .then(processMessage)
-                .then(logConv(msgLog));
-;
+                .then(processMessage);
         }
     }
 });
