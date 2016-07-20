@@ -70,6 +70,8 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
+//TODO: add in timzone UTC
+            console.log("new Date() = ",Date());
             msgLog.receivedtime = new Date();
             if (typeof message.message !== "undefined") {
               //postback
@@ -138,12 +140,10 @@ module.exports = new Script({
 
               promises.push(nlp(upperText, bot.userId));
 
-              console.log("after promise");
-
               Q.all(promises).then(function(responses) {
                 responses.forEach(function(response) {
                   console.log("- In Q.all");
-                  console.log("- Received result from API.ai",response);
+                  //console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   msgLog.responsemessage = response.result.fulfillment.speech;
                   msgLog.responsetime = new Date();
@@ -176,7 +176,7 @@ module.exports = new Script({
                 }
                 if (!_.has(scriptRules, upperText))
                 {
-                  console.log("ProcessMessage no ", upperText);
+                  //console.log("ProcessMessage no ", upperText);
                   apiMessage();
                 } else {
                   console.log("processMessage has rule");
