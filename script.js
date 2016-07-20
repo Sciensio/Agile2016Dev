@@ -207,7 +207,7 @@ module.exports = new Script({
                         });
                     });
                 });
-                logConv(msgLog);
+                //logConv(msgLog);
                 return p.then(() => 'speak');
             }
 
