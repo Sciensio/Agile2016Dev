@@ -158,6 +158,7 @@ module.exports = new Script({
                     //  return jResponse();
                     //}
                     msgLog.responsetype = 'API.ai domains';
+                    msgLog.responsetime = new Date();
                     logConv(msgLog);
                     console.log("- in domains msg logged", msgLog.responsemessage);
                     return bot.say(msgLog.responsemessage).then(() => 'speak');
@@ -168,6 +169,7 @@ module.exports = new Script({
                     return jResponse();
                   } else {
                     msgLog.responsetype = 'No match';
+                    msgLog.responsetime = new Date();
                     logConv(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
@@ -207,13 +209,13 @@ module.exports = new Script({
                         });
                     });
                 });
+                msgLog.responsetime = new Date();
                 return p.then(() => 'speak');
             }
 
             return updateSilent()
                 .then(getSilent)
                 .then(processMessage)
-                .then(msgLog.responsetime = new Date())
                 .then(logConv(msgLog));
 ;
         }
