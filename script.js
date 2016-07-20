@@ -172,8 +172,8 @@ module.exports = new Script({
                       //  var msg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
                       //}
                     //msgLog.responsemessage = msg;
-                    return bot.say(msg).then(() => 'speak');
-                    //return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                    //return bot.say(msg).then(() => 'speak');
+                    return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
                 });
               }, function(error) {
