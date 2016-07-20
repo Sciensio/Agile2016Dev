@@ -172,7 +172,7 @@ module.exports = new Script({
                     //} else {
                     //  noMsg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
                     //}
-                    //msgLog.responsemessage = msg;
+                    msgLog.responsemessage = upperText;
                     //console.log("msg not found: ", noMsg);
                     //return bot.say(msg).then(() => 'speak');
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
