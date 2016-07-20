@@ -71,8 +71,8 @@ module.exports = new Script({
             msgLog.role = message.role;
             msgLog.message_id = message._id;
 //TODO: add in timzone UTC
-            console.log("new Date() = ",Date());
-            msgLog.receivedtime = new Date();
+            console.log("new Date() = ",Date(dateString) +'+06');
+            msgLog.receivedtime = new Date(dateString) +'+06';
             if (typeof message.message !== "undefined") {
               //postback
               msgLog.sourcetype = message.action.type;
