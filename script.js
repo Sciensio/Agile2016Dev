@@ -173,6 +173,7 @@ module.exports = new Script({
                     }
                     msg.responsemessage = msg;
                     logConv(msgLog);
+
                     return bot.say(msg).then(() => 'speak');
                   }
                 });
