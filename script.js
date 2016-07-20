@@ -145,7 +145,6 @@ module.exports = new Script({
                   console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   msgLog.responsemessage = response.result.fulfillment.speech;
-                  msgLog.responsetime = new Date();
 
                   if (source === 'domains') {
                     console.log("apiMessage - domains");
@@ -186,7 +185,6 @@ module.exports = new Script({
                   apiMessage();
                 } else {
                   console.log("processMessage has rule");
-                  msgLog.responsetime = new Date;
                   msgLog.responsetype = 'JSON';
                   jResponse();
                 }
@@ -207,13 +205,15 @@ module.exports = new Script({
                         });
                     });
                 });
-                logConv(msgLog);
                 return p.then(() => 'speak');
             }
 
             return updateSilent()
                 .then(getSilent)
-                .then(processMessage);
+                .then(processMessage)
+                .then(msgLog.responsetime = new Date)
+                .then(logConv(msgLog));
+;
         }
     }
 });
