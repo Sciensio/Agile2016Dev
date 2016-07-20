@@ -150,7 +150,9 @@ module.exports = new Script({
                     console.log("apiMessage - domains");
                     console.log("- In domains, switch default");
                     msgLog.responsetype = 'API.ai domains';
+                    console.log("what is simplified", response.result.parameters.simplified);
                     if (response.result.parameters.simplified = "hello") {
+                      console.log("are you here?");
                       upperText = "HELLO"
                       return jResponse();
                     }
