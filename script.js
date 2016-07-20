@@ -35,7 +35,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            //console.log("- bot message ", message);
+            console.log("- bot message ", message);
 
             //exit right away
 //            if (message.mediaType) {
@@ -70,8 +70,6 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-//TODO: fix error
-            console.log("new Date() = ",Date());
             msgLog.receivedtime = new Date;
             if (typeof message.message !== "undefined") {
               //postback
@@ -143,24 +141,24 @@ module.exports = new Script({
               Q.all(promises).then(function(responses) {
                 responses.forEach(function(response) {
                   console.log("- In Q.all");
-                  //console.log("- Received result from API.ai",response);
+                  console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   msgLog.responsemessage = response.result.fulfillment.speech;
                   msgLog.responsetime = new Date();
 
                   if (source === 'domains') {
                     console.log("apiMessage - domains");
-                    //console.log("- In domains, switch default");
-                    msgLog.responsetype = 'API.ai aomain';
+                    console.log("- In domains, switch default");
+                    msgLog.responsetype = 'API.ai domains';
                     logConv(msgLog);
                     return bot.say(msgLog.responsemessage).then(() => 'speak');
                   } else if (msgLog.responsemessage) {
-                    //console.log("- In agent,",simplified);
+                    console.log("- In agent,",simplified);
                     upperText = response.result.action;
                     msgLog.responsetype = 'API.ai agent';
                     return jResponse();
                   } else {
-                    msgLog.responsetype = 'Unknown';
+                    msgLog.responsetype = 'No match';
                     logConv(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
@@ -176,7 +174,7 @@ module.exports = new Script({
                 }
                 if (!_.has(scriptRules, upperText))
                 {
-                  //console.log("ProcessMessage no ", upperText);
+                  console.log("ProcessMessage no ", upperText);
                   apiMessage();
                 } else {
                   console.log("processMessage has rule");
@@ -189,7 +187,7 @@ module.exports = new Script({
             function jResponse() {
                 var response = scriptRules[upperText];
                 var lines = response.split('\n');
-                //console.log("=== msgLog  obj",msgLog);
+                console.log("=== msgLog  obj",msgLog);
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
