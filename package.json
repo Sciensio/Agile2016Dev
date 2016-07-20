@@ -17,8 +17,7 @@
     "q": "1.4.1",
     "request": "^2.72.0",
     "smooch-bot": "git+https://github.com/skhavari/smooch-bot.git",
-    "smooch-core": "^1.1.1",
-    "throng": "^4.0.0"
+    "smooch-core": "^1.1.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

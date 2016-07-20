@@ -39,10 +39,6 @@ module.exports = new Script({
             console.log("processID", process.pid);
 
             //exit right away
-//            if (message.mediaType) {
-//              return bot.say("I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.")
-//                .then(() => 'speak');
-//            }
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -170,8 +166,15 @@ module.exports = new Script({
                   } else {
                     msgLog.responsetype = 'No match';
                     msgLog.responsetime = new Date();
+                    if (message.mediaType) {
+                      var msg = "I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with."
+                    } else {
+                      var msg = "I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with."
+                    }
+                    msg.responsemessage = msg;
                     logConv(msgLog);
-                    return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
+                    .then(() => 'speak');
+                    return bot.say(msg).then(() => 'speak');
                   }
                 });
               }, function(error) {
