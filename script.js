@@ -72,7 +72,7 @@ module.exports = new Script({
             msgLog.message_id = message._id;
 //TODO: fix error
             console.log("new Date() = ",Date.UTC());
-            msgLog.receivedtime = new Date.UTC());
+            msgLog.receivedtime = new Date.UTC();
             if (typeof message.message !== "undefined") {
               //postback
               msgLog.sourcetype = message.action.type;
