@@ -71,7 +71,7 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-            msgLog.receivedtime = new Date;
+            msgLog.receivedtime = new Date();
             if (typeof message.message !== "undefined") {
               //postback
               msgLog.sourcetype = message.action.type;
@@ -213,7 +213,7 @@ module.exports = new Script({
             return updateSilent()
                 .then(getSilent)
                 .then(processMessage)
-                .then(msgLog.responsetime = new Date)
+                .then(msgLog.responsetime = new Date())
                 .then(logConv(msgLog));
 ;
         }
