@@ -196,6 +196,8 @@ module.exports = new Script({
 
             function jResponse() {
                 var response = scriptRules[upperText];
+                msgLog.response = response;
+                msgLog.responsetime = new Date();
                 var lines = response.split('\n');
                 console.log("=== msgLog  obj",msgLog);
 
@@ -209,7 +211,6 @@ module.exports = new Script({
                         });
                     });
                 });
-                msgLog.responsetime = new Date();
                 return p.then(() => 'speak');
             }
 
