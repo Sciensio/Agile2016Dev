@@ -141,9 +141,9 @@ module.exports = new Script({
               promises.push(nlp(upperText, bot.userId));
 
               Q.all(promises).then(function(responses) {
-                //responses.forEach(function(response) {
+                responses.forEach(function(response) {
                   console.log("- In Q.all");
-                  console.log("- Received result from API.ai",response);
+                  //console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   msgLog.responsemessage = response.result.fulfillment.speech;
                   msgLog.responsetime = new Date();
