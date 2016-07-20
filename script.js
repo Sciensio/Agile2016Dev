@@ -94,6 +94,8 @@ module.exports = new Script({
                 upperText = upperText.substr(0,3);
                 newBot('adhoc',process.env.ADHOC_PREFIX + message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
+                msgLog.responsemessage = upperText;
+                msgLog.responsetype = "adhoc msg";
                 return jResponse();
               } else {
                 upperText = "NO_SK";
