@@ -150,6 +150,9 @@ module.exports = new Script({
                     console.log("apiMessage - domains");
                     console.log("- In domains, switch default");
                     msgLog.responsetype = 'API.ai domains';
+                    if (response.result.parameters.simplified = 'hello') {
+                      return jResponse();
+                    }
                     logConv(msgLog);
                     console.log("- in domains msg logged", msgLog.responsemessage);
                     return bot.say(msgLog.responsemessage).then(() => 'speak');
