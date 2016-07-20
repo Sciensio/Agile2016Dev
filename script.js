@@ -70,9 +70,9 @@ module.exports = new Script({
             msgLog.usermessage = message.text;
             msgLog.role = message.role;
             msgLog.message_id = message._id;
-//TODO: add in timzone UTC
-            console.log("new Date() = ",Date() +'+06');
-            msgLog.receivedtime = new Date() +'+06';
+//TODO: fix error
+            console.log("new Date() = ",Date());
+            msgLog.receivedtime = new Date();
             if (typeof message.message !== "undefined") {
               //postback
               msgLog.sourcetype = message.action.type;
@@ -143,7 +143,7 @@ module.exports = new Script({
               Q.all(promises).then(function(responses) {
                 //responses.forEach(function(response) {
                   console.log("- In Q.all");
-                  //console.log("- Received result from API.ai",response);
+                  console.log("- Received result from API.ai",response);
                   source = response.result.source;
                   msgLog.responsemessage = response.result.fulfillment.speech;
                   msgLog.responsetime = new Date();
@@ -164,7 +164,7 @@ module.exports = new Script({
                     logConv(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
-                //});
+                });
               }, function(error) {
                   console.log("- Q.all error: ", error);
               });
