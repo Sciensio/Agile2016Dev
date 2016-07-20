@@ -149,13 +149,12 @@ module.exports = new Script({
                   if (source === 'domains') {
                     console.log("apiMessage - domains");
                     console.log("- In domains, switch default");
-                    console.log("what is simplified", response.result.parameters.simplified);
-                    if (response.result.parameters.simplified = "hello") {
-                      console.log("are you here?");
-                      upperText = "HELLO"
-                      return jResponse();
-                    }
-                    console.log("******************not here");
+                    //console.log("what is simplified", response.result.parameters.simplified);
+                    //if (response.result.parameters.simplified = "hello") {
+                    //  console.log("are you here?");
+                    //  upperText = "HELLO"
+                    //  return jResponse();
+                    //}
                     msgLog.responsetype = 'API.ai domains';
                     logConv(msgLog);
                     console.log("- in domains msg logged", msgLog.responsemessage);
