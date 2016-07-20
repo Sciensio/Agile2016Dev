@@ -36,6 +36,7 @@ module.exports = new Script({
         receive: (bot, message) => {
 
             console.log("- bot message ", message);
+            console.log("processID", process.pid);
 
             //exit right away
 //            if (message.mediaType) {
