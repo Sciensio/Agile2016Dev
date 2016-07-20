@@ -141,7 +141,7 @@ module.exports = new Script({
               promises.push(nlp(upperText, bot.userId));
 
               Q.all(promises).then(function(responses) {
-                responses.forEach(function(response) {
+                //responses.forEach(function(response) {
                   console.log("- In Q.all");
                   //console.log("- Received result from API.ai",response);
                   source = response.result.source;
@@ -164,7 +164,7 @@ module.exports = new Script({
                     logConv(msgLog);
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
-                });
+                //});
               }, function(error) {
                   console.log("- Q.all error: ", error);
               });
