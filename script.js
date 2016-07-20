@@ -167,13 +167,13 @@ module.exports = new Script({
                     msgLog.responsetype = 'No match';
                     msgLog.responsetime = new Date();
                     var noMsg = ''
-                    if (isMediaMessage === true) {
-                      var noMsg = `I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`;
-                    } else {
-                      var noMsg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
-                    }
+                    //if (isMediaMessage === true) {
+                    //  var noMsg = `I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`;
+                    //} else {
+                    //  var noMsg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
+                    //}
                     //msgLog.responsemessage = msg;
-                    console.log("msg not found: ",noMsg);
+                    console.log("msg not found: ", noMsg);
                     //return bot.say(msg).then(() => 'speak');
                     return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`).then(() => 'speak');
                   }
