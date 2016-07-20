@@ -1,19 +1,19 @@
 'use strict';
 
-//var cluster = require('cluster');
-//var numWorkers = process.env.WEB_CONCURRENCY;
-//if(cluster.isMaster) {
-  // Master process: fork our child processes
-//  for (var i = 0; i < numWorkers; i++) {
-//    cluster.fork();
-//  }
+var cluster = require('cluster');
+var numWorkers = process.env.WEB_CONCURRENCY;
+if(cluster.isMaster) {
+   //Master process: fork our child processes
+  for (var i = 0; i < numWorkers; i++) {
+    cluster.fork();
+  }
 
   // Respawn any child processes that die
-//  cluster.on('exit', function() {
-//    cluster.fork();
-//  });
+  cluster.on('exit', function() {
+    cluster.fork();
+  });
 
-//} else {
+} else {
   // Child process, put app initialisation code here.
 
   const smoochBot = require('smooch-bot');
@@ -147,4 +147,4 @@
 
       console.log('Smooch Bot listening at http://%s:%s', host, port);
   });
-//}
+}
