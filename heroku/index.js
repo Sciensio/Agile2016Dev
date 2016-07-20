@@ -2,6 +2,7 @@
 
 var cluster = require('cluster');
 var numWorkers = process.env.WEB_CONCURRENCY;
+console.log("Number of workers", numWorkers);
 if(cluster.isMaster) {
    //Master process: fork our child processes
   for (var i = 0; i < numWorkers; i++) {
