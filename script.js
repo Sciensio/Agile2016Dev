@@ -166,16 +166,13 @@ module.exports = new Script({
                   } else {
                     msgLog.responsetype = 'No match';
                     msgLog.responsetime = new Date();
-                    if (message.mediaType) {
-                      var msg = "I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with."
-                    } else {
-                      var msg = "I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with."
-                    }
-                    msg.responsemessage = msg;
-                    logConv(msgLog);
-
-                    return bot.say(msg).then(() => 'speak');
+                  if (isMediaMessage === true) {
+                    var msg = `I'm sorry I don't know how to respond to media yet.  😳   Type MENU or KEY for a list of things I can help you with.`;
+                  } else {
+                    var msg = `I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.`;
                   }
+                  msgLog.responsemessage = msg;
+                  return bot.say(msg).then(() => 'speak');
                 });
               }, function(error) {
                   console.log("- Q.all error: ", error);
