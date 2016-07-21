@@ -40,7 +40,7 @@ function newBot_msg(type, message) {
     //console.log("> newbot, ad hoc");
     return adhoc.adhocConv(newBot, message);
   } else if (type = 'speak') {
-      script.script.receive.speak(newBot,message);
+      script.speak.receive(newBot,message);
   }
 
 }
