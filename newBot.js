@@ -7,15 +7,11 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('./app');
 const script = require('./script');
 const SmoochCore = require('smooch-core');
-var Script = require('./script').Script
-
-
 
 const jwt = require('./jwt');
 const fs = require('fs');
 var sched = require('./push');
 var adhoc = require('./log');
-
 
 const name = 'A16';
 const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
@@ -42,6 +38,5 @@ function newBot_msg(type, message) {
     return adhoc.adhocConv(newBot, message);
   }
 }
-
 
 module.exports = newBot_msg;
