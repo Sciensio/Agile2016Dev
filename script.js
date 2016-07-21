@@ -176,7 +176,7 @@ module.exports = new Script({
                     //console.log("msg not found: ", noMsg);
                     //return bot.say(msg).then(() => 'speak');
                     logConv(msgLog);
-                    return bot.say(`I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.  Or to request human assistance type SUPPORT. %[SUPPORT](postback:SUPPORT)`).then(() => 'speak');
+                    return bot.say(`I'm sorry that is not something I know.  😳   Tap MENU or KEYWORDS for a list of things I can help you with.  Or to request human assistance tap SUPPORT. %[Menu](postback:MENU) %[Keywords](postback:KEY) %[Support](postback:SUPPORT)`).then(() => 'speak');
 
                   }
                 });
