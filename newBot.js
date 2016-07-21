@@ -7,6 +7,7 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('./app');
 const script = require('./script');
 const SmoochCore = require('smooch-core');
+var Script = require('./script').Script
 
 
 
@@ -40,7 +41,7 @@ function newBot_msg(type, message) {
     //console.log("> newbot, ad hoc");
     return adhoc.adhocConv(newBot, message);
   } else if (type = 'speak') {
-      script.speak.receive(newBot,message);
+      Script.receive(newBot,message);
   }
 
 }
