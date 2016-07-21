@@ -7,7 +7,7 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('./app');
 const script = require('./script');
 const SmoochCore = require('smooch-core');
-var speak = require('./script').speak;
+var speak = require('./script').Script;
 
 
 const jwt = require('./jwt');
