@@ -18,8 +18,8 @@ function nlp(query,sessionId){
 	};
 
   	console.log("===nlp");
-  	console.log("===query: ",query);
-  	console.log("===sessionId",sessionId);
+  	//console.log("===query: ",query);
+  	//console.log("===sessionId",sessionId);
   	request(options,function(err,response,body){
   		if(err){
   			console.log("===nlp failed because: ",err.message);

@@ -13,7 +13,6 @@ const fs = require('fs');
 var sched = require('./push');
 var adhoc = require('./log');
 
-
 const name = 'A16';
 const avatarUrl = 'https://raw.githubusercontent.com/Sciensio/Agile2016Dev/master/img/agile-alliance-logo-bot.png';
 const store = new SmoochApiStore({
