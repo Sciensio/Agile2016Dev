@@ -69,9 +69,12 @@ module.exports = new Script({
             msgLog.message_id = message._id;
             msgLog.receivedtime = new Date();
             if (typeof message.message !== "undefined") {
-              msgLog.responsetype = message.action.type + " - ";
-            }
+              //postback
+              msgLog.sourcetype = message.action.type;
+            } else {
+              // This is appUser - which means it is a message typed in by the user
               msgLog.sourcetype = message.source.type;
+            }
 
             //SK_ACCESS is a heroku config var that has the list of user/platform
             //smoochids for users to send ad hoc push conversations
@@ -88,7 +91,7 @@ module.exports = new Script({
                 newBot('adhoc',process.env.ADHOC_PREFIX + message.text.substr(4));
                 console.log("- ad hoc msg: ",message.text," authUser:  ",authUsers);
                 msgLog.responsemessage = upperText;
-                msgLog.responsetype = msgLog.responsetype + "adhoc msg";
+                msgLog.responsetype = "adhoc msg";
                 //return jResponse();
               } else {
                 upperText = "NO_SK";
@@ -150,7 +153,7 @@ module.exports = new Script({
                     //  upperText = "HELLO"
                     //  return jResponse();
                     //}
-                    msgLog.responsetype = msgLog.responsetype + 'API.ai domains';
+                    msgLog.responsetype = 'API.ai domains';
                     msgLog.responsetime = new Date();
                     logConv(msgLog);
                     console.log("- in domains msg logged", msgLog.responsemessage);
@@ -158,7 +161,7 @@ module.exports = new Script({
                   } else if (msgLog.responsemessage) {
                     console.log("- In agent,",simplified);
                     upperText = response.result.action;
-                    msgLog.responsetype = msgLog.responsetype + 'API.ai agent';
+                    msgLog.responsetype = 'API.ai agent';
                     return jResponse();
                   } else {
                     msgLog.responsetype = 'No match';
@@ -191,7 +194,7 @@ module.exports = new Script({
                   apiMessage();
                 } else {
                   console.log("processMessage has rule");
-                  msgLog.responsetype = msgLog.responsetype + 'JSON';
+                  msgLog.responsetype = 'JSON';
                   jResponse();
                 }
             }
