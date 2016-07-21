@@ -41,7 +41,7 @@ function newBot_msg(type, message) {
     //console.log("> newbot, ad hoc");
     return adhoc.adhocConv(newBot, message);
   } else if (type = 'speak') {
-      Script: speak: receive(newBot,message);
+      Script: speak: receive: (newBot,message);
   }
 
 }
