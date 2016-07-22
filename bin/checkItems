@@ -2,5 +2,4 @@
 
 var newBot = require('../newBot');
 
-return newBot('sched','')
-  .then(console.log("send complete"));
+return newBot('sched','');
