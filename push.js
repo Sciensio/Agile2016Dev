@@ -36,9 +36,9 @@ pg.defaults.ssl = true;
                   return console.error("|| error is inner loop: ", err2);
                 }
             });
-            if(err1) {
-              return console.error("|| error in outer loop: ", err1);
-            }
+//            if(err1) {
+//              return console.error("|| error in outer loop: ", err1);
+//            }
         });
     client.on('drain', client.end.bind(client));
   }
