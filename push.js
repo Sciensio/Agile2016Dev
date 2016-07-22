@@ -26,7 +26,7 @@ pg.defaults.ssl = true;
                 newBot.userId = row2.smoochid;
                 //console.log('|| message: ',row1.message);
                 return wait(50).then(function() {
-                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(console.log("|| Attendee ",newBot.userId," was sent message:", row1.message),() => 'speak');
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(console.log("|| Attendee ",newBot.userId," was sent message:", row1.message),() => 'speak')
                 });
                 client.end();
             });
