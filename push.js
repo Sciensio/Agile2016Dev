@@ -29,16 +29,16 @@ pg.defaults.ssl = true;
                 //console.log('|| message: ',row1.message);
                 return wait(50).then(function() {
                   console.log("<<<<<<< HERE in inner loop");
-                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(console.log("|| Attendee ",newBot.userId," was sent message:", row1.message),() => 'speak');
                 });
                 client.end();
                 if(err2) {
                   return console.error("|| error is inner loop: ", err2);
                 }
             });
-//            if(err1) {
-//              return console.error("|| error in outer loop: ", err1);
-//            }
+            //if(err1) {
+            //  return console.error("|| error in outer loop: ", err1);
+            //}
         });
     client.on('drain', client.end.bind(client));
   }
