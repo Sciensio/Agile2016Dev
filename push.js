@@ -20,10 +20,10 @@ pg.defaults.ssl = true;
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
-      console.log(">>>>>> schedule messages " query1);
+      console.log(">>>>>> schedule messages ", query1);
         query1.on('row', function(row1, err1) {
           var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
-            console.log(">>>>>>> schedule smoochid");
+            console.log(">>>>>>> schedule smoochid", query2);
             query2.on('row',function(row2, err2) {
                 newBot.userId = row2.smoochid;
                 //console.log('|| message: ',row1.message);
