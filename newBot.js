@@ -30,20 +30,20 @@ var newBot = new SmoochApiBot({
     userId
 });
 
-//function newBot_msg(type, message) {
-//  if (type === 'sched') {
-//    //console.log("> newBot, sched");
-//    return sched.schedConv(newBot);
-//  } else if (type === 'adhoc') {
-//    //console.log("> newbot, ad hoc");
-//    return adhoc.adhocConv(newBot, message);
-//  }
-//}
+function newBot_msg(type, message) {
+  if (type === 'sched') {
+    //console.log("> newBot, sched");
+    return sched.schedConv(newBot);
+  } else if (type === 'adhoc') {
+    //console.log("> newbot, ad hoc");
+    return adhoc.adhocConv(newBot, message);
+  }
+}
 
 
-function newBot_msg(userId, messge) {
+function botSpeak(userId, messge) {
   newBot.userId = userId
   return newBot.say(process.env.SCHED_PREFIX + message).then(() => 'speak');
 }
 
-module.exports = newBot_msg;
+module.exports = {newBot_msg,botSpeak};
