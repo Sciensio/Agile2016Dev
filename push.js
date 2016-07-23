@@ -26,6 +26,7 @@ function wait(ms) {
         query1.on('row', function(row1) {
           mess = process.env.SCHED_PREFIX + row1.message
         });
+        
         //var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
     var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
       query2.on('row',function(row2) {
