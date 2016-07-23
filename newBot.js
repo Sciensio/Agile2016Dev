@@ -7,6 +7,7 @@ const StateMachine = smoochBot.StateMachine;
 const app = require('./app');
 const script = require('./script');
 const SmoochCore = require('smooch-core');
+var smoochUser = require('smooch-core').smooch
 
 const jwt = require('./jwt');
 const fs = require('fs');
@@ -37,7 +38,7 @@ function newBot_msg(type, message) {
 
 
     //SmoochCore.smooch.appUsers.get(userId).then((response) => {
-      console.log(appUsers.get(userId));
+      console.log(appUser);
     //});
 
 
