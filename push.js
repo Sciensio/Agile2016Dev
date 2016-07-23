@@ -12,12 +12,6 @@ var botSpeak = require('push').botSpeak;
 
 pg.defaults.ssl = true;
 
-function wait(ms) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    });
-}
-
   function schedConv() {
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
