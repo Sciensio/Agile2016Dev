@@ -43,6 +43,7 @@ function newBot_msg(type, message) {
 
 function botSpeak(userId, message) {
   newBot.userId = userId
+  console.log("botSpeak");
   return newBot.say(process.env.SCHED_PREFIX + message).then(() => 'speak');
 }
 
