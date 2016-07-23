@@ -37,7 +37,7 @@ function newBot_msg(type, message) {
 
 
     //SmoochCore.smooch.appUsers.get(userId).then((response) => {
-      console.log(Smooch);
+      console.log(smooch);
     //});
 
 
