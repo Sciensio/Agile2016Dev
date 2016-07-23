@@ -26,9 +26,9 @@ function wait(ms) {
           //var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
           var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
             query2.on('row',function(row2) {
-                console.log("before adding to array");
+                //console.log("before adding to array");
                 mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
-                console.log("after adding to array");
+                //console.log("after adding to array");
             });
             query2.on('end', function(result) {
                 //fired once and only once, after the last row has been returned and after all 'row' events are emitted
@@ -46,8 +46,10 @@ function wait(ms) {
     console.log("sendSched was called");
     var arrayLength = msg.length;
     for (var i = 0; i < arrayLength; i++) {
+        console.log(i);
         bot.userId = msg[i][0];
         bot.say(msg[i][1]).then(() => 'speak');
+        console.log("post msg");
     }
   }
 
