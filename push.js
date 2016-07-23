@@ -20,7 +20,7 @@ pg.defaults.ssl = true;
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
                 return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak')
-                  .then(client.end());
+                  //.then(client.end());
             });
         });
     client.on('drain', client.end.bind(client));
