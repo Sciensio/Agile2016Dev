@@ -33,7 +33,7 @@ function wait(ms) {
                 //console.log("before adding to array");
         //uid.push(row2.smoochid);
         newBot.userId = row2.smoochid;
-        return newBot.say(mess).then(console.log("|| ", newBot.userId),() => 'speak')
+        return newBot.say(mess).then(console.log("|| ", newBot.userId),wait(1000),() => 'speak')
                 //console.log("after adding to array");
       });
         //    query2.on('end', function(result) {
