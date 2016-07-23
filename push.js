@@ -30,6 +30,7 @@ function wait(ms) {
                 //row2.smoochid;
                 console.log("before adding to array");
                 mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
+                console.log("after adding to array");
                   //return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak')
                     //.then(console.log(i))
                     //.then(i = i+1);
