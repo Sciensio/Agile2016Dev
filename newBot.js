@@ -29,9 +29,14 @@ var newBot = new SmoochApiBot({
     userId
 });
 
+
+
 function newBot_msg(type, message) {
   if (type === 'sched') {
     //console.log("> newBot, sched");
+    SmoochCore.appUSers.get(userId).then((response) => {
+      console.log(response);
+    });
     return sched.schedConv(newBot);
   } else if (type === 'adhoc') {
     //console.log("> newbot, ad hoc");
