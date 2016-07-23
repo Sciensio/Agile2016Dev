@@ -32,6 +32,10 @@ function wait(ms) {
                     //.then(console.log(i))
                     .then(i = i+1);
                   //.then(client.end());
+                  if(err) {
+                    return console.error("|| ", err);
+                  }
+
                 });
             });
         });
