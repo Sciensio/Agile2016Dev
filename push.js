@@ -42,8 +42,8 @@ function wait(ms) {
   function sendSched (msg) {
     var arrayLength = msg.length;
     for (var i = 0; i < arrayLength; i++) {
-        newBot.userId = msg.[0];
-        return newBot.say(msg.[1]).then(() => 'speak');
+        newBot.userId = msg[0];
+        return newBot.say(msg[1]).then(() => 'speak');
     }
   }
 
