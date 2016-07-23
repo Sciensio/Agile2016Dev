@@ -19,8 +19,8 @@ pg.defaults.ssl = true;
           var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak')
-                .then(()return);
+                return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak')
+                //.then(()return);
                   //.then(client.end());
             });
         });
