@@ -40,7 +40,7 @@ function wait(ms) {
                 //fired once and only once, after the last row has been returned and after all 'row' events are emitted
                 //in this example, the 'rows' array now contains an ordered set of all the rows which we received from postgres
         //        console.log(result.rowCount + ' rows were received');
-      sendSched(newBot, uid, mess);
+      //sendSched(newBot, uid, mess);
         //      })
         //});
       console.log(mess);
