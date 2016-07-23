@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var newBot = require('../newBot');
-var sched = require('../push');
+var sched = require('../push_new');
 
 //return newBot('sched','');
 return sched();
