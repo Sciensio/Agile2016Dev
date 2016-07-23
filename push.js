@@ -8,7 +8,7 @@
 
 var pg = require('pg');
 var Client = require('pg').Client;
-var botSpeak = require('newBot').botSpeak;
+var botSpeak = require('./newBot').botSpeak;
 
 pg.defaults.ssl = true;
 
