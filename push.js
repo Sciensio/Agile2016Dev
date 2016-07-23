@@ -28,6 +28,7 @@ function wait(ms) {
           var i = 1;
             query2.on('row',function(row2) {
                 //row2.smoochid;
+                console.log("before adding to array");
                 mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
                   //return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak')
                     //.then(console.log(i))
@@ -35,12 +36,15 @@ function wait(ms) {
                   //.then(client.end());
             });
         });
-      client.on('drain', client.end.bind(client));
+      console.log("before sendSched");
       sendSched(mess);
+      client.on('drain', client.end.bind(client));
+
   }
-  
+
 
   function sendSched (msg) {
+    console.log("sendSched was called");
     var arrayLength = msg.length;
     for (var i = 0; i < arrayLength; i++) {
         newBot.userId = msg[0];
