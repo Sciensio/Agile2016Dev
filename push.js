@@ -30,7 +30,7 @@ function wait(ms) {
                 mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
                 console.log("after adding to array");
             });
-            query.on('end', function(result) {
+            query2.on('end', function(result) {
                 //fired once and only once, after the last row has been returned and after all 'row' events are emitted
                 //in this example, the 'rows' array now contains an ordered set of all the rows which we received from postgres
                 console.log(result.rowCount + ' rows were received');
