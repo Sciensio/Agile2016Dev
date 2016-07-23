@@ -4,4 +4,6 @@ var newBot = require('../newBot');
 var sched = require('../push');
 
 //return newBot('sched','');
-return sched();
+//return sched();
+
+return newBot.botSpeak('a30fa820d0a0f0216fa26070', "hello");
