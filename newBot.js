@@ -41,9 +41,9 @@ var newBot = new SmoochApiBot({
 //}
 
 
-function newBot(userId, messge) {
+function newBot_msg(userId, messge) {
   newBot.userId = userId
   return newBot.say(process.env.SCHED_PREFIX + message).then(() => 'speak');
 }
 
-module.exports = newBot;
+module.exports = newBot_msg;
