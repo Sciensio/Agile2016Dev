@@ -74,6 +74,7 @@
   "NOANSWER": "I'm sorry that is not something I know.  😳   Type MENU or KEY for a list of things I can help you with.",
   "NOTIFY": "I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again tap the button or type:  /A16. %[Return](postback:/A16)",
   "FAQS": "Check here for answers to Agile2016 frequently asked questions: %[FAQs](https://goo.gl/y0MKQ7)",
+  "DIETARY": "While we offer varied menus at all meals, if you do not find something you can eat, please ask a server and they can assist you."
 
   "CONNECT ME": "",
   "\/SK": "Your message has been sent",
