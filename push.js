@@ -35,7 +35,9 @@ function wait(ms) {
                 });
             });
         });
+  return wait(10000).then(function() {
     client.on('drain', client.end.bind(client));
+  });
   }
 
 module.exports = {schedConv};
