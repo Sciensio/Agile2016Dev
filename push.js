@@ -20,10 +20,9 @@ pg.defaults.ssl = true;
           var i = 1;
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(() => 'speak')
+                return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(() => 'speak')
                   .then(console.log(i))
                   .then(i = i+1);
-                  return;
                   //.then(client.end());
             });
         });
