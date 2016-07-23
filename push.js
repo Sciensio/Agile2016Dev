@@ -38,6 +38,7 @@ function wait(ms) {
       client.on('drain', client.end.bind(client));
       sendSched(mess);
   }
+  
 
   function sendSched (msg) {
     var arrayLength = msg.length;
