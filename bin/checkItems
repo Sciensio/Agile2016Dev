@@ -4,4 +4,4 @@ var newBot = require('../newBot');
 var sched = require('../push');
 
 //return newBot('sched','');
-return sched.schedConv();
+return sched();

@@ -12,7 +12,7 @@ var botSpeak = require('./newBot').botSpeak;
 
 pg.defaults.ssl = true;
 
-  function schedConv() {
+  function push() {
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
@@ -31,4 +31,4 @@ pg.defaults.ssl = true;
       client.on('drain', client.end.bind(client));
   }
 
-module.exports = schedConv;
+module.exports = push;
