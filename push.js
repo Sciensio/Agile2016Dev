@@ -20,7 +20,7 @@ function wait(ms) {
   function schedConv(newBot, response) {
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
-    var mess = [];
+    var mess = [uid:"",msg:""];
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
           //var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
@@ -46,8 +46,8 @@ function wait(ms) {
     console.log("sendSched was called");
     var arrayLength = msg.length;
     for (var i = 0; i < arrayLength; i++) {
-        console.log(msg[i][0]);
-        bot.userId = msg[i][0];
+        console.log(msg[i][uid]);
+        bot.userId = msg[i][msg];
         bot.say(msg[i][1]).then(console.log(msg[i][1]),() => 'speak');
     }
   }
