@@ -17,9 +17,13 @@ pg.defaults.ssl = true;
         query1.on('row', function(row1) {
           //var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
           var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
+          var i = 1;
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak')
+                return newBot.say(process.env.SCHED_PREFIX + row1.message)
+                  .then(() => 'speak')
+                  .then(console.log(i)
+                  .then(i = i+1);
                 //.then(()return);
                   //.then(client.end());
             });
