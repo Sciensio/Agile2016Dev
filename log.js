@@ -22,12 +22,6 @@ pool.on('error', function(e, client) {
     console.log('|| Error in DB pool: ',e );
 });
 
-  function wait(ms) {
-      return new Promise((resolve) => {
-          setTimeout(resolve, ms);
-      });
-  }
-
   function logConversation(msgLog) {
     pool.query('insert into conversation (smoochid, received, usermessage, role, message_id, sourcetype, receivedtime, responsemessage, responsetype, responsetime) values ($1,$2, $3, $4, $5,$6, $7, $8, $9, $10);',
       [msgLog.smoochId, msgLog.received, msgLog.usermessage, msgLog.role, msgLog.message_id, msgLog.sourcetype, msgLog.receivedtime, msgLog.responsemessage, msgLog.responsetype, msgLog.responsetime],
@@ -46,9 +40,7 @@ pool.on('error', function(e, client) {
           query.on('row', function(row, err){
             newBot.userId = row.smoochid;
             //console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
-            return wait(50).then(function() {
               return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
-            });
             if(err) {
               return console.error("|| ", err);
             }
