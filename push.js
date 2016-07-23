@@ -49,11 +49,11 @@ function wait(ms) {
   function sendSched (bot, uid, msg) {
     console.log("sendSched was called");
     var arrayLength = uid.length;
-    console.log("arrayLength set");
+    console.log("arrayLength set", arrayLength);
     for (var i = 0; i < arrayLength; i++) {
         console.log(uid[i]);
-        bot.userId = uid[i];
-        bot.say(msg).then(console.log(msg),() => 'speak');
+        //bot.userId = uid[i];
+        //bot.say(msg).then(console.log(msg),() => 'speak');
     }
   }
 
