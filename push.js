@@ -28,7 +28,7 @@ function wait(ms) {
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
                 return wait(1000).then(function() {
-                  return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak');
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak')
                     //.then(console.log(i))
                     .then(i = i+1);
                   //.then(client.end());
