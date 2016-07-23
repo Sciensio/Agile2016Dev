@@ -32,7 +32,7 @@
   "PARTY": "You'll want to be at the Georgia Aquarium on Thursday night to enjoy delicious food and drinks, great music and dancing! %[Conference Party!](https://goo.gl/4U5rO7) %[Party Walking Directions](https://goo.gl/maps/jXBzXJdrb442)",
   "DIRECTIONS": "Meet fellow attendees in the Lobby of the Hyatt Regency Atlanta at 19:15 for a short guided walk to the Georgia Aquarium. Transportation will also be provided. %[Party Walking Directions](https://goo.gl/maps/jXBzXJdrb442)",
   "DETAILS": "Would you like: %[WiFi Access](postback:WIFI) %[Conference Map](postback:MAP) %[FAQs](https://goo.gl/y0MKQ7) \nMore details: %[Sponsors](postback:SPONSORS) %[Back to Menu](postback:MENU)",
-  "WIFI": "Network: Agile2016 - Password: agilealliance",
+  "WIFI": "Network: Agile2016            Password: agilealliance",
   "MAP": "![Keywords](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/ConferenceMap.40.png)",
   "ALLIANCE": "Don't miss out on the Agile Alliance: %[Lounge](https://goo.gl/scAZBH) %[Executive Forum](https://goo.gl/GurRP2) %[OnAgile2016 Virtual Event](https://goo.gl/WZYjjJ)",
   "LOUNGE": "Chill in the: %[Agile Alliance Lounge](https://goo.gl/scAZBH)",
