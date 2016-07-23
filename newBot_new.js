@@ -35,9 +35,16 @@ function newBot_msg(type, message) {
     //console.log("> newBot, sched");
     return sched.schedConv(newBot);
   } else if (type === 'adhoc') {
-    //console.log("> newbot, ad hoc");
+  //console.log("> newbot, ad hoc");
     return adhoc.adhocConv(newBot, message);
   }
 }
 
-module.exports = newBot_msg;
+
+function botSpeak(userId, message) {
+  newBot.userId = userId
+  console.log("botSpeak");
+  return newBot.say(process.env.SCHED_PREFIX + message).then(() => 'speak');
+}
+
+module.exports = {newBot_msg,botSpeak};
