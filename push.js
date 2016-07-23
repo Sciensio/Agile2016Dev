@@ -31,4 +31,4 @@ pg.defaults.ssl = true;
       client.on('drain', client.end.bind(client));
   }
 
-module.exports = {schedConv};
+module.exports = schedConv;
