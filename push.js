@@ -5,10 +5,17 @@
 //var extend = require('util')._extend;
 
 //postgress client connection
+
 var pg = require('pg');
 var Client = require('pg').Client;
 
 pg.defaults.ssl = true;
+
+function wait(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
 
   function schedConv(newBot, response) {
     var client = new Client(process.env.DATABASE_URL);
@@ -20,10 +27,12 @@ pg.defaults.ssl = true;
           var i = 1;
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(() => 'speak')
-                  .then(console.log(i))
-                  .then(i = i+1);
+                return wait(50).then(function() {
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(() => 'speak')
+                    .then(console.log(i))
+                    .then(i = i+1);
                   //.then(client.end());
+                });
             });
         });
     client.on('drain', client.end.bind(client));
