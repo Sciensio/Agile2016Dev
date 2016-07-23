@@ -22,7 +22,8 @@ pg.defaults.ssl = true;
             query2.on('row',function(row2) {
                 //newBot.userId = row2.smoochid;
                 //return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
-                return newBot.botSpeak(row2.smoochid, row1.message);
+                //return newBot.botSpeak(row2.smoochid, row1.message);
+                return newBot.botSpeak('a30fa820d0a0f0216fa26070', "hello");
                 if(err) {
                   return console.error("|| ", err);
                 }
