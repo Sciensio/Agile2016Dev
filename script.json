@@ -13,7 +13,7 @@
   "27": "Sessions for: %[July 27](https://goo.gl/m7LKVI)",
   "28": "Sessions for: %[July 28](https://goo.gl/mvGw4c)",
   "29": "Sessions for: %[July 29](https://goo.gl/qn1wK0)",
-  "FEEDBACK": "Speakers really appreciate hearing your feedback! Please take a few minutes to complete the Feedback Surveys for the keynotes and sessions you attended: %[Mon Surveys](postback:MON_SURVEYS) %[Tue Surveys](postback:TUE_SURVEYS) %[Wed Surveys](WED_SURVEYS) \nMore: %[Thu Surveys](postback:THU_SURVEYS) %[Fri Surveys](postback:FRI_SURVEYS)",
+  "FEEDBACK": "Speakers really appreciate hearing your feedback! Please take a few minutes to complete the Feedback Surveys for the keynotes and sessions you attended: \n More: %[Mon Surveys](postback:MON_SURVEYS) %[Tue Surveys](postback:TUE_SURVEYS) %[Wed Surveys](WED_SURVEYS) \nMore: %[Thu Surveys](postback:THU_SURVEYS) %[Fri Surveys](postback:FRI_SURVEYS)",
   "SPONSORS": "Check out our amazing Agile2016 sponsors: %[Sponsor Exhibition](postback:EXPO) %[Sponsor Reception](https://goo.gl/BZ8odT) %[List of Sponsors](https://goo.gl/jazVEZ)",
   "SCHEDULE": "![Schedule at a Glance](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Schedule.jpg)",
   "KEYNOTES": "Enjoy our insightful Keynotes! %[Opening Keynote](https://goo.gl/Tg0DkC) %[Wednesday Keynote](https://goo.gl/kwXYO5) %[Closing Keynote](https://goo.gl/wtEGTR)",
