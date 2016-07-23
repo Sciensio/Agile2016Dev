@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var newBot = require('../newBot');
-var sched = require('../push');//.schedConv;
+var sched = require('../push').schedConv;
 
 //return newBot('sched','');
-return schedConv();
+return sched();
