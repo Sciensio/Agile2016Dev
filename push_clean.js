@@ -19,7 +19,6 @@ function wait(ms) {
 
   function schedConv(newBot, response) {
     var client = new Client(process.env.DATABASE_URL);
-    var mess = [];
     client.connect();
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
@@ -27,24 +26,18 @@ function wait(ms) {
           var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           var i = 1;
             query2.on('row',function(row2) {
-                //row2.smoochid;
-                mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
-                  //return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak')
+                newBot.userId = row2.smoochid;
+                return wait(1000).then(function() {
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(console.log("|| ",i),() => 'speak')
                     //.then(console.log(i))
-                    //.then(i = i+1);
+                    .then(i = i+1);
                   //.then(client.end());
+                });
             });
         });
+    return wait(10000).then(function() {
       client.on('drain', client.end.bind(client));
-      sendSched(mess);
-  }
-
-  function sendSched (msg) {
-    var arrayLength = msg.length;
-    for (var i = 0; i < arrayLength; i++) {
-        newBot.userId = msg.[0];
-        return newBot.say(msg.[1]).then(() => 'speak');
-    }
+    });
   }
 
 module.exports = {schedConv};
