@@ -35,7 +35,7 @@ function wait(ms) {
                 });
             });
         });
-  return wait(10000).then(function() {
+  return wait(20000).then(function() {
     client.on('drain', client.end.bind(client));
   });
   }
