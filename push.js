@@ -22,21 +22,22 @@ function wait(ms) {
     client.connect();
     var mess = [{uid:"",msg:""}];
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
-        query1.on('row', function(row1) {
+        //query1.on('row', function(row1) {
           //var query2 = client.query("SELECT DISTINCT smoochid FROM conversation;");
-          var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
-            query2.on('row',function(row2) {
+        //  var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
+        //    query2.on('row',function(row2) {
                 //console.log("before adding to array");
-                mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
+        //        mess.push(row2.smoochid, process.env.SCHED_PREFIX + row1.message);
                 //console.log("after adding to array");
-            });
-            query2.on('end', function(result) {
+        //    });
+        //    query2.on('end', function(result) {
                 //fired once and only once, after the last row has been returned and after all 'row' events are emitted
                 //in this example, the 'rows' array now contains an ordered set of all the rows which we received from postgres
-                console.log(result.rowCount + ' rows were received');
-                sendSched(newBot, mess);
-              })
-        });
+        //        console.log(result.rowCount + ' rows were received');
+        //        sendSched(newBot, mess);
+        //      })
+        //});
+      console.log(query1);
       client.on('drain', client.end.bind(client));
 
   }
