@@ -37,11 +37,11 @@ function newBot_msg(type, message) {
 
 
     //SmoochCore.smooch.appUsers.get(userId).then((response) => {
-      console.log(SmoochCore);
+      console.log(SmoochCore.appUsers);
     //});
 
 
-    
+
     return sched.schedConv(newBot);
   } else if (type === 'adhoc') {
     //console.log("> newbot, ad hoc");
