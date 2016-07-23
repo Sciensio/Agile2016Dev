@@ -23,7 +23,7 @@ pg.defaults.ssl = true;
                   //.then(client.end());
             });
         });
-    client.on('drain', client.end.bind(client));
+    //client.on('drain', client.end.bind(client));
   }
 
 module.exports = {schedConv};
