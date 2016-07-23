@@ -31,7 +31,9 @@ function wait(ms) {
     var query2 = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
       query2.on('row',function(row2) {
                 //console.log("before adding to array");
-        uid.push(row2.smoochid);
+        //uid.push(row2.smoochid);
+        newBot.userId = row2.smoochid;
+        return newBot.say(mess + " " + i).then(console.log("|| ",i),() => 'speak')
                 //console.log("after adding to array");
       });
         //    query2.on('end', function(result) {
