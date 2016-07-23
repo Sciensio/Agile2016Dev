@@ -22,8 +22,8 @@ pg.defaults.ssl = true;
                 newBot.userId = row2.smoochid;
                 newBot.say(process.env.SCHED_PREFIX + row1.message + " " + i).then(() => 'speak')
                   .then(console.log(i))
-                  .then(i = i+1)
-                  .then(return);
+                  .then(i = i+1);
+                  return;
                   //.then(client.end());
             });
         });
