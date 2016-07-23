@@ -37,7 +37,7 @@ function wait(ms) {
         //        sendSched(newBot, mess);
         //      })
         //});
-      console.log(query1);
+      console.log(query1.text);
       client.on('drain', client.end.bind(client));
 
   }
