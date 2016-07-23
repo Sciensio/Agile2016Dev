@@ -36,7 +36,8 @@ pool.on('error', function(e, client) {
         if (err) {
           console.error("pool error: ",err);
         }
-        var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
+        //var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
+        var query = client.query("select smoochid from conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 100;");
           query.on('row', function(row, err){
             newBot.userId = row.smoochid;
             //console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
