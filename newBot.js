@@ -20,7 +20,7 @@ const store = new SmoochApiStore({
     jwt
 });
 const lock = new MemoryLock();
-const userId = 'a30fa820d0a0f0216fa26070';
+const userId = process.env.STUB_ID;
 
 var newBot = new SmoochApiBot({
     name,
