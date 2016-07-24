@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
-var bot = require('../smsg');
+var sched = require('../push_new');
 
-return bot.receive ("a30fa820d0a0f0216fa26070","hello");
+//return sched.schedConv();
+
+    console.log("started");
+    sched.schedConv();
+    console.log("end");
