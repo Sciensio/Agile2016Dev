@@ -29,7 +29,7 @@ function wait(ms) {
                 return wait(1000).then(function() {
                   console.log('newBot.userId: ', newBot.userId);
                   return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
-                  }
+                });
             });
         });
       client.on('drain', client.end.bind(client));
