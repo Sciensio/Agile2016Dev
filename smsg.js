@@ -65,3 +65,4 @@ module.exports = new msgBot({
       }
 
     }
+  });
