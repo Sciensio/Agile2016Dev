@@ -8,7 +8,13 @@
 
 var pg = require('pg');
 var Client = require('pg').Client;
-var botSpeak = require('./newBot').botSpeak;
+var botSpeak = require('./newBot_new').botSpeak;
+
+function wait(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
 
 pg.defaults.ssl = true;
 
@@ -22,7 +28,9 @@ pg.defaults.ssl = true;
             query2.on('row',function(row2) {
                 //newBot.userId = row2.smoochid;
                 //return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
-                return botSpeak(row2.smoochid, row1.message);
+                return fetch(botSpeak(row2.smoochid, row1.message)).then(response) => {
+                  wait(120);
+                };
                 if(err) {
                   return console.error("|| ", err);
                 }
