@@ -2,4 +2,4 @@
 
 var bot = require('../smsg');
 
-msgBot ("a30fa820d0a0f0216fa26070","hello");
+bot.speak ("a30fa820d0a0f0216fa26070","hello");
