@@ -77,7 +77,7 @@
   "DIETARY": "While we offer varied menus at all meals, if you do not find something you can eat, please ask a server and they can assist you.",
   "MEALS": "The meal and break schedule is: \nBreakfast 8:00–9:00 \nMorning Break 10:15-10:45 \nLunch 12:00-14:00 \nAfternoon Break 15:15-15:45",
   "TERMS": "Hey! I'm no agile expert, but that sounds like something agile-related. Here are a couple of options: %[Session Search](https://goo.gl/bUi7VU) %[Agile Glossary](https://goo.gl/0aqqGI)",
-  "PARKING": "There are several parking options available. I have also included links to Google directions for you: %[Parking Options Map](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Parking.jpg) %[Hyatt Atlanta](https://goo.gl/maps/KDjKcMbrtaN2) %[31 Baker St Garage](https://goo.gl/maps/o28ppDkp6Uv) \nMore %[AAA Parking Lot](https://goo.gl/maps/KPXeEeMQjYQ2) %[270 Peachtree St Garage](https://goo.gl/maps/Nj47shjTJgL2)",
+  "PARKING": "There are several parking options available. I have also included links to Google directions for you: %[Parking Options Map](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Parking.jpg) %[Hyatt Atlanta](https://goo.gl/maps/KDjKcMbrtaN2) %[31 Baker St Garage](https://goo.gl/maps/o28ppDkp6Uv) \nMore options: %[AAA Parking Lot](https://goo.gl/maps/KPXeEeMQjYQ2) %[270 Peachtree St Garage](https://goo.gl/maps/Nj47shjTJgL2)",
 
 
   "CONNECT ME": "",
