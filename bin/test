@@ -4,10 +4,6 @@ var sched = require('../push_new');
 
 //return sched.schedConv();
 
-return funtion rundsched(response, err) {
     console.log("started");
     sched.schedConv();
-    if (err) {
-      console.error(err);
     console.log("end");
-    }
