@@ -50,7 +50,7 @@ function wait(ms) {
 }
 
 
-module.exports = new msgBot({
+module.exports = new MsgBot({
 
     speak: {
 
