@@ -31,9 +31,9 @@ function wait(ms) {
                     'speak';
                   });
                   //newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
-                  if(err) {
-                    return console.error("|| ", err);
-                  }
+                  //if(err) {
+                  //  return console.error("|| ", err);
+                  //}
             });
         });
       client.on('drain', client.end.bind(client));
