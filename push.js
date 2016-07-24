@@ -22,12 +22,11 @@ function wait(ms) {
     client.connect();
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
-          //var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
-          var query2 = client.query("select distinct smoochid from conversation;");
+          var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
+          //var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                //wait(10000);
-                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
+                  return newBot.say(process.env.SCHED_PREFIX + row1.message).then(wait(10000),() => 'speak');
                   if(err) {
                     return console.error("|| ", err);
                   }
