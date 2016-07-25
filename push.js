@@ -31,6 +31,7 @@ function wait(ms) {
             //});
               var msg = process.env.SCHED_PREFIX + row1.message;
               _.each(rows2, function(row2) {
+                console.log(rows2.rowcount);
                 newBot.userId = row2.smoochid;
                 p = p.then(function() {
                   console.log("before p ", msg);
