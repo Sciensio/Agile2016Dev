@@ -36,6 +36,7 @@ function wait(ms) {
               console.log("message is: ", msg);
               var i = 0;
               var arrayLength = rows2.length;
+              console.log(rows2.length);
               for (var i = 0; i < arrayLength; i++) {
                 console.log(i);
                 p = p.then(function() {
@@ -49,7 +50,7 @@ function wait(ms) {
               return p.then(() => 'speak');
               }
             });
-          });        
+          });
       client.on('drain', client.end.bind(client));
   }
 
