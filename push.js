@@ -24,19 +24,19 @@ function wait(ms) {
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
+          var rows2 = [];
             query2.on('row',function(row2) {
-              wait(1000).then(function() {
-                  newBot.say(process.env.SCHED_PREFIX + row1.message)
-                    .then(() => {
-                      wait(1000);
-                      newBot.userId = row2.smoochid;
-                      'speak';
-                      console.log("actually sent: ", newBot.userId);
-                    });
-                });
+              rows2.push(row2);
+            });
+          query.on('end', function(result) {
+            newBot.say(process.env.SCHED_PREFIX + row1.message)
+              .then(() => {
+                newBot.userId = row2.smoochid;
+                'speak';
+                console.log("actually sent: ", newBot.userId);
               });
-            //});
-        });
+          });
+      });
       client.on('drain', client.end.bind(client));
   }
 

@@ -36,15 +36,11 @@ pool.on('error', function(e, client) {
         if (err) {
           console.error("pool error: ",err);
         }
-        //var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
-        var query = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
+        var query = client.query('SELECT DISTINCT smoochid FROM conversation;');
           query.on('row', function(row, err){
             newBot.userId = row.smoochid;
             //console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
-              return newBot.say(message).then(() => {
-                console.log("|| Attendee ",newBot.userId," was sent message:", message);
-                'speak';
-              })
+              return newBot.say(message).then(() => 'speak');
             if(err) {
               return console.error("|| ", err);
             }
