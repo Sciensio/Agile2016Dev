@@ -28,7 +28,7 @@ function wait(ms) {
               wait(1000).then(function() {
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
-                      wait(120);
+                      wait(1000);
                       newBot.userId = row2.smoochid;
                       'speak';
                       console.log("actually sent: ", newBot.userId);
