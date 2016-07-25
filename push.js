@@ -27,14 +27,18 @@ function wait(ms) {
           var rows2 = [];
             query2.on('row',function(row2) {
               rows2.push(row2);
+              console.log("added row to array");
             });
           query2.on('end', function(result) {
+            var i = 0
+            for (var i = 0; i < arrayLength; i++) {
+            newBot.userId = rows2[i]];
             newBot.say(process.env.SCHED_PREFIX + row1.message)
               .then(() => {
-                newBot.userId = row2.smoochid;
                 'speak';
-                console.log("actually sent: ", newBot.userId);
+                console.log("actually sent: ", i);
               });
+            }
           });
       });
       client.on('drain', client.end.bind(client));
