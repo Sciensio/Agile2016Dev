@@ -78,6 +78,7 @@
   "MEALS": "The meal and break schedule is: \nBreakfast 8:00–9:00 in Centennial Ballroom \nMorning Break 10:15-10:45 \nLunch in Grand Hall 12:00-14:00 \nAfternoon Break 15:15-15:45 %[Conference Map](postback:MAP)",
   "TERMS": "Hey! I'm no agile expert, but that sounds like something agile-related. Here are a couple of options: %[Session Search](https://goo.gl/bUi7VU) %[Agile Glossary](https://goo.gl/0aqqGI)",
   "PARKING": "There are several parking options available. I have also included links to Google directions for you: %[Parking Options Map](https://raw.githubusercontent.com/Sciensio/Agile2016Dev/extended-db/img/Parking.jpg) %[Hyatt Atlanta](https://goo.gl/maps/KDjKcMbrtaN2) %[31 Baker St Garage](https://goo.gl/maps/o28ppDkp6Uv) \nMore options: %[AAA Parking Lot](https://goo.gl/maps/KPXeEeMQjYQ2) %[270 Peachtree St Garage](https://goo.gl/maps/Nj47shjTJgL2)",
+  "SLIDES": "If available, you can find the links to download the materials in the details for that session after the speaker bio. %[Sessions](postback:SESSIONS)",
 
 
   "CONNECT ME": "",
