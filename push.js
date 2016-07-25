@@ -31,6 +31,7 @@ function wait(ms) {
                 newBot.userId = row2.smoochid;
                 console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
+                      console.log("in ");
                       return bot.say(msg);
                   });
               });
