@@ -30,27 +30,18 @@ function wait(ms) {
               rows2.push(row2);
             });
 
-          query2.on('end', function(result) {
-            console.log("in on end");
               var msg = process.env.SCHED_PREFIX + row1.message;
-              console.log("message is: ", msg);
-              var i = 0;
-              var arrayLength = rows2.length;
-              console.log(rows2.length);
               _.each(rows2, function(rows2) {
-                console.log(i);
-                newBot.userId = row2.smoochid;
+                newBot.userId = rows2;
                 p = p.then(function() {
                   console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
-                    console.log("in ");
                     return bot.say(msg);
                   });
                 });
+              });
               return p.then(() => 'speak');
-              }
             });
-          });
       client.on('drain', client.end.bind(client));
   }
 
