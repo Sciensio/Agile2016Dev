@@ -25,13 +25,12 @@ function wait(ms) {
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
-          var p = Promise.resolve();
             query2.on('row2',function(row2) {
               rows2.push(row2);
-            //});
               var msg = process.env.SCHED_PREFIX + row1.message;
+              var p = Promise.resolve();
               _.each(rows2, function(row2) {
-                console.log(rows2.rowCount);
+                console.log("after each");
                 newBot.userId = row2.smoochid;
                 p = p.then(function() {
                   console.log("before p ", msg);
