@@ -29,10 +29,11 @@ function wait(ms) {
                 newBot.userId = row2.smoochid;
                 return wait(1000).then(function() {//delete this line
                   console.log('newBot.userId: ', newBot.userId);
+                                        i = i+1;
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
                       'speak';
-                      i = i+1;
+
                       console.log("actually sent: ", newBot.userId, " count: ", i);
 
                       wait(120);
