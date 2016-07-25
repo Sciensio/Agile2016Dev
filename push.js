@@ -8,6 +8,8 @@
 
 var pg = require('pg');
 var Client = require('pg').Client;
+const _ = require('lodash');
+
 
 pg.defaults.ssl = true;
 
