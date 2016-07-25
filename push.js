@@ -28,14 +28,14 @@ function wait(ms) {
             query2.on('row',function(row2) {
             console.log("before: ", i);
                 newBot.userId = row2.smoochid;
-                i = i+1;
-              console.log("after: ", i);
                   //console.log('newBot.userId: ', newBot.userId);
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
                       'speak';
-                      console.log("actually sent: ", newBot.userId);
+                      console.log("actually sent: ", newBot.userId, " middle ", i);
                     });
+                    i = i+1;
+                  console.log("after: ", i);
             });
         });
       client.on('drain', client.end.bind(client));
