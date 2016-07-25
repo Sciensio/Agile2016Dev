@@ -30,11 +30,8 @@ function wait(ms) {
               rows2.push(row2);
             //});
               var msg = process.env.SCHED_PREFIX + row1.message;
-              console.log(">>>> 1a");
               _.each(rows2, function(row2) {
-                console.log(">>>>> 2");
                 newBot.userId = row2;
-                console.log(">>>> 3");
                 p = p.then(function() {
                   console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
