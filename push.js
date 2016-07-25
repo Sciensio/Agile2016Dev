@@ -29,9 +29,9 @@ function wait(ms) {
             query2.on('row',function(row2) {
               rows2.push(row2);
             });
-              console.log(">>>> 1");
               var msg = process.env.SCHED_PREFIX + row1.message;
               console.log(">>>> 1a");
+              console.log(rows2);
               _.each(rows2, function(row2) {
                 console.log(">>>>> 2");
                 newBot.userId = row2;
