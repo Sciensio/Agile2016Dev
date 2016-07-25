@@ -1,8 +1,4 @@
-'use strict';
-
-//const _ = require('lodash');
-//var pg = require('pg');
-//var extend = require('util')._extend;
+uire('util')._extend;
 
 //postgress client connection
 
