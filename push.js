@@ -31,6 +31,7 @@ function wait(ms) {
             });
               console.log(">>>> 1");
               var msg = process.env.SCHED_PREFIX + row1.message;
+              console.log(">>>> 1a");
               _.each(rows2, function(rows2) {
                 console.log(">>>>> 2");
                 newBot.userId = rows2;
