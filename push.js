@@ -37,7 +37,7 @@ function wait(ms) {
                 var arrayLength = rows2.length;
                 for (var i = 0; i < arrayLength; i++) {
                   p = p.then(function() {
-                    newBot.userId = rows2.[1];
+                    newBot.userId = rows2[1];
                     console.log('newBot.userId: ', newBot.userId);
                     return wait(50).then(function() {
                       console.log("in ");
