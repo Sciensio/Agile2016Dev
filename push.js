@@ -29,10 +29,12 @@ function wait(ms) {
             query2.on('row',function(row2) {
               rows2.push(row2);
             });
-
+              console.log(">>>> 1");
               var msg = process.env.SCHED_PREFIX + row1.message;
               _.each(rows2, function(rows2) {
+                console.log(">>>>> 2");
                 newBot.userId = rows2;
+                console.log(">>>> 3");
                 p = p.then(function() {
                   console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
