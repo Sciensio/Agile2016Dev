@@ -42,8 +42,9 @@ function wait(ms) {
                   });
                   });
                 });
-                console.log(p);
               return p.then(() => 'speak');
+              console.log(p);
+
             });
 
             });
