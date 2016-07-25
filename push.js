@@ -30,12 +30,12 @@ function wait(ms) {
               rows2.push(row2);
             //});
               var msg = process.env.SCHED_PREFIX + row1.message;
-              _.each(rows2, function(row2.smoochid) {
+              _.each(rows2, function(row2) {
                 newBot.userId = row2.smoochid;
                 p = p.then(function() {
                   return wait(50).then(function() {
                     return bot.say(msg);
-                    console.log('newBot.userId: ', newBot.userId);                    
+                    console.log('newBot.userId: ', newBot.userId);
                   });
                   });
                   return p.then(() => 'speak');
