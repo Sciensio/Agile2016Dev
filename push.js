@@ -36,12 +36,14 @@ function wait(ms) {
       //  console.log(user);
       });
 
-      console.log(query2);
+    query2.on('end', function(result){
+      sayMsg(user);
+    })
+    client.on('drain', client.end.bind(client));
+  }
 
-      client.on('drain', client.end.bind(client));
-
-      var p = Promise.resolve();
-
+  function sayMsg(users) {
+    var p = Promise.resolve();
     _.each(user, function(uid) {
       console.log("before p");
       p = p.then(function() {
@@ -54,6 +56,5 @@ function wait(ms) {
     });
     return p.then(() => 'speak');
   }
-
 
 module.exports = {schedConv};
