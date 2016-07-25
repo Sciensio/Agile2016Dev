@@ -29,7 +29,6 @@ function wait(ms) {
             query2.on('row',function(row2) {
               rows2.push(row2);
             });
-          });
 
           query2.on('end', function(result) {
             console.log("in on end");
@@ -50,6 +49,7 @@ function wait(ms) {
               return p.then(() => 'speak');
               }
             });
+          });        
       client.on('drain', client.end.bind(client));
   }
 
