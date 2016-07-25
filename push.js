@@ -30,6 +30,7 @@ function wait(ms) {
               rows2.push(row2);
             });
             query2.on('end', function(result) {
+              console.log("in on end");
                 var msg = process.env.SCHED_PREFIX + row1.message;
                 p = p.then(function() {
                   newBot.userId = row2.smoochid;
