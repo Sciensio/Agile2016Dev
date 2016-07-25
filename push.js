@@ -26,7 +26,6 @@ function wait(ms) {
           //var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
               return wait(50).then(function() {
-                .then((){
                   newBot.userId = row2.smoochid;
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
@@ -35,7 +34,7 @@ function wait(ms) {
                     });
                 });
               });
-            });
+            //});
         });
       client.on('drain', client.end.bind(client));
   }
