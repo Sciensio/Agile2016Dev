@@ -37,10 +37,10 @@ function wait(ms) {
               var i = 0;
               var arrayLength = rows2.length;
               console.log(rows2.length);
-              for (var i = 0; i < arrayLength; i++) {
+              _.each(rows2, function(rows2) {
                 console.log(i);
+                newBot.userId = row2.smoochid;
                 p = p.then(function() {
-                  newBot.userId = rows2[1];
                   console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
                     console.log("in ");
