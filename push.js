@@ -44,7 +44,7 @@ function wait(ms) {
 
   function sayMsg(users) {
     var p = Promise.resolve();
-    _.each(user, function(uid) {
+    _.each(users, function(uid) {
       console.log("before p");
       p = p.then(function() {
         console.log("after p");
