@@ -41,7 +41,6 @@ function wait(ms) {
                   return p.then(() => 'speak');
                 });
             });
-
             });
       client.on('drain', client.end.bind(client));
   }
