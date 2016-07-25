@@ -36,6 +36,8 @@ function wait(ms) {
       });
       client.on('drain', client.end.bind(client));
 
+      var p = Promise.resolve();
+
     _.each(user, function(uid) {
       p = p.then(function() {
         return wait(50).then(function(){
