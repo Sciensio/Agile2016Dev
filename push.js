@@ -44,7 +44,6 @@ function wait(ms) {
                 });
               return p.then(() => 'speak');
               console.log(p);
-
             });
 
             });
