@@ -20,11 +20,11 @@ function wait(ms) {
   function schedConv(newBot, response) {
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
+    var rows2 = [];
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
-          var rows2 = [];
           var p = Promise.resolve();
             query2.on('row',function(row2) {
               rows2.push(row2);
