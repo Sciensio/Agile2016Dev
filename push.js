@@ -33,6 +33,7 @@ function wait(ms) {
             var i = 0
             for (var i = 0; i < arrayLength; i++) {
             newBot.userId = rows2[i];
+            
             newBot.say(process.env.SCHED_PREFIX + row1.message)
               .then(() => {
                 'speak';
