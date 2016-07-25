@@ -28,6 +28,7 @@ function wait(ms) {
           var p = Promise.resolve();
             query2.on('row',function(row2) {
               rows2.push(row2);
+              console.log(rows2);
             });
               var msg = process.env.SCHED_PREFIX + row1.message;
               console.log(">>>> 1a");
