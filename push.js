@@ -32,8 +32,9 @@ function wait(ms) {
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
                       'speak';
-                      console.log("actually sent: ", newBot.userId, " count: ", i);
                       i = i+1;
+                      console.log("actually sent: ", newBot.userId, " count: ", i);
+
                       wait(120);
                     });
                 });//delete this line
