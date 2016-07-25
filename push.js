@@ -41,6 +41,7 @@ function wait(ms) {
                     return bot.say(msg);
                   });
                   });
+                  console.log(p);
                 });
               return p.then(() => 'speak');
             });
