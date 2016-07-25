@@ -26,12 +26,13 @@ function wait(ms) {
           //var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                return wait(120).then(function() {//delete this line
+                return wait(1000).then(function() {//delete this line
                   console.log('newBot.userId: ', newBot.userId);
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
                       'speak';
                       console.log("here");
+                      wait(120);
                     });
                 });//delete this line
             });
