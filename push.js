@@ -26,10 +26,8 @@ function wait(ms) {
           var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
                 newBot.userId = row2.smoochid;
-                return wait(1000).then(function() {
                   console.log('newBot.userId: ', newBot.userId);
                   newBot.say(process.env.SCHED_PREFIX + row1.message).then(() => 'speak');
-                });
             });
         });
       client.on('drain', client.end.bind(client));
