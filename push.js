@@ -32,14 +32,15 @@ function wait(ms) {
 
     var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
-      user.push(row2);
+        user.push(row2);
       });
       client.on('drain', client.end.bind(client));
 
       var p = Promise.resolve();
 
-    _.each(user, function(uid) {
       console.log(user);
+
+    _.each(user, function(uid) {
       console.log("before p");
       p = p.then(function() {
         console.log("after p");
