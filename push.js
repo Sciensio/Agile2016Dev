@@ -29,7 +29,7 @@ function wait(ms) {
                   console.log('newBot.userId: ', newBot.userId);
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
-                      wait(120);
+                      wait(1000);
                       'speak';
                       console.log("here");
                     });
