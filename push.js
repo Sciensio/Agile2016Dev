@@ -25,10 +25,10 @@ function wait(ms) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
-              newBot.userId = row2.smoochid;
               return wait(1000).then(function() {
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
+                      newBot.userId = row2.smoochid;
                       'speak';
                       console.log("actually sent: ", newBot.userId);
                     });
