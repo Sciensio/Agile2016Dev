@@ -35,9 +35,7 @@ function wait(ms) {
             var arrayLength = rows2.length;
             for (var i = 0; i < arrayLength; i++) {
             newBot.userId = rows2[i];
-            console.log("userId: ", newBot.userId);
-            console.log("message: ", row1.message);
-            newBot.say(process.env.SCHED_PREFIX + row1.message)
+            return newBot.say(process.env.SCHED_PREFIX + row1.message)
               .then(() => {
                 'speak';
                 console.log("actually sent: ", i);
