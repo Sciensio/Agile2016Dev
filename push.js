@@ -30,11 +30,11 @@ function wait(ms) {
               console.log("added row to array");
             });
           query2.on('end', function(result) {
+            console.log("in end");
             var i = 0
             var arrayLength = rows2.length;
             for (var i = 0; i < arrayLength; i++) {
             newBot.userId = rows2[i];
-
             newBot.say(process.env.SCHED_PREFIX + row1.message)
               .then(() => {
                 'speak';
