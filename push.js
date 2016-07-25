@@ -39,11 +39,12 @@ function wait(ms) {
                   console.log('newBot.userId: ', newBot.userId);
                   return wait(50).then(function() {
                     return bot.say(msg);
-});
+                  });
                   });
                 });
-              });
               return p.then(() => 'speak');
+            });
+
             });
       client.on('drain', client.end.bind(client));
   }
