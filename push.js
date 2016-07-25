@@ -39,7 +39,10 @@ function wait(ms) {
       var p = Promise.resolve();
 
     _.each(user, function(uid) {
+      console.log(user);
+      console.log("before p");
       p = p.then(function() {
+        console.log("after p");
         return wait(50).then(function(){
           bot.userId = uid;
           return bot.say(msg);
