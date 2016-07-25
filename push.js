@@ -33,7 +33,7 @@ function wait(ms) {
                     .then(() => {
                       'speak';
                       console.log("actually sent: ", newBot.userId, " count: ", i);
-                      i++;
+                      i = i+1;
                       wait(120);
                     });
                 });//delete this line
