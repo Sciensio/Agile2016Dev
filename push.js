@@ -32,9 +32,9 @@ function wait(ms) {
               console.log(">>>> 1");
               var msg = process.env.SCHED_PREFIX + row1.message;
               console.log(">>>> 1a");
-              _.each(rows2, function(rows2) {
+              _.each(rows2, function(row2) {
                 console.log(">>>>> 2");
-                newBot.userId = rows2;
+                newBot.userId = row2;
                 console.log(">>>> 3");
                 p = p.then(function() {
                   console.log('newBot.userId: ', newBot.userId);
