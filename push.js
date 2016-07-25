@@ -24,20 +24,24 @@ function wait(ms) {
         query1.on('row', function(row1) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
+          var rows2 = [];
           var p = Promise.resolve();
             query2.on('row',function(row2) {
-              var msg = process.env.SCHED_PREFIX + row1.message;
-              p = p.then(function() {
-                newBot.userId = row2.smoochid;
-                console.log('newBot.userId: ', newBot.userId);
-                  return wait(50).then(function() {
-                      console.log("in ");
-                      return bot.say(msg);
-                  });
-              });
-              return p.then(() => 'speak');
+              rows2.push(row2);
             });
-        });
+            query.on('end', function(result) {
+                var msg = process.env.SCHED_PREFIX + row1.message;
+                p = p.then(function() {
+                  newBot.userId = row2.smoochid;
+                  console.log('newBot.userId: ', newBot.userId);
+                    return wait(50).then(function() {
+                        console.log("in ");
+                        return bot.say(msg);
+                    });
+                });
+                return p.then(() => 'speak');
+              });
+            });
       client.on('drain', client.end.bind(client));
   }
 
