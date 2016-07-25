@@ -25,13 +25,15 @@ function wait(ms) {
           var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           //var query2 = client.query("select distinct smoochid from conversation;");
             query2.on('row',function(row2) {
+                var i = 1;
                 newBot.userId = row2.smoochid;
                 return wait(1000).then(function() {//delete this line
                   console.log('newBot.userId: ', newBot.userId);
                   newBot.say(process.env.SCHED_PREFIX + row1.message)
                     .then(() => {
                       'speak';
-                      console.log("here");
+                      console.log("actually sent: ", newBot.userId, " count: ", i);
+                      i++;
                       wait(120);
                     });
                 });//delete this line
