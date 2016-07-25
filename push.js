@@ -34,11 +34,10 @@ function wait(ms) {
       query2.on('row',function(row2) {
         user.push(row2.smoochid);
       });
+      console.log(user);
       client.on('drain', client.end.bind(client));
 
       var p = Promise.resolve();
-
-      console.log(user);
 
     _.each(user, function(uid) {
       console.log("before p");
