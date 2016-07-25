@@ -32,15 +32,20 @@ function wait(ms) {
             query2.on('end', function(result) {
               console.log("in on end");
                 var msg = process.env.SCHED_PREFIX + row1.message;
-                p = p.then(function() {
-                  newBot.userId = row2.smoochid;
-                  console.log('newBot.userId: ', newBot.userId);
+                console.log("message is: ", msg);
+                var i = 0;
+                var arrayLength = rows2.length;
+                for (var i = 0; i < arrayLength; i++) {
+                  p = p.then(function() {
+                    newBot.userId = rows2.[1];
+                    console.log('newBot.userId: ', newBot.userId);
                     return wait(50).then(function() {
-                        console.log("in ");
-                        return bot.say(msg);
+                      console.log("in ");
+                      return bot.say(msg);
                     });
-                });
+                  });
                 return p.then(() => 'speak');
+                }
               });
             });
       client.on('drain', client.end.bind(client));
