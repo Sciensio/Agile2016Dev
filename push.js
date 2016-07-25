@@ -32,6 +32,7 @@ function wait(ms) {
               var msg = process.env.SCHED_PREFIX + row1.message;
               _.each(rows2, function(row2) {
                 newBot.userId = row2.smoochid;
+                
                 p = p.then(function() {
                   return wait(50).then(function() {
                     return bot.say(msg);
