@@ -29,6 +29,7 @@ function wait(ms) {
             query2.on('row',function(row2) {
               rows2.push(row2);
             });
+            
             query2.on('end', function(result) {
               console.log("in on end");
                 var msg = process.env.SCHED_PREFIX + row1.message;
