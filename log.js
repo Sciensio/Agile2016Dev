@@ -40,7 +40,10 @@ pool.on('error', function(e, client) {
           query.on('row', function(row, err){
             newBot.userId = row.smoochid;
             //console.log("|| Sending ad hoc message toSmoochId ", row.smoochid);
-              return newBot.say(message).then(console.log("|| Attendee ",newBot.userId," was sent message:", message),() => 'speak');
+              return newBot.say(message).then(() => {
+                console.log("|| Attendee ",newBot.userId," was sent message:", message);
+                'speak';
+              })
             if(err) {
               return console.error("|| ", err);
             }
