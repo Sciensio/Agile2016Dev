@@ -35,7 +35,7 @@ pg.defaults.ssl = true;
   function getUsers(bot,client, msg) {
     var user = [];
     //var query2 = client.query("select distinct smoochid from conversation;");
-    var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");    
+    var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
       query2.on('row',function(row2) {
         user.push(row2.smoochid);
       //  console.log(user);
@@ -48,12 +48,12 @@ pg.defaults.ssl = true;
 
   function sayMsg(bot,users,msg) {
     var p = Promise.resolve();
-    console.log(users);
+    //console.log(users);
     _.each(users, function(uid) {
       p = p.then(function() {
-        console.log("after p",uid);
+        //console.log("after p",uid);
           bot.userId = uid;
-          console.log(bot);
+          //console.log(bot);
           return wait(50).then(function(){
             return bot.say(msg);
         });
