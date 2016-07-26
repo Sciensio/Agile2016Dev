@@ -39,12 +39,10 @@ pg.defaults.ssl = true;
         user.push(row2.smoochid, msg);
       //  console.log(user);
       });
-    }
-
       query2.on('end', function(result){
         console.log(user);
         sayMsg(user);
-      })
+      });
       client.on('drain', client.end.bind(client));
   }
 
