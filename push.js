@@ -44,13 +44,14 @@ function wait(ms) {
 
   function sayMsg(users) {
     var p = Promise.resolve();
+    console.log(users);
     _.each(users, function(uid) {
       console.log("before p");
       p = p.then(function() {
-        console.log("after p");
-        return wait(50).then(function(){
+        console.log("after p",uid);
           bot.userId = uid;
-          return bot.say(msg);
+          return wait(50).then(function(){
+            return bot.say(msg);
         });
       });
     });
