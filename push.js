@@ -44,6 +44,7 @@ pg.defaults.ssl = true;
       });
   }
 
+
   function getUsers(bot,client, msg) {
     var user = [];
     var query2 = client.query("select distinct smoochid from conversation;");
