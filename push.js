@@ -30,11 +30,11 @@ pg.defaults.ssl = true;
         query1.on('row', function(row1) {
           //var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           var msg = row1.message;
-          getUsers(msg);
+          getUsers(client, msg);
         });
   }
 
-  function getUsers(msg) {
+  function getUsers(client, msg) {
     var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
         user.push(row2.smoochid, msg);
