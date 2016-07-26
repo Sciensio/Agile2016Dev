@@ -32,7 +32,8 @@ pg.defaults.ssl = true;
       query1.on('row', function(row1, err) {
         if (row1.message) {
           var msg = row1.message;
-          getUsers(newBot,client, msg);
+          client.on('drain', client.end.bind(client));
+        //  getUsers(newBot,client, msg);
         } else {
           client.on('drain', client.end.bind(client));
           return console.log("No messages to be sent");
