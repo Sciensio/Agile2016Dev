@@ -38,8 +38,8 @@ pg.defaults.ssl = true;
       query2.on('row',function(row2) {
         user.push(row2.smoochid, msg);
       //  console.log(user);
-      });
-      query2.on('end', function(result){
+      })
+      query2.on('end', function(result) {
         console.log(user);
         sayMsg(user);
       });
