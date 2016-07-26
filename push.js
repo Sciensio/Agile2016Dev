@@ -32,6 +32,7 @@ pg.defaults.ssl = true;
           var msg = row1.message;
           getUsers(msg);
         });
+  }
 
   function getUsers(msg) {
     var query2 = client.query("select distinct smoochid from conversation;");
@@ -59,7 +60,7 @@ pg.defaults.ssl = true;
         });
       });
     });
-    
+
     return p.then(() => 'speak');
   }
 
