@@ -28,7 +28,7 @@ pg.defaults.ssl = true;
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
       console.log("ran query");
       query1.on('row', function(row1, err) {
-        console.log("are thererecords",query1);
+        console.log(typeof query1);
         if (row1.message) {
           var msg = row1.message;
           getUsers(newBot,client, msg);
