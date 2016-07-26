@@ -137,9 +137,8 @@ module.exports = new Script({
 
               if (upperText.indexOf(/\d{1,2}:\d{2}/g)  > -1) {
                 upperText = upperText.replace(":", "");
+                console.log("time found", upperText);
               }
-
-              console.log("upperText");
 
               promises.push(nlp(upperText, bot.userId));
 
