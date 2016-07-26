@@ -135,6 +135,10 @@ module.exports = new Script({
                 upperText = upperText.replace("/", " ");
               }
 
+              if (upperText.match(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/g)) {
+                upperText = upperText.replace(":", " ");
+              }
+
               promises.push(nlp(upperText, bot.userId));
 
               Q.all(promises).then(function(responses) {
