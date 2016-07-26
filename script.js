@@ -135,6 +135,7 @@ module.exports = new Script({
                 upperText = upperText.replace("/", " ");
               }
 
+              console.log("does it match?", upperText.indexOf(/\d{1,2}:\d{2}/g));
               if (upperText.indexOf(/\d{1,2}:\d{2}/g)  > -1) {
                 upperText = upperText.replace(":", "");
                 console.log("time found", upperText);
