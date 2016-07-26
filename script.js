@@ -135,8 +135,8 @@ module.exports = new Script({
                 upperText = upperText.replace("/", " ");
               }
 
-              console.log("does it match?", upperText.indexOf(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/g));
-              if (upperText.indexOf(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/g)  > -1) {
+              console.log("does it match?", upperText.indexOf(":"));
+              if (upperText.indexOf(":")  > -1) {
                 upperText = upperText.replace(":", "");
                 console.log("time found", upperText);
               }
