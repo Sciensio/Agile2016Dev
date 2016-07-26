@@ -37,6 +37,7 @@ function wait(ms) {
       });
 
     query2.on('end', function(result){
+      console.log(user);
       sayMsg(user);
     })
     client.on('drain', client.end.bind(client));
@@ -51,7 +52,7 @@ function wait(ms) {
         console.log("after p",uid);
           bot.userId = uid;
           return wait(50).then(function(){
-            return bot.say(msg);
+            return bot.say(uid);
         });
       });
     });
