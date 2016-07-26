@@ -26,13 +26,14 @@ pg.defaults.ssl = true;
     client.connect();
 
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
+        console.log("ran query");
         query1.on('row', function(row1) {
           if (row1.message) {
             var msg = row1.message;
             getUsers(newBot,client, msg);
           } else {
-            return console.log("No messages to be sent");
             client.on('drain', client.end.bind(client));
+            return console.log("No messages to be sent");
           }
         });
   }
