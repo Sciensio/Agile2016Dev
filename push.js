@@ -28,15 +28,15 @@ pg.defaults.ssl = true;
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
       console.log(query1);
       console.log(typeof query1._accumulateRows);
-      if (typeof query1._accumulateRows === 'undefined') {
-        client.on('drain', client.end.bind(client));
-        return console.log("No messages sent");
-      } else {
-        query1.on('row', function(row1, err) {
+//      if (typeof query1._accumulateRows === 'undefined') {
+//        client.on('drain', client.end.bind(client));
+//        return console.log("No messages sent");
+//      } else {
+        query1.on('row', function(row1) {
           var msg = row1.message;
           getUsers(newBot,client, msg);
-        });
-      }
+       });
+      //}
   }
 
   function getUsers(bot,client, msg) {
