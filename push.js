@@ -32,7 +32,7 @@ function wait(ms) {
 
     var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
-        user.push(row2.smoochid);
+        user.push(row2.smoochid, msg);
       //  console.log(user);
       });
 
