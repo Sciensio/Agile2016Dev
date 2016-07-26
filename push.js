@@ -22,7 +22,6 @@ pg.defaults.ssl = true;
 
   function schedConv(newBot, response) {
 
-    var user = [];
     var client = new Client(process.env.DATABASE_URL);
     client.connect();
 
@@ -35,6 +34,7 @@ pg.defaults.ssl = true;
   }
 
   function getUsers(client, msg) {
+    var user = [];
     var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
         user.push(row2.smoochid, msg);
