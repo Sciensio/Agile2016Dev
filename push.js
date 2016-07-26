@@ -30,14 +30,14 @@ pg.defaults.ssl = true;
       console.log(typeof query1._accumulateRows);
 
       query1.on('row', function(row1, err) {
-        if (row1.message) {
-          var msg = row1.message;
-          client.on('drain', client.end.bind(client));
-        //  getUsers(newBot,client, msg);
-        } else {
+        if (typeof query1._accumulateRows === 'undefined') {
           client.on('drain', client.end.bind(client));
           return console.log("No messages to be sent");
+        } else {
+          var msg = row1.message;
+          getUsers(newBot,client, msg);
         }
+        
         if(err) {
           client.on('drain', client.end.bind(client));
           return console.error("|| ", err);
