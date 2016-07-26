@@ -32,6 +32,7 @@ pg.defaults.ssl = true;
             getUsers(newBot,client, msg);
           } else {
             return console.log("No messages to be sent");
+            client.on('drain', client.end.bind(client));
           }
         });
   }
