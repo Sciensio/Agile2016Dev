@@ -36,11 +36,6 @@ pg.defaults.ssl = true;
           var msg = row1.message;
           getUsers(newBot,client, msg);
         }
-
-        if(err) {
-          client.on('drain', client.end.bind(client));
-          return console.error("|| ", err);
-        }
       });
   }
 
