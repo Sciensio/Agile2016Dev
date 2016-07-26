@@ -29,28 +29,24 @@ pg.defaults.ssl = true;
         query1.on('row', function(row1) {
           //var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
           var msg = row1.message;
-          console.log("done step 1");
           getUsers(client, msg);
         });
   }
 
   function getUsers(client, msg) {
-    console.log("start step 2");
     var user = [];
     var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
-        user.push(row2.smoochid, msg);
+        user.push(row2.smoochid);
       //  console.log(user);
       })
       query2.on('end', function(result) {
-        console.log(user);
-        return sayMsg(user);
+        return sayMsg(user,msg);
       });
       client.on('drain', client.end.bind(client));
   }
 
-  function sayMsg(users) {
-    console.log("made step 3");
+  function sayMsg(users,msg) {
     var p = Promise.resolve();
     console.log(users);
     _.each(users, function(uid) {
@@ -59,7 +55,7 @@ pg.defaults.ssl = true;
         console.log("after p",uid);
           bot.userId = uid;
           return wait(50).then(function(){
-            return bot.say(uid);
+            return bot.say(msg);
         });
       });
     });
