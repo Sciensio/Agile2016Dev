@@ -141,6 +141,7 @@ module.exports = new Script({
                 console.log("time found", upperText);
               }
 
+
               promises.push(nlp(upperText, bot.userId));
 
               Q.all(promises).then(function(responses) {
