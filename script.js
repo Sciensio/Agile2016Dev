@@ -43,7 +43,7 @@ module.exports = new Script({
             let upperText = message.text.trim().toUpperCase();
 
             //This is in case a user uses the bots name in a request
-            console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
+            //console.log("before a16 search ", upperText.indexOf("A16"), upperText.length);
             if ((upperText.indexOf(process.env.BOT_NAME)  > -1)  && (upperText.length > 4)) {
               upperText = upperText.replace(process.env.BOT_NAME, "");
             }
@@ -134,6 +134,13 @@ module.exports = new Script({
               if (upperText.match(/7\/2[456789]/g)) {
                 upperText = upperText.replace("/", " ");
               }
+
+              console.log("does it match?", upperText.indexOf(":"));
+              if (upperText.indexOf(":")  > -1) {
+                upperText = upperText.replace(":", "");
+                console.log("time found", upperText);
+              }
+
 
               promises.push(nlp(upperText, bot.userId));
 
