@@ -135,9 +135,10 @@ module.exports = new Script({
                 upperText = upperText.replace("/", " ");
               }
 
-              if (upperText.match(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/g)) {
-                upperText = upperText.replace(":", " ");
+              if (upperText.indexOf(/\d{1,2}:\d{2}/g)  > -1) {
+                upperText = upperText.replace(":", "");
               }
+
               console.log("upperText");
 
               promises.push(nlp(upperText, bot.userId));
