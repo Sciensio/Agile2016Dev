@@ -59,6 +59,7 @@ pg.defaults.ssl = true;
         });
       });
     });
+    
     return p.then(() => 'speak');
   }
 
