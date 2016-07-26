@@ -51,10 +51,9 @@ pg.defaults.ssl = true;
 
   function sayMsg(bot,users,msg) {
     var p = Promise.resolve();
-    //console.log(users);
+    console.log("SchedMessage");
     _.each(users, function(uid) {
       p = p.then(function() {
-        console.log("SchedMessage");
           bot.userId = uid;
           console.log("Message sent to: ", uid);
           return wait(50).then(function(){
