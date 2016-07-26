@@ -27,15 +27,18 @@ pg.defaults.ssl = true;
 
     var query1 = client.query("SELECT message FROM batchmessage WHERE sendtime >= CURRENT_TIMESTAMP - INTERVAL '299.999 seconds' AND sendtime <= CURRENT_TIMESTAMP + INTERVAL '5 minutes' ORDER BY sendtime");
         query1.on('row', function(row1) {
-          var msg = row1.message;
-          getUsers(newBot,client, msg);
+          if (row1.message) {
+            var msg = row1.message;
+            getUsers(newBot,client, msg);
+          } else {
+            return console.log("No messages to be sent");
+          }
         });
   }
 
   function getUsers(bot,client, msg) {
     var user = [];
-    //var query2 = client.query("select distinct smoochid from conversation;");
-    var query2 = client.query("SELECT smoochid FROM conversation WHERE smoochid = 'a30fa820d0a0f0216fa26070' LIMIT 30;");
+    var query2 = client.query("select distinct smoochid from conversation;");
       query2.on('row',function(row2) {
         user.push(row2.smoochid);
       //  console.log(user);
@@ -51,9 +54,9 @@ pg.defaults.ssl = true;
     //console.log(users);
     _.each(users, function(uid) {
       p = p.then(function() {
-        //console.log("after p",uid);
+        console.log("SchedMessage");
           bot.userId = uid;
-          //console.log(bot);
+          console.log("Message sent to: ", uid);
           return wait(50).then(function(){
             return bot.say(msg);
         });
