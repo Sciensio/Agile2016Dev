@@ -41,7 +41,7 @@ pg.defaults.ssl = true;
       //  console.log(user);
       })
       query2.on('end', function(result) {
-        return sayMsg(user,msg);
+        return sayMsg(bot,user,msg);
       });
       client.on('drain', client.end.bind(client));
   }
@@ -50,7 +50,6 @@ pg.defaults.ssl = true;
     var p = Promise.resolve();
     console.log(users);
     _.each(users, function(uid) {
-      console.log("before p");
       p = p.then(function() {
         console.log("after p",uid);
           bot.userId = uid;
