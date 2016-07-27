@@ -35,6 +35,12 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
+
+            var isTextMessage = message.message.text ? true : false;
+            if (message.indexOf('851557_369239266556155_759568595_N.PNG') ) {
+              return bot.say("()y").then(() => 'speak');
+            }
+
             console.log("- bot message ", message);
             console.log("- processID", process.pid);
 
