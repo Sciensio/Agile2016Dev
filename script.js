@@ -35,6 +35,11 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
+
+            if (message.text.indexOf('851557_369239266556155_759568595') > -1) {
+              return bot.say("(y)").then(() => 'speak');
+            }
+
             console.log("- bot message ", message);
             console.log("- processID", process.pid);
 
