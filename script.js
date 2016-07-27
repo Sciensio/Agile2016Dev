@@ -36,7 +36,7 @@ module.exports = new Script({
         receive: (bot, message) => {
 
 
-            if (message.text.indexOf('851557_369239266556155_759568595_N.PNG') ) {
+            if (message.text.indexOf('851557_369239266556155_759568595_N.PNG') > -1) {
               return bot.say("(y)").then(() => 'speak');
             }
 
