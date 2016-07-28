@@ -33,9 +33,9 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            if (message.text.indexOf('851557_369239266556155_759568595' > -1)) {
-              return bot.say("(y)").then(() => 'speak');
-            }
+//            if (message.text.indexOf('851557_369239266556155_759568595' > -1)) {
+//              return bot.say("(y)").then(() => 'speak');
+//s            }
 
             console.log("- bot message ", message);
 
