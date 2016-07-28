@@ -9,8 +9,6 @@ var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
 var logConv = require("./log").logConversation;
-//var findSession = require("./sessionsearch");
-
 const scriptRules = require('./script.json');
 
 function wait(ms) {
@@ -35,15 +33,13 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
+            bot.say("chris").then(() => 'speak');
 
-            if (message.text.indexOf('851557_369239266556155_759568595') > -1) {
+            if (message.text.indexOf('851557_369239266556155_759568595' > -1)) {
               return bot.say("(y)").then(() => 'speak');
             }
 
             console.log("- bot message ", message);
-            console.log("- processID", process.pid);
-
-            //exit right away
 
             let upperText = message.text.trim().toUpperCase();
 
