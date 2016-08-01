@@ -25,7 +25,7 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Hello there - I\'m A16! I recently completed my duties as the Concierge EventBot for the Agile2016 conference. You can see what I helped Agile2016 attendees with by typing MENU for options or KEY for Keywords.')
+            return bot.say('Hello!  I\'m A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.')
                 .then(() => 'speak');
         }
     },
@@ -105,10 +105,10 @@ module.exports = new Script({
                     case "CONNECT ME":
                         //console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
-                  //  case "/NOTIFY":
+                    case "/NOTIFY":
                         //console.log('- Special Case: /NOTIFY'); //turns off bot
-                      //  bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again tap the button or type:  /A16. %[Return](postback:/A16)").then(() => 'speak');
-                    //    return bot.setProp("silent", true);
+                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again tap the button or type:  /A16. %[Return](postback:/A16)").then(() => 'speak');
+                        return bot.setProp("silent", true);
                     case "DISCONNECT":
                         //console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);
