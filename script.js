@@ -33,7 +33,7 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
-            console.log(">>>>> ", message.text);
+            console.log(">>>>> ", message.text, message.text.indexOf('851557_369239266556155_759568595');
 
 
             if (message.text.indexOf('851557_369239266556155_759568595' > -1)) {
