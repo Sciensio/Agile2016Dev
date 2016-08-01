@@ -25,7 +25,7 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Hello!  I\'m A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.')
+            return bot.say('Hello, I\'m A16! I recently completed my duties as the Concierge EventBot for the Agile2016 conference. To see what I helped Agile2016 attendees with tap the buttons or type keywords. For a list of keywords tap the button or type KEY. %[Menu](postback:MENU) %[Keywords](postback:KEY)')
                 .then(() => 'speak');
         }
     },
