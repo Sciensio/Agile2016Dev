@@ -9,8 +9,6 @@ var nlp = require("./nlp");
 var newBot = require("./newBot");
 var push = require("./push");
 var logConv = require("./log").logConversation;
-//var findSession = require("./sessionsearch");
-
 const scriptRules = require('./script.json');
 
 function wait(ms) {
@@ -27,7 +25,7 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Hello!  I\'m A16, the Agile2016 EventBot Concierge.  To find out what I can help you with type MENU for options or KEY for Keywords.')
+            return bot.say('Hello, I\'m A16! I recently completed my duties as the Concierge EventBot for the Agile2016 conference. To see what I helped Agile2016 attendees with tap the buttons or type keywords. For a list of keywords tap the button or type KEY. %[Menu](postback:MENU) %[Keywords](postback:KEY)')
                 .then(() => 'speak');
         }
     },
@@ -35,15 +33,14 @@ module.exports = new Script({
     speak: {
         receive: (bot, message) => {
 
+            console.log(">>>>> ", message.text, message.text.indexOf('851557_369239266556155_759568595'));
+
 
             if (message.text.indexOf('851557_369239266556155_759568595') > -1) {
               return bot.say("(y)").then(() => 'speak');
             }
 
             console.log("- bot message ", message);
-            console.log("- processID", process.pid);
-
-            //exit right away
 
             let upperText = message.text.trim().toUpperCase();
 
@@ -108,10 +105,10 @@ module.exports = new Script({
                     case "CONNECT ME":
                         //console.log('- Special Case: CONNECT ME'); //turns off bot
                         return bot.setProp("silent", true);
-                    case "/NOTIFY":
+                    //case "/NOTIFY":
                         //console.log('- Special Case: /NOTIFY'); //turns off bot
-                        bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again tap the button or type:  /A16. %[Return](postback:/A16)").then(() => 'speak');
-                        return bot.setProp("silent", true);
+                    //    bot.say("I have notified the Agile2016 human team that you have requested help. They usually respond in less than 5 minutes during conference hours. You are now in live support mode and when you are ready to chat with me again tap the button or type:  /A16. %[Return](postback:/A16)").then(() => 'speak');
+                    //    return bot.setProp("silent", true);
                     case "DISCONNECT":
                         //console.log('- Special Case: DISCONNECT'); //turns bot back on
                         return bot.setProp("silent", false);

@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-
-var sched = require('../push_new');
-
-//return sched.schedConv();
-
-    console.log("started");
-    sched.schedConv();
-    console.log("end");
